@@ -71,23 +71,71 @@ export interface Alert {
   createdAt: string;
 }
 
+export type ConversationType = 'private' | 'group' | 'case';
+export type MessageStatus = 'sent' | 'delivered' | 'read';
+
+export interface MessageAttachment {
+  id: string;
+  name: string;
+  type: 'image' | 'file';
+  url: string;
+  size: number;
+}
+
 export interface Message {
   id: string;
   conversationId: string;
-  sender: User;
+  sender: Employee;
   content: string;
-  attachments?: string[];
+  attachments?: MessageAttachment[];
   caseTag?: string;
+  mentions?: string[]; // User IDs mentioned with @
+  status: MessageStatus;
   createdAt: string;
+  editedAt?: string;
+}
+
+export interface TypingStatus {
+  userId: string;
+  userName: string;
+  isTyping: boolean;
+  timestamp: string;
 }
 
 export interface Conversation {
   id: string;
-  participants: User[];
-  caseTag?: string;
+  type: ConversationType;
+  name?: string; // For group chats
+  participants: Employee[];
+  creator?: Employee; // For group chats
+  caseId?: string;
+  description?: string; // For groups
   lastMessage: string;
   lastMessageAt: string;
   unreadCount: number;
+  isArchived: boolean;
+  isMuted: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface MessageFilter {
+  type?: ConversationType;
+  hospital?: string;
+  department?: string;
+  role?: UserRole;
+  caseId?: string;
+}
+
+export interface MessageSort {
+  field: 'recent' | 'unread' | 'name' | 'created';
+  direction: 'asc' | 'desc';
+}
+
+export interface OnlineStatus {
+  userId: string;
+  isOnline: boolean;
+  lastSeen?: string;
 }
 
 export interface RolePermission {
