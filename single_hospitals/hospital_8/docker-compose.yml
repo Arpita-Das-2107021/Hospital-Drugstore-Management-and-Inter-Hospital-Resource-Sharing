@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  hospital_8_db:
+    image: mariadb:10.11
+    container_name: hospital_8_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root2026
+      MYSQL_DATABASE: hospital_8_db
+      MYSQL_USER: hospital8user
+      MYSQL_PASSWORD: hospital8pass
+    ports:
+      - "3364:3306"
+    volumes:
+      - hospital_8_data:/var/lib/mysql
+      - ./sql_scripts:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  hospital_8_data:

@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  hospital_7_db:
+    image: mysql:8.0
+    container_name: hospital_7_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root2026
+      MYSQL_DATABASE: hospital_7_db
+      MYSQL_USER: hospital7user
+      MYSQL_PASSWORD: hospital7pass
+    ports:
+      - "3363:3306"
+    volumes:
+      - hospital_7_data:/var/lib/mysql
+      - ./sql_scripts:/docker-entrypoint-initdb.d:ro
+    command: --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uhospital7user", "-phospital7pass"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  hospital_7_data:

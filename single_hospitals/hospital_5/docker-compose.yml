@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  hospital_5_db:
+    image: gvenzl/oracle-xe:21-slim
+    container_name: hospital_5_db
+    environment:
+      ORACLE_PASSWORD: Hospital5Pass
+      ORACLE_DATABASE: hospital5
+      APP_USER: hospital5user
+      APP_USER_PASSWORD: hospital5pass
+    ports:
+      - "1521:1521"
+    volumes:
+      - hospital_5_data:/opt/oracle/oradata
+      - ./sql_scripts:/container-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  hospital_5_data:
