@@ -26,6 +26,7 @@ import {
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
 import { useToast } from '@/hooks/use-toast';
+import { RolePermissions } from '@/services/roleService';
 
 type Role = 'admin' | 'pharmacist' | 'doctor' | 'coordinator' | 'regulator';
 type Module = 'inventory' | 'sharing' | 'communication' | 'admin' | 'reports';
@@ -88,19 +89,43 @@ const defaultPermissions: Permission[] = [
   { role: 'regulator', module: 'reports', actions: ['view', 'export'] },
 ];
 
-export const PermissionMatrix = () => {
-  const [permissions, setPermissions] = useState<Permission[]>(defaultPermissions);
+export const PermissionMatrix = ({ permissions: rolePermissions }: { permissions?: RolePermissions[] }) => {
+  const [localPermissions, setLocalPermissions] = useState<Permission[]>(
+    rolePermissions ? transformRolePermissionsToLocal(rolePermissions) : defaultPermissions
+  );
   const [expandedModules, setExpandedModules] = useState<Module[]>(['inventory', 'sharing']);
   const [hasChanges, setHasChanges] = useState(false);
   const { toast } = useToast();
 
+  // Transform backend role permissions to local format
+  function transformRolePermissionsToLocal(rolePerms: RolePermissions[]): Permission[] {
+    const transformed: Permission[] = [];
+    
+    rolePerms.forEach(rolePerm => {
+      Object.entries(rolePerm.permissions).forEach(([module, perms]) => {
+        const actions: Action[] = [];
+        if (perms?.read) actions.push('view');
+        if (perms?.write) actions.push('create', 'edit');
+        if (perms?.admin) actions.push('delete', 'approve', 'export');
+        
+        transformed.push({
+          role: rolePerm.role as Role,
+          module: module as Module,
+          actions
+        });
+      });
+    });
+    
+    return transformed;
+  }
+
   const hasPermission = (role: Role, module: Module, action: Action): boolean => {
-    const permission = permissions.find(p => p.role === role && p.module === module);
+    const permission = localPermissions.find(p => p.role === role && p.module === module);
     return permission?.actions.includes(action) || false;
   };
 
   const togglePermission = (role: Role, module: Module, action: Action) => {
-    setPermissions(prev => {
+    setLocalPermissions(prev => {
       const existing = prev.find(p => p.role === role && p.module === module);
       if (existing) {
         const newActions = existing.actions.includes(action)
@@ -136,7 +161,7 @@ export const PermissionMatrix = () => {
   };
 
   const handleReset = () => {
-    setPermissions(defaultPermissions);
+    setLocalPermissions(rolePermissions ? transformRolePermissionsToLocal(rolePermissions) : defaultPermissions);
     setHasChanges(false);
     toast({
       title: "Permissions Reset",

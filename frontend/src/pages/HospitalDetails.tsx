@@ -1,14 +1,9 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { AppLayout } from '@/components/layout/AppLayout';
-import { mockHospitals, mockSharedResources, mockEmployees, type ResourceWithVisibility } from '@/data';
+import { hospitalsApi } from '@/services/api';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { ResourceCard } from '@/components/ResourceCard';
-import { EmployeeCard } from '@/components/EmployeeCard';
 import { 
   ArrowLeft, 
   MapPin, 
@@ -16,90 +11,104 @@ import {
   Bed, 
   Phone, 
   Mail, 
-  ExternalLink, 
   Package,
   Users,
-  Search
+  Loader2,
+  AlertTriangle
 } from 'lucide-react';
-import { useState, useMemo } from 'react';
-import { ResourceRequestForm } from '@/components/ResourceRequestForm';
+import { useState, useEffect } from 'react';
 
 const HospitalDetails = () => {
   const { hospitalId } = useParams<{ hospitalId: string }>();
   const navigate = useNavigate();
-  const [selectedResource, setSelectedResource] = useState<ResourceWithVisibility | null>(null);
-  const [isRequestOpen, setIsRequestOpen] = useState(false);
-  const [employeeSearchQuery, setEmployeeSearchQuery] = useState('');
-  const [employeeRoleFilter, setEmployeeRoleFilter] = useState<string>('all');
+  const [hospital, setHospital] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const hospital = mockHospitals.find(h => h.id === hospitalId);
-  
-  if (!hospital) {
+  useEffect(() => {
+    if (hospitalId) {
+      fetchHospitalDetails();
+    }
+  }, [hospitalId]);
+
+  const fetchHospitalDetails = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      console.log('Fetching hospital details for ID:', hospitalId);
+      const data = await hospitalsApi.getById(hospitalId!);
+      console.log('Hospital data received:', data);
+      
+      // Map backend fields to frontend expected format
+      const mappedHospital = {
+        id: data.id,
+        name: data.name,
+        city: data.city,
+        region: data.state || 'Unknown Region',
+        address: data.address,
+        phone: data.phone,
+        email: data.email,
+        status: data.status,
+        total_staff: data.total_staff || 0,
+        total_inventory: data.total_inventory || 0,
+        total_departments: data.total_departments || 0,
+        license_number: data.license_number,
+        verified_at: data.verified_at,
+        image: '/hospital-placeholder.jpg',
+        specialties: ['General Medicine', 'Emergency Care'],
+        total_beds: 150,
+      };
+      
+      setHospital(mappedHospital);
+    } catch (err) {
+      console.error('Failed to fetch hospital details:', err);
+      setError('Failed to load hospital details. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
     return (
-      <AppLayout title="Hospital Not Found">
-        <div className="text-center py-12">
-          <Building2 className="h-12 w-12 mx-auto text-muted-foreground/50" />
-          <h3 className="mt-4 text-lg font-medium">Hospital not found</h3>
-          <p className="text-muted-foreground">The hospital you're looking for doesn't exist.</p>
-          <Button onClick={() => navigate('/hospitals')} className="mt-4">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Hospitals
-          </Button>
+      <AppLayout title="Loading Hospital Details..." subtitle="">
+        <div className="flex items-center justify-center h-64">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          <span className="ml-2 text-muted-foreground">Loading hospital details...</span>
         </div>
       </AppLayout>
     );
   }
 
-  // Get resources from this hospital
-  const hospitalResources = mockSharedResources.filter(
-    resource => resource.hospital === hospital.name && resource.isVisibleToOthers
-  );
-
-  // Get employees from this hospital
-  const hospitalEmployees = mockEmployees.filter(
-    employee => employee.hospital === hospital.name
-  );
-
-  // Filter employees based on search and role
-  const filteredEmployees = useMemo(() => {
-    let filtered = hospitalEmployees;
-    
-    if (employeeSearchQuery) {
-      filtered = filtered.filter(employee => 
-        employee.name.toLowerCase().includes(employeeSearchQuery.toLowerCase()) ||
-        employee.department.toLowerCase().includes(employeeSearchQuery.toLowerCase()) ||
-        employee.specialization?.toLowerCase().includes(employeeSearchQuery.toLowerCase())
-      );
-    }
-    
-    if (employeeRoleFilter !== 'all') {
-      filtered = filtered.filter(employee => employee.role === employeeRoleFilter);
-    }
-    
-    return filtered;
-  }, [hospitalEmployees, employeeSearchQuery, employeeRoleFilter]);
-
-  const handleResourceClick = (resource: ResourceWithVisibility) => {
-    navigate(`/resource/${resource.id}`);
-  };
-
-  const handleRequest = (resource: ResourceWithVisibility) => {
-    setSelectedResource(resource);
-    setIsRequestOpen(true);
-  };
+  if (error || !hospital) {
+    return (
+      <AppLayout title="Hospital Details" subtitle="">
+        <Card>
+          <CardContent className="pt-6">
+            <div className="text-center text-red-600">
+              <AlertTriangle className="h-12 w-12 mx-auto mb-4" />
+              <p>{error || 'Hospital not found'}</p>
+              <div className="mt-4 space-x-2">
+                <Button onClick={() => navigate('/hospitals')}>Back to Hospitals</Button>
+                <Button onClick={fetchHospitalDetails} variant="outline">Retry</Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </AppLayout>
+    );
+  }
 
   return (
-    <AppLayout title={hospital.name} subtitle={`${hospital.city}, ${hospital.region}`}>
+    <AppLayout title={hospital.name} subtitle={hospital.city + ', ' + hospital.region}>
       <div className="space-y-6">
         {/* Back Button */}
         <Button 
           variant="ghost" 
-          onClick={() => navigate(-1)}
+          onClick={() => navigate('/hospitals')}
           className="mb-4"
-          data-navigation
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Back
+          Back to Hospitals
         </Button>
 
         {/* Hospital Header */}
@@ -136,31 +145,31 @@ const HospitalDetails = () => {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center gap-3">
-                  <Bed className="h-5 w-5 text-primary" />
+                  <Building2 className="h-4 w-4 text-muted-foreground" />
                   <div>
-                    <p className="font-medium">{hospital.beds} Beds</p>
-                    <p className="text-sm text-muted-foreground">Total capacity</p>
+                    <p className="text-sm text-muted-foreground">Total Staff</p>
+                    <p className="font-medium">{hospital.total_staff}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Package className="h-5 w-5 text-primary" />
+                  <Package className="h-4 w-4 text-muted-foreground" />
                   <div>
-                    <p className="font-medium">{hospitalResources.length} Resources</p>
-                    <p className="text-sm text-muted-foreground">Available for sharing</p>
+                    <p className="text-sm text-muted-foreground">Inventory Items</p>
+                    <p className="font-medium">{hospital.total_inventory}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Users className="h-5 w-5 text-primary" />
+                  <Users className="h-4 w-4 text-muted-foreground" />
                   <div>
-                    <p className="font-medium">{hospitalEmployees.length} Staff Members</p>
-                    <p className="text-sm text-muted-foreground">Healthcare professionals</p>
+                    <p className="text-sm text-muted-foreground">Departments</p>
+                    <p className="font-medium">{hospital.total_departments}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Users className="h-5 w-5 text-primary" />
+                  <Bed className="h-4 w-4 text-muted-foreground" />
                   <div>
-                    <p className="font-medium">{hospital.specialties.length} Specialties</p>
-                    <p className="text-sm text-muted-foreground">Areas of expertise</p>
+                    <p className="text-sm text-muted-foreground">Total Beds</p>
+                    <p className="font-medium">{hospital.total_beds}</p>
                   </div>
                 </div>
               </CardContent>
@@ -168,188 +177,66 @@ const HospitalDetails = () => {
 
             <Card>
               <CardHeader className="pb-3">
-                <CardTitle className="text-lg">Contact</CardTitle>
+                <CardTitle className="text-lg">Contact Information</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <div className="flex items-center gap-3 text-sm">
+                <div className="flex items-center gap-3">
                   <Phone className="h-4 w-4 text-muted-foreground" />
-                  <span>+1 (555) 123-4567</span>
+                  <span className="text-sm">{hospital.phone}</span>
                 </div>
-                <div className="flex items-center gap-3 text-sm">
+                <div className="flex items-center gap-3">
                   <Mail className="h-4 w-4 text-muted-foreground" />
-                  <span>contact@{hospital.name.toLowerCase().replace(/\s+/g, '')}.com</span>
+                  <span className="text-sm">{hospital.email}</span>
                 </div>
-                <Button variant="outline" size="sm" className="w-full mt-3">
-                  <ExternalLink className="mr-2 h-4 w-4" />
-                  Visit Website
-                </Button>
-                <Button 
-                  variant="default" 
-                  size="sm" 
-                  className="w-full mt-2"
-                  onClick={() => navigate(`/hospital/${hospitalId}/profile`)}
-                  data-navigation
-                >
-                  <Building2 className="mr-2 h-4 w-4" />
-                  View Trust Profile
-                </Button>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-lg">Specialties</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-2">
+                  {hospital.specialties.map((specialty: string, index: number) => (
+                    <Badge key={index} variant="secondary">
+                      {specialty}
+                    </Badge>
+                  ))}
+                </div>
               </CardContent>
             </Card>
           </div>
         </div>
 
-        {/* Specialties */}
+        {/* Status and Details */}
         <Card>
           <CardHeader>
-            <CardTitle>Medical Specialties</CardTitle>
+            <CardTitle>Hospital Details</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex flex-wrap gap-2">
-              {hospital.specialties.map((specialty) => (
-                <Badge key={specialty} variant="secondary" className="text-sm">
-                  {specialty}
+            <div className="grid gap-4 md:grid-cols-2">
+              <div>
+                <p className="text-sm text-muted-foreground">License Number</p>
+                <p className="font-medium">{hospital.license_number}</p>
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground">Status</p>
+                <Badge variant={hospital.status === 'ACTIVE' ? 'default' : 'secondary'}>
+                  {hospital.status}
                 </Badge>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Map */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Location</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="rounded-lg overflow-hidden border h-64 bg-muted relative">
-              <img 
-                src={`https://api.mapbox.com/styles/v1/mapbox/light-v11/static/pin-s+3b82f6(${hospital.coordinates.lng},${hospital.coordinates.lat})/${hospital.coordinates.lng},${hospital.coordinates.lat},13,0/800x300@2x?access_token=pk.eyJ1IjoibG92YWJsZS1kZW1vIiwiYSI6ImNtNWNvbmNqYzA4ZTQyaXM1YnMyMmJjamgifQ.fake`}
-                alt="Hospital location map"
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                }}
-              />
-              <div className="absolute inset-0 flex items-center justify-center bg-muted/80">
-                <div className="text-center">
-                  <MapPin className="h-8 w-8 mx-auto text-primary" />
-                  <p className="text-sm text-muted-foreground mt-2">
-                    {hospital.coordinates.lat.toFixed(4)}°, {hospital.coordinates.lng.toFixed(4)}°
-                  </p>
-                  <p className="text-xs text-muted-foreground mt-1">{hospital.address}</p>
-                </div>
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground">Verified</p>
+                <p className="font-medium">
+                  {hospital.verified_at 
+                    ? new Date(hospital.verified_at).toLocaleDateString()
+                    : 'Not verified'
+                  }
+                </p>
               </div>
             </div>
           </CardContent>
         </Card>
-
-        {/* Resources and Staff Tabs */}
-        <Tabs defaultValue="resources" className="w-full">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="resources">Shared Resources ({hospitalResources.length})</TabsTrigger>
-            <TabsTrigger value="employees">Staff Directory ({hospitalEmployees.length})</TabsTrigger>
-          </TabsList>
-          
-          <TabsContent value="resources">
-            <Card>
-              <CardHeader>
-                <CardTitle>Available Shared Resources</CardTitle>
-              </CardHeader>
-              <CardContent>
-                {hospitalResources.length > 0 ? (
-                  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                    {hospitalResources.map(resource => (
-                      <div key={resource.id} onClick={() => handleResourceClick(resource)} data-navigation>
-                        <ResourceCard
-                          resource={resource}
-                          onRequest={handleRequest}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="text-center py-8">
-                    <Package className="h-12 w-12 mx-auto text-muted-foreground/50" />
-                    <h3 className="mt-4 text-lg font-medium">No shared resources</h3>
-                    <p className="text-muted-foreground">This hospital hasn't shared any resources yet.</p>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </TabsContent>
-          
-          <TabsContent value="employees">
-            <Card>
-              <CardHeader>
-                <CardTitle>Staff Directory</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-col sm:flex-row gap-4 mb-6">
-                  <div className="relative flex-1">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <Input 
-                      placeholder="Search by name, department, or specialization..." 
-                      value={employeeSearchQuery}
-                      onChange={(e) => setEmployeeSearchQuery(e.target.value)}
-                      className="pl-10"
-                    />
-                  </div>
-                  <Select value={employeeRoleFilter} onValueChange={setEmployeeRoleFilter}>
-                    <SelectTrigger className="w-full sm:w-[180px]">
-                      <SelectValue placeholder="Filter by role" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Roles</SelectItem>
-                      <SelectItem value="doctor">Doctors</SelectItem>
-                      <SelectItem value="nurse">Nurses</SelectItem>
-                      <SelectItem value="pharmacist">Pharmacists</SelectItem>
-                      <SelectItem value="admin">Administrators</SelectItem>
-                      <SelectItem value="coordinator">Coordinators</SelectItem>
-                      <SelectItem value="technician">Technicians</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                
-                {filteredEmployees.length > 0 ? (
-                  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                    {filteredEmployees.map(employee => (
-                      <EmployeeCard
-                        key={employee.id}
-                        employee={employee}
-                        onPhone={(emp) => {
-                          if (emp.phoneNumber) {
-                            window.open(`tel:${emp.phoneNumber}`, '_blank');
-                          }
-                        }}
-                        onEmail={(emp) => {
-                          window.open(`mailto:${emp.email}`, '_blank');
-                        }}
-                        showActions={true}
-                      />
-                    ))}
-                  </div>
-                ) : (
-                  <div className="text-center py-8">
-                    <Users className="h-12 w-12 mx-auto text-muted-foreground/50" />
-                    <h3 className="mt-4 text-lg font-medium">No staff members found</h3>
-                    <p className="text-muted-foreground">
-                      {employeeSearchQuery || employeeRoleFilter !== 'all' 
-                        ? 'Try adjusting your search or filter criteria' 
-                        : 'No staff directory available for this hospital'
-                      }
-                    </p>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
-
-        <ResourceRequestForm
-          resource={selectedResource}
-          isOpen={isRequestOpen}
-          onClose={() => setIsRequestOpen(false)}
-        />
       </div>
     </AppLayout>
   );

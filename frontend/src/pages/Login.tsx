@@ -2,59 +2,57 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLanguage, LanguageToggle } from '@/components/layout/LanguageToggle';
-import { UserRole } from '@/types/healthcare';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
-import { Activity, Shield, Lock, Mail } from 'lucide-react';
+import { Activity, Shield, Lock, Mail, AlertCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const Login = () => {
-  const [email, setEmail] = useState('admin@hospital.local');
-  const [password, setPassword] = useState('demo123');
-  const [role, setRole] = useState<UserRole>('admin');
+  const [email, setEmail] = useState('sarah.chen@metro.health');
+  const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(true); // Default to remember me checked
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string>('');
   
   const { login } = useAuth();
   const { t } = useLanguage();
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  const roles: { value: UserRole; label: string; description: string }[] = [
-    { value: 'admin', label: t('role.admin'), description: t('role.admin.description') },
-    { value: 'pharmacist', label: t('role.pharmacist'), description: t('role.pharmacist.description') },
-    { value: 'doctor', label: t('role.doctor'), description: t('role.doctor.description') },
-    { value: 'coordinator', label: t('role.coordinator'), description: t('role.coordinator.description') },
-    { value: 'regulator', label: t('role.regulator'), description: t('role.regulator.description') },
-  ];
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError('');
     setIsLoading(true);
 
-    // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 800));
-
-    const success = login(email, password, role);
-    
-    if (success) {
-      toast({
-        title: t('login.success'),
-        description: `${t('role.'+role)}`,
+    try {
+      await login({ 
+        email, 
+        password, 
+        rememberMe 
       });
-      navigate('/dashboard');
-    } else {
+      
       toast({
-        title: t('common.error'),
-        description: t('login.error'),
+        title: 'Login Successful',
+        description: `Welcome back!`,
+      });
+      
+      navigate('/dashboard');
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Login failed';
+      setError(errorMessage);
+      
+      toast({
+        title: 'Login Failed',
+        description: errorMessage,
         variant: 'destructive',
       });
+    } finally {
+      setIsLoading(false);
     }
-    
-    setIsLoading(false);
   };
 
   return (
@@ -135,6 +133,13 @@ const Login = () => {
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
+                {error && (
+                  <div className="flex items-center gap-2 p-3 text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-md">
+                    <AlertCircle className="h-4 w-4" />
+                    <span>{error}</span>
+                  </div>
+                )}
+                
                 <div className="space-y-2">
                   <Label htmlFor="email">{t('login.email')}</Label>
                   <div className="relative">
@@ -147,6 +152,7 @@ const Login = () => {
                       onChange={(e) => setEmail(e.target.value)}
                       className="pl-10"
                       required
+                      disabled={isLoading}
                     />
                   </div>
                 </div>
@@ -163,37 +169,49 @@ const Login = () => {
                       onChange={(e) => setPassword(e.target.value)}
                       className="pl-10"
                       required
+                      disabled={isLoading}
                     />
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="role">{t('login.role')}</Label>
-                  <Select value={role} onValueChange={(value: UserRole) => setRole(value)}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select role" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {roles.map((r) => (
-                        <SelectItem key={r.value} value={r.value}>
-                          <div className="flex flex-col">
-                            <span>{r.label}</span>
-                            <span className="text-xs text-muted-foreground">{r.description}</span>
-                          </div>
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    id="rememberMe"
+                    checked={rememberMe}
+                    onCheckedChange={(checked) => setRememberMe(checked as boolean)}
+                    disabled={isLoading}
+                  />
+                  <Label 
+                    htmlFor="rememberMe" 
+                    className="text-sm font-normal cursor-pointer select-none"
+                  >
+                    Remember me (keep me logged in)
+                  </Label>
                 </div>
+                
+                {!rememberMe && (
+                  <div className="text-xs text-muted-foreground bg-yellow-50 dark:bg-yellow-900/10 border border-yellow-200 dark:border-yellow-800 rounded-md p-2">
+                    <Shield className="inline h-3 w-3 mr-1" />
+                    Session only - you'll be logged out when you close the browser
+                  </div>
+                )}
 
                 <Button type="submit" className="w-full" disabled={isLoading}>
                   {isLoading ? t('login.signingIn') : t('login.signIn')}
                 </Button>
 
-                <div className="text-center">
-                  <a href="#" className="text-sm text-muted-foreground hover:text-primary">
-                      {t('login.forgotPassword')}
-                  </a>
+                <div className="text-center text-sm">
+                  <p className="text-muted-foreground">
+                    New hospital?{' '}
+                    <a href="/register" className="text-primary hover:underline font-medium">
+                      Register here
+                    </a>
+                  </p>
+                </div>
+
+                <div className="text-center text-sm text-muted-foreground">
+                  <p>Test Account: sarah.chen@metro.health</p>
+                  <p className="text-xs mt-1">Password: demo1234</p>
                 </div>
               </form>
             </CardContent>

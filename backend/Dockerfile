@@ -29,8 +29,12 @@ RUN mkdir -p /app/static /app/media
 # Make manage.py executable
 RUN chmod +x /app/manage.py
 
+# Copy and make entrypoint executable
+COPY entrypoint.sh /app/
+RUN chmod +x /app/entrypoint.sh
+
 # Expose port
 EXPOSE 8000
 
-# Run migrations and collect static files, then start server
-CMD ["sh", "-c", "python manage.py migrate --noinput && python manage.py collectstatic --noinput && gunicorn hospital_backend.wsgi:application --bind 0.0.0.0:8000"]
+# Run entrypoint script
+CMD ["/app/entrypoint.sh"]

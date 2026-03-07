@@ -15,7 +15,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { mockHospitals } from '@/data/mockData';
+import { useHospitals } from '@/hooks/useDashboardData';
 import { Link } from 'react-router-dom';
 
 interface HospitalSelectorProps {
@@ -35,18 +35,19 @@ export const HospitalSelector = ({
 }: HospitalSelectorProps) => {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState('');
+  const { hospitals, loading } = useHospitals();
 
   const filteredHospitals = useMemo(() => {
-    if (!search) return mockHospitals;
+    if (!hospitals || !search) return hospitals || [];
     const lower = search.toLowerCase();
-    return mockHospitals.filter(
+    return hospitals.filter(
       h => h.name.toLowerCase().includes(lower) || 
-           h.city.toLowerCase().includes(lower) ||
-           h.region.toLowerCase().includes(lower)
+           h.city?.toLowerCase().includes(lower) ||
+           h.region?.toLowerCase().includes(lower)
     );
-  }, [search]);
+  }, [hospitals, search]);
 
-  const selectedHospital = mockHospitals.find(h => h.name === value);
+  const selectedHospital = hospitals?.find(h => h.name === value || h.id === value);
 
   return (
     <div className={cn("flex gap-2", className)}>
@@ -79,44 +80,50 @@ export const HospitalSelector = ({
               onValueChange={setSearch}
             />
             <CommandList className="max-h-64">
-              <CommandEmpty>No hospital found.</CommandEmpty>
-              <CommandGroup>
-                {showAllOption && (
-                  <CommandItem
-                    value="all"
-                    onSelect={() => {
-                      onValueChange('all');
-                      setOpen(false);
-                      setSearch('');
-                    }}
-                    className="cursor-pointer"
-                  >
-                    <Check
-                      className={cn(
-                        "mr-2 h-4 w-4",
-                        value === 'all' ? "opacity-100" : "opacity-0"
-                      )}
-                    />
-                    <span>All Hospitals</span>
-                  </CommandItem>
-                )}
-                {filteredHospitals.map((hospital) => (
-                  <CommandItem
-                    key={hospital.id}
-                    value={hospital.name}
-                    onSelect={() => {
-                      onValueChange(hospital.name);
-                      setOpen(false);
-                      setSearch('');
-                    }}
-                    className="cursor-pointer"
-                  >
-                    <Check
-                      className={cn(
-                        "mr-2 h-4 w-4 shrink-0",
-                        value === hospital.name ? "opacity-100" : "opacity-0"
-                      )}
-                    />
+              {loading ? (
+                <div className="flex items-center justify-center p-4">
+                  <span className="text-sm text-muted-foreground">Loading hospitals...</span>
+                </div>
+              ) : (
+                <>
+                  <CommandEmpty>No hospital found.</CommandEmpty>
+                  <CommandGroup>
+                    {showAllOption && (
+                      <CommandItem
+                        value="all"
+                        onSelect={() => {
+                          onValueChange('all');
+                          setOpen(false);
+                          setSearch('');
+                        }}
+                        className="cursor-pointer"
+                      >
+                        <Check
+                          className={cn(
+                            "mr-2 h-4 w-4",
+                            value === 'all' ? "opacity-100" : "opacity-0"
+                          )}
+                        />
+                        <span>All Hospitals</span>
+                      </CommandItem>
+                    )}
+                    {filteredHospitals.map((hospital) => (
+                      <CommandItem
+                        key={hospital.id}
+                        value={hospital.name}
+                        onSelect={() => {
+                          onValueChange(hospital.name);
+                          setOpen(false);
+                          setSearch('');
+                        }}
+                        className="cursor-pointer"
+                      >
+                        <Check
+                          className={cn(
+                            "mr-2 h-4 w-4 shrink-0",
+                            (value === hospital.name || value === hospital.id) ? "opacity-100" : "opacity-0"
+                          )}
+                        />
                     <div className="flex flex-col min-w-0">
                       <span className="truncate font-medium">{hospital.name}</span>
                       <span className="text-xs text-muted-foreground flex items-center gap-1">
@@ -127,6 +134,8 @@ export const HospitalSelector = ({
                   </CommandItem>
                 ))}
               </CommandGroup>
+                </>
+              )}
             </CommandList>
           </Command>
           <div className="border-t p-2">

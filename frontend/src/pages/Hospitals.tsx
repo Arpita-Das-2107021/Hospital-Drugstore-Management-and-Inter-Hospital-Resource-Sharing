@@ -4,30 +4,33 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { mockHospitals } from '@/data/mockData';
+import { useHospitals } from '@/hooks/useDashboardData';
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, MapPin, Building2, Bed, Stethoscope, ExternalLink } from 'lucide-react';
+import { Search, MapPin, Building2, Bed, Stethoscope, ExternalLink, Loader2, AlertCircle } from 'lucide-react';
 
 const Hospitals = () => {
   const [search, setSearch] = useState('');
   const [region, setRegion] = useState('all');
   const navigate = useNavigate();
+  const { hospitals, loading, error } = useHospitals();
 
   const regions = useMemo(() => {
-    const unique = [...new Set(mockHospitals.map(h => h.region))];
+    if (!hospitals) return [];
+    const unique = [...new Set(hospitals.map(h => h.region))];
     return unique.sort();
-  }, []);
+  }, [hospitals]);
 
   const filtered = useMemo(() => {
-    return mockHospitals.filter(h => {
+    if (!hospitals) return [];
+    return hospitals.filter(h => {
       const matchesSearch = 
         h.name.toLowerCase().includes(search.toLowerCase()) ||
-        h.city.toLowerCase().includes(search.toLowerCase());
+        h.city?.toLowerCase().includes(search.toLowerCase());
       const matchesRegion = region === 'all' || h.region === region;
       return matchesSearch && matchesRegion;
     });
-  }, [search, region]);
+  }, [hospitals, search, region]);
 
   const handleViewDetails = (hospitalId: string) => {
     navigate(`/hospital/${hospitalId}`);
@@ -36,6 +39,27 @@ const Hospitals = () => {
   const handleCardClick = (hospitalId: string) => {
     navigate(`/hospital/${hospitalId}`);
   };
+
+  if (loading) {
+    return (
+      <AppLayout title="All Hospitals" subtitle="Browse and explore partner hospitals">
+        <div className="flex items-center justify-center h-64">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
+      </AppLayout>
+    );
+  }
+
+  if (error) {
+    return (
+      <AppLayout title="All Hospitals" subtitle="Browse and explore partner hospitals">
+        <div className="flex flex-col items-center justify-center h-64 space-y-4">
+          <AlertCircle className="h-12 w-12 text-destructive" />
+          <p className="text-muted-foreground">Failed to load hospitals. Please try again.</p>
+        </div>
+      </AppLayout>
+    );
+  }
 
   return (
     <AppLayout title="All Hospitals" subtitle="Browse and explore partner hospitals">
@@ -64,7 +88,7 @@ const Hospitals = () => {
 
         {/* Results count */}
         <p className="text-sm text-muted-foreground">
-          Showing {filtered.length} of {mockHospitals.length} hospitals
+          Showing {filtered.length} of {hospitals?.length || 0} hospitals
         </p>
 
         {/* Hospital Grid */}
@@ -76,13 +100,11 @@ const Hospitals = () => {
               onClick={() => handleCardClick(hospital.id)}
               data-navigation
             >
-              {/* Image */}
-              <div className="relative h-40 overflow-hidden">
-                <img 
-                  src={hospital.image} 
-                  alt={hospital.name}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+              {/* Header */}
+              <div className="relative h-40 overflow-hidden bg-gradient-to-br from-primary/20 to-primary/5">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <Building2 className="h-20 w-20 text-primary/30" />
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <Badge className="absolute top-3 right-3 bg-primary/90">
                   {hospital.region}
@@ -96,51 +118,42 @@ const Hospitals = () => {
                 </h3>
                 <div className="flex items-center gap-1.5 text-sm text-muted-foreground mt-1">
                   <MapPin className="h-3.5 w-3.5" />
-                  <span>{hospital.city}</span>
+                  <span>{hospital.city || 'N/A'}</span>
                 </div>
 
                 {/* Stats */}
                 <div className="flex items-center gap-4 mt-3 text-sm">
                   <div className="flex items-center gap-1.5 text-muted-foreground">
                     <Bed className="h-4 w-4" />
-                    <span>{hospital.beds} beds</span>
+                    <span>{hospital.total_beds || 0} beds</span>
                   </div>
                 </div>
 
                 {/* Specialties */}
                 <div className="flex flex-wrap gap-1.5 mt-3">
-                  {hospital.specialties.slice(0, 2).map((spec) => (
+                  {hospital.specialties && hospital.specialties.slice(0, 2).map((spec: string) => (
                     <Badge key={spec} variant="secondary" className="text-xs">
                       {spec}
                     </Badge>
                   ))}
-                  {hospital.specialties.length > 2 && (
+                  {hospital.specialties && hospital.specialties.length > 2 && (
                     <Badge variant="outline" className="text-xs">
                       +{hospital.specialties.length - 2}
                     </Badge>
                   )}
                 </div>
 
-                {/* Map Preview */}
-                <div className="mt-4 rounded-lg overflow-hidden border h-24 bg-muted relative">
-                  <img 
-                    src={`https://api.mapbox.com/styles/v1/mapbox/light-v11/static/pin-s+3b82f6(${hospital.coordinates.lng},${hospital.coordinates.lat})/${hospital.coordinates.lng},${hospital.coordinates.lat},11,0/300x120@2x?access_token=pk.eyJ1IjoibG92YWJsZS1kZW1vIiwiYSI6ImNtNWNvbmNqYzA4ZTQyaXM1YnMyMmJjamgifQ.fake`}
-                    alt="Map preview"
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                    }}
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center bg-muted/80">
+                {/* Location Coordinates */}
+                {hospital.coordinates_lat && hospital.coordinates_lng && (
+                  <div className="mt-4 rounded-lg overflow-hidden border h-24 bg-muted flex items-center justify-center">
                     <div className="text-center">
                       <MapPin className="h-6 w-6 mx-auto text-primary" />
                       <p className="text-xs text-muted-foreground mt-1">
-                        {hospital.coordinates.lat.toFixed(2)}°, {hospital.coordinates.lng.toFixed(2)}°
+                        {parseFloat(hospital.coordinates_lat).toFixed(2)}°, {parseFloat(hospital.coordinates_lng).toFixed(2)}°
                       </p>
                     </div>
                   </div>
-                </div>
+                )}
 
                 {/* Action */}
                 <Button 
