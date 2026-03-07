@@ -128,3 +128,13 @@ dmypy.json
 # Temporary files
 tmp/
 temp/
+
+
+__pycache__/
+*.pyc
+.env
+*.log
+
+*.ctl
+*.sock
+*.pid
