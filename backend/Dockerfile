@@ -33,8 +33,11 @@ RUN chmod +x /app/manage.py
 COPY entrypoint.sh /app/
 RUN chmod +x /app/entrypoint.sh
 
+# Convert line endings from Windows (CRLF) to Unix (LF) to avoid exec format errors
+RUN sed -i 's/\r$//' /app/entrypoint.sh
+
 # Expose port
 EXPOSE 8000
 
 # Run entrypoint script
-CMD ["/app/entrypoint.sh"]
+CMD ["sh", "/app/entrypoint.sh"]
