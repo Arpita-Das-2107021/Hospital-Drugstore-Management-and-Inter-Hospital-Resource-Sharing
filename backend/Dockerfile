@@ -1,43 +1,60 @@
-# backend/Dockerfile
-FROM python:3.11-slim
+# syntax=docker/dockerfile:1
+FROM python:3.12-slim AS base
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
 
-# Set work directory
 WORKDIR /app
 
 # Install system dependencies
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        postgresql-client \
-        curl \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libpq5 \
+    ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Python dependencies
-COPY requirements.txt /app/
-RUN pip install --upgrade pip
+# -------------------------------------------------------------------
+# Dependencies layer (cached unless requirements.txt changes)
+# -------------------------------------------------------------------
+FROM base AS deps
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy project
-COPY . /app/
+# -------------------------------------------------------------------
+# Production image
+# -------------------------------------------------------------------
+FROM base AS production
+COPY --from=deps /usr/local/lib/python3.12 /usr/local/lib/python3.12
+COPY --from=deps /usr/local/bin /usr/local/bin
 
-# Create directories for static files
-RUN mkdir -p /app/static /app/media
+# Create non-root user
+RUN groupadd --gid 1001 appgroup && \
+    useradd --uid 1001 --gid appgroup --shell /bin/bash --create-home appuser
 
-# Make manage.py executable
-RUN chmod +x /app/manage.py
+# Create necessary directories
+RUN mkdir -p /app/logs /app/static /app/media && \
+    chown -R appuser:appgroup /app
 
-# Copy and make entrypoint executable
-COPY entrypoint.sh /app/
-RUN chmod +x /app/entrypoint.sh
+COPY --chown=appuser:appgroup . .
 
-# Convert line endings from Windows (CRLF) to Unix (LF) to avoid exec format errors
-RUN sed -i 's/\r$//' /app/entrypoint.sh
+USER appuser
 
-# Expose port
-EXPOSE 8000
+# Collect static files
+RUN python manage.py collectstatic --noinput --settings=config.settings.prod 2>/dev/null || true
 
-# Run entrypoint script
-CMD ["sh", "/app/entrypoint.sh"]
+EXPOSE 8080
+
+# Gunicorn with uvicorn workers to serve HTTP + WebSocket via ASGI
+CMD ["gunicorn", "config.asgi:application", \
+    "--bind", "0.0.0.0:8080", \
+    "--worker-class", "uvicorn.workers.UvicornWorker", \
+     "--workers", "4", \
+     "--timeout", "30", \
+     "--access-logfile", "-", \
+     "--error-logfile", "-", \
+     "--log-level", "info"]
