@@ -138,3 +138,24 @@ __pycache__/
 *.ctl
 *.sock
 *.pid
+
+
+# md files
+*.md
+!readme.md
+
+# Redis
+dump.rdb
+appendonly.aof
+redis_data/
+
+# Celery
+celerybeat.pid
+celery.log
+
+# MinIO
+minio_data/
+*.minio
+
+# Docker volumes (local persistence)
+postgres_data/
