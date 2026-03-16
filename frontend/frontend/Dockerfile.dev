@@ -1,0 +1,20 @@
+# Development Dockerfile for hot reloading
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Copy package files
+COPY package.json bun.lockb* ./
+
+# Install dependencies
+RUN npm install
+
+# Copy source code (will be overridden by volume mount)
+COPY . .
+
+# Expose the development server port
+ENV CHOKIDAR_USEPOLLING=1
+EXPOSE 8080
+
+# Start development server with hot reloading on 0.0.0.0:8080
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "8080"]
