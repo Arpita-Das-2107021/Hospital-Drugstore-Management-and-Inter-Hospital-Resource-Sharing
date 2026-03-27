@@ -27,7 +27,15 @@ CELERY_RESULT_BACKEND = "cache+memory://"
 REST_FRAMEWORK = {
     **REST_FRAMEWORK,
     "DEFAULT_THROTTLE_CLASSES": [],
-    "DEFAULT_THROTTLE_RATES": {},
+    # Keep scope definitions available for views that declare explicit throttle classes.
+    "DEFAULT_THROTTLE_RATES": {
+        **REST_FRAMEWORK.get("DEFAULT_THROTTLE_RATES", {}),
+        "anon": "100000/minute",
+        "user": "100000/minute",
+        "login": "100000/minute",
+        "password_reset": "100000/minute",
+        "hospital_registration": "100000/minute",
+    },
 }
 
 # Keep test email assertions local and side-effect free.
