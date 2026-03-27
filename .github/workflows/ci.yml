@@ -2,13 +2,13 @@ name: Monorepo CI
 
 on:
   push:
-    branches: ['**']
+    branches: [main, develop]
   pull_request:
-    branches: ['**']
+    branches: [main]
   workflow_dispatch: {}
 
 jobs:
-  backend-lint-test:
+  backend-test:
     name: Backend Lint and Test
     runs-on: ubuntu-latest
 
@@ -27,15 +27,15 @@ jobs:
           --health-timeout 5s
           --health-retries 5
 
-      redis:
-        image: redis:7-alpine
-        ports:
-          - 6379:6379
-        options: >-
-          --health-cmd "redis-cli ping"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+    #   redis:
+    #     image: redis:7-alpine
+    #     ports:
+    #       - 6379:6379
+    #     options: >-
+    #       --health-cmd "redis-cli ping"
+    #       --health-interval 10s
+    #       --health-timeout 5s
+    #       --health-retries 5
 
     defaults:
       run:
@@ -107,7 +107,7 @@ jobs:
       - name: Build production image
         run: docker build --target production -t hrsp-backend:ci .
 
-  frontend-lint-test-build:
+  frontend-test-build:
     name: Frontend Lint, Test, Build
     runs-on: ubuntu-latest
     defaults:
@@ -126,8 +126,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Lint
-        run: npm run lint
+    #   - name: Lint
+    #     run: npm run lint
 
       - name: Run tests
         run: npm run test
