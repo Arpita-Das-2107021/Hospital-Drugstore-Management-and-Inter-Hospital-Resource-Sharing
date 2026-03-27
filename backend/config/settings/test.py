@@ -20,6 +20,8 @@ CHANNEL_LAYERS = {
 # Execute tasks in-process during tests; prevents broker-related flakiness.
 CELERY_TASK_ALWAYS_EAGER = True
 CELERY_TASK_EAGER_PROPAGATES = True
+CELERY_BROKER_URL = "memory://"
+CELERY_RESULT_BACKEND = "cache+memory://"
 
 # Disable global throttling in tests to avoid cache coupling and request order flakiness.
 REST_FRAMEWORK = {

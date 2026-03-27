@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import EmergencyBroadcast, { type BroadcastHospitalOption, type BroadcastTemplate } from '@/components/EmergencyBroadcast';
 
@@ -30,8 +30,8 @@ describe('EmergencyBroadcast', () => {
       />
     );
 
-    await userEvent.type(screen.getByLabelText(/title/i), 'Urgent oxygen support');
-    await userEvent.type(screen.getByLabelText(/message/i), 'Please share available cylinders.');
+    fireEvent.change(screen.getByLabelText(/title/i), { target: { value: 'Urgent oxygen support' } });
+    fireEvent.change(screen.getByLabelText(/message/i), { target: { value: 'Please share available cylinders.' } });
     await userEvent.click(screen.getByRole('button', { name: /send broadcast/i }));
 
     expect(onBroadcast).toHaveBeenCalledWith(
@@ -56,8 +56,8 @@ describe('EmergencyBroadcast', () => {
     );
 
     await userEvent.click(screen.getByRole('checkbox'));
-    await userEvent.type(screen.getByLabelText(/title/i), 'FYI message');
-    await userEvent.type(screen.getByLabelText(/message/i), 'No response needed.');
+    fireEvent.change(screen.getByLabelText(/title/i), { target: { value: 'FYI message' } });
+    fireEvent.change(screen.getByLabelText(/message/i), { target: { value: 'No response needed.' } });
     await userEvent.click(screen.getByRole('button', { name: /send broadcast/i }));
 
     expect(onBroadcast).toHaveBeenCalledWith(

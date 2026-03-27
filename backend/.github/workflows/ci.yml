@@ -30,7 +30,7 @@ jobs:
           - 6379:6379
 
     env:
-      DJANGO_SETTINGS_MODULE: config.settings.dev
+      DJANGO_SETTINGS_MODULE: config.settings.test
       DJANGO_SECRET_KEY: ${{ secrets.TEST_DJANGO_SECRET_KEY }}
       DATABASE_URL: postgresql://hrsp_user:hrsp_password@localhost:5432/hrsp_test_db
       REDIS_URL: redis://localhost:6379/0
@@ -48,7 +48,7 @@ jobs:
         run: pip install -r requirements-dev.txt
 
       - name: Run migrations
-        run: python manage.py migrate
+        run: python manage.py migrate --settings=config.settings.test
 
       - name: Run tests
         run: pytest -v
