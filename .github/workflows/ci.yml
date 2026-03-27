@@ -9,7 +9,7 @@ on:
 
 jobs:
   backend-test:
-    name: Backend Lint and Test
+    name: Backend and Test
     runs-on: ubuntu-latest
 
     services:
@@ -108,7 +108,7 @@ jobs:
         run: docker build --target production -t hrsp-backend:ci .
 
   frontend-test-build:
-    name: Frontend Lint, Test, Build
+    name: Frontend Test, Build
     runs-on: ubuntu-latest
     defaults:
       run:
