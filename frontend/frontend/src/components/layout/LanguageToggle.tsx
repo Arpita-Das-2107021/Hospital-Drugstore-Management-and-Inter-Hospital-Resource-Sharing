@@ -11,7 +11,7 @@ import { Language } from '@/types/language';
 import en from '@/locales/en.json';
 import bn from '@/locales/bn.json';
 
-const translations: Record<string, any> = { en, bn };
+const translations: Record<string, unknown> = { en, bn };
 
 interface LanguageContextType {
   language: Language;
@@ -32,8 +32,8 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem('healthshare-language', lang);
   };
 
-  const resolveKey = (obj: any, path: string) => {
-    return path.split('.').reduce((acc: any, part: string) => acc?.[part], obj);
+  const resolveKey = (obj: unknown, path: string) => {
+    return path.split('.').reduce((acc: unknown, part: string) => acc?.[part], obj);
   };
 
   const t = (key: string, defaultValue?: string): string => {

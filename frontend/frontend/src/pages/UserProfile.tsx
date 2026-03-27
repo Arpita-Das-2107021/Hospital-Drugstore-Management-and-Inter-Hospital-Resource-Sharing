@@ -38,7 +38,7 @@ const UserProfile = () => {
   useEffect(() => {
     const loadProfile = async () => {
       try {
-        const profileResponse = await authService.authenticatedRequest<any>('/api/auth/me/');
+        const profileResponse = await authService.authenticatedRequest<unknown>('/api/auth/me/');
         const data = profileResponse?.data || profileResponse;
         setProfile({
           id: String(data?.id || user?.id || ''),

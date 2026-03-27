@@ -49,7 +49,7 @@ const normalizeType = (value: unknown): ShareRow['resourceType'] => {
   return 'equipment';
 };
 
-const mapShare = (item: any): ShareRow => ({
+const mapShare = (item: unknown): ShareRow => ({
   id: String(item.id || ''),
   hospitalId: String(item.hospital || item.hospital_id || ''),
   hospitalName: String(item.hospital_name || item.offering_hospital_name || item.hospital_display_name || ''),
@@ -106,7 +106,7 @@ const SharedResources = () => {
   const sharesQuery = useQuery({
     queryKey: ['shared-resources-list'],
     queryFn: async () => {
-      const res: any = await resourceSharesApi.getAll();
+      const res: unknown = await resourceSharesApi.getAll();
       const raw = res?.data?.results ?? res?.data ?? res?.results ?? (Array.isArray(res) ? res : []);
       return (Array.isArray(raw) ? raw : []).map(mapShare);
     },
@@ -115,7 +115,7 @@ const SharedResources = () => {
   const catalogQuery = useQuery({
     queryKey: ['catalog-for-share'],
     queryFn: async () => {
-      const res: any = await catalogApi.getAll();
+      const res: unknown = await catalogApi.getAll();
       return res?.data?.results ?? res?.data ?? res?.results ?? (Array.isArray(res) ? res : []);
     },
   });
@@ -123,7 +123,7 @@ const SharedResources = () => {
   const incomingRequestsQuery = useQuery({
     queryKey: ['incoming-request-count-for-share'],
     queryFn: async () => {
-      const res: any = await requestsApi.getAll();
+      const res: unknown = await requestsApi.getAll();
       return res?.data?.results ?? res?.data ?? res?.results ?? (Array.isArray(res) ? res : []);
     },
   });
@@ -172,7 +172,7 @@ const SharedResources = () => {
   const pendingIncomingCount = useMemo(() => {
     const hospitalId = user?.hospital_id || '';
     const rows = Array.isArray(incomingRequestsQuery.data) ? incomingRequestsQuery.data : [];
-    return rows.filter((item: any) => {
+    return rows.filter((item: unknown) => {
       const status = String(item.status || '').toLowerCase();
       const supplier = String(item.supplying_hospital || item.supplying_hospital_id || '');
       return status === 'pending' && (!hospitalId || supplier === hospitalId);
@@ -193,20 +193,20 @@ const SharedResources = () => {
       setNewShare({ catalog_item: '', quantity_offered: '1', valid_until: '', notes: '' });
       queryClient.invalidateQueries({ queryKey: ['shared-resources-list'] });
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       toast({ title: 'Failed to create share', description: error?.message || 'Please verify quantity and visibility rules.', variant: 'destructive' });
     },
   });
 
   const updateShareMutation = useMutation({
-    mutationFn: async ({ shareId, payload }: { shareId: string; payload: any }) => {
+    mutationFn: async ({ shareId, payload }: { shareId: string; payload: unknown }) => {
       return resourceSharesApi.update(shareId, payload);
     },
     onSuccess: () => {
       toast({ title: 'Share offer updated' });
       queryClient.invalidateQueries({ queryKey: ['shared-resources-list'] });
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       toast({ title: 'Update failed', description: error?.message || 'Please try again.', variant: 'destructive' });
     },
   });
@@ -312,7 +312,7 @@ const SharedResources = () => {
                         <SelectValue placeholder="Select catalog item" />
                       </SelectTrigger>
                       <SelectContent>
-                        {(catalogQuery.data || []).map((item: any) => (
+                        {(catalogQuery.data || []).map((item: unknown) => (
                           <SelectItem key={String(item.id)} value={String(item.id)}>
                             {item.name || item.display_name || item.catalog_item_name || item.id}
                           </SelectItem>

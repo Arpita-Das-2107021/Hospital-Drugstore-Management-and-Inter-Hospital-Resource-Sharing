@@ -35,7 +35,7 @@ const normalizeNumber = (value: unknown): number | null => {
   return Number.isFinite(parsed) ? parsed : null;
 };
 
-const mapRequest = (item: any): RequestRow => ({
+const mapRequest = (item: unknown): RequestRow => ({
   id: String(item.id || ''),
   requestingHospitalId: String(item.requesting_hospital || item.requesting_hospital_id || ''),
   resource: item.catalog_item_name || item.resource_name || 'Unknown resource',
@@ -63,7 +63,7 @@ const OutgoingRequests = () => {
   const requestsQuery = useQuery({
     queryKey: ['outgoing-requests'],
     queryFn: async () => {
-      const res: any = await requestsApi.getAll();
+      const res: unknown = await requestsApi.getAll();
       const raw = res?.data?.results ?? res?.data ?? res?.results ?? (Array.isArray(res) ? res : []);
       return (Array.isArray(raw) ? raw : []).map(mapRequest);
     },
@@ -95,7 +95,7 @@ const OutgoingRequests = () => {
       toast({ title: 'Request cancellation processed' });
       queryClient.invalidateQueries({ queryKey: ['outgoing-requests'] });
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       toast({ title: 'Cancellation failed', description: error?.message || 'Please try again.', variant: 'destructive' });
     },
   });
@@ -111,7 +111,7 @@ const OutgoingRequests = () => {
       toast({ title: 'Payment updated' });
       queryClient.invalidateQueries({ queryKey: ['outgoing-requests'] });
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       toast({ title: 'Payment update failed', description: error?.message || 'Please verify permissions.', variant: 'destructive' });
     },
   });

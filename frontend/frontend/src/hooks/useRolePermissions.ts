@@ -33,7 +33,7 @@ export const useRolePermissions = () => {
 };
 
 export const useAuditLogs = (hospitalId?: string) => {
-  const [auditLogs, setAuditLogs] = useState<any[]>([]);
+  const [auditLogs, setAuditLogs] = useState<unknown[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 

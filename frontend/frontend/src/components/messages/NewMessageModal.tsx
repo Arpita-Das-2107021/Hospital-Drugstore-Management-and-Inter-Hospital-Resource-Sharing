@@ -95,7 +95,7 @@ const NewMessageModal: React.FC<NewMessageModalProps> = ({
         user.name.toLowerCase().includes(query) ||
         user.email.toLowerCase().includes(query) ||
         user.hospital.toLowerCase().includes(query) ||
-        (user as any).department?.toLowerCase().includes(query)
+        (user as unknown).department?.toLowerCase().includes(query)
       );
     }
 
@@ -543,13 +543,13 @@ const UserSelectionComponent: React.FC<UserSelectionComponentProps> = ({
                     <div className="flex-1 min-w-0">
                       <p className="font-medium text-sm">{user.name}</p>
                       <p className="text-xs text-muted-foreground">{user.role} • {user.hospital}</p>
-                      {(user as any).department && (
-                        <p className="text-xs text-muted-foreground">{(user as any).department}</p>
+                      {(user as unknown).department && (
+                        <p className="text-xs text-muted-foreground">{(user as unknown).department}</p>
                       )}
                     </div>
 
                     <div className="text-xs text-muted-foreground">
-                      {(user as any).isOnline && (
+                      {(user as unknown).isOnline && (
                         <div className="flex items-center gap-1">
                           <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                           Online

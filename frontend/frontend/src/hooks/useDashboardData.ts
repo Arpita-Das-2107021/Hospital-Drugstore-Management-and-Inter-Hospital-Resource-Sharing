@@ -36,7 +36,7 @@ export const useDashboardData = () => {
 
 export const useHospitals = () => {
   const { user } = useAuth();
-  const [hospitals, setHospitals] = useState<any[]>([]);
+  const [hospitals, setHospitals] = useState<unknown[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -45,18 +45,18 @@ export const useHospitals = () => {
       setLoading(true);
       setError(null);
       const res = await hospitalsApi.getAll();
-      const data: any[] = Array.isArray((res as any)?.data)
-        ? (res as any).data
-        : Array.isArray((res as any)?.results)
-          ? (res as any).results
-          : Array.isArray((res as any)?.data?.results)
-            ? (res as any).data.results
+      const data: unknown[] = Array.isArray((res as unknown)?.data)
+        ? (res as unknown).data
+        : Array.isArray((res as unknown)?.results)
+          ? (res as unknown).results
+          : Array.isArray((res as unknown)?.data?.results)
+            ? (res as unknown).data.results
             : Array.isArray(res)
-              ? (res as any)
+              ? (res as unknown)
               : [];
       
       // Map backend fields to frontend expected format with defaults
-      const mappedHospitals = data.map((hospital: any) => ({
+      const mappedHospitals = data.map((hospital: unknown) => ({
         id: hospital.id,
         name: hospital.name,
         city: hospital.city,

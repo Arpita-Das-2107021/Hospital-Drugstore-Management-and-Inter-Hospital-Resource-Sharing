@@ -9,7 +9,7 @@ import { analyticsApi } from '@/services/api';
 // ...existing code...
 
 const AdminAnalytics = () => {
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<unknown>(null);
   const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
 
@@ -21,7 +21,7 @@ const AdminAnalytics = () => {
     setIsLoading(true);
     try {
       const res = await analyticsApi.get();
-      setData((res as any)?.data ?? res);
+      setData((res as unknown)?.data ?? res);
     } catch {
       toast({ title: 'Error', description: 'Failed to load analytics data', variant: 'destructive' });
     } finally {

@@ -33,7 +33,7 @@ const DeliveryConfirmationView = () => {
       setResultMessage('Delivery confirmed. Shipment marked delivered and request fulfilled.');
       toast({ title: 'Delivery confirmed' });
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       const message = error?.message || 'Failed to confirm delivery.';
       setResultMessage(message);
       toast({

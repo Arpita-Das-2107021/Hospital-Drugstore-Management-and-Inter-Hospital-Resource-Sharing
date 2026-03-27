@@ -49,7 +49,7 @@ const AcceptInvitation: React.FC = () => {
     try {
       const data = await invitationService.getInvitationByToken(token);
       setInvitation(data);
-    } catch (err: any) {
+    } catch (err: unknown) {
       setError(err.message || 'Failed to load invitation details');
     } finally {
       setLoading(false);
@@ -89,7 +89,7 @@ const AcceptInvitation: React.FC = () => {
       setTimeout(() => {
         navigate('/login');
       }, 3000);
-    } catch (err: any) {
+    } catch (err: unknown) {
       setFormError(err.message || 'Failed to accept invitation');
     } finally {
       setSubmitting(false);

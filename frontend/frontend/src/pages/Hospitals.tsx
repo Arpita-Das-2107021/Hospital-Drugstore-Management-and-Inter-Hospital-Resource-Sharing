@@ -106,7 +106,7 @@ const Hospitals = () => {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <HospitalLogo
                     name={hospital.name}
-                    logo={(hospital as any).logo}
+                    logo={(hospital as unknown).logo}
                     className="h-24 w-24"
                     imageClassName="object-cover shadow-md"
                     fallbackClassName="bg-primary/10 text-primary"

@@ -21,7 +21,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
 
-const mapApiShare = (share: any): ResourceWithVisibility => ({
+const mapApiShare = (share: unknown): ResourceWithVisibility => ({
   id: share.id,
   name: share.resource_name || share.resource?.name || share.name || 'Unknown',
   type: (share.resource_type || share.resource?.type || share.type || 'drugs') as ResourceWithVisibility['type'],
@@ -53,7 +53,7 @@ const ResourceDetails = () => {
   useEffect(() => {
     if (!resourceId) { setNotFound(true); setLoading(false); return; }
     resourceSharesApi.getById(resourceId)
-      .then((res: any) => {
+      .then((res: unknown) => {
         const raw = res?.data || res;
         if (raw?.id) setResource(mapApiShare(raw));
         else setNotFound(true);

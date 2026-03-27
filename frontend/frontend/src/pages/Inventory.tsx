@@ -24,7 +24,7 @@ interface InventoryRow {
   lastUpdated: string;
 }
 
-const mapInventory = (item: any): InventoryRow => {
+const mapInventory = (item: unknown): InventoryRow => {
   const quantityAvailable = Number(item.quantity_available ?? 0);
   const reservedQuantity = Number(item.quantity_reserved ?? 0);
   return {
@@ -51,7 +51,7 @@ const Inventory = () => {
   const inventoryQuery = useQuery({
     queryKey: ['inventory-list'],
     queryFn: async () => {
-      const res: any = await inventoryApi.getAll();
+      const res: unknown = await inventoryApi.getAll();
       const raw = res?.data?.results ?? res?.data ?? res?.results ?? (Array.isArray(res) ? res : []);
       return (Array.isArray(raw) ? raw : []).map(mapInventory);
     },
@@ -69,7 +69,7 @@ const Inventory = () => {
       toast({ title: 'Inventory restocked' });
       queryClient.invalidateQueries({ queryKey: ['inventory-list'] });
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       toast({ title: 'Restock failed', description: error?.message || 'Please try again.', variant: 'destructive' });
     },
   });
@@ -85,7 +85,7 @@ const Inventory = () => {
       toast({ title: 'Price updated' });
       queryClient.invalidateQueries({ queryKey: ['inventory-list'] });
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       toast({ title: 'Price update failed', description: error?.message || 'Please verify catalog permissions.', variant: 'destructive' });
     },
   });

@@ -31,7 +31,7 @@ interface AuditLog {
   actor_name?: string;
   target_model?: string;
   target_id?: string;
-  details?: string | Record<string, any>;
+  details?: string | Record<string, unknown>;
   ip_address?: string;
   timestamp: string;
   created_at?: string;
@@ -75,7 +75,7 @@ const AuditLogs = () => {
       if (search.trim()) params.search = search.trim();
 
       const res = await auditApi.getAll(params);
-      const raw = (res as any)?.data ?? res;
+      const raw = (res as unknown)?.data ?? res;
       const items: AuditLog[] = raw?.results ?? (Array.isArray(raw) ? raw : []);
       setLogs(items);
       setTotalCount(raw?.count ?? items.length);

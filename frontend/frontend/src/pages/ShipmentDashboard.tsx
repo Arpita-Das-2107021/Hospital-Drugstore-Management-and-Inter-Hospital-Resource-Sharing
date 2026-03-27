@@ -34,7 +34,7 @@ interface ApprovedRequestRow {
   quantityApproved: number;
 }
 
-const mapShipment = (item: any): ShipmentRow => ({
+const mapShipment = (item: unknown): ShipmentRow => ({
   id: String(item.id || ''),
   status: String(item.status || 'pending_dispatch'),
   originHospital: item.origin_hospital_name || '-',
@@ -57,7 +57,7 @@ const ShipmentDashboard = () => {
   const requestsQuery = useQuery({
     queryKey: ['shipment-dashboard-requests'],
     queryFn: async () => {
-      const res: any = await requestsApi.getAll();
+      const res: unknown = await requestsApi.getAll();
       return res?.data?.results ?? res?.data ?? res?.results ?? (Array.isArray(res) ? res : []);
     },
   });
@@ -65,7 +65,7 @@ const ShipmentDashboard = () => {
   const shipmentsQuery = useQuery({
     queryKey: ['shipment-dashboard-shipments'],
     queryFn: async () => {
-      const res: any = await shipmentsApi.getAll();
+      const res: unknown = await shipmentsApi.getAll();
       const raw = res?.data?.results ?? res?.data ?? res?.results ?? (Array.isArray(res) ? res : []);
       return (Array.isArray(raw) ? raw : []).map(mapShipment);
     },
@@ -75,12 +75,12 @@ const ShipmentDashboard = () => {
     const hospitalId = user?.hospital_id || '';
     const items = Array.isArray(requestsQuery.data) ? requestsQuery.data : [];
     return items
-      .filter((item: any) => {
+      .filter((item: unknown) => {
         const status = String(item.status || '').toLowerCase();
         const supplyingHospital = String(item.supplying_hospital || item.supplying_hospital_id || '');
         return status === 'approved' && (!hospitalId || supplyingHospital === hospitalId);
       })
-      .map((item: any) => ({
+      .map((item: unknown) => ({
         id: String(item.id || ''),
         requestId: String(item.id || ''),
         resource: item.catalog_item_name || item.resource_name || 'Resource',
@@ -93,7 +93,7 @@ const ShipmentDashboard = () => {
     const requestItems = Array.isArray(requestsQuery.data) ? requestsQuery.data : [];
     const shipmentItems = shipmentsQuery.data || [];
 
-    const pendingRequests = requestItems.filter((item: any) => {
+    const pendingRequests = requestItems.filter((item: unknown) => {
       const status = String(item.status || '').toLowerCase();
       if (status !== 'pending') return false;
       const supplyingHospital = String(item.supplying_hospital || item.supplying_hospital_id || '');
@@ -107,17 +107,17 @@ const ShipmentDashboard = () => {
 
   const dispatchMutation = useMutation({
     mutationFn: async ({ requestId, payload }: { requestId: string; payload: { rider_name: string; rider_phone: string; vehicle_info: string } }) => {
-      const response: any = await requestsApi.dispatch(requestId, payload);
+      const response: unknown = await requestsApi.dispatch(requestId, payload);
       return response?.data || response;
     },
-    onSuccess: (data: any) => {
+    onSuccess: (data: unknown) => {
       const token = String(data?.dispatch_token || data?.shipment?.dispatch_token || '');
       setLastDispatchToken(token);
       toast({ title: 'Dispatch created', description: token ? 'Dispatch token generated.' : 'Shipment dispatch submitted.' });
       queryClient.invalidateQueries({ queryKey: ['shipment-dashboard-requests'] });
       queryClient.invalidateQueries({ queryKey: ['shipment-dashboard-shipments'] });
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       toast({ title: 'Dispatch failed', description: error?.message || 'Please verify rider info and try again.', variant: 'destructive' });
     },
   });

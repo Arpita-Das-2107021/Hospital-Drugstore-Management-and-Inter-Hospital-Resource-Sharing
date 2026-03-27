@@ -19,7 +19,7 @@ const mockUser = {
 };
 
 vi.mock('@/components/layout/AppLayout', () => ({
-  default: ({ children }: { children: any }) => <div>{children}</div>,
+  default: ({ children }: { children: unknown }) => <div>{children}</div>,
 }));
 
 vi.mock('@/contexts/AuthContext', () => ({
@@ -177,7 +177,7 @@ describe('EmergencyBroadcastPage', () => {
 
   it('hydrates response count for authorized users', async () => {
     mockUser.role = 'SUPER_ADMIN';
-    mockUser.hospital_id = null as any;
+    mockUser.hospital_id = null as unknown;
     getAll.mockResolvedValue({
       data: [
         {

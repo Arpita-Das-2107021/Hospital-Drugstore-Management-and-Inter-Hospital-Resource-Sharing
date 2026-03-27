@@ -111,7 +111,7 @@ const registrationService = {
    * List hospital registration requests (SUPER_ADMIN only).
    * GET /api/v1/admin/hospital-registrations/
    */
-  listHospitals: async (status?: string, search?: string): Promise<any> => {
+  listHospitals: async (status?: string, search?: string): Promise<unknown> => {
     const params = new URLSearchParams();
     if (status) params.append('status', status);
     if (search) params.append('search', search);
@@ -144,7 +144,7 @@ const registrationService = {
    * Get a single registration request by ID (SUPER_ADMIN only).
    * GET /api/v1/admin/hospital-registrations/{id}/
    */
-  getHospital: async (id: string): Promise<any> => {
+  getHospital: async (id: string): Promise<unknown> => {
     const url = `${API_BASE_URL}/api/v1/admin/hospital-registrations/${id}/`;
     const token = getStoredAccessToken();
     const headers: Record<string, string> = {};
@@ -163,7 +163,7 @@ const registrationService = {
    * Approve a hospital registration request (SUPER_ADMIN only).
    * POST /api/v1/admin/hospital-registrations/{id}/approve/
    */
-  approveHospital: async (id: string, notes?: string): Promise<any> => {
+  approveHospital: async (id: string, notes?: string): Promise<unknown> => {
     const url = `${API_BASE_URL}/api/v1/admin/hospital-registrations/${id}/approve/`;
     const token = getStoredAccessToken();
     const headers: Record<string, string> = {
@@ -189,7 +189,7 @@ const registrationService = {
    * Reject a hospital registration request (SUPER_ADMIN only).
    * POST /api/v1/admin/hospital-registrations/{id}/reject/
    */
-  rejectHospital: async (id: string, rejection_reason: string): Promise<any> => {
+  rejectHospital: async (id: string, rejection_reason: string): Promise<unknown> => {
     const url = `${API_BASE_URL}/api/v1/admin/hospital-registrations/${id}/reject/`;
     const token = getStoredAccessToken();
     const headers: Record<string, string> = {

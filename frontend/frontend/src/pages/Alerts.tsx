@@ -31,8 +31,8 @@ const Alerts = () => {
     try {
       setLoading(true);
       const data = await notificationsApi.getAll();
-      const items = (data as any)?.data ?? (data as any)?.results ?? [];
-      const mapped: Alert[] = (Array.isArray(items) ? items : []).map((n: any) => ({
+      const items = (data as unknown)?.data ?? (data as unknown)?.results ?? [];
+      const mapped: Alert[] = (Array.isArray(items) ? items : []).map((n: unknown) => ({
         id: n.id,
         title: n.data?.title || n.title || n.notification_type || 'Notification',
         message: n.message || n.data?.message || '',

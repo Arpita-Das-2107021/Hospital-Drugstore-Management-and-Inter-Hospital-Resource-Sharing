@@ -34,7 +34,7 @@ interface TimelineStep {
 
 export default function TransportTimeline({ transportId, onClose }: TransportTimelineProps) {
   const [loading, setLoading] = useState(true);
-  const [shipment, setShipment] = useState<any>(null);
+  const [shipment, setShipment] = useState<unknown>(null);
   const [steps, setSteps] = useState<TimelineStep[]>([]);
 
   useEffect(() => {
@@ -46,14 +46,14 @@ export default function TransportTimeline({ transportId, onClose }: TransportTim
           shipmentsApi.getTracking(transportId).catch(() => null),
         ]);
 
-        const shipmentData = (shipmentRes as any)?.data ?? shipmentRes;
+        const shipmentData = (shipmentRes as unknown)?.data ?? shipmentRes;
         setShipment(shipmentData);
 
         const trackingRaw = trackingRes
-          ? ((trackingRes as any)?.data?.results ?? (trackingRes as any)?.data ?? (trackingRes as any)?.results ?? (Array.isArray(trackingRes) ? trackingRes : []))
+          ? ((trackingRes as unknown)?.data?.results ?? (trackingRes as unknown)?.data ?? (trackingRes as unknown)?.results ?? (Array.isArray(trackingRes) ? trackingRes : []))
           : [];
 
-        const trackingSteps: TimelineStep[] = (Array.isArray(trackingRaw) ? trackingRaw : []).map((t: any) => ({
+        const trackingSteps: TimelineStep[] = (Array.isArray(trackingRaw) ? trackingRaw : []).map((t: unknown) => ({
           status: t.status ?? 'update',
           time: t.created_at ?? t.timestamp ?? shipmentData?.updated_at ?? shipmentData?.created_at,
           completed: true,

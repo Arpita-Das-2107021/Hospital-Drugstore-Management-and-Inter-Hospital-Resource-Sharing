@@ -37,14 +37,14 @@ export default function OffboardingRequest() {
         return;
       }
 
-      const response: any = await hospitalsApi.submitOffboardingRequest(hospitalId, reason.trim());
+      const response: unknown = await hospitalsApi.submitOffboardingRequest(hospitalId, reason.trim());
       const detail = response?.data?.detail || response?.detail;
       toast({
         title: 'Offboarding request submitted',
         description: detail || 'Your request was sent to platform administrators for review.',
       });
       setReason('');
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({
         title: 'Failed to submit offboarding request',
         description: err?.message || 'Please retry later.',

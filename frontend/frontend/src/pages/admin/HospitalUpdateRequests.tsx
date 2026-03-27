@@ -49,10 +49,10 @@ export default function HospitalUpdateRequests() {
   const loadRequests = async () => {
     setLoading(true);
     try {
-      const response: any = await hospitalUpdateRequestsApi.getAll();
-      const raw: any[] = response?.data?.results ?? response?.data ?? response?.results ?? (Array.isArray(response) ? response : []);
+      const response: unknown = await hospitalUpdateRequestsApi.getAll();
+      const raw: unknown[] = response?.data?.results ?? response?.data ?? response?.results ?? (Array.isArray(response) ? response : []);
       setItems(
-        raw.map((item: any) => ({
+        raw.map((item: unknown) => ({
           id: String(item.id),
           hospital_name: item.hospital_name || item.hospital?.name || 'Hospital',
           requested_by_name: item.requested_by_name || item.requested_by?.full_name,
@@ -64,7 +64,7 @@ export default function HospitalUpdateRequests() {
           rejection_reason: item.rejection_reason,
         }))
       );
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({
         title: 'Failed to load hospital update requests',
         description: err?.message || 'Please retry.',
@@ -98,7 +98,7 @@ export default function HospitalUpdateRequests() {
         });
       }
       await loadRequests();
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({
         title: 'Decision failed',
         description: err?.message || 'Please retry.',

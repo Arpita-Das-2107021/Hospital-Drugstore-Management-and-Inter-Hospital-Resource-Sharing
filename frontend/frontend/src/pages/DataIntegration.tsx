@@ -59,21 +59,21 @@ const DataIntegration = () => {
         isSuperAdmin ? hospitalsApi.getAll() : Promise.resolve(null),
       ]);
 
-      const integrationsRaw = (integrationsRes as any)?.data ?? integrationsRes;
+      const integrationsRaw = (integrationsRes as unknown)?.data ?? integrationsRes;
       const integrationList: Integration[] = Array.isArray(integrationsRaw)
         ? integrationsRaw
         : (integrationsRaw?.results ?? []);
       setIntegrations(integrationList);
 
       if (isSuperAdmin && hospitalsRes) {
-        const hospitalsRaw = (hospitalsRes as any)?.data ?? hospitalsRes;
-        const hospitalList: any[] = Array.isArray(hospitalsRaw)
+        const hospitalsRaw = (hospitalsRes as unknown)?.data ?? hospitalsRes;
+        const hospitalList: unknown[] = Array.isArray(hospitalsRaw)
           ? hospitalsRaw
           : (hospitalsRaw?.results ?? []);
-        const mapped = hospitalList.map((h: any) => ({ id: String(h.id), name: h.name || h.hospital_name || String(h.id) }));
+        const mapped = hospitalList.map((h: unknown) => ({ id: String(h.id), name: h.name || h.hospital_name || String(h.id) }));
         setHospitals(mapped);
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({ title: 'Failed to load integrations', description: err?.message, variant: 'destructive' });
     } finally {
       setLoading(false);
@@ -115,7 +115,7 @@ const DataIntegration = () => {
       });
       setFile(null);
       await loadData();
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({ title: 'Upload failed', description: err?.message, variant: 'destructive' });
     } finally {
       setUploading(false);

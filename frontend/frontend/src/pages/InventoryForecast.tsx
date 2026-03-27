@@ -13,10 +13,10 @@ const InventoryForecast = () => {
 
   useEffect(() => {
     analyticsApi.get()
-      .then((res: any) => {
+      .then((res: unknown) => {
         const data = res?.data || res || {};
-        const raw: any[] = data.forecast_data || data.forecasts || data.weekly_trends || [];
-        setForecastData(raw.map((d: any) => ({
+        const raw: unknown[] = data.forecast_data || data.forecasts || data.weekly_trends || [];
+        setForecastData(raw.map((d: unknown) => ({
           month: d.month || d.period || d.name || '',
           actual: d.actual,
           predicted: d.predicted || d.value || 0,

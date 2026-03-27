@@ -52,8 +52,8 @@ export default function TransportTracking() {
     try {
       setLoading(true);
       const data = await shipmentsApi.getAll();
-      const items = (data as any)?.data ?? (data as any)?.results ?? data ?? [];
-      const mapped: TransportItem[] = (Array.isArray(items) ? items : []).map((s: any) => ({
+      const items = (data as unknown)?.data ?? (data as unknown)?.results ?? data ?? [];
+      const mapped: TransportItem[] = (Array.isArray(items) ? items : []).map((s: unknown) => ({
         id: s.shipment_number || s.id,
         apiId: s.id,
         requestId: s.request_id || s.request || '',

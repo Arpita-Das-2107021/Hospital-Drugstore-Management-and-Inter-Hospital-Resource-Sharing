@@ -45,7 +45,7 @@ const Reports = () => {
   }, [isSuperAdmin]);
 
   const [reportType, setReportType] = useState<ReportType>(isSuperAdmin ? 'analytics' : 'inventory');
-  const [rows, setRows] = useState<Record<string, any>[]>([]);
+  const [rows, setRows] = useState<Record<string, unknown>[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -56,8 +56,8 @@ const Reports = () => {
 
       if (reportType === 'inventory') {
         const res = await inventoryApi.getAll();
-        const raw = (res as any)?.data?.results ?? (res as any)?.data ?? (res as any)?.results ?? (Array.isArray(res) ? res : []);
-        setRows((Array.isArray(raw) ? raw : []).map((item: any) => ({
+        const raw = (res as unknown)?.data?.results ?? (res as unknown)?.data ?? (res as unknown)?.results ?? (Array.isArray(res) ? res : []);
+        setRows((Array.isArray(raw) ? raw : []).map((item: unknown) => ({
           name: item.catalog_item_name ?? item.name ?? item.resource_name ?? 'Unknown',
           category: item.resource_type_name ?? item.category ?? 'General',
           available: item.quantity_available ?? item.available_quantity ?? 0,
@@ -68,8 +68,8 @@ const Reports = () => {
 
       if (reportType === 'shipments') {
         const res = await shipmentsApi.getAll();
-        const raw = (res as any)?.data?.results ?? (res as any)?.data ?? (res as any)?.results ?? (Array.isArray(res) ? res : []);
-        setRows((Array.isArray(raw) ? raw : []).map((s: any) => ({
+        const raw = (res as unknown)?.data?.results ?? (res as unknown)?.data ?? (res as unknown)?.results ?? (Array.isArray(res) ? res : []);
+        setRows((Array.isArray(raw) ? raw : []).map((s: unknown) => ({
           shipment: s.shipment_number ?? s.id,
           from: s.origin_hospital_name ?? s.from_hospital_name ?? '-',
           to: s.destination_hospital_name ?? s.to_hospital_name ?? '-',
@@ -80,9 +80,9 @@ const Reports = () => {
 
       if (reportType === 'incoming_requests' || reportType === 'outgoing_requests') {
         const res = await requestsApi.getAll();
-        const raw = (res as any)?.data?.results ?? (res as any)?.data ?? (res as any)?.results ?? (Array.isArray(res) ? res : []);
+        const raw = (res as unknown)?.data?.results ?? (res as unknown)?.data ?? (res as unknown)?.results ?? (Array.isArray(res) ? res : []);
         const hospitalId = user?.hospital_id || '';
-        const filtered = (Array.isArray(raw) ? raw : []).filter((request: any) => {
+        const filtered = (Array.isArray(raw) ? raw : []).filter((request: unknown) => {
           if (!hospitalId) return true;
           const supplyingHospital = String(request?.supplying_hospital || request?.supplying_hospital_id || '');
           const requestingHospital = String(request?.requesting_hospital || request?.requesting_hospital_id || request?.hospital_id || '');
@@ -93,7 +93,7 @@ const Reports = () => {
           return requestingHospital === hospitalId;
         });
 
-        setRows(filtered.map((r: any) => ({
+        setRows(filtered.map((r: unknown) => ({
           id: r.id,
           resource: r.catalog_item_name ?? r.resource_name ?? '-',
           quantity: r.quantity_requested ?? r.quantity ?? 0,
@@ -106,15 +106,15 @@ const Reports = () => {
 
       if (reportType === 'credits') {
         const [ledgerRes, balanceRes] = await Promise.all([creditsApi.get(), creditsApi.getBalance()]);
-        const ledgerRaw = (ledgerRes as any)?.data?.results ?? (ledgerRes as any)?.data ?? (ledgerRes as any)?.results ?? (Array.isArray(ledgerRes) ? ledgerRes : []);
-        const balanceRaw = (balanceRes as any)?.data ?? balanceRes;
+        const ledgerRaw = (ledgerRes as unknown)?.data?.results ?? (ledgerRes as unknown)?.data ?? (ledgerRes as unknown)?.results ?? (Array.isArray(ledgerRes) ? ledgerRes : []);
+        const balanceRaw = (balanceRes as unknown)?.data ?? balanceRes;
         const openingRow = {
           type: 'BALANCE',
           description: 'Current platform credit balance',
           amount: balanceRaw?.balance ?? balanceRaw?.credits ?? 0,
           timestamp: new Date().toISOString(),
         };
-        const ledgerRows = (Array.isArray(ledgerRaw) ? ledgerRaw : []).map((entry: any) => ({
+        const ledgerRows = (Array.isArray(ledgerRaw) ? ledgerRaw : []).map((entry: unknown) => ({
           type: entry.transaction_type ?? entry.type ?? '-',
           description: entry.description ?? '-',
           amount: entry.amount ?? 0,
@@ -125,14 +125,14 @@ const Reports = () => {
 
       if (reportType === 'analytics') {
         const res = await analyticsApi.get();
-        const raw = (res as any)?.data ?? res;
-        const flattened: Record<string, any>[] = Object.entries(raw || {}).map(([metric, value]) => ({
+        const raw = (res as unknown)?.data ?? res;
+        const flattened: Record<string, unknown>[] = Object.entries(raw || {}).map(([metric, value]) => ({
           metric,
           value: typeof value === 'object' ? JSON.stringify(value) : String(value),
         }));
         setRows(flattened);
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       setRows([]);
       setError(err?.message || 'Failed to load report data.');
     } finally {

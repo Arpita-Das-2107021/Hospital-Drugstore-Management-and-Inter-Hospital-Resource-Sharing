@@ -10,7 +10,7 @@ const markRead = vi.fn();
 const getConversations = vi.fn();
 
 vi.mock('react-router-dom', async () => {
-  const actual = await vi.importActual<any>('react-router-dom');
+  const actual = await vi.importActual<unknown>('react-router-dom');
   return {
     ...actual,
     useNavigate: () => mockNavigate,

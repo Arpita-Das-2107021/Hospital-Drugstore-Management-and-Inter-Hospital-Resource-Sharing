@@ -181,7 +181,7 @@ export default function CreditLedger() {
           creditsApi.getBalance(),
         ]);
 
-        const bd = (balanceRes as any)?.data ?? balanceRes ?? {};
+        const bd = (balanceRes as unknown)?.data ?? balanceRes ?? {};
         setCreditBalance({
           total: bd.total_credits ?? bd.total ?? 0,
           available: bd.available_credits ?? bd.available ?? 0,
@@ -189,8 +189,8 @@ export default function CreditLedger() {
           reserved: bd.reserved_credits ?? bd.reserved ?? 0,
         });
 
-        const ld = (ledgerRes as any)?.data ?? ledgerRes ?? {};
-        const txns: any[] = ld?.results ?? ld?.transactions ?? (Array.isArray(ld) ? ld : []);
+        const ld = (ledgerRes as unknown)?.data ?? ledgerRes ?? {};
+        const txns: unknown[] = ld?.results ?? ld?.transactions ?? (Array.isArray(ld) ? ld : []);
         setRecentTransactions(txns.map((t) => ({
           id: String(t.id ?? t.transaction_id ?? ''),
           date: t.date ?? t.created_at ?? '',
@@ -202,7 +202,7 @@ export default function CreditLedger() {
           transactionId: t.reference_id ?? t.transaction_id ?? String(t.id ?? ''),
         })));
 
-        const partners: any[] = ld?.partner_balances ?? [];
+        const partners: unknown[] = ld?.partner_balances ?? [];
         setPartnerBalances(partners.map((p) => ({
           hospital: p.hospital_name ?? p.hospital ?? '',
           balance: Number(p.balance ?? p.net_credits ?? 0),

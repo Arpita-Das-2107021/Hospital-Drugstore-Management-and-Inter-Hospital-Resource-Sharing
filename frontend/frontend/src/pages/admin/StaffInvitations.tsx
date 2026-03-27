@@ -75,8 +75,8 @@ const StaffInvitations: React.FC = () => {
       ]);
 
       const staffRes = await staffApi.getAll();
-      const staffData = (staffRes as any)?.data ?? staffRes ?? {};
-      const staffList: any[] = staffData?.results ?? (Array.isArray(staffData) ? staffData : []);
+      const staffData = (staffRes as unknown)?.data ?? staffRes ?? {};
+      const staffList: unknown[] = staffData?.results ?? (Array.isArray(staffData) ? staffData : []);
       setStaffOptions(staffList.map((staff) => ({
         id: String(staff.id ?? ''),
         email: staff.email ?? '',
@@ -88,14 +88,14 @@ const StaffInvitations: React.FC = () => {
 
       if (isSuperAdmin) {
         const hospitalsRes = await hospitalsApi.getAll();
-        const hospitalsData = (hospitalsRes as any)?.data ?? hospitalsRes ?? {};
-        const hospitalsList: any[] = hospitalsData?.results ?? (Array.isArray(hospitalsData) ? hospitalsData : []);
+        const hospitalsData = (hospitalsRes as unknown)?.data ?? hospitalsRes ?? {};
+        const hospitalsList: unknown[] = hospitalsData?.results ?? (Array.isArray(hospitalsData) ? hospitalsData : []);
         setHospitals(hospitalsList.map((hospital) => ({ id: String(hospital.id), name: hospital.name || hospital.hospital_name || 'Hospital' })));
       }
       
       setInvitations(invitationsRes.invitations || invitationsRes || []);
       setRoles(rolesRes.roles || []);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error fetching data:', error);
     } finally {
       setLoading(false);
@@ -120,9 +120,9 @@ const StaffInvitations: React.FC = () => {
         email: selectedStaff?.email || formData.email,
       };
       if (formData.role) invitationData.role_id = formData.role;
-      if (isSuperAdmin && formData.hospital) (invitationData as any).hospital = formData.hospital;
-      if (selectedStaff?.first_name) (invitationData as any).first_name = selectedStaff.first_name;
-      if (selectedStaff?.last_name) (invitationData as any).last_name = selectedStaff.last_name;
+      if (isSuperAdmin && formData.hospital) (invitationData as unknown).hospital = formData.hospital;
+      if (selectedStaff?.first_name) (invitationData as unknown).first_name = selectedStaff.first_name;
+      if (selectedStaff?.last_name) (invitationData as unknown).last_name = selectedStaff.last_name;
 
       await invitationService.inviteStaff(invitationData);
       setFormSuccess('Invitation sent successfully!');
@@ -143,7 +143,7 @@ const StaffInvitations: React.FC = () => {
         setShowInviteForm(false);
         setFormSuccess('');
       }, 2000);
-    } catch (error: any) {
+    } catch (error: unknown) {
       setFormError(error.message || 'Failed to send invitation');
     }
   };
@@ -156,7 +156,7 @@ const StaffInvitations: React.FC = () => {
     try {
       await invitationService.cancelInvitation(invitationId);
       fetchData();
-    } catch (error: any) {
+    } catch (error: unknown) {
       alert(error.message || 'Failed to cancel invitation');
     }
   };

@@ -3,14 +3,14 @@ import { Language } from '@/types/language';
 import enTranslations from '@/locales/en.json';
 import bnTranslations from '@/locales/bn.json';
 
-export const translations: Record<Language, Record<string, any>> = {
+export const translations: Record<Language, Record<string, unknown>> = {
   en: enTranslations,
   bn: bnTranslations,
 };
 
 
 export function getNestedTranslation(
-  translations: Record<string, any>, 
+  translations: Record<string, unknown>, 
   key: string, 
   defaultValue?: string
 ): string {

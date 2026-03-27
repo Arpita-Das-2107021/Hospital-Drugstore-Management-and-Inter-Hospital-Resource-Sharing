@@ -31,7 +31,7 @@ const ShipmentTrackingView = () => {
   const shipmentQuery = useQuery({
     queryKey: ['shipment', shipmentId],
     queryFn: async () => {
-      const res: any = await shipmentsApi.getById(shipmentId);
+      const res: unknown = await shipmentsApi.getById(shipmentId);
       return res?.data || res;
     },
     enabled: !!shipmentId,
@@ -40,9 +40,9 @@ const ShipmentTrackingView = () => {
   const trackingQuery = useQuery({
     queryKey: ['shipment-tracking', shipmentId],
     queryFn: async () => {
-      const res: any = await shipmentsApi.getTracking(shipmentId);
+      const res: unknown = await shipmentsApi.getTracking(shipmentId);
       const raw = res?.data?.results ?? res?.data ?? res?.results ?? (Array.isArray(res) ? res : []);
-      return (Array.isArray(raw) ? raw : []).map((item: any) => ({
+      return (Array.isArray(raw) ? raw : []).map((item: unknown) => ({
         id: String(item.id || Math.random()),
         status: String(item.status || 'update'),
         location: String(item.location || '-'),
@@ -64,7 +64,7 @@ const ShipmentTrackingView = () => {
       queryClient.invalidateQueries({ queryKey: ['shipment-tracking', shipmentId] });
       queryClient.invalidateQueries({ queryKey: ['shipment', shipmentId] });
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       toast({ title: 'Failed to add tracking event', description: error?.message || 'Please verify your role.', variant: 'destructive' });
     },
   });

@@ -54,11 +54,11 @@ export const ResourceRequestForm = ({ resource, isOpen, onClose, onSubmitted }: 
 
     templatesApi
       .getAll()
-      .then((res: any) => {
+      .then((res: unknown) => {
         if (!mounted) return;
-        const items: any[] = res?.data?.results ?? res?.data ?? res?.results ?? (Array.isArray(res) ? res : []);
+        const items: unknown[] = res?.data?.results ?? res?.data ?? res?.results ?? (Array.isArray(res) ? res : []);
         setTemplates(
-          items.map((item: any) => ({
+          items.map((item: unknown) => ({
             id: String(item.id),
             name: item.name || item.subject || 'Template',
             subject: item.subject,
@@ -87,7 +87,7 @@ export const ResourceRequestForm = ({ resource, isOpen, onClose, onSubmitted }: 
 
     creditsApi
       .getBalance()
-      .then((res: any) => {
+      .then((res: unknown) => {
         if (!mounted) return;
         const value =
           res?.data?.balance ??
@@ -135,7 +135,7 @@ export const ResourceRequestForm = ({ resource, isOpen, onClose, onSubmitted }: 
       // Fallback lookup for older list payloads that don't include IDs directly.
       if ((!supplyingHospital || !catalogItem) && resource?.id) {
         try {
-          const share: any = await resourceSharesApi.getById(resource.id);
+          const share: unknown = await resourceSharesApi.getById(resource.id);
           const payload = share?.data || share;
           supplyingHospital =
             supplyingHospital ||
@@ -177,7 +177,7 @@ export const ResourceRequestForm = ({ resource, isOpen, onClose, onSubmitted }: 
       setJustification('');
       setBarterResource('');
       setSelectedTemplateId('none');
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({
         title: 'Request Failed',
         description: err?.message || 'Could not submit request. Please try again.',
@@ -268,7 +268,7 @@ export const ResourceRequestForm = ({ resource, isOpen, onClose, onSubmitted }: 
 
             <div className="space-y-2">
               <Label>Urgency Level</Label>
-              <Select value={urgency} onValueChange={(value: any) => setUrgency(value)}>
+              <Select value={urgency} onValueChange={(value: unknown) => setUrgency(value)}>
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>

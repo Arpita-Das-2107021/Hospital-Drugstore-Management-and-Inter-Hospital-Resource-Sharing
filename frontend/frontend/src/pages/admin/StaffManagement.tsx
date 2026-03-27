@@ -100,8 +100,8 @@ export default function StaffManagement() {
   const fetchStaff = async () => {
     try {
       const res = await staffApi.getAll();
-      const data = (res as any)?.data ?? res ?? {};
-      const list: any[] = data?.results ?? (Array.isArray(data) ? data : []);
+      const data = (res as unknown)?.data ?? res ?? {};
+      const list: unknown[] = data?.results ?? (Array.isArray(data) ? data : []);
       setStaff(list.map((s) => ({
         id: String(s.id ?? ''),
         email: s.email ?? s.user?.email ?? '',
@@ -133,8 +133,8 @@ export default function StaffManagement() {
     const fetchAll = async () => {
       try {
         const rolesRes = await rolesApi.getAll();
-        const rolesData = (rolesRes as any)?.data ?? rolesRes ?? {};
-        const rolesList: any[] = rolesData?.results ?? (Array.isArray(rolesData) ? rolesData : []);
+        const rolesData = (rolesRes as unknown)?.data ?? rolesRes ?? {};
+        const rolesList: unknown[] = rolesData?.results ?? (Array.isArray(rolesData) ? rolesData : []);
         setRoles(rolesList.map((r) => ({ id: String(r.id), name: r.name })));
       } catch (err) {
         console.error('Failed to fetch roles:', err);
@@ -143,8 +143,8 @@ export default function StaffManagement() {
       if (isSuperAdmin) {
         try {
           const hospitalsRes = await hospitalsApi.getAll();
-          const hospitalsData = (hospitalsRes as any)?.data ?? hospitalsRes ?? {};
-          const hospitalsList: any[] = hospitalsData?.results ?? (Array.isArray(hospitalsData) ? hospitalsData : []);
+          const hospitalsData = (hospitalsRes as unknown)?.data ?? hospitalsRes ?? {};
+          const hospitalsList: unknown[] = hospitalsData?.results ?? (Array.isArray(hospitalsData) ? hospitalsData : []);
           setHospitals(hospitalsList.map((h) => ({ id: String(h.id), name: h.name || h.hospital_name || String(h.id) })));
         } catch (err) {
           console.error('Failed to fetch hospitals:', err);
@@ -273,7 +273,7 @@ export default function StaffManagement() {
         title: 'Reset email triggered',
         description: detail || `A password reset email has been sent to ${member.email} if the account exists.`,
       });
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({
         title: 'Failed to trigger password reset',
         description: err?.message || 'Please retry.',

@@ -92,7 +92,7 @@ const takeToken = (...values: unknown[]): string => {
   return '';
 };
 
-const mapApiRequest = (req: any): MappedRequest => ({
+const mapApiRequest = (req: unknown): MappedRequest => ({
   id: String(req?.id || ''),
   resourceName: req?.catalog_item_name || req?.resource_name || req?.resource?.name || 'Unknown Resource',
   catalogItemId: req?.catalog_item || req?.catalog_item_id,
@@ -120,7 +120,7 @@ const mapApiRequest = (req: any): MappedRequest => ({
   receiveToken: takeToken(req?.receive_token, req?.receiver_token),
 });
 
-const mapShipment = (shipment: any): ShipmentInfo => ({
+const mapShipment = (shipment: unknown): ShipmentInfo => ({
   id: String(shipment?.id || ''),
   requestId: String(shipment?.request || shipment?.request_id || shipment?.resource_request || shipment?.resource_request_id || ''),
   status: String(shipment?.status || ''),
@@ -217,7 +217,7 @@ const RequestWorkflow = () => {
 
       const mapped = Array.isArray(requestRaw) ? requestRaw.map(mapApiRequest) : [];
       const mappedShipments = Array.isArray(shipmentRaw) ? shipmentRaw.map(mapShipment) : [];
-      const mappedStaff = (Array.isArray(staffRaw) ? staffRaw : []).map((item: any) => ({
+      const mappedStaff = (Array.isArray(staffRaw) ? staffRaw : []).map((item: unknown) => ({
         id: String(item?.id || ''),
         fullName: item?.full_name || item?.name || item?.email || 'Staff',
         phone: item?.phone || item?.mobile || '',
@@ -238,7 +238,7 @@ const RequestWorkflow = () => {
       }
 
       setError(null);
-    } catch (err: any) {
+    } catch (err: unknown) {
       setError(err?.message || 'Failed to load requests');
     } finally {
       setLoading(false);
@@ -399,7 +399,7 @@ const RequestWorkflow = () => {
         title: decision === 'approved' ? 'Request approved' : 'Request rejected',
         description: decision === 'approved' ? 'Request moved to Reserved stage.' : 'Requester hospital notified.',
       });
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({
         title: 'Failed to update request',
         description: err?.message || 'Please retry.',
@@ -435,7 +435,7 @@ const RequestWorkflow = () => {
       });
       await loadRequests();
       toast({ title: 'Dispatch initiated', description: 'QR and receiver token are available for handover flow.' });
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({ title: 'Dispatch failed', description: err?.message || 'Unable to dispatch request.', variant: 'destructive' });
     } finally {
       setActionLoading(false);
@@ -468,7 +468,7 @@ const RequestWorkflow = () => {
       toast({ title: 'Shipment progress updated' });
       setTrackingLocation('');
       setTrackingNotes('');
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({ title: 'Tracking update failed', description: err?.message || 'Please retry.', variant: 'destructive' });
     } finally {
       setActionLoading(false);
@@ -497,7 +497,7 @@ const RequestWorkflow = () => {
       });
       await loadRequests();
       toast({ title: 'Receipt confirmed', description: 'Request moved to Received stage.' });
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({ title: 'Receipt confirmation failed', description: err?.message || 'Please check tokens.', variant: 'destructive' });
     } finally {
       setActionLoading(false);
@@ -524,7 +524,7 @@ const RequestWorkflow = () => {
       });
       await loadRequests();
       toast({ title: 'Receiver confirmation saved' });
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({ title: 'Confirmation failed', description: err?.message || 'Please retry.', variant: 'destructive' });
     } finally {
       setActionLoading(false);
@@ -537,7 +537,7 @@ const RequestWorkflow = () => {
       await requestsApi.update(request.id, { status: 'closed' });
       await loadRequests();
       toast({ title: 'Request closed', description: 'Final lifecycle record has been stored.' });
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({ title: 'Close failed', description: err?.message || 'Backend rejected status update.', variant: 'destructive' });
     } finally {
       setActionLoading(false);

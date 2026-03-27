@@ -47,7 +47,7 @@ export class RoleService {
     const data = await response.json();
     const roles = data.data || data.results || data;
     // Map role names to RolePermissions shape
-    return (Array.isArray(roles) ? roles : []).map((r: any) => ({
+    return (Array.isArray(roles) ? roles : []).map((r: unknown) => ({
       id: r.id || r.name,
       role: r.name,
       permissions: {},
@@ -60,7 +60,7 @@ export class RoleService {
     return permissions.find(p => p.role === role) || null;
   }
 
-  async getAuditLogs(_hospitalId?: string): Promise<any[]> {
+  async getAuditLogs(_hospitalId?: string): Promise<unknown[]> {
     try {
       const response = await fetch(`${API_BASE_URL}/api/v1/audit-logs/`, {
         headers: this.getAuthHeader(),

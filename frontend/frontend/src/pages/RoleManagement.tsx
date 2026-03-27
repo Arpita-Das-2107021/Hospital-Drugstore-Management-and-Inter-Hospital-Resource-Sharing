@@ -49,7 +49,7 @@ interface RoleItem {
   id: string;
   name: string;
   description: string;
-  permissions: Record<string, any>;
+  permissions: Record<string, unknown>;
   can_use_broadcast: boolean;
 }
 
@@ -99,7 +99,7 @@ const emptyPermissionState = (): PermissionState => {
   return next;
 };
 
-const mapPermissionState = (permissions?: Record<string, any>): PermissionState => {
+const mapPermissionState = (permissions?: Record<string, unknown>): PermissionState => {
   const next = emptyPermissionState();
 
   PERMISSION_MODULES.forEach((module) => {
@@ -115,7 +115,7 @@ const mapPermissionState = (permissions?: Record<string, any>): PermissionState 
 };
 
 const mergePermissionPayload = (
-  basePermissions: Record<string, any> | undefined,
+  basePermissions: Record<string, unknown> | undefined,
   permissionState: PermissionState,
   canUseBroadcast: boolean,
 ) => {
@@ -140,13 +140,13 @@ const mergePermissionPayload = (
   return merged;
 };
 
-const parseList = (res: any): any[] => {
+const parseList = (res: unknown): unknown[] => {
   const data = res?.data ?? res ?? {};
   return data?.results ?? (Array.isArray(data) ? data : []);
 };
 
 // Helper: determine whether a role's permission set is equivalent to Hospital Admin
-const isEquivalentHospitalAdmin = (permissions: Record<string, any> | undefined) => {
+const isEquivalentHospitalAdmin = (permissions: Record<string, unknown> | undefined) => {
   if (!permissions) return false;
   const state = mapPermissionState(permissions);
   // Define equivalence: administration admin OR full admin on inventory + sharing
@@ -210,7 +210,7 @@ const RoleManagement = () => {
       setLoadingRoles(true);
       const [rolesRes, staffRes] = await Promise.all([rolesApi.getAll(), staffApi.getAll().catch(() => null)]);
 
-      const mappedRoles: RoleItem[] = parseList(rolesRes).map((role: any) => ({
+      const mappedRoles: RoleItem[] = parseList(rolesRes).map((role: unknown) => ({
         id: String(role.id ?? role.name ?? ''),
         name: String(role.name ?? 'Unnamed role'),
         description: String(role.description ?? ''),
@@ -218,7 +218,7 @@ const RoleManagement = () => {
         can_use_broadcast: Boolean(role.can_use_broadcast ?? role.permissions?.broadcast?.read),
       }));
 
-      const mappedStaff: StaffItem[] = parseList(staffRes).map((member: any) => ({
+      const mappedStaff: StaffItem[] = parseList(staffRes).map((member: unknown) => ({
         id: String(member.id ?? ''),
         full_name: String((member.full_name ?? `${member.first_name || ''} ${member.last_name || ''}`.trim()) || member.email || 'Staff'),
         email: String(member.email ?? member.user?.email ?? ''),
@@ -363,7 +363,7 @@ const RoleManagement = () => {
       }
       setShowEditor(false);
       await fetchRolesAndStaff();
-    } catch (err: any) {
+    } catch (err: unknown) {
       const message = String(err?.message || 'Failed to save role');
       const unsupportedCreate = !editingRole && /404|405|not allowed|not found/i.test(message);
       toast({
@@ -385,7 +385,7 @@ const RoleManagement = () => {
       toast({ title: 'Role deleted', description: `${pendingDeleteRole.name} has been removed.` });
       setPendingDeleteRole(null);
       await fetchRolesAndStaff();
-    } catch (err: any) {
+    } catch (err: unknown) {
       const message = String(err?.message || 'Failed to delete role');
       const unsupportedDelete = /404|405|not allowed|not found/i.test(message);
       toast({
@@ -455,7 +455,7 @@ const RoleManagement = () => {
       });
       toast({ title: 'Role assigned', description: 'Staff role assignment was updated.' });
       await fetchRolesAndStaff();
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({
         title: 'Failed to assign role',
         description: String(err?.message || 'Please try again.'),
@@ -495,7 +495,7 @@ const RoleManagement = () => {
       }
       toast({ title: 'Role removed', description: `${member.full_name} no longer has an assigned role.` });
       await fetchRolesAndStaff();
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({
         title: 'Failed to remove role',
         description: String(err?.message || 'Please try again.'),

@@ -1,4 +1,4 @@
-﻿import AppLayout from '@/components/layout/AppLayout';
+import AppLayout from '@/components/layout/AppLayout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -146,7 +146,7 @@ export default function EmergencyBroadcastPage() {
     setLoadingHospitals(true);
     try {
       const response = await hospitalsApi.getAll();
-      const raw: any[] = (response as any)?.data?.results ?? (response as any)?.data ?? (response as any)?.results ?? (Array.isArray(response) ? response : []);
+      const raw: unknown[] = (response as unknown)?.data?.results ?? (response as unknown)?.data ?? (response as unknown)?.results ?? (Array.isArray(response) ? response : []);
       const currentHospitalId = String(user?.hospital_id || '');
       const filtered = raw.filter((hospital) => {
         const id = String(hospital?.id || '');
@@ -174,8 +174,8 @@ export default function EmergencyBroadcastPage() {
     setLoadingBroadcasts(true);
     try {
       const data = await broadcastsApi.getAll();
-      const raw: any[] = (data as any)?.data?.results ?? (data as any)?.data ?? (data as any)?.results ?? (Array.isArray(data) ? data : []);
-      const items: BroadcastItem[] = raw.map((broadcast: any) => ({
+      const raw: unknown[] = (data as unknown)?.data?.results ?? (data as unknown)?.data ?? (data as unknown)?.results ?? (Array.isArray(data) ? data : []);
+      const items: BroadcastItem[] = raw.map((broadcast: unknown) => ({
         id: String(broadcast.id),
         title: broadcast.title || 'Emergency Broadcast',
         message: broadcast.message || '',
@@ -197,7 +197,7 @@ export default function EmergencyBroadcastPage() {
       setRecentBroadcasts(items);
       await hydrateResponseCounts(items);
       window.dispatchEvent(new Event(BROADCASTS_UPDATED_EVENT));
-    } catch (err: any) {
+    } catch (err: unknown) {
       setRecentBroadcasts([]);
       toast({ title: 'Failed to load broadcasts', description: err?.message || 'Please try again later.', variant: 'destructive' });
     } finally {
@@ -220,10 +220,10 @@ export default function EmergencyBroadcastPage() {
       targets.map(async (broadcast) => {
         try {
           const response = await broadcastsApi.getResponses(broadcast.id);
-          const raw: any[] =
-            (response as any)?.data?.results ??
-            (response as any)?.data ??
-            (response as any)?.results ??
+          const raw: unknown[] =
+            (response as unknown)?.data?.results ??
+            (response as unknown)?.data ??
+            (response as unknown)?.results ??
             (Array.isArray(response) ? response : []);
           return { id: broadcast.id, count: Array.isArray(raw) ? raw.length : 0 };
         } catch {
@@ -232,7 +232,7 @@ export default function EmergencyBroadcastPage() {
       })
     );
 
-    const countMap = new Map(updates.filter(Boolean).map((item: any) => [item.id, item.count]));
+    const countMap = new Map(updates.filter(Boolean).map((item: unknown) => [item.id, item.count]));
     if (countMap.size === 0) {
       return;
     }
@@ -266,7 +266,7 @@ export default function EmergencyBroadcastPage() {
         )
       );
       window.dispatchEvent(new Event(BROADCASTS_UPDATED_EVENT));
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({ title: 'Failed to mark broadcast as read', description: err?.message || 'Please retry.', variant: 'destructive' });
     }
   };
@@ -287,7 +287,7 @@ export default function EmergencyBroadcastPage() {
       );
       toast({ title: 'Broadcasts marked as read', description: `${unreadIds.length} broadcasts updated.` });
       window.dispatchEvent(new Event(BROADCASTS_UPDATED_EVENT));
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({ title: 'Failed to mark broadcasts as read', description: err?.message || 'Please retry.', variant: 'destructive' });
     }
   };
@@ -298,16 +298,16 @@ export default function EmergencyBroadcastPage() {
     setLoadingResponses(true);
     try {
       const response = await broadcastsApi.getResponses(broadcast.id);
-      const raw: any[] = (response as any)?.data?.results ?? (response as any)?.data ?? (response as any)?.results ?? (Array.isArray(response) ? response : []);
+      const raw: unknown[] = (response as unknown)?.data?.results ?? (response as unknown)?.data ?? (response as unknown)?.results ?? (Array.isArray(response) ? response : []);
       setResponseItems(
-        raw.map((item: any) => ({
+        raw.map((item: unknown) => ({
           id: String(item.id || `${item.hospital_name || 'hospital'}-${item.created_at || Date.now()}`),
           hospital_name: item.hospital_name || item.responding_hospital_name || item.hospital?.name,
           response: item.response || item.response_message,
           created_at: item.created_at,
         }))
       );
-    } catch (err: any) {
+    } catch (err: unknown) {
       setResponseItems([]);
       toast({ title: 'Failed to load responses', description: err?.message || 'Please try again.', variant: 'destructive' });
     } finally {
@@ -328,13 +328,13 @@ export default function EmergencyBroadcastPage() {
         send_email: true,
         notify_recipients: true,
       });
-      const detail = (response as any)?.data?.detail || (response as any)?.detail;
+      const detail = (response as unknown)?.data?.detail || (response as unknown)?.detail;
       toast({
         title: 'Broadcast sent',
         description: detail || 'Emergency broadcast was sent and email notifications were queued for recipients.',
       });
       await fetchBroadcasts();
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({ title: 'Failed to send broadcast', description: err?.message || 'Please retry.', variant: 'destructive' });
       throw err;
     }
@@ -358,7 +358,7 @@ export default function EmergencyBroadcastPage() {
       setRespondNotes('');
       await fetchBroadcasts();
       window.dispatchEvent(new Event(BROADCASTS_UPDATED_EVENT));
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({ title: 'Error', description: err?.message || 'Failed to submit response', variant: 'destructive' });
     } finally {
       setRespondSubmitting(false);
@@ -405,7 +405,7 @@ export default function EmergencyBroadcastPage() {
       await broadcastsApi.close(broadcast.id);
       toast({ title: 'Broadcast closed', description: 'New responses are now blocked for this broadcast.' });
       await fetchBroadcasts();
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({ title: 'Failed to close broadcast', description: err?.message || 'Please retry.', variant: 'destructive' });
     }
   };

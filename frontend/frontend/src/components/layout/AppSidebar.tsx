@@ -232,7 +232,7 @@ const SidebarContent = ({ onNavigate }: { onNavigate?: () => void }) => {
     }
 
     try {
-      const response: any = await broadcastsApi.getUnreadCount();
+      const response: unknown = await broadcastsApi.getUnreadCount();
       const count =
         response?.data?.unread_count ??
         response?.unread_count ??

@@ -2,8 +2,8 @@
 // This file re-exports types for backward compatibility.
 export type { ResourceWithVisibility } from '@/types/healthcare';
 
-export const mockForecastData: any[] = [];
-export const trendData: any[] = [];
-export const mockHospitals: any[] = [];
-export const mockSharedResources: any[] = [];
-export const hospitals: any[] = [];
+export const mockForecastData: unknown[] = [];
+export const trendData: unknown[] = [];
+export const mockHospitals: unknown[] = [];
+export const mockSharedResources: unknown[] = [];
+export const hospitals: unknown[] = [];

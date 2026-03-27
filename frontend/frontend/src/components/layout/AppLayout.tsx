@@ -33,7 +33,7 @@ const AppLayout = ({ children, title, subtitle }: AppLayoutProps) => {
     Array<{ id: string; title: string; preview: string; createdAt: string; isRead: boolean }>
   >([]);
 
-  const parseItems = (payload: any): any[] => {
+  const parseItems = (payload: unknown): unknown[] => {
     const root = payload?.data ?? payload;
     if (Array.isArray(root?.results)) return root.results;
     if (Array.isArray(root?.data)) return root.data;
@@ -46,7 +46,7 @@ const AppLayout = ({ children, title, subtitle }: AppLayoutProps) => {
     let unreadCountResolved = false;
 
     try {
-      const unreadResponse: any = await broadcastsApi.getUnreadCount();
+      const unreadResponse: unknown = await broadcastsApi.getUnreadCount();
       const unread = unreadResponse?.data?.unread_count ?? unreadResponse?.unread_count ?? 0;
       setUnreadNotifications(Number.isFinite(unread) ? unread : 0);
       unreadCountResolved = true;
@@ -55,10 +55,10 @@ const AppLayout = ({ children, title, subtitle }: AppLayoutProps) => {
     }
 
     try {
-      const res: any = await broadcastsApi.getAll();
-      const items: any[] = parseItems(res);
+      const res: unknown = await broadcastsApi.getAll();
+      const items: unknown[] = parseItems(res);
       const mapped = items
-        .map((item: any) => {
+        .map((item: unknown) => {
           const message = String(item?.message || '');
           return {
             id: String(item?.id || ''),
@@ -68,23 +68,23 @@ const AppLayout = ({ children, title, subtitle }: AppLayoutProps) => {
             isRead: Boolean(item?.is_read ?? false),
           };
         })
-        .filter((item: any) => !!item.id)
-        .sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+        .filter((item: unknown) => !!item.id)
+        .sort((a: unknown, b: unknown) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
       setBroadcastAlerts(mapped.slice(0, 8));
 
       // Fallback when unread-count endpoint is not available for current role.
       if (!unreadCountResolved) {
-        setUnreadNotifications(mapped.filter((item: any) => !item.isRead).length);
+        setUnreadNotifications(mapped.filter((item: unknown) => !item.isRead).length);
       }
     } catch {
       // Keep existing UI state on transient fetch errors.
     }
 
     try {
-      const res: any = await conversationsApi.getAll();
-      const items: any[] = parseItems(res);
-      const unread = items.reduce((total: number, conversation: any) => total + Number(conversation?.unread_count || 0), 0);
+      const res: unknown = await conversationsApi.getAll();
+      const items: unknown[] = parseItems(res);
+      const unread = items.reduce((total: number, conversation: unknown) => total + Number(conversation?.unread_count || 0), 0);
       setUnreadMessages(unread);
     } catch {
       // no-op: keep existing count on transient fetch errors

@@ -45,7 +45,7 @@ interface RequestTemplate {
   urgencyLevels: string[];
   estimatedTime: string;
   successRate: number;
-  defaultFields: any;
+  defaultFields: unknown;
   compatibilityFields: string[];
   specialRequirements: string[];
   clinicalNotes?: string;
@@ -248,12 +248,12 @@ const requestTemplates: RequestTemplate[] = [
 interface GuidedRequestTemplateProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (requestData: any) => void;
+  onSubmit: (requestData: unknown) => void;
 }
 
 export default function GuidedRequestTemplate({ isOpen, onClose, onSubmit }: GuidedRequestTemplateProps) {
   const [selectedTemplate, setSelectedTemplate] = useState<RequestTemplate | null>(null);
-  const [formData, setFormData] = useState<any>({});
+  const [formData, setFormData] = useState<unknown>({});
   const [urgency, setUrgency] = useState('routine');
   const [deliveryWindow, setDeliveryWindow] = useState('');
   const [specialRequirements, setSpecialRequirements] = useState<string[]>([]);
@@ -266,8 +266,8 @@ export default function GuidedRequestTemplate({ isOpen, onClose, onSubmit }: Gui
     setStep('details');
   };
 
-  const handleFieldChange = (field: string, value: any) => {
-    setFormData((prev: any) => ({ ...prev, [field]: value }));
+  const handleFieldChange = (field: string, value: unknown) => {
+    setFormData((prev: unknown) => ({ ...prev, [field]: value }));
   };
 
   const handleSpecialRequirementToggle = (requirement: string) => {
@@ -818,7 +818,7 @@ export default function GuidedRequestTemplate({ isOpen, onClose, onSubmit }: Gui
                   const steps = ['template', 'details', 'compatibility', 'review'];
                   const currentIndex = steps.indexOf(step);
                   if (currentIndex > 0) {
-                    setStep(steps[currentIndex - 1] as any);
+                    setStep(steps[currentIndex - 1] as unknown);
                   }
                 }}
               >

@@ -30,7 +30,7 @@ export default function HandoverConfirmation({
   const { toast } = useToast();
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
-  const [shipment, setShipment] = useState<any>(null);
+  const [shipment, setShipment] = useState<unknown>(null);
   const [receiverName, setReceiverName] = useState('');
   const [receiverPosition, setReceiverPosition] = useState('');
   const [notes, setNotes] = useState('');
@@ -40,7 +40,7 @@ export default function HandoverConfirmation({
       try {
         setLoading(true);
         const res = await shipmentsApi.getById(transportId);
-        const data = (res as any)?.data ?? res;
+        const data = (res as unknown)?.data ?? res;
         setShipment(data);
       } catch {
         toast({ title: 'Failed to load shipment', variant: 'destructive' });
@@ -63,7 +63,7 @@ export default function HandoverConfirmation({
       });
       toast({ title: 'Handover confirmed', description: 'Shipment receipt was recorded successfully.' });
       onConfirm();
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({ title: 'Failed to confirm handover', description: err?.message, variant: 'destructive' });
     } finally {
       setSubmitting(false);

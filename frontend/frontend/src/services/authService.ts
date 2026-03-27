@@ -90,7 +90,7 @@ class AuthService {
   private refreshTimeoutId: number | null = null;
   private isPersistent = true; // Default to persistent storage
 
-  private normalizeValidationErrors(raw: any): ValidationError | undefined {
+  private normalizeValidationErrors(raw: unknown): ValidationError | undefined {
     if (!raw || typeof raw !== 'object' || Array.isArray(raw)) {
       return undefined;
     }
@@ -109,7 +109,7 @@ class AuthService {
     return Object.keys(result).length > 0 ? result : undefined;
   }
 
-  private parseAuthApiError(payload: any, fallbackMessage: string): { message: string; errors?: ValidationError } {
+  private parseAuthApiError(payload: unknown, fallbackMessage: string): { message: string; errors?: ValidationError } {
     const nestedDetails = payload?.error?.details;
     const directDetails = payload?.details;
     const directErrors = payload?.errors;

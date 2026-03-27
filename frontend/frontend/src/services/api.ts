@@ -99,7 +99,7 @@ async function apiRequest<T>(path: string, options: RequestInit = {}): Promise<T
     }
 
     return response.json();
-  } catch (error: any) {
+  } catch (error: unknown) {
     if (error?.name === 'AbortError') {
       throw new Error(`API request timed out after ${Math.round(API_TIMEOUT_MS / 1000)}s`);
     }
@@ -113,32 +113,32 @@ async function apiRequest<T>(path: string, options: RequestInit = {}): Promise<T
 export const hospitalsApi = {
   getAll: (params?: Record<string, string>) => {
     const qs = params ? `?${new URLSearchParams(params)}` : '';
-    return apiRequest<any>(`/api/v1/hospitals/${qs}`);
+    return apiRequest<unknown>(`/api/v1/hospitals/${qs}`);
   },
-  getById: (id: string) => apiRequest<any>(`/api/v1/hospitals/${id}/`),
-  getMyHospital: () => apiRequest<any>('/api/v1/hospitals/my-hospital/'),
-  updateMyHospital: (data: any) =>
-    apiRequest<any>('/api/v1/hospitals/my-hospital/', {
+  getById: (id: string) => apiRequest<unknown>(`/api/v1/hospitals/${id}/`),
+  getMyHospital: () => apiRequest<unknown>('/api/v1/hospitals/my-hospital/'),
+  updateMyHospital: (data: unknown) =>
+    apiRequest<unknown>('/api/v1/hospitals/my-hospital/', {
       method: 'PATCH',
       body: JSON.stringify(data),
     }),
-  create: (data: any) =>
-    apiRequest<any>('/api/v1/hospitals/', { method: 'POST', body: JSON.stringify(data) }),
-  update: (id: string, data: any) =>
-    apiRequest<any>(`/api/v1/hospitals/${id}/`, { method: 'PATCH', body: JSON.stringify(data) }),
+  create: (data: unknown) =>
+    apiRequest<unknown>('/api/v1/hospitals/', { method: 'POST', body: JSON.stringify(data) }),
+  update: (id: string, data: unknown) =>
+    apiRequest<unknown>(`/api/v1/hospitals/${id}/`, { method: 'PATCH', body: JSON.stringify(data) }),
   verify: (id: string) =>
-    apiRequest<any>(`/api/v1/hospitals/${id}/verify/`, { method: 'POST' }),
+    apiRequest<unknown>(`/api/v1/hospitals/${id}/verify/`, { method: 'POST' }),
   suspend: (id: string) =>
-    apiRequest<any>(`/api/v1/hospitals/${id}/suspend/`, { method: 'POST' }),
-  getCapacity: (id: string) => apiRequest<any>(`/api/v1/hospitals/${id}/capacity/`),
+    apiRequest<unknown>(`/api/v1/hospitals/${id}/suspend/`, { method: 'POST' }),
+  getCapacity: (id: string) => apiRequest<unknown>(`/api/v1/hospitals/${id}/capacity/`),
   getStaff: (id: string, params?: Record<string, string>) => {
     const qs = params ? `?${new URLSearchParams(params)}` : '';
-    return apiRequest<any>(`/api/v1/hospitals/${id}/staff/${qs}`);
+    return apiRequest<unknown>(`/api/v1/hospitals/${id}/staff/${qs}`);
   },
-  updateCapacity: (id: string, data: any) =>
-    apiRequest<any>(`/api/v1/hospitals/${id}/capacity/`, { method: 'PUT', body: JSON.stringify(data) }),
+  updateCapacity: (id: string, data: unknown) =>
+    apiRequest<unknown>(`/api/v1/hospitals/${id}/capacity/`, { method: 'PUT', body: JSON.stringify(data) }),
   submitOffboardingRequest: (id: string, reason: string) =>
-    apiRequest<any>(`/api/v1/hospitals/${id}/offboarding-request/`, {
+    apiRequest<unknown>(`/api/v1/hospitals/${id}/offboarding-request/`, {
       method: 'POST',
       body: JSON.stringify({ reason }),
     }),
@@ -147,29 +147,29 @@ export const hospitalsApi = {
 // ─── Hospital Registration (Two-Step Onboarding) ──────────────────────────────
 
 export const hospitalRegistrationApi = {
-  submit: (data: any) => {
+  submit: (data: unknown) => {
     if (data instanceof FormData) {
-      return apiRequest<any>('/api/v1/hospital-registration/', {
+      return apiRequest<unknown>('/api/v1/hospital-registration/', {
         method: 'POST',
         body: data,
         headers: {},
       });
     }
-    return apiRequest<any>('/api/v1/hospital-registration/', { method: 'POST', body: JSON.stringify(data) });
+    return apiRequest<unknown>('/api/v1/hospital-registration/', { method: 'POST', body: JSON.stringify(data) });
   },
   listAdminRegistrations: (params?: Record<string, string>) => {
     const qs = params ? `?${new URLSearchParams(params)}` : '';
-    return apiRequest<any>(`/api/v1/admin/hospital-registrations/${qs}`);
+    return apiRequest<unknown>(`/api/v1/admin/hospital-registrations/${qs}`);
   },
   getAdminRegistration: (id: string) =>
-    apiRequest<any>(`/api/v1/admin/hospital-registrations/${id}/`),
+    apiRequest<unknown>(`/api/v1/admin/hospital-registrations/${id}/`),
   approve: (id: string, notes?: string) =>
-    apiRequest<any>(`/api/v1/admin/hospital-registrations/${id}/approve/`, {
+    apiRequest<unknown>(`/api/v1/admin/hospital-registrations/${id}/approve/`, {
       method: 'POST',
       body: JSON.stringify(notes ? { notes } : {}),
     }),
   reject: (id: string, rejection_reason: string) =>
-    apiRequest<any>(`/api/v1/admin/hospital-registrations/${id}/reject/`, {
+    apiRequest<unknown>(`/api/v1/admin/hospital-registrations/${id}/reject/`, {
       method: 'POST',
       body: JSON.stringify({ rejection_reason }),
     }),
@@ -178,18 +178,18 @@ export const hospitalRegistrationApi = {
 // ─── Resource Catalog ─────────────────────────────────────────────────────────
 
 export const catalogApi = {
-  getTypes: () => apiRequest<any>('/api/v1/catalog/types/'),
+  getTypes: () => apiRequest<unknown>('/api/v1/catalog/types/'),
   getAll: (params?: Record<string, string>) => {
     const qs = params ? `?${new URLSearchParams(params)}` : '';
-    return apiRequest<any>(`/api/v1/catalog/${qs}`);
+    return apiRequest<unknown>(`/api/v1/catalog/${qs}`);
   },
-  getById: (id: string) => apiRequest<any>(`/api/v1/catalog/${id}/`),
-  create: (data: any) =>
-    apiRequest<any>('/api/v1/catalog/', { method: 'POST', body: JSON.stringify(data) }),
-  update: (id: string, data: any) =>
-    apiRequest<any>(`/api/v1/catalog/${id}/`, { method: 'PATCH', body: JSON.stringify(data) }),
+  getById: (id: string) => apiRequest<unknown>(`/api/v1/catalog/${id}/`),
+  create: (data: unknown) =>
+    apiRequest<unknown>('/api/v1/catalog/', { method: 'POST', body: JSON.stringify(data) }),
+  update: (id: string, data: unknown) =>
+    apiRequest<unknown>(`/api/v1/catalog/${id}/`, { method: 'PATCH', body: JSON.stringify(data) }),
   delete: (id: string) =>
-    apiRequest<any>(`/api/v1/catalog/${id}/`, { method: 'DELETE' }),
+    apiRequest<unknown>(`/api/v1/catalog/${id}/`, { method: 'DELETE' }),
 };
 
 // ─── Resource Inventory ───────────────────────────────────────────────────────
@@ -199,14 +199,14 @@ export const catalogApi = {
 export const inventoryApi = {
   getAll: (params?: Record<string, string>) => {
     const qs = params ? `?${new URLSearchParams(params)}` : '';
-    return apiRequest<any>(`/api/v1/inventory/${qs}`);
+    return apiRequest<unknown>(`/api/v1/inventory/${qs}`);
   },
-  getById: (id: string) => apiRequest<any>(`/api/v1/inventory/${id}/`),
+  getById: (id: string) => apiRequest<unknown>(`/api/v1/inventory/${id}/`),
   adjust: (id: string, data: { quantity_delta: number; notes?: string; transaction_type?: string }) =>
-    apiRequest<any>(`/api/v1/inventory/${id}/adjust/`, { method: 'POST', body: JSON.stringify(data) }),
+    apiRequest<unknown>(`/api/v1/inventory/${id}/adjust/`, { method: 'POST', body: JSON.stringify(data) }),
   getTransactions: (id: string) =>
-    apiRequest<any>(`/api/v1/inventory/${id}/transactions/`),
-  getShareVisibility: () => apiRequest<any>('/api/v1/inventory/share-visibility/'),
+    apiRequest<unknown>(`/api/v1/inventory/${id}/transactions/`),
+  getShareVisibility: () => apiRequest<unknown>('/api/v1/inventory/share-visibility/'),
   updateShareVisibility: async (data: {
     inventory_id?: string;
     inventory_item_id?: string;
@@ -248,7 +248,7 @@ export const inventoryApi = {
     let lastError: unknown;
     for (const payload of attempts) {
       try {
-        return await apiRequest<any>('/api/v1/inventory/share-visibility/', {
+        return await apiRequest<unknown>('/api/v1/inventory/share-visibility/', {
           method: 'POST',
           body: JSON.stringify(payload),
         });
@@ -261,28 +261,28 @@ export const inventoryApi = {
   },
   // Inventory scope is derived by backend from authenticated JWT hospital context.
   getAnalytics: async () => {
-    const res = await apiRequest<any>('/api/v1/inventory/');
-    const items: any[] = (res as any)?.data ?? (res as any)?.results ?? [];
+    const res = await apiRequest<unknown>('/api/v1/inventory/');
+    const items: unknown[] = (res as unknown)?.data ?? (res as unknown)?.results ?? [];
     const total = items.length;
-    const totalValue = items.reduce((s: number, i: any) => s + ((i.quantity_available ?? 0) * (i.unit_price ?? 0)), 0);
-    const lowStock = items.filter((i: any) => (i.quantity_available ?? 0) < (i.reorder_level ?? 5));
+    const totalValue = items.reduce((s: number, i: unknown) => s + ((i.quantity_available ?? 0) * (i.unit_price ?? 0)), 0);
+    const lowStock = items.filter((i: unknown) => (i.quantity_available ?? 0) < (i.reorder_level ?? 5));
     return {
       summary: {
         total_items: total,
         total_value: totalValue,
         low_stock_count: lowStock.length,
-        out_of_stock_count: items.filter((i: any) => (i.quantity_available ?? 0) === 0).length,
+        out_of_stock_count: items.filter((i: unknown) => (i.quantity_available ?? 0) === 0).length,
       },
       days_of_supply: [],
       clinical_impact: [],
       expiry_risk: [],
       turnover_by_category: [],
-      top_value_items: items.slice(0, 5).map((i: any) => ({
+      top_value_items: items.slice(0, 5).map((i: unknown) => ({
         name: i.catalog_item_name ?? i.name ?? '',
         value: (i.quantity_available ?? 0) * (i.unit_price ?? 0),
         quantity: i.quantity_available ?? 0,
       })),
-      attention_required: lowStock.map((i: any) => ({
+      attention_required: lowStock.map((i: unknown) => ({
         name: i.catalog_item_name ?? i.name ?? '',
         status: 'warning',
         current: i.quantity_available ?? 0,
@@ -297,17 +297,17 @@ export const inventoryApi = {
 export const resourceSharesApi = {
   getAll: (params?: Record<string, string>) => {
     const qs = params ? `?${new URLSearchParams(params)}` : '';
-    return apiRequest<any>(`/api/v1/resource-shares/${qs}`);
+    return apiRequest<unknown>(`/api/v1/resource-shares/${qs}`);
   },
-  getById: (id: string) => apiRequest<any>(`/api/v1/resource-shares/${id}/`),
-  create: (data: any) =>
+  getById: (id: string) => apiRequest<unknown>(`/api/v1/resource-shares/${id}/`),
+  create: (data: unknown) =>
     // Required: hospital (UUID), catalog_item (UUID), quantity_offered (int)
     // Optional: status, notes, valid_until (datetime)
-    apiRequest<any>('/api/v1/resource-shares/', { method: 'POST', body: JSON.stringify(data) }),
-  update: (id: string, data: any) =>
-    apiRequest<any>(`/api/v1/resource-shares/${id}/`, { method: 'PATCH', body: JSON.stringify(data) }),
+    apiRequest<unknown>('/api/v1/resource-shares/', { method: 'POST', body: JSON.stringify(data) }),
+  update: (id: string, data: unknown) =>
+    apiRequest<unknown>(`/api/v1/resource-shares/${id}/`, { method: 'PATCH', body: JSON.stringify(data) }),
   delete: (id: string) =>
-    apiRequest<any>(`/api/v1/resource-shares/${id}/`, { method: 'DELETE' }),
+    apiRequest<unknown>(`/api/v1/resource-shares/${id}/`, { method: 'DELETE' }),
 };
 
 // ─── Resource Requests ────────────────────────────────────────────────────────
@@ -315,17 +315,17 @@ export const resourceSharesApi = {
 export const requestsApi = {
   getAll: (params?: Record<string, string>) => {
     const qs = params ? `?${new URLSearchParams(params)}` : '';
-    return apiRequest<any>(`/api/v1/requests/${qs}`);
+    return apiRequest<unknown>(`/api/v1/requests/${qs}`);
   },
-  getById: (id: string) => apiRequest<any>(`/api/v1/requests/${id}/`),
-  create: (data: any) =>
+  getById: (id: string) => apiRequest<unknown>(`/api/v1/requests/${id}/`),
+  create: (data: unknown) =>
     // Required: supplying_hospital (UUID), catalog_item (UUID), quantity_requested (int)
     // Optional: priority (normal|urgent|emergency), notes, needed_by (datetime)
-    apiRequest<any>('/api/v1/requests/', { method: 'POST', body: JSON.stringify(data) }),
-  update: (id: string, data: any) =>
-    apiRequest<any>(`/api/v1/requests/${id}/`, { method: 'PATCH', body: JSON.stringify(data) }),
+    apiRequest<unknown>('/api/v1/requests/', { method: 'POST', body: JSON.stringify(data) }),
+  update: (id: string, data: unknown) =>
+    apiRequest<unknown>(`/api/v1/requests/${id}/`, { method: 'PATCH', body: JSON.stringify(data) }),
   approve: (id: string, data: { decision: 'approved' | 'rejected'; quantity_approved?: number; reason?: string }) =>
-    apiRequest<any>(`/api/v1/requests/${id}/approve/`, { method: 'POST', body: JSON.stringify(data) }),
+    apiRequest<unknown>(`/api/v1/requests/${id}/approve/`, { method: 'POST', body: JSON.stringify(data) }),
   dispatch: (
     id: string,
     payload?:
@@ -353,7 +353,7 @@ export const requestsApi = {
             estimated_delivery_at: payload?.estimated_delivery_at,
           };
 
-    return apiRequest<any>(`/api/v1/requests/${id}/dispatch/`, {
+    return apiRequest<unknown>(`/api/v1/requests/${id}/dispatch/`, {
       method: 'POST',
       body: JSON.stringify(body),
     });
@@ -366,14 +366,14 @@ export const requestsApi = {
     quantity_received?: number;
     notes?: string;
   }) =>
-    apiRequest<any>('/api/v1/requests/confirm-delivery/', { method: 'POST', body: JSON.stringify(data) }),
+    apiRequest<unknown>('/api/v1/requests/confirm-delivery/', { method: 'POST', body: JSON.stringify(data) }),
   cancel: (id: string, data?: { return_reason?: string; reason?: string }) =>
-    apiRequest<any>(`/api/v1/requests/${id}/`, {
+    apiRequest<unknown>(`/api/v1/requests/${id}/`, {
       method: 'DELETE',
       body: data ? JSON.stringify(data) : undefined,
     }),
   verifyReturn: (id: string, data: { return_reason: string; return_verified?: boolean; notes?: string }) =>
-    apiRequest<any>(`/api/v1/requests/${id}/verify-return/`, {
+    apiRequest<unknown>(`/api/v1/requests/${id}/verify-return/`, {
       method: 'POST',
       body: JSON.stringify(data),
     }),
@@ -384,13 +384,13 @@ export const requestsApi = {
 export const shipmentsApi = {
   getAll: (params?: Record<string, string>) => {
     const qs = params ? `?${new URLSearchParams(params)}` : '';
-    return apiRequest<any>(`/api/v1/shipments/${qs}`);
+    return apiRequest<unknown>(`/api/v1/shipments/${qs}`);
   },
-  getById: (id: string) => apiRequest<any>(`/api/v1/shipments/${id}/`),
-  create: (data: any) =>
+  getById: (id: string) => apiRequest<unknown>(`/api/v1/shipments/${id}/`),
+  create: (data: unknown) =>
     // Required: origin_hospital (UUID), destination_hospital (UUID)
     // Optional: carrier_name, tracking_number, estimated_delivery_at, notes, status
-    apiRequest<any>('/api/v1/shipments/', { method: 'POST', body: JSON.stringify(data) }),
+    apiRequest<unknown>('/api/v1/shipments/', { method: 'POST', body: JSON.stringify(data) }),
   dispatch: (id: string, data: {
     rider_name: string;
     rider_phone: string;
@@ -400,23 +400,23 @@ export const shipmentsApi = {
     estimated_delivery_at?: string;
     notes?: string;
   }) =>
-    apiRequest<any>(`/api/v1/shipments/${id}/`, {
+    apiRequest<unknown>(`/api/v1/shipments/${id}/`, {
       method: 'PATCH',
       body: JSON.stringify({
         status: 'dispatched',
         ...data,
       }),
     }),
-  update: (id: string, data: any) =>
-    apiRequest<any>(`/api/v1/shipments/${id}/`, { method: 'PATCH', body: JSON.stringify(data) }),
+  update: (id: string, data: unknown) =>
+    apiRequest<unknown>(`/api/v1/shipments/${id}/`, { method: 'PATCH', body: JSON.stringify(data) }),
   addTracking: (id: string, data: { status: string; location?: string; notes?: string }) =>
-    apiRequest<any>(`/api/v1/shipments/${id}/tracking/`, { method: 'POST', body: JSON.stringify(data) }),
+    apiRequest<unknown>(`/api/v1/shipments/${id}/tracking/`, { method: 'POST', body: JSON.stringify(data) }),
   getTracking: (id: string) =>
-    apiRequest<any>(`/api/v1/shipments/${id}/tracking/`),
+    apiRequest<unknown>(`/api/v1/shipments/${id}/tracking/`),
   updateLocation: (id: string, data: { lat: number; lng: number; eta?: string }) =>
-    apiRequest<any>(`/api/v1/shipments/${id}/location/`, { method: 'PUT', body: JSON.stringify(data) }),
+    apiRequest<unknown>(`/api/v1/shipments/${id}/location/`, { method: 'PUT', body: JSON.stringify(data) }),
   confirmHandover: (id: string, data: { condition?: string; notes?: string; receiver_name?: string; receiver_position?: string }) =>
-    apiRequest<any>(`/api/v1/shipments/${id}/handover/`, { method: 'POST', body: JSON.stringify(data) }),
+    apiRequest<unknown>(`/api/v1/shipments/${id}/handover/`, { method: 'POST', body: JSON.stringify(data) }),
 };
 
 // ─── Staff ────────────────────────────────────────────────────────────────────
@@ -424,27 +424,27 @@ export const shipmentsApi = {
 export const staffApi = {
   getAll: (params?: Record<string, string>) => {
     const qs = params ? `?${new URLSearchParams(params)}` : '';
-    return apiRequest<any>(`/api/v1/staff/${qs}`);
+    return apiRequest<unknown>(`/api/v1/staff/${qs}`);
   },
-  getById: (id: string) => apiRequest<any>(`/api/v1/staff/${id}/`),
-  create: (data: any) =>
-    apiRequest<any>('/api/v1/staff/', { method: 'POST', body: JSON.stringify(data) }),
-  update: (id: string, data: any) =>
-    apiRequest<any>(`/api/v1/staff/${id}/`, { method: 'PATCH', body: JSON.stringify(data) }),
+  getById: (id: string) => apiRequest<unknown>(`/api/v1/staff/${id}/`),
+  create: (data: unknown) =>
+    apiRequest<unknown>('/api/v1/staff/', { method: 'POST', body: JSON.stringify(data) }),
+  update: (id: string, data: unknown) =>
+    apiRequest<unknown>(`/api/v1/staff/${id}/`, { method: 'PATCH', body: JSON.stringify(data) }),
   suspend: (id: string) =>
-    apiRequest<any>(`/api/v1/staff/${id}/suspend/`, { method: 'POST' }),
+    apiRequest<unknown>(`/api/v1/staff/${id}/suspend/`, { method: 'POST' }),
 };
 
 // ─── Roles ────────────────────────────────────────────────────────────────────
 
 export const rolesApi = {
-  getAll: () => apiRequest<any>('/api/v1/roles/'),
-  create: (data: any) =>
-    apiRequest<any>('/api/v1/roles/', { method: 'POST', body: JSON.stringify(data) }),
-  update: (id: string, data: any) =>
-    apiRequest<any>(`/api/v1/roles/${id}/`, { method: 'PUT', body: JSON.stringify(data) }),
+  getAll: () => apiRequest<unknown>('/api/v1/roles/'),
+  create: (data: unknown) =>
+    apiRequest<unknown>('/api/v1/roles/', { method: 'POST', body: JSON.stringify(data) }),
+  update: (id: string, data: unknown) =>
+    apiRequest<unknown>(`/api/v1/roles/${id}/`, { method: 'PUT', body: JSON.stringify(data) }),
   delete: (id: string) =>
-    apiRequest<any>(`/api/v1/roles/${id}/`, { method: 'DELETE' }),
+    apiRequest<unknown>(`/api/v1/roles/${id}/`, { method: 'DELETE' }),
 };
 
 // ─── Invitations ─────────────────────────────────────────────────────────────
@@ -452,15 +452,15 @@ export const rolesApi = {
 export const invitationsApi = {
   getAll: (params?: Record<string, string>) => {
     const qs = params ? `?${new URLSearchParams(params)}` : '';
-    return apiRequest<any>(`/api/v1/invitations/${qs}`);
+    return apiRequest<unknown>(`/api/v1/invitations/${qs}`);
   },
-  getById: (id: string) => apiRequest<any>(`/api/v1/invitations/${id}/`),
-  send: (data: any) =>
-    apiRequest<any>('/api/v1/invitations/', { method: 'POST', body: JSON.stringify(data) }),
+  getById: (id: string) => apiRequest<unknown>(`/api/v1/invitations/${id}/`),
+  send: (data: unknown) =>
+    apiRequest<unknown>('/api/v1/invitations/', { method: 'POST', body: JSON.stringify(data) }),
   revoke: (id: string) =>
-    apiRequest<any>(`/api/v1/invitations/${id}/revoke/`, { method: 'POST' }),
+    apiRequest<unknown>(`/api/v1/invitations/${id}/revoke/`, { method: 'POST' }),
   accept: (data: { token: string; password: string }) =>
-    apiRequest<any>('/api/v1/invitations/accept/', { method: 'POST', body: JSON.stringify(data) }),
+    apiRequest<unknown>('/api/v1/invitations/accept/', { method: 'POST', body: JSON.stringify(data) }),
 };
 
 // ─── Notifications ────────────────────────────────────────────────────────────
@@ -468,13 +468,13 @@ export const invitationsApi = {
 export const notificationsApi = {
   getAll: (params?: Record<string, string>) => {
     const qs = params ? `?${new URLSearchParams(params)}` : '';
-    return apiRequest<any>(`/api/v1/notifications/${qs}`);
+    return apiRequest<unknown>(`/api/v1/notifications/${qs}`);
   },
-  getById: (id: string) => apiRequest<any>(`/api/v1/notifications/${id}/`),
+  getById: (id: string) => apiRequest<unknown>(`/api/v1/notifications/${id}/`),
   markRead: (id: string) =>
-    apiRequest<any>(`/api/v1/notifications/${id}/read/`, { method: 'POST' }),
+    apiRequest<unknown>(`/api/v1/notifications/${id}/read/`, { method: 'POST' }),
   markAllRead: () =>
-    apiRequest<any>('/api/v1/notifications/mark-all-read/', { method: 'POST' }),
+    apiRequest<unknown>('/api/v1/notifications/mark-all-read/', { method: 'POST' }),
 };
 
 // ─── Broadcasts ───────────────────────────────────────────────────────────────
@@ -482,31 +482,31 @@ export const notificationsApi = {
 export const broadcastsApi = {
   getAll: (params?: Record<string, string>) => {
     const qs = params ? `?${new URLSearchParams(params)}` : '';
-    return apiRequest<any>(`/api/v1/broadcasts/${qs}`);
+    return apiRequest<unknown>(`/api/v1/broadcasts/${qs}`);
   },
   getUnreadCount: () =>
-    apiRequest<any>('/api/v1/broadcasts/unread-count/'),
-  getById: (id: string) => apiRequest<any>(`/api/v1/broadcasts/${id}/`),
-  create: (data: any) =>
+    apiRequest<unknown>('/api/v1/broadcasts/unread-count/'),
+  getById: (id: string) => apiRequest<unknown>(`/api/v1/broadcasts/${id}/`),
+  create: (data: unknown) =>
     // Required: title, message
     // Optional: scope ('all'|'hospitals'), priority ('normal'|'urgent'|'emergency'), allow_response (bool), target_hospitals (UUID[])
-    apiRequest<any>('/api/v1/broadcasts/', { method: 'POST', body: JSON.stringify(data) }),
+    apiRequest<unknown>('/api/v1/broadcasts/', { method: 'POST', body: JSON.stringify(data) }),
   close: (id: string) =>
-    apiRequest<any>(`/api/v1/broadcasts/${id}/close/`, { method: 'POST' }),
+    apiRequest<unknown>(`/api/v1/broadcasts/${id}/close/`, { method: 'POST' }),
   delete: (id: string) =>
-    apiRequest<any>(`/api/v1/broadcasts/${id}/`, { method: 'DELETE' }),
+    apiRequest<unknown>(`/api/v1/broadcasts/${id}/`, { method: 'DELETE' }),
   respond: (id: string, data: { response: string }) =>
-    apiRequest<any>(`/api/v1/broadcasts/${id}/respond/`, { method: 'POST', body: JSON.stringify(data) }),
+    apiRequest<unknown>(`/api/v1/broadcasts/${id}/respond/`, { method: 'POST', body: JSON.stringify(data) }),
   markRead: (id: string) =>
-    apiRequest<any>(`/api/v1/broadcasts/${id}/read/`, { method: 'POST' }),
+    apiRequest<unknown>(`/api/v1/broadcasts/${id}/read/`, { method: 'POST' }),
   getResponses: (id: string) =>
-    apiRequest<any>(`/api/v1/broadcasts/${id}/responses/`),
+    apiRequest<unknown>(`/api/v1/broadcasts/${id}/responses/`),
 };
 
 // ─── Analytics ────────────────────────────────────────────────────────────────
 
 export const analyticsApi = {
-  get: () => apiRequest<any>('/api/v1/analytics/'),
+  get: () => apiRequest<unknown>('/api/v1/analytics/'),
 };
 
 // ─── Integrations ─────────────────────────────────────────────────────────────
@@ -515,18 +515,18 @@ export const analyticsApi = {
 export const integrationsApi = {
   getAll: (params?: Record<string, string>) => {
     const qs = params ? `?${new URLSearchParams(params)}` : '';
-    return apiRequest<any>(`/api/v1/integrations/${qs}`);
+    return apiRequest<unknown>(`/api/v1/integrations/${qs}`);
   },
-  getById: (id: string) => apiRequest<any>(`/api/v1/integrations/${id}/`),
-  create: (data: any) =>
+  getById: (id: string) => apiRequest<unknown>(`/api/v1/integrations/${id}/`),
+  create: (data: unknown) =>
     // Required: resource_type (UUID), integration_type ('api'|'manual'|'csv_upload'), api_endpoint
     // Optional: http_method ('GET'|'POST'|'PUT'), auth_type ('bearer'|'basic'|'api_key'|'none'),
     //           api_token (raw, will be encrypted), headers (JSON), sync_frequency (int), is_active
-    apiRequest<any>('/api/v1/integrations/', { method: 'POST', body: JSON.stringify(data) }),
-  update: (id: string, data: any) =>
-    apiRequest<any>(`/api/v1/integrations/${id}/`, { method: 'PATCH', body: JSON.stringify(data) }),
+    apiRequest<unknown>('/api/v1/integrations/', { method: 'POST', body: JSON.stringify(data) }),
+  update: (id: string, data: unknown) =>
+    apiRequest<unknown>(`/api/v1/integrations/${id}/`, { method: 'PATCH', body: JSON.stringify(data) }),
   delete: (id: string) =>
-    apiRequest<any>(`/api/v1/integrations/${id}/`, { method: 'DELETE' }),
+    apiRequest<unknown>(`/api/v1/integrations/${id}/`, { method: 'DELETE' }),
 };
 
 // ─── Audit Logs ────────────────────────────────────────────────────────────────
@@ -534,7 +534,7 @@ export const integrationsApi = {
 export const auditApi = {
   getAll: (params?: Record<string, string>) => {
     const qs = params ? `?${new URLSearchParams(params)}` : '';
-    return apiRequest<any>(`/api/v1/audit-logs/${qs}`);
+    return apiRequest<unknown>(`/api/v1/audit-logs/${qs}`);
   },
 };
 
@@ -542,43 +542,43 @@ export const auditApi = {
 
 export const conversationsApi = {
   openDirectConversation: (participantId: string) =>
-    apiRequest<any>('/api/v1/chat/direct-conversations/open/', {
+    apiRequest<unknown>('/api/v1/chat/direct-conversations/open/', {
       method: 'POST',
       body: JSON.stringify({ participant_id: participantId }),
     }),
   getAll: (params?: Record<string, string>) => {
     const qs = params ? `?${new URLSearchParams(params)}` : '';
-    return apiRequest<any>(`/api/v1/conversations/${qs}`).catch(() =>
-      apiRequest<any>(`/api/v1/chat/conversations/${qs}`)
+    return apiRequest<unknown>(`/api/v1/conversations/${qs}`).catch(() =>
+      apiRequest<unknown>(`/api/v1/chat/conversations/${qs}`)
     );
   },
   getById: (id: string) =>
-    apiRequest<any>(`/api/v1/conversations/${id}/`).catch(() =>
-      apiRequest<any>(`/api/v1/chat/conversations/${id}/`)
+    apiRequest<unknown>(`/api/v1/conversations/${id}/`).catch(() =>
+      apiRequest<unknown>(`/api/v1/chat/conversations/${id}/`)
     ),
-  create: (data: any) => {
+  create: (data: unknown) => {
     // Backend expects participant_ids (array of user UUIDs), subject, resource_request (optional)
-    const payload: any = { subject: data.subject || '' };
+    const payload: unknown = { subject: data.subject || '' };
     if (data.participant_ids) payload.participant_ids = data.participant_ids;
     if (data.participants) payload.participant_ids = data.participants;
     if (data.resource_request) payload.resource_request = data.resource_request;
-    return apiRequest<any>('/api/v1/conversations/', {
+    return apiRequest<unknown>('/api/v1/conversations/', {
       method: 'POST',
       body: JSON.stringify(payload),
     }).catch(() =>
-      apiRequest<any>('/api/v1/chat/conversations/', { method: 'POST', body: JSON.stringify(payload) })
+      apiRequest<unknown>('/api/v1/chat/conversations/', { method: 'POST', body: JSON.stringify(payload) })
     );
   },
   getMessages: (id: string, params?: Record<string, string>) => {
     const qs = params ? `?${new URLSearchParams(params)}` : '';
-    return apiRequest<any>(`/api/v1/chat/conversations/${id}/messages/${qs}`).catch(() =>
-      apiRequest<any>(`/api/v1/conversations/${id}/messages/${qs}`)
+    return apiRequest<unknown>(`/api/v1/chat/conversations/${id}/messages/${qs}`).catch(() =>
+      apiRequest<unknown>(`/api/v1/conversations/${id}/messages/${qs}`)
     );
   },
-  sendMessage: (id: string, data: any) => {
+  sendMessage: (id: string, data: unknown) => {
     // Backend expects { body: string }
     const payload = { body: data.body || data.content || data.message || '' };
-    return apiRequest<any>(`/api/v1/conversations/${id}/messages/`, {
+    return apiRequest<unknown>(`/api/v1/conversations/${id}/messages/`, {
       method: 'POST',
       body: JSON.stringify(payload),
     });
@@ -599,14 +599,14 @@ export const conversationsApi = {
     if (options?.mediaKind) {
       formData.append('media_kind', options.mediaKind);
     }
-    return apiRequest<any>(`/api/v1/chat/conversations/${id}/attachments/`, {
+    return apiRequest<unknown>(`/api/v1/chat/conversations/${id}/attachments/`, {
       method: 'POST',
       body: formData,
       headers: {},
     });
   },
   deleteMessage: (conversationId: string, messageId: string, deleteForEveryone = false) =>
-    apiRequest<any>(`/api/v1/chat/conversations/${conversationId}/messages/delete/`, {
+    apiRequest<unknown>(`/api/v1/chat/conversations/${conversationId}/messages/delete/`, {
       method: 'POST',
       body: JSON.stringify({
         message_id: messageId,
@@ -614,22 +614,22 @@ export const conversationsApi = {
       }),
     }),
   deleteConversation: (conversationId: string) =>
-    apiRequest<any>(`/api/v1/chat/conversations/${conversationId}/delete/`, {
+    apiRequest<unknown>(`/api/v1/chat/conversations/${conversationId}/delete/`, {
       method: 'POST',
     }),
   markRead: (id: string) =>
-    apiRequest<any>(`/api/v1/conversations/${id}/read/`, { method: 'POST' }),
+    apiRequest<unknown>(`/api/v1/conversations/${id}/read/`, { method: 'POST' }),
 };
 
 export const templatesApi = {
-  getAll: () => apiRequest<any>('/api/v1/templates/'),
-  getById: (id: string) => apiRequest<any>(`/api/v1/templates/${id}/`),
-  create: (data: any) =>
-    apiRequest<any>('/api/v1/templates/', { method: 'POST', body: JSON.stringify(data) }),
-  update: (id: string, data: any) =>
-    apiRequest<any>(`/api/v1/templates/${id}/`, { method: 'PATCH', body: JSON.stringify(data) }),
+  getAll: () => apiRequest<unknown>('/api/v1/templates/'),
+  getById: (id: string) => apiRequest<unknown>(`/api/v1/templates/${id}/`),
+  create: (data: unknown) =>
+    apiRequest<unknown>('/api/v1/templates/', { method: 'POST', body: JSON.stringify(data) }),
+  update: (id: string, data: unknown) =>
+    apiRequest<unknown>(`/api/v1/templates/${id}/`, { method: 'PATCH', body: JSON.stringify(data) }),
   delete: (id: string) =>
-    apiRequest<any>(`/api/v1/templates/${id}/`, { method: 'DELETE' }),
+    apiRequest<unknown>(`/api/v1/templates/${id}/`, { method: 'DELETE' }),
 };
 
 // ─── Offboarding ──────────────────────────────────────────────────────────────
@@ -637,16 +637,16 @@ export const templatesApi = {
 export const offboardingApi = {
   listAdminRequests: (params?: Record<string, string>) => {
     const qs = params ? `?${new URLSearchParams(params)}` : '';
-    return apiRequest<any>(`/api/v1/admin/hospital-offboarding-requests/${qs}`);
+    return apiRequest<unknown>(`/api/v1/admin/hospital-offboarding-requests/${qs}`);
   },
-  getById: (id: string) => apiRequest<any>(`/api/v1/admin/hospital-offboarding-requests/${id}/`),
+  getById: (id: string) => apiRequest<unknown>(`/api/v1/admin/hospital-offboarding-requests/${id}/`),
   approve: (id: string, admin_notes?: string) =>
-    apiRequest<any>(`/api/v1/admin/hospital-offboarding-requests/${id}/approve/`, {
+    apiRequest<unknown>(`/api/v1/admin/hospital-offboarding-requests/${id}/approve/`, {
       method: 'POST',
       body: JSON.stringify(admin_notes ? { admin_notes } : {}),
     }),
   reject: (id: string, admin_notes?: string) =>
-    apiRequest<any>(`/api/v1/admin/hospital-offboarding-requests/${id}/reject/`, {
+    apiRequest<unknown>(`/api/v1/admin/hospital-offboarding-requests/${id}/reject/`, {
       method: 'POST',
       body: JSON.stringify(admin_notes ? { admin_notes } : {}),
     }),
@@ -655,16 +655,16 @@ export const offboardingApi = {
 export const hospitalUpdateRequestsApi = {
   getAll: (params?: Record<string, string>) => {
     const qs = params ? `?${new URLSearchParams(params)}` : '';
-    return apiRequest<any>(`/api/v1/admin/hospital-update-requests/${qs}`);
+    return apiRequest<unknown>(`/api/v1/admin/hospital-update-requests/${qs}`);
   },
-  getById: (id: string) => apiRequest<any>(`/api/v1/admin/hospital-update-requests/${id}/`),
+  getById: (id: string) => apiRequest<unknown>(`/api/v1/admin/hospital-update-requests/${id}/`),
   approve: (id: string, admin_notes?: string) =>
-    apiRequest<any>(`/api/v1/admin/hospital-update-requests/${id}/approve/`, {
+    apiRequest<unknown>(`/api/v1/admin/hospital-update-requests/${id}/approve/`, {
       method: 'POST',
       body: JSON.stringify(admin_notes ? { admin_notes } : {}),
     }),
   reject: (id: string, rejection_reason?: string) =>
-    apiRequest<any>(`/api/v1/admin/hospital-update-requests/${id}/reject/`, {
+    apiRequest<unknown>(`/api/v1/admin/hospital-update-requests/${id}/reject/`, {
       method: 'POST',
       body: JSON.stringify(rejection_reason ? { rejection_reason } : {}),
     }),
@@ -673,13 +673,13 @@ export const hospitalUpdateRequestsApi = {
 // ─── Credits ──────────────────────────────────────────────────────────────────
 
 export const creditsApi = {
-  get: () => apiRequest<any>('/api/v1/credits/'),
+  get: () => apiRequest<unknown>('/api/v1/credits/'),
   getBalance: async () => {
     try {
-      return await apiRequest<any>('/api/v1/analytics/balance/');
+      return await apiRequest<unknown>('/api/v1/analytics/balance/');
     } catch {
       // Backward compatibility for older backends.
-      return apiRequest<any>('/api/v1/credits/balance/');
+      return apiRequest<unknown>('/api/v1/credits/balance/');
     }
   },
 };
@@ -687,8 +687,8 @@ export const creditsApi = {
 // ─── Public ───────────────────────────────────────────────────────────────────
 
 export const publicApi = {
-  health: () => apiRequest<any>('/api/health/'),
-  info: () => apiRequest<any>('/api/v1/public/'),
+  health: () => apiRequest<unknown>('/api/health/'),
+  info: () => apiRequest<unknown>('/api/v1/public/'),
 };
 
 export default {

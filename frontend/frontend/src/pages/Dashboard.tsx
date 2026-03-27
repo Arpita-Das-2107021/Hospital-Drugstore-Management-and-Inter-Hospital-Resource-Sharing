@@ -78,11 +78,11 @@ const Dashboard = () => {
   const { t } = useLanguage();
   const { user } = useAuth();
   const { data: dashboardData, loading, error, refetch } = useDashboardData();
-  const [trendData, setTrendData] = useState<any[]>([]);
+  const [trendData, setTrendData] = useState<unknown[]>([]);
 
   useEffect(() => {
     analyticsApi.get()
-      .then((res: any) => {
+      .then((res: unknown) => {
         const weekly = res?.data?.weekly_trends || res?.weekly_trends || [];
         setTrendData(weekly);
       })

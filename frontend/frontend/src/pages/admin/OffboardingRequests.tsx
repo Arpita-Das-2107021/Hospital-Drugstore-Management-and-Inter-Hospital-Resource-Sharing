@@ -28,10 +28,10 @@ export default function OffboardingRequests() {
   const loadRequests = async () => {
     setLoading(true);
     try {
-      const response: any = await offboardingApi.listAdminRequests();
-      const raw: any[] = response?.data?.results ?? response?.data ?? response?.results ?? (Array.isArray(response) ? response : []);
+      const response: unknown = await offboardingApi.listAdminRequests();
+      const raw: unknown[] = response?.data?.results ?? response?.data ?? response?.results ?? (Array.isArray(response) ? response : []);
       setItems(
-        raw.map((item: any) => ({
+        raw.map((item: unknown) => ({
           id: String(item.id),
           hospital_name: item.hospital_name || item.hospital?.name || 'Hospital',
           requested_by_name: item.requested_by_name || item.requested_by?.full_name,
@@ -40,7 +40,7 @@ export default function OffboardingRequests() {
           created_at: item.created_at,
         }))
       );
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({
         title: 'Failed to load offboarding requests',
         description: err?.message || 'Please retry.',
@@ -73,7 +73,7 @@ export default function OffboardingRequests() {
         });
       }
       await loadRequests();
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({
         title: 'Decision failed',
         description: err?.message || 'Please retry.',

@@ -29,7 +29,7 @@ const normalizeType = (value: string): VisibilityItem['type'] => {
   return 'equipment';
 };
 
-const extractList = (res: any): any[] => {
+const extractList = (res: unknown): unknown[] => {
   if (Array.isArray(res)) return res;
   if (Array.isArray(res?.data?.results)) return res.data.results;
   if (Array.isArray(res?.data)) return res.data;
@@ -37,7 +37,7 @@ const extractList = (res: any): any[] => {
   return [];
 };
 
-const mapVisibilityItem = (item: any): VisibilityItem => {
+const mapVisibilityItem = (item: unknown): VisibilityItem => {
   const totalQty = Number(
     item.total_quantity ??
       item.quantity_available ??
@@ -106,7 +106,7 @@ const ResourceVisibility = () => {
         drafts[entry.id] = String(entry.sharedQuantity);
       });
       setDraftSharedQty(drafts);
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({
         title: 'Failed to load visibility data',
         description: err?.message || 'Please try again.',
@@ -173,7 +173,7 @@ const ResourceVisibility = () => {
         title: 'Share quantity updated',
         description: `${item.name} shared quantity set to ${sharedQuantity}.`,
       });
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast({
         title: 'Failed to update share quantity',
         description: err?.message || 'Please try again.',

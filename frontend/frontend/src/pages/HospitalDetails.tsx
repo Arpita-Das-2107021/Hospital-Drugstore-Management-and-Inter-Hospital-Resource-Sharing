@@ -204,7 +204,7 @@ const HospitalDetails = () => {
         ? await hospitalsApi.updateMyHospital(payload)
         : await hospitalsApi.update(hospitalId, payload);
 
-      const pendingRequest = (response as any)?.data?.pending_update_request;
+      const pendingRequest = (response as unknown)?.data?.pending_update_request;
       if (pendingRequest) {
         toast({
           title: 'Update submitted for review',

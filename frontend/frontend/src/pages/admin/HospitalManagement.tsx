@@ -1,4 +1,4 @@
-ï»¿import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -66,7 +66,7 @@ const HospitalManagement = () => {
     setIsLoading(true);
     try {
       const res = await hospitalsApi.getAll();
-      const data: Hospital[] = (res as any)?.data?.results ?? (res as any)?.data ?? (res as any)?.results ?? [];
+      const data: Hospital[] = (res as unknown)?.data?.results ?? (res as unknown)?.data ?? (res as unknown)?.results ?? [];
       setHospitals(Array.isArray(data) ? data : []);
     } catch (error) {
       toast({ title: 'Error', description: 'Failed to load hospitals', variant: 'destructive' });
@@ -119,7 +119,7 @@ const HospitalManagement = () => {
 
   const getStatusBadge = (verified_status: string, is_active: boolean) => {
     if (!is_active) return <Badge variant="destructive">Inactive</Badge>;
-    const map: Record<string, { variant: any; label: string }> = {
+    const map: Record<string, { variant: unknown; label: string }> = {
       verified: { variant: 'default', label: 'Verified' },
       pending: { variant: 'secondary', label: 'Pending' },
       suspended: { variant: 'destructive', label: 'Suspended' },
@@ -244,13 +244,13 @@ const HospitalManagement = () => {
                           </div>
                         </TableCell>
                         <TableCell>
-                          <span className="font-mono text-sm">{hospital.registration_number ?? 'â€”'}</span>
+                          <span className="font-mono text-sm">{hospital.registration_number ?? '—'}</span>
                         </TableCell>
                         <TableCell>
-                          <span className="text-sm capitalize">{hospital.hospital_type ?? 'â€”'}</span>
+                          <span className="text-sm capitalize">{hospital.hospital_type ?? '—'}</span>
                         </TableCell>
                         <TableCell>
-                          <span className="text-sm">{[hospital.city, hospital.state, hospital.country].filter(Boolean).join(', ') || 'â€”'}</span>
+                          <span className="text-sm">{[hospital.city, hospital.state, hospital.country].filter(Boolean).join(', ') || '—'}</span>
                         </TableCell>
                         <TableCell>{getStatusBadge(hospital.verified_status, hospital.is_active)}</TableCell>
                         <TableCell>

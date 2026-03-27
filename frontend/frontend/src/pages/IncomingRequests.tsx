@@ -37,7 +37,7 @@ const normalizeNumber = (value: unknown): number | null => {
   return Number.isFinite(parsed) ? parsed : null;
 };
 
-const mapRequest = (item: any): RequestRow => ({
+const mapRequest = (item: unknown): RequestRow => ({
   id: String(item.id || ''),
   supplyingHospitalId: String(item.supplying_hospital || item.supplying_hospital_id || ''),
   resource: item.catalog_item_name || item.resource_name || 'Unknown resource',
@@ -70,7 +70,7 @@ const IncomingRequests = () => {
   const requestsQuery = useQuery({
     queryKey: ['incoming-requests'],
     queryFn: async () => {
-      const res: any = await requestsApi.getAll();
+      const res: unknown = await requestsApi.getAll();
       const raw = res?.data?.results ?? res?.data ?? res?.results ?? (Array.isArray(res) ? res : []);
       return (Array.isArray(raw) ? raw : []).map(mapRequest);
     },
@@ -93,7 +93,7 @@ const IncomingRequests = () => {
       setConfirmingRequest(null);
       queryClient.invalidateQueries({ queryKey: ['incoming-requests'] });
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       toast({ title: 'Approval failed', description: error?.message || 'Please try again.', variant: 'destructive' });
     },
   });
@@ -106,7 +106,7 @@ const IncomingRequests = () => {
       toast({ title: 'Request rejected' });
       queryClient.invalidateQueries({ queryKey: ['incoming-requests'] });
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       toast({ title: 'Rejection failed', description: error?.message || 'Please try again.', variant: 'destructive' });
     },
   });

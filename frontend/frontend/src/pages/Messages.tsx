@@ -31,7 +31,7 @@ const PAGE_LIMIT = 25;
 
 type ChatServerEnvelope = {
   event?: string;
-  data?: any;
+  data?: unknown;
 };
 
 type ConversationPageState = {
@@ -65,7 +65,7 @@ const getWsBaseUrl = (): string => {
   return API_BASE_URL.replace('http://', 'ws://');
 };
 
-const mapEmployee = (p: any): Employee => ({
+const mapEmployee = (p: unknown): Employee => ({
   id: p?.id || '',
   name: p?.full_name || p?.name || p?.email || 'Unknown',
   email: p?.email || '',
@@ -76,7 +76,7 @@ const mapEmployee = (p: any): Employee => ({
   lastSeen: p?.last_seen,
 });
 
-const mapAttachment = (attachment: any) => {
+const mapAttachment = (attachment: unknown) => {
   const rawName = attachment?.name || attachment?.original_name || attachment?.file_name || attachment?.filename || 'Attachment';
   const rawUrl = attachment?.url || attachment?.file || attachment?.file_url || '';
   const mimeType = attachment?.content_type || attachment?.mime_type || '';
@@ -114,7 +114,7 @@ const mapAttachment = (attachment: any) => {
   };
 };
 
-const parseItems = (res: any): any[] => {
+const parseItems = (res: unknown): unknown[] => {
   const root = res?.data ?? res;
   if (Array.isArray(root?.results)) return root.results;
   if (Array.isArray(root?.data)) return root.data;
@@ -205,7 +205,7 @@ const Messages = () => {
     return lookup;
   }, [allUsers, normalizeEmail]);
 
-  const resolveParticipant = useCallback((raw: any, index: number): Employee => {
+  const resolveParticipant = useCallback((raw: unknown, index: number): Employee => {
     if (!raw) {
       return {
         id: `participant-${index}`,
@@ -272,14 +272,14 @@ const Messages = () => {
     };
   }, [currentUser, normalizeEmail, staffByEmail]);
 
-  const mapConversation = useCallback((c: any): Conversation => {
+  const mapConversation = useCallback((c: unknown): Conversation => {
     const rawParticipants = Array.isArray(c?.participants)
       ? c.participants
       : Array.isArray(c?.participant_details)
         ? c.participant_details
         : [];
 
-    const participants = rawParticipants.map((participant: any, index: number) =>
+    const participants = rawParticipants.map((participant: unknown, index: number) =>
       resolveParticipant(participant, index),
     );
 
@@ -301,7 +301,7 @@ const Messages = () => {
     };
   }, [resolveParticipant]);
 
-  const mapMessage = useCallback((m: any, conversationId: string): Message => {
+  const mapMessage = useCallback((m: unknown, conversationId: string): Message => {
     const senderPayload = typeof m?.sender === 'object'
       ? m.sender
       : {
@@ -388,7 +388,7 @@ const Messages = () => {
           loaded: true,
         },
       }));
-    } catch (error: any) {
+    } catch (error: unknown) {
       setPagesByConversation((prev) => ({
         ...prev,
         [conversationId]: {
@@ -417,13 +417,13 @@ const Messages = () => {
 
       const hospitalStaffResponses = await Promise.allSettled(
         hospitals
-          .map((hospital: any) => hospital?.id)
+          .map((hospital: unknown) => hospital?.id)
           .filter(Boolean)
           .map((hospitalId: string) => hospitalsApi.getStaff(hospitalId)),
       );
 
       const hospitalStaff = hospitalStaffResponses
-        .filter((result): result is PromiseFulfilledResult<any> => result.status === 'fulfilled')
+        .filter((result): result is PromiseFulfilledResult<unknown> => result.status === 'fulfilled')
         .flatMap((result) => parseItems(result.value));
 
       const combined = [...seedStaff, ...hospitalStaff].map(mapEmployee);
@@ -449,8 +449,8 @@ const Messages = () => {
 
   useEffect(() => {
     conversationsApi.getAll()
-      .then((res: any) => {
-        const raw: any[] = parseItems(res);
+      .then((res: unknown) => {
+        const raw: unknown[] = parseItems(res);
         setConversations(raw.map(mapConversation));
       })
       .catch(() => {
@@ -693,7 +693,7 @@ const Messages = () => {
     description?: string,
     caseId?: string,
   ) => {
-    const payload: any = {
+    const payload: unknown = {
       type,
       participant_ids: participants.map((participant) => participant.id),
       subject: name || 'New conversation',
@@ -703,12 +703,12 @@ const Messages = () => {
     if (caseId) payload.case_id = caseId;
 
     conversationsApi.create(payload)
-      .then((res: any) => {
+      .then((res: unknown) => {
         const created = mapConversation(res?.data || res);
         setConversations((prev) => [created, ...prev.filter((item) => item.id !== created.id)]);
         setSelectedConversation(created);
       })
-      .catch((error: any) => {
+      .catch((error: unknown) => {
         toast({
           title: 'Failed to create conversation',
           description: error?.message || 'Please retry.',
@@ -756,7 +756,7 @@ const Messages = () => {
           const res = await conversationsApi.sendMessage(conversationId, { body: trimmed });
           const realMessage = mapMessage(res?.data || res, conversationId);
           upsertIncomingMessage(conversationId, realMessage);
-        } catch (err: any) {
+        } catch (err: unknown) {
           toast({
             title: 'Failed to send message',
             description: err?.message || 'Could not deliver the message.',
@@ -812,7 +812,7 @@ const Messages = () => {
           const uploadedMessage = mapMessage(messagePayload, conversationId);
           upsertIncomingMessage(conversationId, uploadedMessage);
           URL.revokeObjectURL(localAttachmentUrl);
-        } catch (error: any) {
+        } catch (error: unknown) {
           URL.revokeObjectURL(localAttachmentUrl);
           setMessagesByConversation((prev) => ({
             ...prev,
@@ -871,7 +871,7 @@ const Messages = () => {
           [selectedConversationId]: (prev[selectedConversationId] || []).filter((item) => item.id !== message.id),
         }));
       })
-      .catch((error: any) => {
+      .catch((error: unknown) => {
         toast({
           title: 'Could not delete message',
           description: error?.message || 'Please try again.',
@@ -894,7 +894,7 @@ const Messages = () => {
         });
         setSelectedConversation(null);
       })
-      .catch((error: any) => {
+      .catch((error: unknown) => {
         toast({
           title: 'Could not delete chat',
           description: error?.message || 'Please try again.',

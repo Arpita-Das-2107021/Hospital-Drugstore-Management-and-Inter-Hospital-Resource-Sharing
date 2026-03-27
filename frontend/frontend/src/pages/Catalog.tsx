@@ -84,8 +84,8 @@ export default function Catalog() {
       const params: Record<string, string> = {};
       if (typeFilter !== 'all') params.resource_type = typeFilter;
       const res = await catalogApi.getAll(params);
-      const data = (res as any)?.data ?? res ?? {};
-      const list: any[] = data?.results ?? (Array.isArray(data) ? data : []);
+      const data = (res as unknown)?.data ?? res ?? {};
+      const list: unknown[] = data?.results ?? (Array.isArray(data) ? data : []);
       setItems(list.map((i) => ({
         id: String(i.id ?? ''),
         name: i.name ?? '',
@@ -107,8 +107,8 @@ export default function Catalog() {
     const init = async () => {
       try {
         const typesRes = await catalogApi.getTypes();
-        const typesData = (typesRes as any)?.data ?? typesRes ?? [];
-        const typesList: any[] = Array.isArray(typesData) ? typesData : typesData?.results ?? [];
+        const typesData = (typesRes as unknown)?.data ?? typesRes ?? [];
+        const typesList: unknown[] = Array.isArray(typesData) ? typesData : typesData?.results ?? [];
         if (typesList.length > 0 && typeof typesList[0] === 'object') {
           setTypes(typesList.map((t) => ({ value: t.value ?? t.id, label: t.label ?? t.name })));
         } else if (typesList.length > 0 && typeof typesList[0] === 'string') {
@@ -152,7 +152,7 @@ export default function Catalog() {
     try {
       // Map 'unit' → 'unit_of_measure' for backend compatibility
       const payload = { ...formData, unit_of_measure: formData.unit };
-      delete (payload as any).unit;
+      delete (payload as unknown).unit;
       if (editItem) {
         await catalogApi.update(editItem.id, payload);
         toast({ title: 'Item updated', description: `${formData.name} has been updated.` });

@@ -32,7 +32,7 @@ const COLORS = ['#10b981', '#f59e0b', '#ef4444', '#6366f1', '#8b5cf6', '#ec4899'
 
 const InventoryAnalytics = () => {
   const { user } = useAuth();
-  const [analytics, setAnalytics] = useState<any>(null);
+  const [analytics, setAnalytics] = useState<unknown>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -173,7 +173,7 @@ const InventoryAnalytics = () => {
                     <YAxis />
                     <Tooltip />
                     <Bar dataKey="days" fill="#3b82f6">
-                      {days_of_supply.map((entry: any, index: number) => (
+                      {days_of_supply.map((entry: unknown, index: number) => (
                         <Cell 
                           key={`cell-${index}`} 
                           fill={entry.status === 'good' ? '#10b981' : entry.status === 'warning' ? '#f59e0b' : '#ef4444'} 
@@ -187,7 +187,7 @@ const InventoryAnalytics = () => {
 
             {/* Status Summary */}
             <div className="grid gap-4 md:grid-cols-3">
-              {days_of_supply.map((item: any) => (
+              {days_of_supply.map((item: unknown) => (
                 <Card key={item.category}>
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm">{item.category}</CardTitle>
@@ -227,7 +227,7 @@ const InventoryAnalytics = () => {
 
             {/* Clinical Priority Cards */}
             <div className="grid gap-4 md:grid-cols-3">
-              {clinical_impact.map((item: any) => (
+              {clinical_impact.map((item: unknown) => (
                 <Card key={item.classification}>
                   <CardHeader>
                     <CardTitle className="text-sm">{item.classification}</CardTitle>
@@ -338,7 +338,7 @@ const InventoryAnalytics = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  {top_value_items.slice(0, 10).map((item: any, index: number) => (
+                  {top_value_items.slice(0, 10).map((item: unknown, index: number) => (
                     <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
                       <div className="flex-1">
                         <div className="font-medium">{item.name}</div>
@@ -367,7 +367,7 @@ const InventoryAnalytics = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
-                {attention_required.map((item: any, index: number) => (
+                {attention_required.map((item: unknown, index: number) => (
                   <div key={index} className="flex items-center justify-between p-3 border border-red-200 rounded-lg bg-red-50">
                     <div className="flex-1">
                       <div className="font-medium">{item.name}</div>

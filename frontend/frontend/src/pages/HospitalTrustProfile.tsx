@@ -26,8 +26,8 @@ import { resolveMediaUrl } from '@/utils/media';
 
 export default function HospitalTrustProfile() {
   const { hospitalId } = useParams<{ hospitalId: string }>();
-  const [hospital, setHospital] = useState<any>(null);
-  const [recentRequests, setRecentRequests] = useState<any[]>([]);
+  const [hospital, setHospital] = useState<unknown>(null);
+  const [recentRequests, setRecentRequests] = useState<unknown[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -42,7 +42,7 @@ export default function HospitalTrustProfile() {
 
       let resolvedHospitalId = hospitalId;
       if (!resolvedHospitalId) {
-        const meResponse = await authService.authenticatedRequest<any>('/api/auth/me/');
+        const meResponse = await authService.authenticatedRequest<unknown>('/api/auth/me/');
         const me = meResponse?.data ?? meResponse;
         if (me?.hospital_id) {
           resolvedHospitalId = String(me.hospital_id);
@@ -62,16 +62,16 @@ export default function HospitalTrustProfile() {
       ]);
 
       if (hospitalRes.status === 'fulfilled') {
-        const d = (hospitalRes.value as any)?.data ?? hospitalRes.value;
+        const d = (hospitalRes.value as unknown)?.data ?? hospitalRes.value;
         setHospital(d);
       } else {
         setError('Failed to load hospital details.');
       }
 
       if (requestsRes.status === 'fulfilled') {
-        const rd = (requestsRes.value as any)?.data ?? requestsRes.value;
-        const list: any[] = rd?.results ?? (Array.isArray(rd) ? rd : []);
-        const scoped = list.filter((req: any) => {
+        const rd = (requestsRes.value as unknown)?.data ?? requestsRes.value;
+        const list: unknown[] = rd?.results ?? (Array.isArray(rd) ? rd : []);
+        const scoped = list.filter((req: unknown) => {
           const requester = String(req?.requesting_hospital ?? req?.requesting_hospital_id ?? '');
           const supplier = String(req?.supplying_hospital ?? req?.supplying_hospital_id ?? '');
           return requester === resolvedHospitalId || supplier === resolvedHospitalId;

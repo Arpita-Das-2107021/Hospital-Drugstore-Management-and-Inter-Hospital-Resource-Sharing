@@ -3,11 +3,11 @@
 export type { ResourceWithVisibility } from '@/types/healthcare';
 
 // Legacy empty stubs — pages should import from API services, not these
-export const mockRequests: any[] = [];
-export const mockConversations: any[] = [];
-export const mockMessages: any[] = [];
-export const mockEmployees: any[] = [];
-export const mockHospitals: any[] = [];
-export const mockSharedResources: any[] = [];
-export const hospitals: any[] = [];
+export const mockRequests: unknown[] = [];
+export const mockConversations: unknown[] = [];
+export const mockMessages: unknown[] = [];
+export const mockEmployees: unknown[] = [];
+export const mockHospitals: unknown[] = [];
+export const mockSharedResources: unknown[] = [];
+export const hospitals: unknown[] = [];
 export const categories: string[] = [];
