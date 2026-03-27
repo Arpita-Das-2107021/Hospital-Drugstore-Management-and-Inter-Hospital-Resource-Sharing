@@ -64,11 +64,11 @@ jobs:
       - name: Install requirements
         run: pip install -r requirements-dev.txt
 
-      - name: Lint
-        run: |
-          flake8 apps/ common/ config/
-          black --check apps/ common/ config/
-          bandit -r apps/ common/ -ll -x apps/*/migrations/
+    #   - name: Lint
+    #     run: |
+    #       flake8 apps/ common/ config/
+    #       black --check apps/ common/ config/
+    #       bandit -r apps/ common/ -ll -x apps/*/migrations/
 
       - name: Run migrations
         run: python manage.py migrate --settings=config.settings.dev

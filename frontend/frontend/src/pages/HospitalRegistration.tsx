@@ -44,7 +44,7 @@ const HospitalRegistration = () => {
 
   const navigate = useNavigate();
   const { toast } = useToast();
-  const [submittedRegistration, setSubmittedRegistration] = useState<any | null>(null);
+  const [submittedRegistration, setSubmittedRegistration] = useState<unknown | null>(null);
 
   const ALLOWED_LOGO_TYPES = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp', 'image/gif'];
   const MAX_LOGO_SIZE_BYTES = 5 * 1024 * 1024;
@@ -182,7 +182,7 @@ const HospitalRegistration = () => {
       if (formData.api_password) payload.api_password = formData.api_password;
       
       const response = await registrationService.registerHospital({
-        ...(payload as any),
+        ...(payload as unknown),
         ...(logoFile ? { logo: logoFile } : {}),
       });
       

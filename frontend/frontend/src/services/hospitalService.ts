@@ -55,7 +55,7 @@ export interface InventoryItem {
 
 export interface DashboardData {
   hospital: Hospital;
-  user_profile: any;
+  user_profile: unknown;
   statistics: HospitalStatistics;
   recent_alerts: Alert[];
   critical_inventory: InventoryItem[];
@@ -104,7 +104,7 @@ export class HospitalService {
     return localStorage.getItem('access_token') || sessionStorage.getItem('access_token');
   }
 
-  private extractList<T = any>(responseBody: any): T[] {
+  private extractList<T = unknown>(responseBody: unknown): T[] {
     if (Array.isArray(responseBody)) return responseBody;
     if (Array.isArray(responseBody?.data)) return responseBody.data;
     if (Array.isArray(responseBody?.results)) return responseBody.results;
@@ -123,7 +123,7 @@ export class HospitalService {
     return headers;
   }
 
-  private normalizeHospital(raw: any): Hospital {
+  private normalizeHospital(raw: unknown): Hospital {
     return {
       id: raw?.id || EMPTY_HOSPITAL.id,
       name: raw?.name || EMPTY_HOSPITAL.name,
@@ -163,7 +163,7 @@ export class HospitalService {
       : [];
 
     const scopedHospital = hospitalId
-      ? hospitals.find((h: any) => String(h?.id ?? '') === hospitalId)
+      ? hospitals.find((h: unknown) => String(h?.id ?? '') === hospitalId)
       : hospitals[0] ?? null;
 
     const inventory = inventoryRes.status === 'fulfilled' && inventoryRes.value.ok
@@ -182,19 +182,19 @@ export class HospitalService {
       ? this.extractList(await staffRes.value.json())
       : [];
 
-    const availableResources = inventory.filter((item: any) => {
+    const availableResources = inventory.filter((item: unknown) => {
       const qty = Number(item?.quantity_available ?? item?.current_stock ?? 0);
       return qty > 0;
     }).length;
 
     const criticalInventory = inventory
-      .filter((item: any) => {
+      .filter((item: unknown) => {
         const qty = Number(item?.quantity_available ?? item?.current_stock ?? 0);
         const reorderLevel = Number(item?.reorder_level ?? 0);
         return reorderLevel > 0 && qty <= reorderLevel;
       })
       .slice(0, 8)
-      .map((item: any) => ({
+      .map((item: unknown) => ({
         id: String(item?.id ?? ''),
         name: item?.catalog_item_name || item?.name || 'Unknown Item',
         category: item?.resource_type || item?.category || 'general',
@@ -206,7 +206,7 @@ export class HospitalService {
 
     const recentAlerts = notifications
       .slice(0, 5)
-      .map((item: any) => ({
+      .map((item: unknown) => ({
         id: String(item?.id ?? ''),
         alert_type: item?.notification_type || item?.alert_type || 'system',
         severity: item?.severity || 'info',
@@ -217,12 +217,12 @@ export class HospitalService {
         created_at: item?.created_at || new Date().toISOString(),
       }));
 
-    const pendingRequests = requests.filter((item: any) => {
+    const pendingRequests = requests.filter((item: unknown) => {
       const status = String(item?.status || '').toLowerCase();
       return ['pending', 'requested', 'approved', 'reserved'].includes(status);
     }).length;
 
-    const unreadAlerts = notifications.filter((item: any) => !item?.is_read).length;
+    const unreadAlerts = notifications.filter((item: unknown) => !item?.is_read).length;
 
     return {
       hospital: this.normalizeHospital(scopedHospital || EMPTY_HOSPITAL),
@@ -258,7 +258,7 @@ export class HospitalService {
     return data.data || data;
   }
 
-  async getHospitalResources(_hospitalId?: string): Promise<any[]> {
+  async getHospitalResources(_hospitalId?: string): Promise<unknown[]> {
     // Hospital context is derived by backend from authenticated JWT user.
     const response = await this.fetchWithTimeout('/api/v1/inventory/', {
       headers: this.getAuthHeader(),
@@ -268,7 +268,7 @@ export class HospitalService {
     return this.extractList(data);
   }
 
-  async getHospitalStaff(_hospitalId?: string): Promise<any[]> {
+  async getHospitalStaff(_hospitalId?: string): Promise<unknown[]> {
     const response = await this.fetchWithTimeout('/api/v1/staff/', {
       headers: this.getAuthHeader(),
     });

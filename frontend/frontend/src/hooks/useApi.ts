@@ -59,7 +59,7 @@ export function useApi<T>(
 /**
  * Hook for API mutations (POST, PUT, DELETE)
  */
-export function useApiMutation<T, P = any>(
+export function useApiMutation<T, P = unknown>(
   mutator: (data: P) => Promise<T>
 ) {
   const [data, setData] = useState<T | null>(null);

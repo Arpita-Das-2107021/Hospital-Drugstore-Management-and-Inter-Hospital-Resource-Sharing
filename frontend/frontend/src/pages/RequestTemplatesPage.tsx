@@ -1,4 +1,4 @@
-﻿import AppLayout from '@/components/layout/AppLayout';
+import AppLayout from '@/components/layout/AppLayout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -27,8 +27,8 @@ import {
 
 export default function RequestTemplatesPage() {
   const { toast } = useToast();
-  const [selectedTemplate, setSelectedTemplate] = useState<any | null>(null);
-  const [apiTemplates, setApiTemplates] = useState<any[]>([]);
+  const [selectedTemplate, setSelectedTemplate] = useState<unknown | null>(null);
+  const [apiTemplates, setApiTemplates] = useState<unknown[]>([]);
   const [loadingTemplates, setLoadingTemplates] = useState(true);
   const [showCreateDialog, setShowCreateDialog] = useState(false);
   const [creating, setCreating] = useState(false);
@@ -38,7 +38,7 @@ export default function RequestTemplatesPage() {
     setLoadingTemplates(true);
     try {
       const res = await templatesApi.getAll();
-      const items = (res as any)?.data ?? (res as any)?.results ?? [];
+      const items = (res as unknown)?.data ?? (res as unknown)?.results ?? [];
       setApiTemplates(Array.isArray(items) ? items : []);
     } catch (err) {
       console.error('Failed to load templates:', err);
@@ -115,7 +115,7 @@ export default function RequestTemplatesPage() {
           <Card>
             <CardContent className="p-4 text-center">
               <p className="text-2xl font-bold text-purple-600">
-                {apiTemplates[0]?.updated_at ? new Date(apiTemplates[0].updated_at).toLocaleDateString() : '—'}
+                {apiTemplates[0]?.updated_at ? new Date(apiTemplates[0].updated_at).toLocaleDateString() : '�'}
               </p>
               <p className="text-sm text-muted-foreground">Last Updated</p>
             </CardContent>
