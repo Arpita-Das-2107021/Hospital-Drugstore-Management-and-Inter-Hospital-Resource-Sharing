@@ -1,0 +1,16 @@
+medicine_name,base_daily_sales,outbreak_multiplier,signals_disease
+Paracetamol 500mg,35,3.5,Fever/Flu
+ORS Sachet,18,4.2,Diarrhea
+Metronidazole 400mg,12,3.1,Diarrhea
+Cetirizine 10mg,14,2.6,Allergy/Fever
+Amoxicillin 500mg,10,2.9,Respiratory
+Azithromycin 500mg,6,3.3,Respiratory
+Zinc 20mg (child),10,3.6,Diarrhea
+Ciprofloxacin 500mg,7,2.6,Diarrhea
+Antihistamine Syrup,11,2.1,Allergy/Fever
+Vitamin C 500mg,22,1.9,Fever/Flu
+Ranitidine 150mg,16,1.4,Normal
+Antacid Tablet,20,1.2,Normal
+Insulin (vial),5,1.1,Normal
+Atorvastatin 10mg,7,1.0,Normal
+Losartan 50mg,8,1.0,Normal
