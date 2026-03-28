@@ -76,6 +76,10 @@ def sync_registration_request_api_task(self, registration_id: str) -> dict:
             "Registration API sync failed, retrying",
             extra={"registration_id": registration_id, "error": str(exc)},
         )
+        # In eager mode (tests), bubble the original error so task.apply(..., throw=False)
+        # records a FAILURE state instead of surfacing Celery Retry exceptions.
+        if getattr(self.request, "is_eager", False):
+            raise
         raise self.retry(exc=exc)
 
 
