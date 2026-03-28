@@ -1,0 +1,11 @@
+Hello,
+
+You have been invited to join {{ hospital_name }} on the Hospital Resource Sharing Platform.
+Role: {{ role }}
+
+Use this link to continue:
+{{ acceptance_url }}
+
+This invitation expires at {{ expires_at|date:"Y-m-d H:i T" }}.
+
+Hospital Resource Sharing Platform

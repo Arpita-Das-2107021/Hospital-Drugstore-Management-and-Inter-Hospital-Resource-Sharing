@@ -1,0 +1,11 @@
+Hello,
+
+Your hospital registration for {{ hospital_name }} has been approved.
+
+To activate your account, please set your password using the link below:
+
+{{ reset_url }}
+
+After setting your password, you can log in to the platform.
+
+Hospital Resource Sharing Platform

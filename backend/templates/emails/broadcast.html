@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #1a1a1a; margin: 0; padding: 0; background: #f4f4f5; }
+        .container { max-width: 640px; margin: 0 auto; background: #ffffff; }
+        .priority-bar { height: 6px; }
+        .priority-bar.emergency { background: #dc2626; }
+        .priority-bar.urgent { background: #d97706; }
+        .priority-bar.normal { background: #2563eb; }
+        .header { padding: 32px 40px 24px; border-bottom: 1px solid #e5e7eb; }
+        .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+        .org-name { font-size: 13px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
+        .badge { display: inline-block; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; }
+        .badge.emergency { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+        .badge.urgent { background: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
+        .badge.normal { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+        .title { font-size: 22px; font-weight: 700; color: #111827; margin: 0; line-height: 1.3; }
+        .content { padding: 28px 40px; }
+        .meta-table { width: 100%; border-collapse: collapse; margin-bottom: 24px; font-size: 14px; }
+        .meta-table td { padding: 8px 0; vertical-align: top; }
+        .meta-label { color: #6b7280; font-weight: 500; width: 140px; }
+        .meta-value { color: #111827; font-weight: 600; }
+        .divider { height: 1px; background: #e5e7eb; margin: 4px 0; }
+        .message-section { margin: 24px 0; }
+        .message-label { font-size: 12px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+        .message-body { font-size: 15px; line-height: 1.75; color: #374151; background: #f9fafb; padding: 20px; border-radius: 6px; border: 1px solid #e5e7eb; }
+        .cta { text-align: center; margin: 32px 0 8px; }
+        .btn { display: inline-block; background: #111827; color: #ffffff; padding: 12px 32px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px; letter-spacing: 0.2px; }
+        .footer { padding: 24px 40px; border-top: 1px solid #e5e7eb; text-align: center; }
+        .footer p { margin: 0; font-size: 12px; color: #9ca3af; line-height: 1.6; }
+        .footer .org { font-weight: 600; color: #6b7280; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- {% if priority == "emergency" %}
+        <div class="priority-bar emergency"></div>
+        {% elif priority == "urgent" %}
+        <div class="priority-bar urgent"></div>
+        {% else %}
+        <div class="priority-bar normal"></div>
+        {% endif %} -->
+
+        <div class="header">
+            <div class="header-top">
+                <span class="org-name">Hospital Resource Sharing Platform</span>
+                {% if priority == "emergency" %}
+                <span class="badge emergency">⚠ Emergency</span>
+                {% elif priority == "urgent" %}
+                <span class="badge urgent">Urgent</span>
+                {% else %}
+                <span class="badge normal">Notice</span>
+                {% endif %}
+            </div>
+            <h1 class="title">{{ title }}</h1>
+        </div>
+
+        <div class="content">
+            <table class="meta-table">
+                <tr>
+                    <td class="meta-label">Priority</td>
+                    <td class="meta-value">{{ priority|title }}</td>
+                </tr>
+                <tr><td colspan="2"><div class="divider"></div></td></tr>
+                <tr>
+                    <td class="meta-label">Sent By</td>
+                    <td class="meta-value">{{ sent_by_email|default:"System" }}</td>
+                </tr>
+                <tr><td colspan="2"><div class="divider"></div></td></tr>
+                <tr>
+                    <td class="meta-label">Scope</td>
+                    <td class="meta-value">{{ broadcast_scope }}</td>
+                </tr>
+            </table>
+
+            <div class="message-section">
+                <div class="message-label">Broadcast Details</div>
+                <div class="message-body">{{ message }}</div>
+            </div>
+
+            <div class="cta">
+                <a href="{{ alert_url|default:frontend_url }}" class="btn">View on Dashboard →</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p class="org">Hospital Resource Sharing Platform</p>
+            <p>This is an automated broadcast notification. Do not reply to this email.<br>
+            If this alert was sent in error, contact the issuing hospital directly.</p>
+        </div>
+    </div>
+</body>
+</html>

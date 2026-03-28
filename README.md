@@ -16,3 +16,9 @@ To design and build a web-based coordination and intelligence platform that impr
 The platform works alongside existing Hospital Management Systems — not as a replacement — and focuses on visibility, communication, and decision support.
 
 ---
+
+**Access the application**
+   - Frontend: http://localhost:3000
+   - Backend API: http://localhost:8000
+   - Backend Health Check: http://localhost:8000/api/health/
+   - Django Admin: http://localhost:8000/admin/

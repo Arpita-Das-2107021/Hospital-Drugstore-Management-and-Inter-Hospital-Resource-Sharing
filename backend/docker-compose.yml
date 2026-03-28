@@ -1,0 +1,161 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - static_files:/app/static
+      - media_files:/app/media
+      - app_logs:/app/logs
+    env_file:
+      - .env
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings.prod
+      - USE_MINIO_CHAT_STORAGE=${USE_MINIO_CHAT_STORAGE:-true}
+      - MINIO_ENDPOINT_URL=${MINIO_ENDPOINT_URL:-http://minio:9000}
+      - MINIO_PUBLIC_ENDPOINT=${MINIO_PUBLIC_ENDPOINT:-http://localhost:9000}
+      - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY:-minioadmin}
+      - MINIO_SECRET_KEY=${MINIO_SECRET_KEY:-minioadmin}
+      - MINIO_BUCKET_NAME=${MINIO_BUCKET_NAME:-hrsp-chat-attachments}
+      - HOSPITAL_API_LOCALHOST_HOST=host.docker.internal
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      minio:
+        condition: service_started
+    restart: unless-stopped
+    expose:
+      - "8080"
+
+  celery_worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: >
+      celery -A config.celery worker
+      --loglevel=info
+      --autoscale=8,2
+      --concurrency=4
+    volumes:
+      - app_logs:/app/logs
+    env_file:
+      - .env
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings.prod
+      - USE_MINIO_CHAT_STORAGE=${USE_MINIO_CHAT_STORAGE:-true}
+      - MINIO_ENDPOINT_URL=${MINIO_ENDPOINT_URL:-http://minio:9000}
+      - MINIO_PUBLIC_ENDPOINT=${MINIO_PUBLIC_ENDPOINT:-http://localhost:9000}
+      - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY:-minioadmin}
+      - MINIO_SECRET_KEY=${MINIO_SECRET_KEY:-minioadmin}
+      - MINIO_BUCKET_NAME=${MINIO_BUCKET_NAME:-hrsp-chat-attachments}
+      - HOSPITAL_API_LOCALHOST_HOST=host.docker.internal
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - db
+      - redis
+      - minio
+    restart: unless-stopped
+
+  celery_beat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: celery -A config.celery beat --loglevel=info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    volumes:
+      - app_logs:/app/logs
+    env_file:
+      - .env
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings.prod
+      - USE_MINIO_CHAT_STORAGE=${USE_MINIO_CHAT_STORAGE:-true}
+      - MINIO_ENDPOINT_URL=${MINIO_ENDPOINT_URL:-http://minio:9000}
+      - MINIO_PUBLIC_ENDPOINT=${MINIO_PUBLIC_ENDPOINT:-http://localhost:9000}
+      - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY:-minioadmin}
+      - MINIO_SECRET_KEY=${MINIO_SECRET_KEY:-minioadmin}
+      - MINIO_BUCKET_NAME=${MINIO_BUCKET_NAME:-hrsp-chat-attachments}
+      - HOSPITAL_API_LOCALHOST_HOST=host.docker.internal
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - db
+      - redis
+      - minio
+    restart: unless-stopped
+    # DO NOT scale celery_beat — it must run as a single instance
+
+  db:
+    image: postgres:16-alpine
+    volumes:
+      - postgres_prod_data:/var/lib/postgresql/data
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redis_prod_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ACCESS_KEY:-minioadmin}
+      - MINIO_ROOT_PASSWORD=${MINIO_SECRET_KEY:-minioadmin}
+    volumes:
+      - minio_prod_data:/data
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    restart: unless-stopped
+
+  adminer:
+    image: adminer:latest
+    restart: unless-stopped
+    ports:
+      - "8096:8080"
+    depends_on:
+      - db
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - static_files:/app/static:ro
+      - media_files:/app/media:ro
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  postgres_prod_data:
+  redis_prod_data:
+  minio_prod_data:
+  static_files:
+  media_files:
+  app_logs:

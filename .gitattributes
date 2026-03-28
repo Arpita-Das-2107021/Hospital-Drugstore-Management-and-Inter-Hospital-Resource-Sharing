@@ -1,0 +1,14 @@
+# Ensure shell scripts always use LF line endings (Unix style)
+*.sh text eol=lf
+
+# Python files should use LF
+*.py text eol=lf
+
+# SQL files should use LF
+*.sql text eol=lf
+
+# Windows batch files should use CRLF
+*.bat text eol=crlf
+
+# General text files use auto line ending normalization
+* text=auto

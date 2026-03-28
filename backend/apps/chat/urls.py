@@ -1,0 +1,61 @@
+from django.urls import path
+
+from .views import (
+    ChatAttachmentUploadAPIView,
+    ChatConversationAuditEventsAPIView,
+    ChatConversationExportAPIView,
+    ChatConversationMessageHistoryAPIView,
+    ChatConversationUnreadCountAPIView,
+    ChatDeleteConversationAPIView,
+    ChatDeleteMessageAPIView,
+    DirectConversationListAPIView,
+    DirectConversationOpenAPIView,
+)
+
+urlpatterns = [
+    path(
+        "direct-conversations/",
+        DirectConversationListAPIView.as_view(),
+        name="chat-direct-conversation-list",
+    ),
+    path(
+        "direct-conversations/open/",
+        DirectConversationOpenAPIView.as_view(),
+        name="chat-direct-conversation-open",
+    ),
+    path(
+        "conversations/<uuid:conversation_id>/messages/",
+        ChatConversationMessageHistoryAPIView.as_view(),
+        name="chat-conversation-message-history",
+    ),
+    path(
+        "conversations/<uuid:conversation_id>/unread-count/",
+        ChatConversationUnreadCountAPIView.as_view(),
+        name="chat-conversation-unread-count",
+    ),
+    path(
+        "conversations/<uuid:conversation_id>/messages/delete/",
+        ChatDeleteMessageAPIView.as_view(),
+        name="chat-delete-message-for-user",
+    ),
+    path(
+        "conversations/<uuid:conversation_id>/delete/",
+        ChatDeleteConversationAPIView.as_view(),
+        name="chat-delete-conversation-for-user",
+    ),
+    path(
+        "conversations/<uuid:conversation_id>/audit-events/",
+        ChatConversationAuditEventsAPIView.as_view(),
+        name="chat-conversation-audit-events",
+    ),
+    path(
+        "conversations/<uuid:conversation_id>/export/",
+        ChatConversationExportAPIView.as_view(),
+        name="chat-conversation-export",
+    ),
+    path(
+        "conversations/<uuid:conversation_id>/attachments/",
+        ChatAttachmentUploadAPIView.as_view(),
+        name="chat-conversation-attachment-upload",
+    ),
+]

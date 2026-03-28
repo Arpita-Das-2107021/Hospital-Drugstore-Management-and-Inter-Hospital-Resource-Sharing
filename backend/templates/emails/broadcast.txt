@@ -1,0 +1,7 @@
+{{ title }}
+
+{{ message }}
+
+Priority: {{ priority }}
+
+Open this alert in dashboard: {{ alert_url|default:frontend_url }}
