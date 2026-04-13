@@ -1,0 +1,88 @@
+services:
+  server-b:
+    build: .
+    container_name: hrsp-server-b
+    ports:
+      - "8100:8000"
+    command: ["sh", "-c", "uvicorn server_b_main:app --host 0.0.0.0 --port 8000"]
+    environment:
+      MINIO_ENDPOINT: ${MINIO_ENDPOINT:-host.docker.internal:9200}
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY:-minioadmin}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY:-minioadmin}
+      MINIO_SECURE: ${MINIO_SECURE:-false}
+      CALLBACK_SIGNATURE_SECRET: ${CALLBACK_SIGNATURE_SECRET:-dev-secret}
+      MINIO_FORECAST_BUCKET: ${MINIO_FORECAST_BUCKET:-ml-forecast}
+      MINIO_OUTBREAK_BUCKET: ${MINIO_OUTBREAK_BUCKET:-ml-outbreak}
+      OUTBREAK_MODEL_PATH: ${OUTBREAK_MODEL_PATH:-model2/models/stgnn_model.pt}
+      GRAPH_RADIUS: ${GRAPH_RADIUS:-10}
+      SEQUENCE_LENGTH: ${SEQUENCE_LENGTH:-7}
+      BASE_DATA_DIR: ${BASE_DATA_DIR:-.}
+      OUTBREAK_BASE_DATA_DIR: ${OUTBREAK_BASE_DATA_DIR:-model2/data}
+      MODEL1_ARTIFACT_DIR: ${MODEL1_ARTIFACT_DIR:-/app/model1_artifacts}
+      MODEL2_ARTIFACT_DIR: ${MODEL2_ARTIFACT_DIR:-/app/model2_artifacts}
+    volumes:
+      - server_b_model_registry:/app/model_registry
+      - server_b_model1_artifacts:/app/model1_artifacts
+      - server_b_model2_artifacts:/app/model2_artifacts
+
+  server-b-forecast:
+    build: .
+    container_name: hrsp-server-b-forecast
+    ports:
+      - "8101:8000"
+    command: ["sh", "-c", "uvicorn app_forecast.main:app --host 0.0.0.0 --port 8000"]
+    environment:
+      MINIO_ENDPOINT: ${MINIO_ENDPOINT:-host.docker.internal:9200}
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY:-minioadmin}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY:-minioadmin}
+      MINIO_SECURE: ${MINIO_SECURE:-false}
+      CALLBACK_SIGNATURE_SECRET: ${CALLBACK_SIGNATURE_SECRET:-dev-secret}
+      MINIO_FORECAST_BUCKET: ${MINIO_FORECAST_BUCKET:-ml-forecast}
+      BASE_DATA_DIR: ${BASE_DATA_DIR:-.}
+      MODEL1_ARTIFACT_DIR: ${MODEL1_ARTIFACT_DIR:-/app/model1_artifacts}
+    volumes:
+      - server_b_model1_artifacts:/app/model1_artifacts
+
+  server-b-outbreak:
+    build: .
+    container_name: hrsp-server-b-outbreak
+    ports:
+      - "8102:8000"
+    command: ["sh", "-c", "uvicorn app_outbreak.main:app --host 0.0.0.0 --port 8000"]
+    environment:
+      MINIO_ENDPOINT: ${MINIO_ENDPOINT:-host.docker.internal:9200}
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY:-minioadmin}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY:-minioadmin}
+      MINIO_SECURE: ${MINIO_SECURE:-false}
+      CALLBACK_SIGNATURE_SECRET: ${CALLBACK_SIGNATURE_SECRET:-dev-secret}
+      MINIO_OUTBREAK_BUCKET: ${MINIO_OUTBREAK_BUCKET:-ml-outbreak}
+      OUTBREAK_MODEL_PATH: ${OUTBREAK_MODEL_PATH:-model2/models/stgnn_model.pt}
+      GRAPH_RADIUS: ${GRAPH_RADIUS:-10}
+      SEQUENCE_LENGTH: ${SEQUENCE_LENGTH:-7}
+      OUTBREAK_BASE_DATA_DIR: ${OUTBREAK_BASE_DATA_DIR:-model2/data}
+      MODEL2_ARTIFACT_DIR: ${MODEL2_ARTIFACT_DIR:-/app/model2_artifacts}
+    volumes:
+      - server_b_model2_artifacts:/app/model2_artifacts
+
+  tests:
+    build: .
+    container_name: hrsp-server-b-tests
+    command: ["pytest", "-q"]
+    environment:
+      MINIO_ENDPOINT: ${MINIO_ENDPOINT:-host.docker.internal:9200}
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY:-minioadmin}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY:-minioadmin}
+      MINIO_SECURE: ${MINIO_SECURE:-false}
+      CALLBACK_SIGNATURE_SECRET: ${CALLBACK_SIGNATURE_SECRET:-dev-secret}
+      MINIO_FORECAST_BUCKET: ${MINIO_FORECAST_BUCKET:-ml-forecast}
+      MINIO_OUTBREAK_BUCKET: ${MINIO_OUTBREAK_BUCKET:-ml-outbreak}
+      OUTBREAK_MODEL_PATH: ${OUTBREAK_MODEL_PATH:-model2/models/stgnn_model.pt}
+      GRAPH_RADIUS: ${GRAPH_RADIUS:-10}
+      SEQUENCE_LENGTH: ${SEQUENCE_LENGTH:-7}
+      BASE_DATA_DIR: ${BASE_DATA_DIR:-.}
+      OUTBREAK_BASE_DATA_DIR: ${OUTBREAK_BASE_DATA_DIR:-model2/data}
+
+volumes:
+  server_b_model_registry:
+  server_b_model1_artifacts:
+  server_b_model2_artifacts:

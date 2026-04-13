@@ -1,0 +1,12 @@
+fastapi==0.116.1
+uvicorn[standard]==0.35.0
+pandas==2.3.2
+numpy==2.3.3
+matplotlib==3.10.6
+minio==7.2.16
+requests==2.32.5
+pydantic==2.11.7
+pytest==8.4.2
+httpx==0.28.1
+prophet==1.1.5
+plotly==5.24.1
