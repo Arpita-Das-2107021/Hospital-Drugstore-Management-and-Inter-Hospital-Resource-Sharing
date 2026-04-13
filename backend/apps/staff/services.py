@@ -12,10 +12,51 @@ from rest_framework.exceptions import NotFound, ValidationError
 from apps.core.services.email_service import render_email_template, send_email
 from common.utils.tokens import generate_hex_token
 
-from .models import Invitation, Role, Staff, UserRole
+from .models import HospitalRole, Invitation, Permission, Role, RolePermission, Staff, UserHospitalRole, UserRole
+from .rbac_services import ensure_default_hospital_staff_role
 
 UserAccount = get_user_model()
 logger = logging.getLogger("hrsp.staff")
+
+
+DEFAULT_HOSPITAL_STAFF_ROLE_NAME = "STAFF"
+LEGACY_INVITATION_ROLE_TO_HOSPITAL_ROLE = {
+    "HOSPITAL_ADMIN": "HEALTHCARE_ADMIN",
+    "HEALTHCARE_ADMIN": "HEALTHCARE_ADMIN",
+    "STAFF": "STAFF",
+    "PHARMACIST": "STAFF",
+    "LOGISTICS_STAFF": "STAFF",
+}
+
+
+def _normalize_permission_codes(permission_codes: list[str]) -> list[str]:
+    return sorted({code.strip().upper() for code in permission_codes if code and code.strip()})
+
+
+def _resolve_hospital_role_for_invitation(invitation: Invitation, *, actor=None) -> HospitalRole:
+    role_name = ""
+    if invitation.role:
+        role_name = str(invitation.role.name or "").strip().upper()
+
+    target_role_name = LEGACY_INVITATION_ROLE_TO_HOSPITAL_ROLE.get(role_name, DEFAULT_HOSPITAL_STAFF_ROLE_NAME)
+
+    if target_role_name == DEFAULT_HOSPITAL_STAFF_ROLE_NAME:
+        return ensure_default_hospital_staff_role(hospital=invitation.hospital, actor=actor)
+
+    existing_role = HospitalRole.objects.filter(
+        hospital=invitation.hospital,
+        name=target_role_name,
+        is_active=True,
+    ).first()
+    if existing_role:
+        return existing_role
+
+    logger.warning(
+        "Falling back to default STAFF role because mapped hospital role '%s' was missing for hospital %s",
+        target_role_name,
+        invitation.hospital_id,
+    )
+    return ensure_default_hospital_staff_role(hospital=invitation.hospital, actor=actor)
 
 
 def create_staff_profile(hospital, data: dict) -> Staff:
@@ -37,7 +78,10 @@ def sync_staff_email_with_user_account(staff: Staff, email: str) -> None:
 
     user_account = UserAccount.objects.filter(staff=staff).first()
     if user_account and user_account.email != normalized_email:
-        if UserAccount.objects.exclude(id=user_account.id).filter(email__iexact=normalized_email).exists():
+        if UserAccount.objects.exclude(id=user_account.id).filter(
+            email__iexact=normalized_email,
+            is_active=True,
+        ).exists():
             raise ValidationError({"email": "An account with this email already exists."})
         user_account.email = normalized_email
         user_account.save(update_fields=["email"])
@@ -47,6 +91,10 @@ def create_staff_with_invitation(hospital, data: dict, email: str, actor, role_i
     """Create staff profile, create a pending user account, and send set-password invitation."""
     payload = dict(data)
     payload.pop("hospital", None)
+    normalized_email = (email or "").strip().lower()
+    if not normalized_email:
+        raise ValidationError({"email": "Email is required."})
+
     extra = {
         "first_name": payload.get("first_name", ""),
         "last_name": payload.get("last_name", ""),
@@ -62,27 +110,21 @@ def create_staff_with_invitation(hospital, data: dict, email: str, actor, role_i
             raise ValidationError({"role_id": "Role not found."})
 
     with transaction.atomic():
-        staff = Staff.objects.create(hospital=hospital, email=email, role=role, **payload)
-        existing_user = UserAccount.objects.filter(email=email).first()
-        if existing_user and existing_user.is_active:
+        staff = Staff.objects.create(hospital=hospital, email=normalized_email, role=role, **payload)
+        if UserAccount.objects.filter(email__iexact=normalized_email, is_active=True).exists():
             raise ValidationError({"email": "An active user with this email already exists."})
 
-        if existing_user:
-            existing_user.staff = staff
-            existing_user.is_active = False
-            existing_user.set_unusable_password()
-            existing_user.save(update_fields=["staff", "is_active", "password"])
-        else:
-            UserAccount.objects.create_user(
-                email=email,
-                password=None,
-                staff=staff,
-                is_active=False,
-            )
+        # Keep historical accounts immutable; create a new pending account for this staff profile.
+        UserAccount.objects.create_user(
+            email=normalized_email,
+            password=None,
+            staff=staff,
+            is_active=False,
+        )
 
         send_invitation(
             hospital=hospital,
-            email=email,
+            email=normalized_email,
             role_id=role_id,
             actor=actor,
             extra=extra,
@@ -90,7 +132,7 @@ def create_staff_with_invitation(hospital, data: dict, email: str, actor, role_i
             invitation_link_path="set-password",
         )
 
-    logger.info("Staff %s created with pending account + invitation for %s", staff.id, email)
+    logger.info("Staff %s created with pending account + invitation for %s", staff.id, normalized_email)
     return staff
 
 
@@ -108,9 +150,14 @@ def send_invitation(
     Raises ValidationError if a pending invitation already exists for this email+hospital.
     """
     extra = extra or {}
+    normalized_email = (email or "").strip().lower()
+    if not normalized_email:
+        raise ValidationError({"email": "Email is required."})
 
     if Invitation.objects.filter(
-        hospital=hospital, email=email, status=Invitation.Status.PENDING
+        hospital=hospital,
+        email__iexact=normalized_email,
+        status=Invitation.Status.PENDING,
     ).exists():
         raise ValidationError({"detail": "A pending invitation already exists for this email."})
 
@@ -127,7 +174,7 @@ def send_invitation(
 
         staff = Staff.objects.create(
             hospital=hospital,
-            email=email,
+            email=normalized_email,
             employee_id="PENDING-" + uuid.uuid4().hex[:8].upper(),
             first_name=extra.get("first_name", ""),
             last_name=extra.get("last_name", ""),
@@ -143,7 +190,7 @@ def send_invitation(
     invitation = Invitation.objects.create(
         hospital=hospital,
         staff=staff,
-        email=email,
+        email=normalized_email,
         token=token,
         role=role,
         expires_at=timezone.now() + timedelta(hours=Invitation.EXPIRY_HOURS),
@@ -164,10 +211,10 @@ def send_invitation(
     send_email(
         subject="You're invited to the Hospital Resource Sharing Platform",
         message=message,
-        recipient_list=[email],
+        recipient_list=[normalized_email],
     )
 
-    logger.info("Invitation sent to %s for hospital %s", email, hospital.id)
+    logger.info("Invitation sent to %s for hospital %s", normalized_email, hospital.id)
     return invitation
 
 
@@ -189,6 +236,9 @@ def accept_invitation(token: str, password: str, first_name: str = "", last_name
         raise ValidationError({"detail": "Invitation has expired."})
 
     validate_password(password)
+    normalized_email = (invitation.email or "").strip().lower()
+    if not normalized_email:
+        raise ValidationError({"detail": "Invitation email is missing."})
 
     with transaction.atomic():
         # Update staff name if provided
@@ -198,23 +248,33 @@ def accept_invitation(token: str, password: str, first_name: str = "", last_name
         if last_name:
             staff.last_name = last_name
         if not staff.email:
-            staff.email = invitation.email
+            staff.email = normalized_email
         staff.save(update_fields=["first_name", "last_name", "email", "updated_at"])
 
-        existing_user = UserAccount.objects.filter(email=invitation.email).first()
-        if existing_user:
-            if existing_user.is_active:
-                raise ValidationError({"detail": "An account with this email already exists."})
-            existing_user.staff = staff
-            existing_user.set_password(password)
-            existing_user.is_active = True
-            existing_user.save(update_fields=["staff", "password", "is_active"])
-            user = existing_user
+        pending_user = UserAccount.objects.filter(staff=staff).order_by("-created_at").first()
+        if pending_user:
+            if UserAccount.objects.exclude(id=pending_user.id).filter(
+                email__iexact=normalized_email,
+                is_active=True,
+            ).exists():
+                raise ValidationError({"detail": "An active account with this email already exists."})
+
+            if pending_user.email != normalized_email:
+                pending_user.email = normalized_email
+
+            pending_user.set_password(password)
+            pending_user.is_active = True
+            pending_user.save(update_fields=["email", "password", "is_active"])
+            user = pending_user
         else:
+            if UserAccount.objects.filter(email__iexact=normalized_email, is_active=True).exists():
+                raise ValidationError({"detail": "An active account with this email already exists."})
+
             user = UserAccount.objects.create_user(
-                email=invitation.email,
+                email=normalized_email,
                 password=password,
                 staff=staff,
+                is_active=True,
             )
 
         if invitation.role:
@@ -227,6 +287,16 @@ def accept_invitation(token: str, password: str, first_name: str = "", last_name
             if staff.role_id != invitation.role_id:
                 staff.role = invitation.role
                 staff.save(update_fields=["role", "updated_at"])
+
+        hospital_role = _resolve_hospital_role_for_invitation(invitation, actor=None)
+        UserHospitalRole.objects.update_or_create(
+            user=user,
+            defaults={
+                "hospital": invitation.hospital,
+                "hospital_role": hospital_role,
+                "assigned_by": None,
+            },
+        )
 
         invitation.status = Invitation.Status.ACCEPTED
         invitation.accepted_at = timezone.now()
@@ -277,6 +347,94 @@ def revoke_role(user: UserAccount, role_id, hospital_id) -> None:
         fallback = user.user_roles.order_by("assigned_at").first()
         user.staff.role = fallback.role if fallback else None
         user.staff.save(update_fields=["role", "updated_at"])
+
+
+def assign_permissions_to_role(role: Role, permission_codes: list[str], actor: UserAccount | None = None) -> dict:
+    """Assign one or more permissions to a role without duplicating mappings."""
+    normalized_codes = _normalize_permission_codes(permission_codes)
+    if not normalized_codes:
+        raise ValidationError({"permission_codes": ["At least one permission code is required."]})
+
+    permissions = Permission.objects.filter(code__in=normalized_codes, is_active=True)
+    found_codes = set(permissions.values_list("code", flat=True))
+    missing_codes = sorted(set(normalized_codes) - found_codes)
+    if missing_codes:
+        raise ValidationError({"permission_codes": [f"Permission not found: {code}" for code in missing_codes]})
+
+    already_assigned_codes = set(role.permissions.filter(code__in=normalized_codes).values_list("code", flat=True))
+    assigned_codes = []
+
+    for permission in permissions:
+        if permission.code in already_assigned_codes:
+            continue
+        RolePermission.objects.get_or_create(
+            role=role,
+            permission=permission,
+            defaults={"assigned_by": actor},
+        )
+        assigned_codes.append(permission.code)
+
+    logger.info(
+        "Role %s assigned permissions %s by %s",
+        role.name,
+        ",".join(assigned_codes) if assigned_codes else "<none>",
+        getattr(actor, "id", None),
+    )
+    return {
+        "role": role.name,
+        "assigned": sorted(assigned_codes),
+        "already_assigned": sorted(already_assigned_codes),
+    }
+
+
+def revoke_permissions_from_role(role: Role, permission_codes: list[str]) -> dict:
+    """Revoke one or more permissions from a role."""
+    normalized_codes = _normalize_permission_codes(permission_codes)
+    if not normalized_codes:
+        raise ValidationError({"permission_codes": ["At least one permission code is required."]})
+
+    to_revoke = set(role.permissions.filter(code__in=normalized_codes).values_list("code", flat=True))
+    removed, _ = RolePermission.objects.filter(role=role, permission__code__in=normalized_codes).delete()
+
+    logger.info("Role %s revoked permissions %s", role.name, ",".join(sorted(to_revoke)) if to_revoke else "<none>")
+    return {
+        "role": role.name,
+        "removed": sorted(to_revoke),
+        "removed_count": removed,
+    }
+
+
+def get_effective_permissions_for_user(user: UserAccount) -> dict:
+    """Return effective permission codes for a user based on assigned roles."""
+    from .rbac_services import get_effective_permissions_for_user_v2
+
+    dual_scope_payload = get_effective_permissions_for_user_v2(user)
+
+    role_names = set(dual_scope_payload.get("platform_roles", []))
+    if dual_scope_payload.get("hospital_role"):
+        role_names.add(dual_scope_payload["hospital_role"])
+
+    role_permission_map = {
+        **dual_scope_payload.get("permissions_by_scope", {}).get("platform_roles", {}),
+    }
+    hospital_scope = dual_scope_payload.get("permissions_by_scope", {}).get("hospital_role", {})
+    hospital_role_name = hospital_scope.get("name")
+    if hospital_role_name:
+        role_permission_map[hospital_role_name] = hospital_scope.get("permissions", [])
+
+    return {
+        "user_id": str(user.id),
+        "roles": sorted(role_names),
+        "effective_permissions": dual_scope_payload["effective_permissions"],
+        "permissions_by_role": {
+            role_name: sorted(codes)
+            for role_name, codes in sorted(role_permission_map.items(), key=lambda item: item[0])
+        },
+        "platform_roles": dual_scope_payload.get("platform_roles", []),
+        "hospital_role": dual_scope_payload.get("hospital_role"),
+        "hospital_id": dual_scope_payload.get("hospital_id"),
+        "permissions_by_scope": dual_scope_payload.get("permissions_by_scope", {}),
+    }
 
 
 def suspend_staff(staff: Staff, actor) -> Staff:

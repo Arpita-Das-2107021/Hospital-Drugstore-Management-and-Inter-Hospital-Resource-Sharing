@@ -1,31 +1,31 @@
-"""Seed system roles into the database."""
+"""Backward-compatible alias for seed_rbac."""
+from django.core.management import call_command
 from django.core.management.base import BaseCommand
-
-from apps.staff.models import Role
-
-ROLES = [
-    {"name": "SUPER_ADMIN", "description": "Full platform access. Manages hospitals, verifies accounts."},
-    {"name": "HOSPITAL_ADMIN", "description": "Full access within their hospital. Manages staff and resources."},
-    {"name": "PHARMACIST", "description": "Manages inventory and resource catalog within their hospital."},
-    {"name": "LOGISTICS_STAFF", "description": "Manages shipments and dispatch operations."},
-    {"name": "STAFF", "description": "Basic hospital staff. Can view resources and raise requests."},
-]
 
 
 class Command(BaseCommand):
-    help = "Seed system roles into the database."
+    help = "Deprecated alias for seed_rbac. Seeds roles from configurable RBAC config."
+
+    def add_arguments(self, parser):
+        parser.add_argument(
+            "--config",
+            dest="config_path",
+            default="",
+            help="Path to RBAC JSON file.",
+        )
+        parser.add_argument(
+            "--dry-run",
+            action="store_true",
+            help="Validate config and print summary without DB changes.",
+        )
 
     def handle(self, *args, **options):
-        created = 0
-        for role_data in ROLES:
-            _, was_created = Role.objects.get_or_create(
-                name=role_data["name"],
-                defaults={"description": role_data["description"]},
-            )
-            if was_created:
-                created += 1
-                self.stdout.write(self.style.SUCCESS(f"  Created role: {role_data['name']}"))
-            else:
-                self.stdout.write(f"  Role already exists: {role_data['name']}")
+        self.stdout.write(self.style.WARNING("seed_roles is deprecated. Delegating to seed_rbac."))
 
-        self.stdout.write(self.style.SUCCESS(f"\nDone. {created} new role(s) created."))
+        kwargs = {}
+        if options.get("config_path"):
+            kwargs["config_path"] = options["config_path"]
+        if options.get("dry_run"):
+            kwargs["dry_run"] = True
+
+        call_command("seed_rbac", **kwargs)

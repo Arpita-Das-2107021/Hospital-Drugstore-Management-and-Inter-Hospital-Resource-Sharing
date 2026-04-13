@@ -1,0 +1,133 @@
+{
+  "permissions": [
+    {
+      "code": "ROLE_VIEW",
+      "name": "View Roles",
+      "description": "Read role definitions."
+    },
+    {
+      "code": "ROLE_ASSIGN",
+      "name": "Assign Roles",
+      "description": "Assign and revoke user roles."
+    },
+    {
+      "code": "PERMISSION_VIEW",
+      "name": "View Permissions",
+      "description": "Read permission catalog entries."
+    },
+    {
+      "code": "ROLE_PERMISSION_MANAGE",
+      "name": "Manage Role Permissions",
+      "description": "Attach and detach permissions from roles."
+    },
+    {
+      "code": "USER_EFFECTIVE_PERMISSION_VIEW",
+      "name": "View User Effective Permissions",
+      "description": "Inspect effective permissions resolved from user roles."
+    },
+    {
+      "code": "STAFF_MANAGE",
+      "name": "Manage Staff",
+      "description": "Create and manage staff records and invitations."
+    },
+    {
+      "code": "INVENTORY_MANAGE",
+      "name": "Manage Inventory",
+      "description": "Create and update inventory and catalog data."
+    },
+    {
+      "code": "INVENTORY_VIEW",
+      "name": "View Inventory",
+      "description": "View inventory and catalog data within hospital scope."
+    },
+    {
+      "code": "INVENTORY_EDIT",
+      "name": "Edit Inventory",
+      "description": "Edit inventory quantities and metadata within hospital scope."
+    },
+    {
+      "code": "SHIPMENT_MANAGE",
+      "name": "Manage Shipments",
+      "description": "Create and dispatch shipment operations."
+    },
+    {
+      "code": "REQUEST_CREATE",
+      "name": "Create Requests",
+      "description": "Create resource requests."
+    },
+    {
+      "code": "REQUEST_APPROVE",
+      "name": "Approve Requests",
+      "description": "Approve resource requests."
+    }
+  ],
+  "roles": [
+    {
+      "name": "SUPER_ADMIN",
+      "description": "Full platform access.",
+      "permissions": [
+        "*"
+      ]
+    },
+    {
+      "name": "HEALTHCARE_ADMIN",
+      "description": "Administrative control within assigned hospital.",
+      "permissions": [
+        "ROLE_VIEW",
+        "ROLE_ASSIGN",
+        "PERMISSION_VIEW",
+        "ROLE_PERMISSION_MANAGE",
+        "USER_EFFECTIVE_PERMISSION_VIEW",
+        "STAFF_MANAGE",
+        "INVENTORY_VIEW",
+        "INVENTORY_EDIT",
+        "INVENTORY_MANAGE",
+        "SHIPMENT_MANAGE",
+        "REQUEST_CREATE",
+        "REQUEST_APPROVE"
+      ]
+    },
+    {
+      "name": "HOSPITAL_ADMIN",
+      "description": "Legacy alias for HEALTHCARE_ADMIN.",
+      "permissions": [
+        "ROLE_VIEW",
+        "ROLE_ASSIGN",
+        "PERMISSION_VIEW",
+        "ROLE_PERMISSION_MANAGE",
+        "USER_EFFECTIVE_PERMISSION_VIEW",
+        "STAFF_MANAGE",
+        "INVENTORY_VIEW",
+        "INVENTORY_EDIT",
+        "INVENTORY_MANAGE",
+        "SHIPMENT_MANAGE",
+        "REQUEST_CREATE",
+        "REQUEST_APPROVE"
+      ]
+    },
+    {
+      "name": "PHARMACIST",
+      "description": "Inventory and medicine operations.",
+      "permissions": [
+        "INVENTORY_MANAGE",
+        "REQUEST_CREATE"
+      ]
+    },
+    {
+      "name": "LOGISTICS_STAFF",
+      "description": "Shipment and dispatch operations.",
+      "permissions": [
+        "SHIPMENT_MANAGE"
+      ]
+    },
+    {
+      "name": "STAFF",
+      "description": "Basic hospital staff access.",
+      "permissions": [
+        "INVENTORY_VIEW",
+        "INVENTORY_EDIT",
+        "REQUEST_CREATE"
+      ]
+    }
+  ]
+}
