@@ -1,13 +1,82 @@
 """Requests app serializers."""
 from rest_framework import serializers
 
-from .models import DeliveryEvent, DispatchEvent, ResourceRequest, ResourceRequestApproval
+from .models import (
+    DeliveryEvent,
+    DispatchEvent,
+    PaymentReconciliationRun,
+    PaymentTransaction,
+    ResourceRequest,
+    ResourceRequestApproval,
+)
 
 
 class ResourceRequestSerializer(serializers.ModelSerializer):
     requesting_hospital_name = serializers.ReadOnlyField(source="requesting_hospital.name")
     supplying_hospital_name = serializers.ReadOnlyField(source="supplying_hospital.name")
     catalog_item_name = serializers.ReadOnlyField(source="catalog_item.name")
+    latest_payment_id = serializers.SerializerMethodField()
+    latest_payment_transaction_status = serializers.SerializerMethodField()
+    shipment_id = serializers.SerializerMethodField()
+    shipment_status = serializers.SerializerMethodField()
+    completion_stage = serializers.SerializerMethodField()
+
+    _NO_DISPATCH_EVENT = object()
+
+    def _get_latest_payment_transaction(self, obj):
+        cached = getattr(obj, "_latest_payment_transaction", None)
+        if cached is not None:
+            return cached
+
+        tx = obj.payment_transactions.order_by("-created_at").first()
+        obj._latest_payment_transaction = tx
+        return tx
+
+    def _get_dispatch_event(self, obj):
+        cached = getattr(obj, "_dispatch_event", self._NO_DISPATCH_EVENT)
+        if cached is not self._NO_DISPATCH_EVENT:
+            return cached
+
+        dispatch_event = None
+        if hasattr(obj, "dispatch_event"):
+            dispatch_event = obj.dispatch_event
+        else:
+            dispatch_event = DispatchEvent.objects.select_related("shipment").filter(request=obj).first()
+
+        obj._dispatch_event = dispatch_event
+        return dispatch_event
+
+    def get_latest_payment_id(self, obj):
+        tx = self._get_latest_payment_transaction(obj)
+        return str(tx.id) if tx else None
+
+    def get_latest_payment_transaction_status(self, obj):
+        tx = self._get_latest_payment_transaction(obj)
+        return tx.payment_status if tx else None
+
+    def get_shipment_id(self, obj):
+        dispatch_event = self._get_dispatch_event(obj)
+        if not dispatch_event or not dispatch_event.shipment_id:
+            return None
+        return str(dispatch_event.shipment_id)
+
+    def get_shipment_status(self, obj):
+        dispatch_event = self._get_dispatch_event(obj)
+        if not dispatch_event or dispatch_event.shipment is None:
+            return None
+        return dispatch_event.shipment.status
+
+    def get_completion_stage(self, obj):
+        dispatch_event = self._get_dispatch_event(obj)
+        if not dispatch_event or dispatch_event.shipment is None:
+            return None
+
+        shipment = dispatch_event.shipment
+        if shipment.receive_token_used_at is not None:
+            return "RECEIVER_CONFIRMED"
+        if shipment.dispatch_token_used_at is not None:
+            return "SENDER_CONFIRMED"
+        return None
 
     class Meta:
         model = ResourceRequest
@@ -21,11 +90,26 @@ class ResourceRequestSerializer(serializers.ModelSerializer):
             "catalog_item_name",
             "quantity_requested",
             "quantity_approved",
+            "quantity_reserved",
+            "quantity_transferred",
             "price_snapshot",
             "total_price",
             "status",
+            "workflow_state",
+            "shipment_id",
+            "shipment_status",
+            "completion_stage",
+            "allow_partial_fulfillment",
+            "payment_required",
             "payment_status",
             "payment_note",
+            "latest_payment_id",
+            "latest_payment_transaction_status",
+            "expires_at",
+            "expired_at",
+            "cancellation_reason",
+            "failed_reason",
+            "deduplication_key",
             "priority",
             "notes",
             "requested_by",
@@ -39,12 +123,24 @@ class ResourceRequestSerializer(serializers.ModelSerializer):
             "supplying_hospital_name",
             "catalog_item_name",
             "quantity_approved",
+            "quantity_reserved",
+            "quantity_transferred",
             "price_snapshot",
             "total_price",
             "status",
+            "workflow_state",
+            "shipment_id",
+            "shipment_status",
+            "completion_stage",
+            "payment_required",
             "payment_status",
             "payment_note",
+            "latest_payment_id",
+            "latest_payment_transaction_status",
             "requested_by",
+            "expired_at",
+            "cancellation_reason",
+            "failed_reason",
             "created_at",
             "updated_at",
         )
@@ -55,6 +151,9 @@ class CreateRequestSerializer(serializers.Serializer):
     catalog_item = serializers.UUIDField()
     quantity_requested = serializers.IntegerField(min_value=1)
     priority = serializers.ChoiceField(choices=ResourceRequest.Priority.choices, default=ResourceRequest.Priority.NORMAL)
+    deduplication_key = serializers.CharField(required=False, allow_blank=True, max_length=128)
+    allow_partial_fulfillment = serializers.BooleanField(required=False, default=False)
+    expires_in_minutes = serializers.IntegerField(required=False, min_value=1)
     notes = serializers.CharField(required=False, default="")
     needed_by = serializers.DateTimeField(required=False, allow_null=True)
 
@@ -62,6 +161,8 @@ class CreateRequestSerializer(serializers.Serializer):
 class ApprovalSerializer(serializers.Serializer):
     decision = serializers.ChoiceField(choices=["approved", "rejected"])
     quantity_approved = serializers.IntegerField(min_value=0, required=False)
+    allow_partial_fulfillment = serializers.BooleanField(required=False)
+    waive_payment = serializers.BooleanField(required=False, default=False)
     reason = serializers.CharField(required=False, default="", allow_blank=True)
 
 
@@ -73,15 +174,17 @@ class ResourceRequestApprovalSerializer(serializers.ModelSerializer):
 
 
 class ConfirmDeliverySerializer(serializers.Serializer):
-    dispatch_token = serializers.CharField(required=False, allow_blank=True)
-    token = serializers.CharField(required=False, allow_blank=True)
-    receive_token = serializers.CharField(required=False, allow_blank=True)
-    quantity_received = serializers.IntegerField(min_value=1)
+    qr_payload = serializers.CharField(required=False, allow_blank=True)
+    qrPayload = serializers.CharField(required=False, allow_blank=True, write_only=True)
+    quantity_received = serializers.IntegerField(min_value=1, required=False)
     notes = serializers.CharField(required=False, default="", allow_blank=True)
 
     def validate(self, attrs):
-        if not attrs.get("dispatch_token"):
-            attrs["dispatch_token"] = attrs.get("token", "")
+        if not attrs.get("qr_payload"):
+            attrs["qr_payload"] = attrs.get("qrPayload", "")
+        attrs["qr_payload"] = str(attrs.get("qr_payload") or "").strip()
+        if not attrs["qr_payload"]:
+            raise serializers.ValidationError({"qrPayload": "qrPayload is required."})
         return attrs
 
 
@@ -92,6 +195,108 @@ class ConfirmPaymentSerializer(serializers.Serializer):
 
 class VerifyReturnSerializer(serializers.Serializer):
     return_token = serializers.CharField()
+
+
+class ReserveRequestSerializer(serializers.Serializer):
+    strategy = serializers.ChoiceField(choices=["fefo"], default="fefo", required=False)
+    requested_quantity = serializers.IntegerField(min_value=1, required=False)
+
+
+class TransferConfirmSerializer(serializers.Serializer):
+    qr_payload = serializers.CharField(required=False, allow_blank=True)
+    qrPayload = serializers.CharField(required=False, allow_blank=True, write_only=True)
+    quantity_received = serializers.IntegerField(min_value=1, required=False)
+    notes = serializers.CharField(required=False, default="", allow_blank=True)
+
+    def validate(self, attrs):
+        if not attrs.get("qr_payload"):
+            attrs["qr_payload"] = attrs.get("qrPayload", "")
+        attrs["qr_payload"] = str(attrs.get("qr_payload") or "").strip()
+        if not attrs["qr_payload"]:
+            raise serializers.ValidationError({"qrPayload": "qrPayload is required."})
+        return attrs
+
+
+class CancelRequestSerializer(serializers.Serializer):
+    reason = serializers.CharField(required=False, default="", allow_blank=True)
+
+
+class ExpireRequestsSerializer(serializers.Serializer):
+    limit = serializers.IntegerField(required=False, min_value=1, default=500)
+
+
+class PaymentInitiateSerializer(serializers.Serializer):
+    gateway = serializers.CharField(required=False, default="sslcommerz")
+    reservation_timeout_minutes = serializers.IntegerField(required=False, min_value=1, default=30)
+    return_url = serializers.URLField(required=False, allow_blank=True)
+    cancel_url = serializers.URLField(required=False, allow_blank=True)
+
+
+class PaymentConfirmSerializer(serializers.Serializer):
+    payment_id = serializers.UUIDField(required=False)
+    provider_transaction_id = serializers.CharField(required=False, allow_blank=True)
+    payment_status = serializers.ChoiceField(choices=PaymentTransaction.PaymentStatus.choices)
+    raw_payload = serializers.JSONField(required=False)
+
+
+class RefundInitiateSerializer(serializers.Serializer):
+    reason = serializers.CharField(required=False, default="", allow_blank=True)
+
+
+class RefundConfirmSerializer(serializers.Serializer):
+    provider_transaction_id = serializers.CharField(required=False, allow_blank=True)
+    payment_status = serializers.ChoiceField(
+        choices=[
+            PaymentTransaction.PaymentStatus.REFUNDED,
+            PaymentTransaction.PaymentStatus.REFUND_FAILED,
+        ]
+    )
+
+
+class PaymentTransactionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PaymentTransaction
+        fields = [
+            "id",
+            "request",
+            "provider",
+            "provider_transaction_id",
+            "gateway_session_id",
+            "amount",
+            "currency",
+            "payment_status",
+            "payer_hospital",
+            "receiver_hospital",
+            "initiated_at",
+            "authorized_at",
+            "completed_at",
+            "failed_at",
+            "failure_code",
+            "failure_message",
+            "idempotency_key",
+            "raw_gateway_payload",
+            "created_at",
+            "updated_at",
+        ]
+        read_only_fields = fields
+
+
+class PaymentReconciliationRunSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PaymentReconciliationRun
+        fields = [
+            "id",
+            "provider",
+            "started_at",
+            "completed_at",
+            "run_status",
+            "checked_count",
+            "corrected_count",
+            "failed_count",
+            "notes",
+            "created_at",
+        ]
+        read_only_fields = fields
 
 
 class DeliveryEventSerializer(serializers.ModelSerializer):
