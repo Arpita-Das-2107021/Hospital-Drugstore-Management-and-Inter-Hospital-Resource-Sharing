@@ -14,7 +14,16 @@ from .models import (
 
 @admin.register(HospitalRegistrationRequest)
 class HospitalRegistrationRequestAdmin(admin.ModelAdmin):
-    list_display = ("name", "registration_number", "email", "hospital_type", "status", "submitted_at", "reviewed_at")
+    list_display = (
+        "name",
+        "registration_number",
+        "email",
+        "hospital_type",
+        "status",
+        "schema_contract_status",
+        "submitted_at",
+        "reviewed_at",
+    )
     list_filter = ("status", "hospital_type", "country")
     search_fields = ("name", "registration_number", "email")
     readonly_fields = ("id", "api_key", "api_password", "submitted_at", "updated_at")
@@ -27,7 +36,16 @@ class HospitalRegistrationRequestAdmin(admin.ModelAdmin):
 
 @admin.register(Hospital)
 class HospitalAdmin(admin.ModelAdmin):
-    list_display = ("name", "hospital_type", "verified_status", "city", "country", "created_at")
+    list_display = (
+        "name",
+        "hospital_type",
+        "verified_status",
+        "advanced_integration_eligible",
+        "schema_contract_status",
+        "city",
+        "country",
+        "created_at",
+    )
     list_filter = ("verified_status", "hospital_type", "country")
     search_fields = ("name", "registration_number", "email")
     readonly_fields = ("id", "created_at", "updated_at")
