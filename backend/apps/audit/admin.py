@@ -1,7 +1,7 @@
 """Audit app admin."""
 from django.contrib import admin
 
-from .models import AuditLog
+from .models import AuditLog, AuthorizationAuditLog
 
 
 @admin.register(AuditLog)
@@ -10,6 +10,23 @@ class AuditLogAdmin(admin.ModelAdmin):
     list_filter = ("event_type", "hospital")
     search_fields = ("actor__email", "object_type")
     readonly_fields = tuple(f.name for f in AuditLog._meta.fields)
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+
+@admin.register(AuthorizationAuditLog)
+class AuthorizationAuditLogAdmin(admin.ModelAdmin):
+    list_display = ("action", "resource", "user", "hospital", "timestamp")
+    list_filter = ("action", "hospital")
+    search_fields = ("user__email", "resource", "action")
+    readonly_fields = tuple(f.name for f in AuthorizationAuditLog._meta.fields)
 
     def has_add_permission(self, request):
         return False

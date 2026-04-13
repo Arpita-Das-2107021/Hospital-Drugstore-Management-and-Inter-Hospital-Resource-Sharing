@@ -1,7 +1,7 @@
 """Audit log service — write audit entries safely."""
 import logging
 
-from .models import AuditLog
+from .models import AuditLog, AuthorizationAuditLog
 
 logger = logging.getLogger("hrsp.audit")
 
@@ -51,3 +51,25 @@ def write_audit_log_from_request(request, event_type: str, **kwargs) -> AuditLog
         user_agent=ua,
         **kwargs,
     )
+
+
+def write_authorization_audit_log(
+    *,
+    user=None,
+    action: str,
+    resource: str,
+    hospital=None,
+    metadata: dict | None = None,
+) -> AuthorizationAuditLog | None:
+    """Write an authorization-scoped audit log entry without interrupting business flow."""
+    try:
+        return AuthorizationAuditLog.objects.create(
+            user=user,
+            action=action,
+            resource=resource,
+            hospital=hospital,
+            metadata=metadata or {},
+        )
+    except Exception as e:
+        logger.error("Failed to write authorization audit log: %s", e)
+        return None
