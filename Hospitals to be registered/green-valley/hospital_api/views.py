@@ -1,125 +1,108 @@
+import csv
+import json
+from functools import lru_cache
+from pathlib import Path
+
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET
 
-RESOURCES = [
-    {
-        "code": "MED-SAL-NS500",
-        "name": "Normal Saline 500ml",
-        "category": "medicine",
-        "quantity_available": 540,
-        "unit": "bag",
-        "last_updated": "2026-03-15T11:40:00Z",
-    },
-    {
-        "code": "MED-AZM-500",
-        "name": "Azithromycin 500mg",
-        "category": "medicine",
-        "quantity_available": 230,
-        "unit": "tablet",
-        "last_updated": "2026-03-15T11:40:00Z",
-    },
-    {
-        "code": "EQP-NEB-200",
-        "name": "Nebulizer Machine",
-        "category": "equipment",
-        "quantity_available": 9,
-        "unit": "unit",
-        "last_updated": "2026-03-15T11:40:00Z",
-    },
-    {
-        "code": "EQP-ECG-12L",
-        "name": "12-Lead ECG Monitor",
-        "category": "equipment",
-        "quantity_available": 4,
-        "unit": "unit",
-        "last_updated": "2026-03-15T11:40:00Z",
-    },
-    {
-        "code": "CON-GLV-STER",
-        "name": "Sterile Surgical Gloves",
-        "category": "consumable",
-        "quantity_available": 1800,
-        "unit": "pair",
-        "last_updated": "2026-03-15T11:40:00Z",
-    },
-    {
-        "code": "DEV-PUL-OX2",
-        "name": "Pulse Oximeter",
-        "category": "device",
-        "quantity_available": 42,
-        "unit": "unit",
-        "last_updated": "2026-03-15T11:40:00Z",
-    },
+PROFILE_PATH = Path(__file__).resolve().parent / "data" / "hospital_profile.json"
+SALES_PATH_CANDIDATES = [
+    Path(__file__).resolve().parent.parent / "sales.csv",
+    Path(__file__).resolve().parents[2] / "sales.csv",
 ]
 
-BEDS = {
-    "bed_total": 140,
-    "bed_available": 28,
-    "icu_total": 20,
-    "icu_available": 4,
-    "last_updated": "2026-03-15T11:40:00Z",
-}
 
-BLOOD_UNITS = [
-    {"blood_group": "A+", "units_available": 11, "last_updated": "2026-03-15T11:40:00Z"},
-    {"blood_group": "A-", "units_available": 2, "last_updated": "2026-03-15T11:40:00Z"},
-    {"blood_group": "B+", "units_available": 15, "last_updated": "2026-03-15T11:40:00Z"},
-    {"blood_group": "B-", "units_available": 3, "last_updated": "2026-03-15T11:40:00Z"},
-    {"blood_group": "O+", "units_available": 22, "last_updated": "2026-03-15T11:40:00Z"},
-    {"blood_group": "O-", "units_available": 5, "last_updated": "2026-03-15T11:40:00Z"},
-    {"blood_group": "AB+", "units_available": 4, "last_updated": "2026-03-15T11:40:00Z"},
-    {"blood_group": "AB-", "units_available": 1, "last_updated": "2026-03-15T11:40:00Z"},
-]
+@lru_cache(maxsize=1)
+def _load_profile():
+    with PROFILE_PATH.open("r", encoding="utf-8") as profile_file:
+        return json.load(profile_file)
 
-STAFF = [
-    {
-        "employee_id": "GVC-EMP-2101",
-        "first_name": "Maliha",
-        "last_name": "Jahan",
-        "department": "Emergency",
-        "position": "Duty Medical Officer",
-        "email": "maliha.jahan@greenvalley.example",
-        "phone": "+8801700002101",
-        "status": "active",
-    },
-    {
-        "employee_id": "GVC-EMP-2102",
-        "first_name": "Rashed",
-        "last_name": "Imam",
-        "department": "Laboratory",
-        "position": "Lab Technologist",
-        "email": "rashed.imam@greenvalley.example",
-        "phone": "+8801700002102",
-        "status": "active",
-    },
-    {
-        "employee_id": "GVC-EMP-2103",
-        "first_name": "Samiha",
-        "last_name": "Noor",
-        "department": "Administration",
-        "position": "Hospital Coordinator",
-        "email": "samiha.noor@greenvalley.example",
-        "phone": "+8801700002103",
-        "status": "inactive",
-    },
-]
+
+def _get_profile_or_error():
+    try:
+        return _load_profile(), None
+    except FileNotFoundError:
+        return None, JsonResponse({"detail": "Hospital profile data not found"}, status=500)
+    except json.JSONDecodeError:
+        return None, JsonResponse({"detail": "Hospital profile data is invalid"}, status=500)
+
+
+def _get_sales_or_error(healthcare_id):
+    sales_path = next((path for path in SALES_PATH_CANDIDATES if path.exists()), None)
+    if sales_path is None:
+        return None, JsonResponse({"detail": "Sales data not found"}, status=500)
+
+    sales_rows = []
+    try:
+        with sales_path.open("r", encoding="utf-8", newline="") as sales_file:
+            reader = csv.DictReader(sales_file)
+            for row in reader:
+                if row.get("healthcare_id", "").strip() != healthcare_id:
+                    continue
+                quantity_sold = int(row.get("quantity_sold", ""))
+                if quantity_sold < 0:
+                    raise ValueError
+                sales_rows.append(
+                    {
+                        "date": row.get("date", "").strip(),
+                        "healthcare_id": healthcare_id,
+                        "medicine_name": row.get("medicine_name", "").strip(),
+                        "quantity_sold": quantity_sold,
+                        "upazila": row.get("upazila", "").strip(),
+                    }
+                )
+    except (OSError, csv.Error):
+        return None, JsonResponse({"detail": "Sales data is unreadable"}, status=500)
+    except ValueError:
+        return None, JsonResponse(
+            {"detail": "Sales data contains invalid quantity_sold values"}, status=500
+        )
+
+    return sales_rows, None
 
 
 @require_GET
 def inventory_resources(request):
-    return JsonResponse({"resources": RESOURCES})
+    profile, error = _get_profile_or_error()
+    if error:
+        return error
+    return JsonResponse({"resources": profile.get("resources", [])})
 
 
 @require_GET
 def beds(request):
-    return JsonResponse(BEDS)
+    profile, error = _get_profile_or_error()
+    if error:
+        return error
+    return JsonResponse(profile.get("beds", {}))
 
 
 @require_GET
 def blood(request):
-    return JsonResponse({"blood_units": BLOOD_UNITS})
+    profile, error = _get_profile_or_error()
+    if error:
+        return error
+    return JsonResponse({"blood_units": profile.get("blood_units", [])})
 
 
 @require_GET
 def staff(request):
-    return JsonResponse({"staff": STAFF})
+    profile, error = _get_profile_or_error()
+    if error:
+        return error
+    return JsonResponse({"staff": profile.get("staff", [])})
+
+
+@require_GET
+def sales(request):
+    profile, error = _get_profile_or_error()
+    if error:
+        return error
+    healthcare_id = str(profile.get("hospital", {}).get("healthcare_id", "")).strip()
+    if not healthcare_id:
+        return JsonResponse({"detail": "Hospital healthcare_id is missing"}, status=500)
+    sales_rows, error = _get_sales_or_error(healthcare_id)
+    if error:
+        return error
+    return JsonResponse({"sales": sales_rows})

@@ -1,0 +1,1351 @@
+date,healthcare_id,medicine_name,quantity_sold,upazila
+2024-01-01,PH012,Paracetamol 500mg,29,Daulatpur
+2024-01-01,PH012,ORS Sachet,18,Daulatpur
+2024-01-01,PH012,Metronidazole 400mg,9,Daulatpur
+2024-01-01,PH012,Cetirizine 10mg,10,Daulatpur
+2024-01-01,PH012,Amoxicillin 500mg,9,Daulatpur
+2024-01-01,PH012,Azithromycin 500mg,5,Daulatpur
+2024-01-01,PH012,Zinc 20mg (child),11,Daulatpur
+2024-01-01,PH012,Ciprofloxacin 500mg,5,Daulatpur
+2024-01-01,PH012,Antihistamine Syrup,10,Daulatpur
+2024-01-01,PH012,Vitamin C 500mg,24,Daulatpur
+2024-01-01,PH012,Ranitidine 150mg,15,Daulatpur
+2024-01-01,PH012,Antacid Tablet,23,Daulatpur
+2024-01-01,PH012,Insulin (vial),4,Daulatpur
+2024-01-01,PH012,Atorvastatin 10mg,5,Daulatpur
+2024-01-01,PH012,Losartan 50mg,7,Daulatpur
+2024-01-02,PH012,Paracetamol 500mg,39,Daulatpur
+2024-01-02,PH012,ORS Sachet,16,Daulatpur
+2024-01-02,PH012,Metronidazole 400mg,9,Daulatpur
+2024-01-02,PH012,Cetirizine 10mg,15,Daulatpur
+2024-01-02,PH012,Amoxicillin 500mg,11,Daulatpur
+2024-01-02,PH012,Azithromycin 500mg,5,Daulatpur
+2024-01-02,PH012,Zinc 20mg (child),10,Daulatpur
+2024-01-02,PH012,Ciprofloxacin 500mg,7,Daulatpur
+2024-01-02,PH012,Antihistamine Syrup,8,Daulatpur
+2024-01-02,PH012,Vitamin C 500mg,17,Daulatpur
+2024-01-02,PH012,Ranitidine 150mg,12,Daulatpur
+2024-01-02,PH012,Antacid Tablet,23,Daulatpur
+2024-01-02,PH012,Insulin (vial),4,Daulatpur
+2024-01-02,PH012,Atorvastatin 10mg,6,Daulatpur
+2024-01-02,PH012,Losartan 50mg,6,Daulatpur
+2024-01-03,PH012,Paracetamol 500mg,26,Daulatpur
+2024-01-03,PH012,ORS Sachet,18,Daulatpur
+2024-01-03,PH012,Metronidazole 400mg,9,Daulatpur
+2024-01-03,PH012,Cetirizine 10mg,11,Daulatpur
+2024-01-03,PH012,Amoxicillin 500mg,12,Daulatpur
+2024-01-03,PH012,Azithromycin 500mg,7,Daulatpur
+2024-01-03,PH012,Zinc 20mg (child),11,Daulatpur
+2024-01-03,PH012,Ciprofloxacin 500mg,8,Daulatpur
+2024-01-03,PH012,Antihistamine Syrup,12,Daulatpur
+2024-01-03,PH012,Vitamin C 500mg,26,Daulatpur
+2024-01-03,PH012,Ranitidine 150mg,12,Daulatpur
+2024-01-03,PH012,Antacid Tablet,18,Daulatpur
+2024-01-03,PH012,Insulin (vial),4,Daulatpur
+2024-01-03,PH012,Atorvastatin 10mg,6,Daulatpur
+2024-01-03,PH012,Losartan 50mg,7,Daulatpur
+2024-01-04,PH012,Paracetamol 500mg,29,Daulatpur
+2024-01-04,PH012,ORS Sachet,19,Daulatpur
+2024-01-04,PH012,Metronidazole 400mg,10,Daulatpur
+2024-01-04,PH012,Cetirizine 10mg,15,Daulatpur
+2024-01-04,PH012,Amoxicillin 500mg,12,Daulatpur
+2024-01-04,PH012,Azithromycin 500mg,6,Daulatpur
+2024-01-04,PH012,Zinc 20mg (child),10,Daulatpur
+2024-01-04,PH012,Ciprofloxacin 500mg,7,Daulatpur
+2024-01-04,PH012,Antihistamine Syrup,11,Daulatpur
+2024-01-04,PH012,Vitamin C 500mg,21,Daulatpur
+2024-01-04,PH012,Ranitidine 150mg,18,Daulatpur
+2024-01-04,PH012,Antacid Tablet,19,Daulatpur
+2024-01-04,PH012,Insulin (vial),4,Daulatpur
+2024-01-04,PH012,Atorvastatin 10mg,8,Daulatpur
+2024-01-04,PH012,Losartan 50mg,8,Daulatpur
+2024-01-05,PH012,Paracetamol 500mg,34,Daulatpur
+2024-01-05,PH012,ORS Sachet,21,Daulatpur
+2024-01-05,PH012,Metronidazole 400mg,10,Daulatpur
+2024-01-05,PH012,Cetirizine 10mg,16,Daulatpur
+2024-01-05,PH012,Amoxicillin 500mg,10,Daulatpur
+2024-01-05,PH012,Azithromycin 500mg,4,Daulatpur
+2024-01-05,PH012,Zinc 20mg (child),10,Daulatpur
+2024-01-05,PH012,Ciprofloxacin 500mg,6,Daulatpur
+2024-01-05,PH012,Antihistamine Syrup,8,Daulatpur
+2024-01-05,PH012,Vitamin C 500mg,17,Daulatpur
+2024-01-05,PH012,Ranitidine 150mg,12,Daulatpur
+2024-01-05,PH012,Antacid Tablet,19,Daulatpur
+2024-01-05,PH012,Insulin (vial),5,Daulatpur
+2024-01-05,PH012,Atorvastatin 10mg,7,Daulatpur
+2024-01-05,PH012,Losartan 50mg,8,Daulatpur
+2024-01-06,PH012,Paracetamol 500mg,28,Daulatpur
+2024-01-06,PH012,ORS Sachet,20,Daulatpur
+2024-01-06,PH012,Metronidazole 400mg,9,Daulatpur
+2024-01-06,PH012,Cetirizine 10mg,11,Daulatpur
+2024-01-06,PH012,Amoxicillin 500mg,7,Daulatpur
+2024-01-06,PH012,Azithromycin 500mg,4,Daulatpur
+2024-01-06,PH012,Zinc 20mg (child),8,Daulatpur
+2024-01-06,PH012,Ciprofloxacin 500mg,8,Daulatpur
+2024-01-06,PH012,Antihistamine Syrup,13,Daulatpur
+2024-01-06,PH012,Vitamin C 500mg,25,Daulatpur
+2024-01-06,PH012,Ranitidine 150mg,13,Daulatpur
+2024-01-06,PH012,Antacid Tablet,18,Daulatpur
+2024-01-06,PH012,Insulin (vial),4,Daulatpur
+2024-01-06,PH012,Atorvastatin 10mg,8,Daulatpur
+2024-01-06,PH012,Losartan 50mg,7,Daulatpur
+2024-01-07,PH012,Paracetamol 500mg,37,Daulatpur
+2024-01-07,PH012,ORS Sachet,14,Daulatpur
+2024-01-07,PH012,Metronidazole 400mg,11,Daulatpur
+2024-01-07,PH012,Cetirizine 10mg,15,Daulatpur
+2024-01-07,PH012,Amoxicillin 500mg,8,Daulatpur
+2024-01-07,PH012,Azithromycin 500mg,5,Daulatpur
+2024-01-07,PH012,Zinc 20mg (child),11,Daulatpur
+2024-01-07,PH012,Ciprofloxacin 500mg,8,Daulatpur
+2024-01-07,PH012,Antihistamine Syrup,12,Daulatpur
+2024-01-07,PH012,Vitamin C 500mg,24,Daulatpur
+2024-01-07,PH012,Ranitidine 150mg,15,Daulatpur
+2024-01-07,PH012,Antacid Tablet,23,Daulatpur
+2024-01-07,PH012,Insulin (vial),4,Daulatpur
+2024-01-07,PH012,Atorvastatin 10mg,6,Daulatpur
+2024-01-07,PH012,Losartan 50mg,6,Daulatpur
+2024-01-08,PH012,Paracetamol 500mg,33,Daulatpur
+2024-01-08,PH012,ORS Sachet,15,Daulatpur
+2024-01-08,PH012,Metronidazole 400mg,12,Daulatpur
+2024-01-08,PH012,Cetirizine 10mg,16,Daulatpur
+2024-01-08,PH012,Amoxicillin 500mg,8,Daulatpur
+2024-01-08,PH012,Azithromycin 500mg,7,Daulatpur
+2024-01-08,PH012,Zinc 20mg (child),11,Daulatpur
+2024-01-08,PH012,Ciprofloxacin 500mg,7,Daulatpur
+2024-01-08,PH012,Antihistamine Syrup,11,Daulatpur
+2024-01-08,PH012,Vitamin C 500mg,27,Daulatpur
+2024-01-08,PH012,Ranitidine 150mg,16,Daulatpur
+2024-01-08,PH012,Antacid Tablet,23,Daulatpur
+2024-01-08,PH012,Insulin (vial),6,Daulatpur
+2024-01-08,PH012,Atorvastatin 10mg,7,Daulatpur
+2024-01-08,PH012,Losartan 50mg,8,Daulatpur
+2024-01-09,PH012,Paracetamol 500mg,38,Daulatpur
+2024-01-09,PH012,ORS Sachet,18,Daulatpur
+2024-01-09,PH012,Metronidazole 400mg,11,Daulatpur
+2024-01-09,PH012,Cetirizine 10mg,14,Daulatpur
+2024-01-09,PH012,Amoxicillin 500mg,8,Daulatpur
+2024-01-09,PH012,Azithromycin 500mg,5,Daulatpur
+2024-01-09,PH012,Zinc 20mg (child),8,Daulatpur
+2024-01-09,PH012,Ciprofloxacin 500mg,6,Daulatpur
+2024-01-09,PH012,Antihistamine Syrup,10,Daulatpur
+2024-01-09,PH012,Vitamin C 500mg,22,Daulatpur
+2024-01-09,PH012,Ranitidine 150mg,17,Daulatpur
+2024-01-09,PH012,Antacid Tablet,18,Daulatpur
+2024-01-09,PH012,Insulin (vial),3,Daulatpur
+2024-01-09,PH012,Atorvastatin 10mg,7,Daulatpur
+2024-01-09,PH012,Losartan 50mg,8,Daulatpur
+2024-01-10,PH012,Paracetamol 500mg,35,Daulatpur
+2024-01-10,PH012,ORS Sachet,14,Daulatpur
+2024-01-10,PH012,Metronidazole 400mg,11,Daulatpur
+2024-01-10,PH012,Cetirizine 10mg,15,Daulatpur
+2024-01-10,PH012,Amoxicillin 500mg,12,Daulatpur
+2024-01-10,PH012,Azithromycin 500mg,6,Daulatpur
+2024-01-10,PH012,Zinc 20mg (child),11,Daulatpur
+2024-01-10,PH012,Ciprofloxacin 500mg,6,Daulatpur
+2024-01-10,PH012,Antihistamine Syrup,9,Daulatpur
+2024-01-10,PH012,Vitamin C 500mg,22,Daulatpur
+2024-01-10,PH012,Ranitidine 150mg,16,Daulatpur
+2024-01-10,PH012,Antacid Tablet,18,Daulatpur
+2024-01-10,PH012,Insulin (vial),4,Daulatpur
+2024-01-10,PH012,Atorvastatin 10mg,6,Daulatpur
+2024-01-10,PH012,Losartan 50mg,6,Daulatpur
+2024-01-11,PH012,Paracetamol 500mg,37,Daulatpur
+2024-01-11,PH012,ORS Sachet,22,Daulatpur
+2024-01-11,PH012,Metronidazole 400mg,10,Daulatpur
+2024-01-11,PH012,Cetirizine 10mg,12,Daulatpur
+2024-01-11,PH012,Amoxicillin 500mg,8,Daulatpur
+2024-01-11,PH012,Azithromycin 500mg,6,Daulatpur
+2024-01-11,PH012,Zinc 20mg (child),11,Daulatpur
+2024-01-11,PH012,Ciprofloxacin 500mg,6,Daulatpur
+2024-01-11,PH012,Antihistamine Syrup,10,Daulatpur
+2024-01-11,PH012,Vitamin C 500mg,25,Daulatpur
+2024-01-11,PH012,Ranitidine 150mg,13,Daulatpur
+2024-01-11,PH012,Antacid Tablet,15,Daulatpur
+2024-01-11,PH012,Insulin (vial),4,Daulatpur
+2024-01-11,PH012,Atorvastatin 10mg,6,Daulatpur
+2024-01-11,PH012,Losartan 50mg,6,Daulatpur
+2024-01-12,PH012,Paracetamol 500mg,42,Daulatpur
+2024-01-12,PH012,ORS Sachet,20,Daulatpur
+2024-01-12,PH012,Metronidazole 400mg,11,Daulatpur
+2024-01-12,PH012,Cetirizine 10mg,10,Daulatpur
+2024-01-12,PH012,Amoxicillin 500mg,11,Daulatpur
+2024-01-12,PH012,Azithromycin 500mg,6,Daulatpur
+2024-01-12,PH012,Zinc 20mg (child),9,Daulatpur
+2024-01-12,PH012,Ciprofloxacin 500mg,5,Daulatpur
+2024-01-12,PH012,Antihistamine Syrup,8,Daulatpur
+2024-01-12,PH012,Vitamin C 500mg,17,Daulatpur
+2024-01-12,PH012,Ranitidine 150mg,18,Daulatpur
+2024-01-12,PH012,Antacid Tablet,24,Daulatpur
+2024-01-12,PH012,Insulin (vial),5,Daulatpur
+2024-01-12,PH012,Atorvastatin 10mg,8,Daulatpur
+2024-01-12,PH012,Losartan 50mg,9,Daulatpur
+2024-01-13,PH012,Paracetamol 500mg,28,Daulatpur
+2024-01-13,PH012,ORS Sachet,15,Daulatpur
+2024-01-13,PH012,Metronidazole 400mg,10,Daulatpur
+2024-01-13,PH012,Cetirizine 10mg,12,Daulatpur
+2024-01-13,PH012,Amoxicillin 500mg,10,Daulatpur
+2024-01-13,PH012,Azithromycin 500mg,5,Daulatpur
+2024-01-13,PH012,Zinc 20mg (child),7,Daulatpur
+2024-01-13,PH012,Ciprofloxacin 500mg,7,Daulatpur
+2024-01-13,PH012,Antihistamine Syrup,11,Daulatpur
+2024-01-13,PH012,Vitamin C 500mg,19,Daulatpur
+2024-01-13,PH012,Ranitidine 150mg,18,Daulatpur
+2024-01-13,PH012,Antacid Tablet,22,Daulatpur
+2024-01-13,PH012,Insulin (vial),4,Daulatpur
+2024-01-13,PH012,Atorvastatin 10mg,8,Daulatpur
+2024-01-13,PH012,Losartan 50mg,9,Daulatpur
+2024-01-14,PH012,Paracetamol 500mg,33,Daulatpur
+2024-01-14,PH012,ORS Sachet,15,Daulatpur
+2024-01-14,PH012,Metronidazole 400mg,14,Daulatpur
+2024-01-14,PH012,Cetirizine 10mg,13,Daulatpur
+2024-01-14,PH012,Amoxicillin 500mg,10,Daulatpur
+2024-01-14,PH012,Azithromycin 500mg,7,Daulatpur
+2024-01-14,PH012,Zinc 20mg (child),10,Daulatpur
+2024-01-14,PH012,Ciprofloxacin 500mg,8,Daulatpur
+2024-01-14,PH012,Antihistamine Syrup,9,Daulatpur
+2024-01-14,PH012,Vitamin C 500mg,24,Daulatpur
+2024-01-14,PH012,Ranitidine 150mg,19,Daulatpur
+2024-01-14,PH012,Antacid Tablet,19,Daulatpur
+2024-01-14,PH012,Insulin (vial),4,Daulatpur
+2024-01-14,PH012,Atorvastatin 10mg,7,Daulatpur
+2024-01-14,PH012,Losartan 50mg,9,Daulatpur
+2024-01-15,PH012,Paracetamol 500mg,38,Daulatpur
+2024-01-15,PH012,ORS Sachet,15,Daulatpur
+2024-01-15,PH012,Metronidazole 400mg,10,Daulatpur
+2024-01-15,PH012,Cetirizine 10mg,11,Daulatpur
+2024-01-15,PH012,Amoxicillin 500mg,10,Daulatpur
+2024-01-15,PH012,Azithromycin 500mg,4,Daulatpur
+2024-01-15,PH012,Zinc 20mg (child),7,Daulatpur
+2024-01-15,PH012,Ciprofloxacin 500mg,5,Daulatpur
+2024-01-15,PH012,Antihistamine Syrup,9,Daulatpur
+2024-01-15,PH012,Vitamin C 500mg,26,Daulatpur
+2024-01-15,PH012,Ranitidine 150mg,16,Daulatpur
+2024-01-15,PH012,Antacid Tablet,21,Daulatpur
+2024-01-15,PH012,Insulin (vial),4,Daulatpur
+2024-01-15,PH012,Atorvastatin 10mg,5,Daulatpur
+2024-01-15,PH012,Losartan 50mg,8,Daulatpur
+2024-01-16,PH012,Paracetamol 500mg,40,Daulatpur
+2024-01-16,PH012,ORS Sachet,18,Daulatpur
+2024-01-16,PH012,Metronidazole 400mg,11,Daulatpur
+2024-01-16,PH012,Cetirizine 10mg,13,Daulatpur
+2024-01-16,PH012,Amoxicillin 500mg,8,Daulatpur
+2024-01-16,PH012,Azithromycin 500mg,6,Daulatpur
+2024-01-16,PH012,Zinc 20mg (child),9,Daulatpur
+2024-01-16,PH012,Ciprofloxacin 500mg,5,Daulatpur
+2024-01-16,PH012,Antihistamine Syrup,10,Daulatpur
+2024-01-16,PH012,Vitamin C 500mg,20,Daulatpur
+2024-01-16,PH012,Ranitidine 150mg,19,Daulatpur
+2024-01-16,PH012,Antacid Tablet,16,Daulatpur
+2024-01-16,PH012,Insulin (vial),5,Daulatpur
+2024-01-16,PH012,Atorvastatin 10mg,7,Daulatpur
+2024-01-16,PH012,Losartan 50mg,9,Daulatpur
+2024-01-17,PH012,Paracetamol 500mg,40,Daulatpur
+2024-01-17,PH012,ORS Sachet,21,Daulatpur
+2024-01-17,PH012,Metronidazole 400mg,9,Daulatpur
+2024-01-17,PH012,Cetirizine 10mg,11,Daulatpur
+2024-01-17,PH012,Amoxicillin 500mg,9,Daulatpur
+2024-01-17,PH012,Azithromycin 500mg,5,Daulatpur
+2024-01-17,PH012,Zinc 20mg (child),10,Daulatpur
+2024-01-17,PH012,Ciprofloxacin 500mg,7,Daulatpur
+2024-01-17,PH012,Antihistamine Syrup,13,Daulatpur
+2024-01-17,PH012,Vitamin C 500mg,26,Daulatpur
+2024-01-17,PH012,Ranitidine 150mg,17,Daulatpur
+2024-01-17,PH012,Antacid Tablet,23,Daulatpur
+2024-01-17,PH012,Insulin (vial),4,Daulatpur
+2024-01-17,PH012,Atorvastatin 10mg,7,Daulatpur
+2024-01-17,PH012,Losartan 50mg,6,Daulatpur
+2024-01-18,PH012,Paracetamol 500mg,31,Daulatpur
+2024-01-18,PH012,ORS Sachet,16,Daulatpur
+2024-01-18,PH012,Metronidazole 400mg,14,Daulatpur
+2024-01-18,PH012,Cetirizine 10mg,15,Daulatpur
+2024-01-18,PH012,Amoxicillin 500mg,8,Daulatpur
+2024-01-18,PH012,Azithromycin 500mg,6,Daulatpur
+2024-01-18,PH012,Zinc 20mg (child),10,Daulatpur
+2024-01-18,PH012,Ciprofloxacin 500mg,6,Daulatpur
+2024-01-18,PH012,Antihistamine Syrup,9,Daulatpur
+2024-01-18,PH012,Vitamin C 500mg,25,Daulatpur
+2024-01-18,PH012,Ranitidine 150mg,16,Daulatpur
+2024-01-18,PH012,Antacid Tablet,16,Daulatpur
+2024-01-18,PH012,Insulin (vial),5,Daulatpur
+2024-01-18,PH012,Atorvastatin 10mg,8,Daulatpur
+2024-01-18,PH012,Losartan 50mg,8,Daulatpur
+2024-01-19,PH012,Paracetamol 500mg,26,Daulatpur
+2024-01-19,PH012,ORS Sachet,22,Daulatpur
+2024-01-19,PH012,Metronidazole 400mg,11,Daulatpur
+2024-01-19,PH012,Cetirizine 10mg,12,Daulatpur
+2024-01-19,PH012,Amoxicillin 500mg,11,Daulatpur
+2024-01-19,PH012,Azithromycin 500mg,6,Daulatpur
+2024-01-19,PH012,Zinc 20mg (child),7,Daulatpur
+2024-01-19,PH012,Ciprofloxacin 500mg,7,Daulatpur
+2024-01-19,PH012,Antihistamine Syrup,10,Daulatpur
+2024-01-19,PH012,Vitamin C 500mg,22,Daulatpur
+2024-01-19,PH012,Ranitidine 150mg,18,Daulatpur
+2024-01-19,PH012,Antacid Tablet,22,Daulatpur
+2024-01-19,PH012,Insulin (vial),4,Daulatpur
+2024-01-19,PH012,Atorvastatin 10mg,5,Daulatpur
+2024-01-19,PH012,Losartan 50mg,6,Daulatpur
+2024-01-20,PH012,Paracetamol 500mg,40,Daulatpur
+2024-01-20,PH012,ORS Sachet,18,Daulatpur
+2024-01-20,PH012,Metronidazole 400mg,11,Daulatpur
+2024-01-20,PH012,Cetirizine 10mg,15,Daulatpur
+2024-01-20,PH012,Amoxicillin 500mg,8,Daulatpur
+2024-01-20,PH012,Azithromycin 500mg,4,Daulatpur
+2024-01-20,PH012,Zinc 20mg (child),9,Daulatpur
+2024-01-20,PH012,Ciprofloxacin 500mg,6,Daulatpur
+2024-01-20,PH012,Antihistamine Syrup,9,Daulatpur
+2024-01-20,PH012,Vitamin C 500mg,18,Daulatpur
+2024-01-20,PH012,Ranitidine 150mg,12,Daulatpur
+2024-01-20,PH012,Antacid Tablet,18,Daulatpur
+2024-01-20,PH012,Insulin (vial),4,Daulatpur
+2024-01-20,PH012,Atorvastatin 10mg,5,Daulatpur
+2024-01-20,PH012,Losartan 50mg,6,Daulatpur
+2024-01-21,PH012,Paracetamol 500mg,35,Daulatpur
+2024-01-21,PH012,ORS Sachet,16,Daulatpur
+2024-01-21,PH012,Metronidazole 400mg,14,Daulatpur
+2024-01-21,PH012,Cetirizine 10mg,11,Daulatpur
+2024-01-21,PH012,Amoxicillin 500mg,11,Daulatpur
+2024-01-21,PH012,Azithromycin 500mg,7,Daulatpur
+2024-01-21,PH012,Zinc 20mg (child),8,Daulatpur
+2024-01-21,PH012,Ciprofloxacin 500mg,8,Daulatpur
+2024-01-21,PH012,Antihistamine Syrup,9,Daulatpur
+2024-01-21,PH012,Vitamin C 500mg,17,Daulatpur
+2024-01-21,PH012,Ranitidine 150mg,17,Daulatpur
+2024-01-21,PH012,Antacid Tablet,15,Daulatpur
+2024-01-21,PH012,Insulin (vial),5,Daulatpur
+2024-01-21,PH012,Atorvastatin 10mg,6,Daulatpur
+2024-01-21,PH012,Losartan 50mg,9,Daulatpur
+2024-01-22,PH012,Paracetamol 500mg,41,Daulatpur
+2024-01-22,PH012,ORS Sachet,20,Daulatpur
+2024-01-22,PH012,Metronidazole 400mg,9,Daulatpur
+2024-01-22,PH012,Cetirizine 10mg,15,Daulatpur
+2024-01-22,PH012,Amoxicillin 500mg,8,Daulatpur
+2024-01-22,PH012,Azithromycin 500mg,4,Daulatpur
+2024-01-22,PH012,Zinc 20mg (child),8,Daulatpur
+2024-01-22,PH012,Ciprofloxacin 500mg,5,Daulatpur
+2024-01-22,PH012,Antihistamine Syrup,12,Daulatpur
+2024-01-22,PH012,Vitamin C 500mg,24,Daulatpur
+2024-01-22,PH012,Ranitidine 150mg,15,Daulatpur
+2024-01-22,PH012,Antacid Tablet,20,Daulatpur
+2024-01-22,PH012,Insulin (vial),5,Daulatpur
+2024-01-22,PH012,Atorvastatin 10mg,5,Daulatpur
+2024-01-22,PH012,Losartan 50mg,8,Daulatpur
+2024-01-23,PH012,Paracetamol 500mg,37,Daulatpur
+2024-01-23,PH012,ORS Sachet,13,Daulatpur
+2024-01-23,PH012,Metronidazole 400mg,9,Daulatpur
+2024-01-23,PH012,Cetirizine 10mg,10,Daulatpur
+2024-01-23,PH012,Amoxicillin 500mg,7,Daulatpur
+2024-01-23,PH012,Azithromycin 500mg,5,Daulatpur
+2024-01-23,PH012,Zinc 20mg (child),8,Daulatpur
+2024-01-23,PH012,Ciprofloxacin 500mg,6,Daulatpur
+2024-01-23,PH012,Antihistamine Syrup,11,Daulatpur
+2024-01-23,PH012,Vitamin C 500mg,19,Daulatpur
+2024-01-23,PH012,Ranitidine 150mg,18,Daulatpur
+2024-01-23,PH012,Antacid Tablet,15,Daulatpur
+2024-01-23,PH012,Insulin (vial),4,Daulatpur
+2024-01-23,PH012,Atorvastatin 10mg,5,Daulatpur
+2024-01-23,PH012,Losartan 50mg,9,Daulatpur
+2024-01-24,PH012,Paracetamol 500mg,28,Daulatpur
+2024-01-24,PH012,ORS Sachet,15,Daulatpur
+2024-01-24,PH012,Metronidazole 400mg,13,Daulatpur
+2024-01-24,PH012,Cetirizine 10mg,10,Daulatpur
+2024-01-24,PH012,Amoxicillin 500mg,10,Daulatpur
+2024-01-24,PH012,Azithromycin 500mg,5,Daulatpur
+2024-01-24,PH012,Zinc 20mg (child),9,Daulatpur
+2024-01-24,PH012,Ciprofloxacin 500mg,5,Daulatpur
+2024-01-24,PH012,Antihistamine Syrup,8,Daulatpur
+2024-01-24,PH012,Vitamin C 500mg,22,Daulatpur
+2024-01-24,PH012,Ranitidine 150mg,18,Daulatpur
+2024-01-24,PH012,Antacid Tablet,23,Daulatpur
+2024-01-24,PH012,Insulin (vial),5,Daulatpur
+2024-01-24,PH012,Atorvastatin 10mg,8,Daulatpur
+2024-01-24,PH012,Losartan 50mg,9,Daulatpur
+2024-01-25,PH012,Paracetamol 500mg,26,Daulatpur
+2024-01-25,PH012,ORS Sachet,15,Daulatpur
+2024-01-25,PH012,Metronidazole 400mg,13,Daulatpur
+2024-01-25,PH012,Cetirizine 10mg,13,Daulatpur
+2024-01-25,PH012,Amoxicillin 500mg,10,Daulatpur
+2024-01-25,PH012,Azithromycin 500mg,7,Daulatpur
+2024-01-25,PH012,Zinc 20mg (child),12,Daulatpur
+2024-01-25,PH012,Ciprofloxacin 500mg,6,Daulatpur
+2024-01-25,PH012,Antihistamine Syrup,13,Daulatpur
+2024-01-25,PH012,Vitamin C 500mg,17,Daulatpur
+2024-01-25,PH012,Ranitidine 150mg,17,Daulatpur
+2024-01-25,PH012,Antacid Tablet,17,Daulatpur
+2024-01-25,PH012,Insulin (vial),4,Daulatpur
+2024-01-25,PH012,Atorvastatin 10mg,6,Daulatpur
+2024-01-25,PH012,Losartan 50mg,8,Daulatpur
+2024-01-26,PH012,Paracetamol 500mg,32,Daulatpur
+2024-01-26,PH012,ORS Sachet,19,Daulatpur
+2024-01-26,PH012,Metronidazole 400mg,14,Daulatpur
+2024-01-26,PH012,Cetirizine 10mg,12,Daulatpur
+2024-01-26,PH012,Amoxicillin 500mg,9,Daulatpur
+2024-01-26,PH012,Azithromycin 500mg,6,Daulatpur
+2024-01-26,PH012,Zinc 20mg (child),11,Daulatpur
+2024-01-26,PH012,Ciprofloxacin 500mg,7,Daulatpur
+2024-01-26,PH012,Antihistamine Syrup,13,Daulatpur
+2024-01-26,PH012,Vitamin C 500mg,16,Daulatpur
+2024-01-26,PH012,Ranitidine 150mg,15,Daulatpur
+2024-01-26,PH012,Antacid Tablet,24,Daulatpur
+2024-01-26,PH012,Insulin (vial),5,Daulatpur
+2024-01-26,PH012,Atorvastatin 10mg,8,Daulatpur
+2024-01-26,PH012,Losartan 50mg,8,Daulatpur
+2024-01-27,PH012,Paracetamol 500mg,36,Daulatpur
+2024-01-27,PH012,ORS Sachet,13,Daulatpur
+2024-01-27,PH012,Metronidazole 400mg,14,Daulatpur
+2024-01-27,PH012,Cetirizine 10mg,13,Daulatpur
+2024-01-27,PH012,Amoxicillin 500mg,11,Daulatpur
+2024-01-27,PH012,Azithromycin 500mg,5,Daulatpur
+2024-01-27,PH012,Zinc 20mg (child),8,Daulatpur
+2024-01-27,PH012,Ciprofloxacin 500mg,5,Daulatpur
+2024-01-27,PH012,Antihistamine Syrup,12,Daulatpur
+2024-01-27,PH012,Vitamin C 500mg,20,Daulatpur
+2024-01-27,PH012,Ranitidine 150mg,14,Daulatpur
+2024-01-27,PH012,Antacid Tablet,22,Daulatpur
+2024-01-27,PH012,Insulin (vial),4,Daulatpur
+2024-01-27,PH012,Atorvastatin 10mg,5,Daulatpur
+2024-01-27,PH012,Losartan 50mg,9,Daulatpur
+2024-01-28,PH012,Paracetamol 500mg,43,Daulatpur
+2024-01-28,PH012,ORS Sachet,15,Daulatpur
+2024-01-28,PH012,Metronidazole 400mg,10,Daulatpur
+2024-01-28,PH012,Cetirizine 10mg,14,Daulatpur
+2024-01-28,PH012,Amoxicillin 500mg,7,Daulatpur
+2024-01-28,PH012,Azithromycin 500mg,6,Daulatpur
+2024-01-28,PH012,Zinc 20mg (child),8,Daulatpur
+2024-01-28,PH012,Ciprofloxacin 500mg,7,Daulatpur
+2024-01-28,PH012,Antihistamine Syrup,10,Daulatpur
+2024-01-28,PH012,Vitamin C 500mg,25,Daulatpur
+2024-01-28,PH012,Ranitidine 150mg,13,Daulatpur
+2024-01-28,PH012,Antacid Tablet,24,Daulatpur
+2024-01-28,PH012,Insulin (vial),4,Daulatpur
+2024-01-28,PH012,Atorvastatin 10mg,7,Daulatpur
+2024-01-28,PH012,Losartan 50mg,8,Daulatpur
+2024-01-29,PH012,Paracetamol 500mg,30,Daulatpur
+2024-01-29,PH012,ORS Sachet,15,Daulatpur
+2024-01-29,PH012,Metronidazole 400mg,10,Daulatpur
+2024-01-29,PH012,Cetirizine 10mg,17,Daulatpur
+2024-01-29,PH012,Amoxicillin 500mg,12,Daulatpur
+2024-01-29,PH012,Azithromycin 500mg,6,Daulatpur
+2024-01-29,PH012,Zinc 20mg (child),9,Daulatpur
+2024-01-29,PH012,Ciprofloxacin 500mg,5,Daulatpur
+2024-01-29,PH012,Antihistamine Syrup,11,Daulatpur
+2024-01-29,PH012,Vitamin C 500mg,24,Daulatpur
+2024-01-29,PH012,Ranitidine 150mg,17,Daulatpur
+2024-01-29,PH012,Antacid Tablet,21,Daulatpur
+2024-01-29,PH012,Insulin (vial),4,Daulatpur
+2024-01-29,PH012,Atorvastatin 10mg,7,Daulatpur
+2024-01-29,PH012,Losartan 50mg,7,Daulatpur
+2024-01-30,PH012,Paracetamol 500mg,31,Daulatpur
+2024-01-30,PH012,ORS Sachet,15,Daulatpur
+2024-01-30,PH012,Metronidazole 400mg,9,Daulatpur
+2024-01-30,PH012,Cetirizine 10mg,15,Daulatpur
+2024-01-30,PH012,Amoxicillin 500mg,9,Daulatpur
+2024-01-30,PH012,Azithromycin 500mg,4,Daulatpur
+2024-01-30,PH012,Zinc 20mg (child),8,Daulatpur
+2024-01-30,PH012,Ciprofloxacin 500mg,5,Daulatpur
+2024-01-30,PH012,Antihistamine Syrup,9,Daulatpur
+2024-01-30,PH012,Vitamin C 500mg,17,Daulatpur
+2024-01-30,PH012,Ranitidine 150mg,19,Daulatpur
+2024-01-30,PH012,Antacid Tablet,22,Daulatpur
+2024-01-30,PH012,Insulin (vial),5,Daulatpur
+2024-01-30,PH012,Atorvastatin 10mg,6,Daulatpur
+2024-01-30,PH012,Losartan 50mg,9,Daulatpur
+2024-01-31,PH012,Paracetamol 500mg,28,Daulatpur
+2024-01-31,PH012,ORS Sachet,15,Daulatpur
+2024-01-31,PH012,Metronidazole 400mg,13,Daulatpur
+2024-01-31,PH012,Cetirizine 10mg,13,Daulatpur
+2024-01-31,PH012,Amoxicillin 500mg,10,Daulatpur
+2024-01-31,PH012,Azithromycin 500mg,7,Daulatpur
+2024-01-31,PH012,Zinc 20mg (child),8,Daulatpur
+2024-01-31,PH012,Ciprofloxacin 500mg,7,Daulatpur
+2024-01-31,PH012,Antihistamine Syrup,10,Daulatpur
+2024-01-31,PH012,Vitamin C 500mg,17,Daulatpur
+2024-01-31,PH012,Ranitidine 150mg,19,Daulatpur
+2024-01-31,PH012,Antacid Tablet,19,Daulatpur
+2024-01-31,PH012,Insulin (vial),5,Daulatpur
+2024-01-31,PH012,Atorvastatin 10mg,7,Daulatpur
+2024-01-31,PH012,Losartan 50mg,8,Daulatpur
+2024-02-01,PH012,Paracetamol 500mg,28,Daulatpur
+2024-02-01,PH012,ORS Sachet,18,Daulatpur
+2024-02-01,PH012,Metronidazole 400mg,9,Daulatpur
+2024-02-01,PH012,Cetirizine 10mg,14,Daulatpur
+2024-02-01,PH012,Amoxicillin 500mg,9,Daulatpur
+2024-02-01,PH012,Azithromycin 500mg,4,Daulatpur
+2024-02-01,PH012,Zinc 20mg (child),10,Daulatpur
+2024-02-01,PH012,Ciprofloxacin 500mg,6,Daulatpur
+2024-02-01,PH012,Antihistamine Syrup,10,Daulatpur
+2024-02-01,PH012,Vitamin C 500mg,22,Daulatpur
+2024-02-01,PH012,Ranitidine 150mg,12,Daulatpur
+2024-02-01,PH012,Antacid Tablet,23,Daulatpur
+2024-02-01,PH012,Insulin (vial),3,Daulatpur
+2024-02-01,PH012,Atorvastatin 10mg,7,Daulatpur
+2024-02-01,PH012,Losartan 50mg,8,Daulatpur
+2024-02-02,PH012,Paracetamol 500mg,36,Daulatpur
+2024-02-02,PH012,ORS Sachet,15,Daulatpur
+2024-02-02,PH012,Metronidazole 400mg,12,Daulatpur
+2024-02-02,PH012,Cetirizine 10mg,11,Daulatpur
+2024-02-02,PH012,Amoxicillin 500mg,9,Daulatpur
+2024-02-02,PH012,Azithromycin 500mg,6,Daulatpur
+2024-02-02,PH012,Zinc 20mg (child),12,Daulatpur
+2024-02-02,PH012,Ciprofloxacin 500mg,8,Daulatpur
+2024-02-02,PH012,Antihistamine Syrup,13,Daulatpur
+2024-02-02,PH012,Vitamin C 500mg,19,Daulatpur
+2024-02-02,PH012,Ranitidine 150mg,15,Daulatpur
+2024-02-02,PH012,Antacid Tablet,23,Daulatpur
+2024-02-02,PH012,Insulin (vial),4,Daulatpur
+2024-02-02,PH012,Atorvastatin 10mg,8,Daulatpur
+2024-02-02,PH012,Losartan 50mg,9,Daulatpur
+2024-02-03,PH012,Paracetamol 500mg,41,Daulatpur
+2024-02-03,PH012,ORS Sachet,17,Daulatpur
+2024-02-03,PH012,Metronidazole 400mg,10,Daulatpur
+2024-02-03,PH012,Cetirizine 10mg,12,Daulatpur
+2024-02-03,PH012,Amoxicillin 500mg,7,Daulatpur
+2024-02-03,PH012,Azithromycin 500mg,5,Daulatpur
+2024-02-03,PH012,Zinc 20mg (child),10,Daulatpur
+2024-02-03,PH012,Ciprofloxacin 500mg,8,Daulatpur
+2024-02-03,PH012,Antihistamine Syrup,8,Daulatpur
+2024-02-03,PH012,Vitamin C 500mg,19,Daulatpur
+2024-02-03,PH012,Ranitidine 150mg,19,Daulatpur
+2024-02-03,PH012,Antacid Tablet,23,Daulatpur
+2024-02-03,PH012,Insulin (vial),4,Daulatpur
+2024-02-03,PH012,Atorvastatin 10mg,8,Daulatpur
+2024-02-03,PH012,Losartan 50mg,8,Daulatpur
+2024-02-04,PH012,Paracetamol 500mg,36,Daulatpur
+2024-02-04,PH012,ORS Sachet,21,Daulatpur
+2024-02-04,PH012,Metronidazole 400mg,11,Daulatpur
+2024-02-04,PH012,Cetirizine 10mg,11,Daulatpur
+2024-02-04,PH012,Amoxicillin 500mg,11,Daulatpur
+2024-02-04,PH012,Azithromycin 500mg,5,Daulatpur
+2024-02-04,PH012,Zinc 20mg (child),11,Daulatpur
+2024-02-04,PH012,Ciprofloxacin 500mg,5,Daulatpur
+2024-02-04,PH012,Antihistamine Syrup,10,Daulatpur
+2024-02-04,PH012,Vitamin C 500mg,16,Daulatpur
+2024-02-04,PH012,Ranitidine 150mg,12,Daulatpur
+2024-02-04,PH012,Antacid Tablet,16,Daulatpur
+2024-02-04,PH012,Insulin (vial),4,Daulatpur
+2024-02-04,PH012,Atorvastatin 10mg,5,Daulatpur
+2024-02-04,PH012,Losartan 50mg,7,Daulatpur
+2024-02-05,PH012,Paracetamol 500mg,28,Daulatpur
+2024-02-05,PH012,ORS Sachet,19,Daulatpur
+2024-02-05,PH012,Metronidazole 400mg,14,Daulatpur
+2024-02-05,PH012,Cetirizine 10mg,14,Daulatpur
+2024-02-05,PH012,Amoxicillin 500mg,8,Daulatpur
+2024-02-05,PH012,Azithromycin 500mg,5,Daulatpur
+2024-02-05,PH012,Zinc 20mg (child),7,Daulatpur
+2024-02-05,PH012,Ciprofloxacin 500mg,7,Daulatpur
+2024-02-05,PH012,Antihistamine Syrup,11,Daulatpur
+2024-02-05,PH012,Vitamin C 500mg,17,Daulatpur
+2024-02-05,PH012,Ranitidine 150mg,16,Daulatpur
+2024-02-05,PH012,Antacid Tablet,20,Daulatpur
+2024-02-05,PH012,Insulin (vial),4,Daulatpur
+2024-02-05,PH012,Atorvastatin 10mg,8,Daulatpur
+2024-02-05,PH012,Losartan 50mg,6,Daulatpur
+2024-02-06,PH012,Paracetamol 500mg,33,Daulatpur
+2024-02-06,PH012,ORS Sachet,19,Daulatpur
+2024-02-06,PH012,Metronidazole 400mg,11,Daulatpur
+2024-02-06,PH012,Cetirizine 10mg,16,Daulatpur
+2024-02-06,PH012,Amoxicillin 500mg,7,Daulatpur
+2024-02-06,PH012,Azithromycin 500mg,7,Daulatpur
+2024-02-06,PH012,Zinc 20mg (child),11,Daulatpur
+2024-02-06,PH012,Ciprofloxacin 500mg,5,Daulatpur
+2024-02-06,PH012,Antihistamine Syrup,9,Daulatpur
+2024-02-06,PH012,Vitamin C 500mg,24,Daulatpur
+2024-02-06,PH012,Ranitidine 150mg,14,Daulatpur
+2024-02-06,PH012,Antacid Tablet,22,Daulatpur
+2024-02-06,PH012,Insulin (vial),4,Daulatpur
+2024-02-06,PH012,Atorvastatin 10mg,5,Daulatpur
+2024-02-06,PH012,Losartan 50mg,9,Daulatpur
+2024-02-07,PH012,Paracetamol 500mg,33,Daulatpur
+2024-02-07,PH012,ORS Sachet,16,Daulatpur
+2024-02-07,PH012,Metronidazole 400mg,13,Daulatpur
+2024-02-07,PH012,Cetirizine 10mg,15,Daulatpur
+2024-02-07,PH012,Amoxicillin 500mg,8,Daulatpur
+2024-02-07,PH012,Azithromycin 500mg,4,Daulatpur
+2024-02-07,PH012,Zinc 20mg (child),9,Daulatpur
+2024-02-07,PH012,Ciprofloxacin 500mg,8,Daulatpur
+2024-02-07,PH012,Antihistamine Syrup,12,Daulatpur
+2024-02-07,PH012,Vitamin C 500mg,21,Daulatpur
+2024-02-07,PH012,Ranitidine 150mg,14,Daulatpur
+2024-02-07,PH012,Antacid Tablet,19,Daulatpur
+2024-02-07,PH012,Insulin (vial),4,Daulatpur
+2024-02-07,PH012,Atorvastatin 10mg,6,Daulatpur
+2024-02-07,PH012,Losartan 50mg,9,Daulatpur
+2024-02-08,PH012,Paracetamol 500mg,32,Daulatpur
+2024-02-08,PH012,ORS Sachet,15,Daulatpur
+2024-02-08,PH012,Metronidazole 400mg,13,Daulatpur
+2024-02-08,PH012,Cetirizine 10mg,11,Daulatpur
+2024-02-08,PH012,Amoxicillin 500mg,11,Daulatpur
+2024-02-08,PH012,Azithromycin 500mg,4,Daulatpur
+2024-02-08,PH012,Zinc 20mg (child),10,Daulatpur
+2024-02-08,PH012,Ciprofloxacin 500mg,8,Daulatpur
+2024-02-08,PH012,Antihistamine Syrup,13,Daulatpur
+2024-02-08,PH012,Vitamin C 500mg,24,Daulatpur
+2024-02-08,PH012,Ranitidine 150mg,13,Daulatpur
+2024-02-08,PH012,Antacid Tablet,18,Daulatpur
+2024-02-08,PH012,Insulin (vial),4,Daulatpur
+2024-02-08,PH012,Atorvastatin 10mg,7,Daulatpur
+2024-02-08,PH012,Losartan 50mg,6,Daulatpur
+2024-02-09,PH012,Paracetamol 500mg,41,Daulatpur
+2024-02-09,PH012,ORS Sachet,15,Daulatpur
+2024-02-09,PH012,Metronidazole 400mg,13,Daulatpur
+2024-02-09,PH012,Cetirizine 10mg,13,Daulatpur
+2024-02-09,PH012,Amoxicillin 500mg,10,Daulatpur
+2024-02-09,PH012,Azithromycin 500mg,6,Daulatpur
+2024-02-09,PH012,Zinc 20mg (child),8,Daulatpur
+2024-02-09,PH012,Ciprofloxacin 500mg,5,Daulatpur
+2024-02-09,PH012,Antihistamine Syrup,12,Daulatpur
+2024-02-09,PH012,Vitamin C 500mg,25,Daulatpur
+2024-02-09,PH012,Ranitidine 150mg,12,Daulatpur
+2024-02-09,PH012,Antacid Tablet,24,Daulatpur
+2024-02-09,PH012,Insulin (vial),5,Daulatpur
+2024-02-09,PH012,Atorvastatin 10mg,8,Daulatpur
+2024-02-09,PH012,Losartan 50mg,9,Daulatpur
+2024-02-10,PH012,Paracetamol 500mg,43,Daulatpur
+2024-02-10,PH012,ORS Sachet,17,Daulatpur
+2024-02-10,PH012,Metronidazole 400mg,10,Daulatpur
+2024-02-10,PH012,Cetirizine 10mg,11,Daulatpur
+2024-02-10,PH012,Amoxicillin 500mg,11,Daulatpur
+2024-02-10,PH012,Azithromycin 500mg,5,Daulatpur
+2024-02-10,PH012,Zinc 20mg (child),12,Daulatpur
+2024-02-10,PH012,Ciprofloxacin 500mg,8,Daulatpur
+2024-02-10,PH012,Antihistamine Syrup,11,Daulatpur
+2024-02-10,PH012,Vitamin C 500mg,18,Daulatpur
+2024-02-10,PH012,Ranitidine 150mg,14,Daulatpur
+2024-02-10,PH012,Antacid Tablet,19,Daulatpur
+2024-02-10,PH012,Insulin (vial),5,Daulatpur
+2024-02-10,PH012,Atorvastatin 10mg,8,Daulatpur
+2024-02-10,PH012,Losartan 50mg,9,Daulatpur
+2024-02-11,PH012,Paracetamol 500mg,35,Daulatpur
+2024-02-11,PH012,ORS Sachet,15,Daulatpur
+2024-02-11,PH012,Metronidazole 400mg,10,Daulatpur
+2024-02-11,PH012,Cetirizine 10mg,13,Daulatpur
+2024-02-11,PH012,Amoxicillin 500mg,12,Daulatpur
+2024-02-11,PH012,Azithromycin 500mg,9,Daulatpur
+2024-02-11,PH012,Zinc 20mg (child),8,Daulatpur
+2024-02-11,PH012,Ciprofloxacin 500mg,6,Daulatpur
+2024-02-11,PH012,Antihistamine Syrup,10,Daulatpur
+2024-02-11,PH012,Vitamin C 500mg,19,Daulatpur
+2024-02-11,PH012,Ranitidine 150mg,12,Daulatpur
+2024-02-11,PH012,Antacid Tablet,20,Daulatpur
+2024-02-11,PH012,Insulin (vial),5,Daulatpur
+2024-02-11,PH012,Atorvastatin 10mg,7,Daulatpur
+2024-02-11,PH012,Losartan 50mg,8,Daulatpur
+2024-02-12,PH012,Paracetamol 500mg,63,Daulatpur
+2024-02-12,PH012,ORS Sachet,14,Daulatpur
+2024-02-12,PH012,Metronidazole 400mg,14,Daulatpur
+2024-02-12,PH012,Cetirizine 10mg,15,Daulatpur
+2024-02-12,PH012,Amoxicillin 500mg,14,Daulatpur
+2024-02-12,PH012,Azithromycin 500mg,8,Daulatpur
+2024-02-12,PH012,Zinc 20mg (child),10,Daulatpur
+2024-02-12,PH012,Ciprofloxacin 500mg,5,Daulatpur
+2024-02-12,PH012,Antihistamine Syrup,9,Daulatpur
+2024-02-12,PH012,Vitamin C 500mg,23,Daulatpur
+2024-02-12,PH012,Ranitidine 150mg,14,Daulatpur
+2024-02-12,PH012,Antacid Tablet,21,Daulatpur
+2024-02-12,PH012,Insulin (vial),5,Daulatpur
+2024-02-12,PH012,Atorvastatin 10mg,5,Daulatpur
+2024-02-12,PH012,Losartan 50mg,8,Daulatpur
+2024-02-13,PH012,Paracetamol 500mg,58,Daulatpur
+2024-02-13,PH012,ORS Sachet,16,Daulatpur
+2024-02-13,PH012,Metronidazole 400mg,14,Daulatpur
+2024-02-13,PH012,Cetirizine 10mg,10,Daulatpur
+2024-02-13,PH012,Amoxicillin 500mg,18,Daulatpur
+2024-02-13,PH012,Azithromycin 500mg,11,Daulatpur
+2024-02-13,PH012,Zinc 20mg (child),11,Daulatpur
+2024-02-13,PH012,Ciprofloxacin 500mg,8,Daulatpur
+2024-02-13,PH012,Antihistamine Syrup,8,Daulatpur
+2024-02-13,PH012,Vitamin C 500mg,26,Daulatpur
+2024-02-13,PH012,Ranitidine 150mg,19,Daulatpur
+2024-02-13,PH012,Antacid Tablet,17,Daulatpur
+2024-02-13,PH012,Insulin (vial),5,Daulatpur
+2024-02-13,PH012,Atorvastatin 10mg,6,Daulatpur
+2024-02-13,PH012,Losartan 50mg,7,Daulatpur
+2024-02-14,PH012,Paracetamol 500mg,54,Daulatpur
+2024-02-14,PH012,ORS Sachet,21,Daulatpur
+2024-02-14,PH012,Metronidazole 400mg,12,Daulatpur
+2024-02-14,PH012,Cetirizine 10mg,11,Daulatpur
+2024-02-14,PH012,Amoxicillin 500mg,19,Daulatpur
+2024-02-14,PH012,Azithromycin 500mg,13,Daulatpur
+2024-02-14,PH012,Zinc 20mg (child),11,Daulatpur
+2024-02-14,PH012,Ciprofloxacin 500mg,5,Daulatpur
+2024-02-14,PH012,Antihistamine Syrup,11,Daulatpur
+2024-02-14,PH012,Vitamin C 500mg,21,Daulatpur
+2024-02-14,PH012,Ranitidine 150mg,14,Daulatpur
+2024-02-14,PH012,Antacid Tablet,24,Daulatpur
+2024-02-14,PH012,Insulin (vial),5,Daulatpur
+2024-02-14,PH012,Atorvastatin 10mg,8,Daulatpur
+2024-02-14,PH012,Losartan 50mg,9,Daulatpur
+2024-02-15,PH012,Paracetamol 500mg,76,Daulatpur
+2024-02-15,PH012,ORS Sachet,13,Daulatpur
+2024-02-15,PH012,Metronidazole 400mg,9,Daulatpur
+2024-02-15,PH012,Cetirizine 10mg,15,Daulatpur
+2024-02-15,PH012,Amoxicillin 500mg,17,Daulatpur
+2024-02-15,PH012,Azithromycin 500mg,14,Daulatpur
+2024-02-15,PH012,Zinc 20mg (child),11,Daulatpur
+2024-02-15,PH012,Ciprofloxacin 500mg,8,Daulatpur
+2024-02-15,PH012,Antihistamine Syrup,11,Daulatpur
+2024-02-15,PH012,Vitamin C 500mg,25,Daulatpur
+2024-02-15,PH012,Ranitidine 150mg,19,Daulatpur
+2024-02-15,PH012,Antacid Tablet,19,Daulatpur
+2024-02-15,PH012,Insulin (vial),4,Daulatpur
+2024-02-15,PH012,Atorvastatin 10mg,8,Daulatpur
+2024-02-15,PH012,Losartan 50mg,7,Daulatpur
+2024-02-16,PH012,Paracetamol 500mg,91,Daulatpur
+2024-02-16,PH012,ORS Sachet,15,Daulatpur
+2024-02-16,PH012,Metronidazole 400mg,14,Daulatpur
+2024-02-16,PH012,Cetirizine 10mg,15,Daulatpur
+2024-02-16,PH012,Amoxicillin 500mg,22,Daulatpur
+2024-02-16,PH012,Azithromycin 500mg,16,Daulatpur
+2024-02-16,PH012,Zinc 20mg (child),9,Daulatpur
+2024-02-16,PH012,Ciprofloxacin 500mg,8,Daulatpur
+2024-02-16,PH012,Antihistamine Syrup,11,Daulatpur
+2024-02-16,PH012,Vitamin C 500mg,20,Daulatpur
+2024-02-16,PH012,Ranitidine 150mg,12,Daulatpur
+2024-02-16,PH012,Antacid Tablet,15,Daulatpur
+2024-02-16,PH012,Insulin (vial),5,Daulatpur
+2024-02-16,PH012,Atorvastatin 10mg,5,Daulatpur
+2024-02-16,PH012,Losartan 50mg,7,Daulatpur
+2024-02-17,PH012,Paracetamol 500mg,67,Daulatpur
+2024-02-17,PH012,ORS Sachet,19,Daulatpur
+2024-02-17,PH012,Metronidazole 400mg,11,Daulatpur
+2024-02-17,PH012,Cetirizine 10mg,14,Daulatpur
+2024-02-17,PH012,Amoxicillin 500mg,25,Daulatpur
+2024-02-17,PH012,Azithromycin 500mg,15,Daulatpur
+2024-02-17,PH012,Zinc 20mg (child),10,Daulatpur
+2024-02-17,PH012,Ciprofloxacin 500mg,7,Daulatpur
+2024-02-17,PH012,Antihistamine Syrup,8,Daulatpur
+2024-02-17,PH012,Vitamin C 500mg,18,Daulatpur
+2024-02-17,PH012,Ranitidine 150mg,17,Daulatpur
+2024-02-17,PH012,Antacid Tablet,15,Daulatpur
+2024-02-17,PH012,Insulin (vial),4,Daulatpur
+2024-02-17,PH012,Atorvastatin 10mg,8,Daulatpur
+2024-02-17,PH012,Losartan 50mg,8,Daulatpur
+2024-02-18,PH012,Paracetamol 500mg,116,Daulatpur
+2024-02-18,PH012,ORS Sachet,17,Daulatpur
+2024-02-18,PH012,Metronidazole 400mg,9,Daulatpur
+2024-02-18,PH012,Cetirizine 10mg,15,Daulatpur
+2024-02-18,PH012,Amoxicillin 500mg,18,Daulatpur
+2024-02-18,PH012,Azithromycin 500mg,18,Daulatpur
+2024-02-18,PH012,Zinc 20mg (child),9,Daulatpur
+2024-02-18,PH012,Ciprofloxacin 500mg,6,Daulatpur
+2024-02-18,PH012,Antihistamine Syrup,12,Daulatpur
+2024-02-18,PH012,Vitamin C 500mg,18,Daulatpur
+2024-02-18,PH012,Ranitidine 150mg,17,Daulatpur
+2024-02-18,PH012,Antacid Tablet,16,Daulatpur
+2024-02-18,PH012,Insulin (vial),5,Daulatpur
+2024-02-18,PH012,Atorvastatin 10mg,7,Daulatpur
+2024-02-18,PH012,Losartan 50mg,6,Daulatpur
+2024-02-19,PH012,Paracetamol 500mg,99,Daulatpur
+2024-02-19,PH012,ORS Sachet,21,Daulatpur
+2024-02-19,PH012,Metronidazole 400mg,14,Daulatpur
+2024-02-19,PH012,Cetirizine 10mg,17,Daulatpur
+2024-02-19,PH012,Amoxicillin 500mg,22,Daulatpur
+2024-02-19,PH012,Azithromycin 500mg,17,Daulatpur
+2024-02-19,PH012,Zinc 20mg (child),10,Daulatpur
+2024-02-19,PH012,Ciprofloxacin 500mg,8,Daulatpur
+2024-02-19,PH012,Antihistamine Syrup,9,Daulatpur
+2024-02-19,PH012,Vitamin C 500mg,17,Daulatpur
+2024-02-19,PH012,Ranitidine 150mg,14,Daulatpur
+2024-02-19,PH012,Antacid Tablet,22,Daulatpur
+2024-02-19,PH012,Insulin (vial),3,Daulatpur
+2024-02-19,PH012,Atorvastatin 10mg,5,Daulatpur
+2024-02-19,PH012,Losartan 50mg,8,Daulatpur
+2024-02-20,PH012,Paracetamol 500mg,113,Daulatpur
+2024-02-20,PH012,ORS Sachet,21,Daulatpur
+2024-02-20,PH012,Metronidazole 400mg,11,Daulatpur
+2024-02-20,PH012,Cetirizine 10mg,10,Daulatpur
+2024-02-20,PH012,Amoxicillin 500mg,32,Daulatpur
+2024-02-20,PH012,Azithromycin 500mg,18,Daulatpur
+2024-02-20,PH012,Zinc 20mg (child),12,Daulatpur
+2024-02-20,PH012,Ciprofloxacin 500mg,5,Daulatpur
+2024-02-20,PH012,Antihistamine Syrup,9,Daulatpur
+2024-02-20,PH012,Vitamin C 500mg,25,Daulatpur
+2024-02-20,PH012,Ranitidine 150mg,17,Daulatpur
+2024-02-20,PH012,Antacid Tablet,18,Daulatpur
+2024-02-20,PH012,Insulin (vial),5,Daulatpur
+2024-02-20,PH012,Atorvastatin 10mg,7,Daulatpur
+2024-02-20,PH012,Losartan 50mg,7,Daulatpur
+2024-02-21,PH012,Paracetamol 500mg,114,Daulatpur
+2024-02-21,PH012,ORS Sachet,16,Daulatpur
+2024-02-21,PH012,Metronidazole 400mg,12,Daulatpur
+2024-02-21,PH012,Cetirizine 10mg,16,Daulatpur
+2024-02-21,PH012,Amoxicillin 500mg,31,Daulatpur
+2024-02-21,PH012,Azithromycin 500mg,18,Daulatpur
+2024-02-21,PH012,Zinc 20mg (child),11,Daulatpur
+2024-02-21,PH012,Ciprofloxacin 500mg,6,Daulatpur
+2024-02-21,PH012,Antihistamine Syrup,13,Daulatpur
+2024-02-21,PH012,Vitamin C 500mg,23,Daulatpur
+2024-02-21,PH012,Ranitidine 150mg,12,Daulatpur
+2024-02-21,PH012,Antacid Tablet,22,Daulatpur
+2024-02-21,PH012,Insulin (vial),4,Daulatpur
+2024-02-21,PH012,Atorvastatin 10mg,7,Daulatpur
+2024-02-21,PH012,Losartan 50mg,7,Daulatpur
+2024-02-22,PH012,Paracetamol 500mg,105,Daulatpur
+2024-02-22,PH012,ORS Sachet,18,Daulatpur
+2024-02-22,PH012,Metronidazole 400mg,11,Daulatpur
+2024-02-22,PH012,Cetirizine 10mg,11,Daulatpur
+2024-02-22,PH012,Amoxicillin 500mg,33,Daulatpur
+2024-02-22,PH012,Azithromycin 500mg,17,Daulatpur
+2024-02-22,PH012,Zinc 20mg (child),10,Daulatpur
+2024-02-22,PH012,Ciprofloxacin 500mg,7,Daulatpur
+2024-02-22,PH012,Antihistamine Syrup,13,Daulatpur
+2024-02-22,PH012,Vitamin C 500mg,23,Daulatpur
+2024-02-22,PH012,Ranitidine 150mg,15,Daulatpur
+2024-02-22,PH012,Antacid Tablet,21,Daulatpur
+2024-02-22,PH012,Insulin (vial),5,Daulatpur
+2024-02-22,PH012,Atorvastatin 10mg,7,Daulatpur
+2024-02-22,PH012,Losartan 50mg,6,Daulatpur
+2024-02-23,PH012,Paracetamol 500mg,110,Daulatpur
+2024-02-23,PH012,ORS Sachet,16,Daulatpur
+2024-02-23,PH012,Metronidazole 400mg,12,Daulatpur
+2024-02-23,PH012,Cetirizine 10mg,14,Daulatpur
+2024-02-23,PH012,Amoxicillin 500mg,22,Daulatpur
+2024-02-23,PH012,Azithromycin 500mg,21,Daulatpur
+2024-02-23,PH012,Zinc 20mg (child),12,Daulatpur
+2024-02-23,PH012,Ciprofloxacin 500mg,6,Daulatpur
+2024-02-23,PH012,Antihistamine Syrup,12,Daulatpur
+2024-02-23,PH012,Vitamin C 500mg,23,Daulatpur
+2024-02-23,PH012,Ranitidine 150mg,13,Daulatpur
+2024-02-23,PH012,Antacid Tablet,20,Daulatpur
+2024-02-23,PH012,Insulin (vial),4,Daulatpur
+2024-02-23,PH012,Atorvastatin 10mg,8,Daulatpur
+2024-02-23,PH012,Losartan 50mg,9,Daulatpur
+2024-02-24,PH012,Paracetamol 500mg,98,Daulatpur
+2024-02-24,PH012,ORS Sachet,19,Daulatpur
+2024-02-24,PH012,Metronidazole 400mg,9,Daulatpur
+2024-02-24,PH012,Cetirizine 10mg,15,Daulatpur
+2024-02-24,PH012,Amoxicillin 500mg,27,Daulatpur
+2024-02-24,PH012,Azithromycin 500mg,21,Daulatpur
+2024-02-24,PH012,Zinc 20mg (child),8,Daulatpur
+2024-02-24,PH012,Ciprofloxacin 500mg,6,Daulatpur
+2024-02-24,PH012,Antihistamine Syrup,8,Daulatpur
+2024-02-24,PH012,Vitamin C 500mg,21,Daulatpur
+2024-02-24,PH012,Ranitidine 150mg,12,Daulatpur
+2024-02-24,PH012,Antacid Tablet,24,Daulatpur
+2024-02-24,PH012,Insulin (vial),5,Daulatpur
+2024-02-24,PH012,Atorvastatin 10mg,6,Daulatpur
+2024-02-24,PH012,Losartan 50mg,8,Daulatpur
+2024-02-25,PH012,Paracetamol 500mg,123,Daulatpur
+2024-02-25,PH012,ORS Sachet,14,Daulatpur
+2024-02-25,PH012,Metronidazole 400mg,12,Daulatpur
+2024-02-25,PH012,Cetirizine 10mg,13,Daulatpur
+2024-02-25,PH012,Amoxicillin 500mg,26,Daulatpur
+2024-02-25,PH012,Azithromycin 500mg,20,Daulatpur
+2024-02-25,PH012,Zinc 20mg (child),12,Daulatpur
+2024-02-25,PH012,Ciprofloxacin 500mg,8,Daulatpur
+2024-02-25,PH012,Antihistamine Syrup,12,Daulatpur
+2024-02-25,PH012,Vitamin C 500mg,26,Daulatpur
+2024-02-25,PH012,Ranitidine 150mg,18,Daulatpur
+2024-02-25,PH012,Antacid Tablet,15,Daulatpur
+2024-02-25,PH012,Insulin (vial),4,Daulatpur
+2024-02-25,PH012,Atorvastatin 10mg,6,Daulatpur
+2024-02-25,PH012,Losartan 50mg,6,Daulatpur
+2024-02-26,PH012,Paracetamol 500mg,108,Daulatpur
+2024-02-26,PH012,ORS Sachet,16,Daulatpur
+2024-02-26,PH012,Metronidazole 400mg,10,Daulatpur
+2024-02-26,PH012,Cetirizine 10mg,16,Daulatpur
+2024-02-26,PH012,Amoxicillin 500mg,25,Daulatpur
+2024-02-26,PH012,Azithromycin 500mg,17,Daulatpur
+2024-02-26,PH012,Zinc 20mg (child),11,Daulatpur
+2024-02-26,PH012,Ciprofloxacin 500mg,5,Daulatpur
+2024-02-26,PH012,Antihistamine Syrup,8,Daulatpur
+2024-02-26,PH012,Vitamin C 500mg,23,Daulatpur
+2024-02-26,PH012,Ranitidine 150mg,12,Daulatpur
+2024-02-26,PH012,Antacid Tablet,21,Daulatpur
+2024-02-26,PH012,Insulin (vial),4,Daulatpur
+2024-02-26,PH012,Atorvastatin 10mg,8,Daulatpur
+2024-02-26,PH012,Losartan 50mg,7,Daulatpur
+2024-02-27,PH012,Paracetamol 500mg,106,Daulatpur
+2024-02-27,PH012,ORS Sachet,15,Daulatpur
+2024-02-27,PH012,Metronidazole 400mg,9,Daulatpur
+2024-02-27,PH012,Cetirizine 10mg,10,Daulatpur
+2024-02-27,PH012,Amoxicillin 500mg,24,Daulatpur
+2024-02-27,PH012,Azithromycin 500mg,16,Daulatpur
+2024-02-27,PH012,Zinc 20mg (child),11,Daulatpur
+2024-02-27,PH012,Ciprofloxacin 500mg,7,Daulatpur
+2024-02-27,PH012,Antihistamine Syrup,9,Daulatpur
+2024-02-27,PH012,Vitamin C 500mg,26,Daulatpur
+2024-02-27,PH012,Ranitidine 150mg,19,Daulatpur
+2024-02-27,PH012,Antacid Tablet,16,Daulatpur
+2024-02-27,PH012,Insulin (vial),4,Daulatpur
+2024-02-27,PH012,Atorvastatin 10mg,8,Daulatpur
+2024-02-27,PH012,Losartan 50mg,9,Daulatpur
+2024-02-28,PH012,Paracetamol 500mg,91,Daulatpur
+2024-02-28,PH012,ORS Sachet,17,Daulatpur
+2024-02-28,PH012,Metronidazole 400mg,12,Daulatpur
+2024-02-28,PH012,Cetirizine 10mg,14,Daulatpur
+2024-02-28,PH012,Amoxicillin 500mg,22,Daulatpur
+2024-02-28,PH012,Azithromycin 500mg,12,Daulatpur
+2024-02-28,PH012,Zinc 20mg (child),9,Daulatpur
+2024-02-28,PH012,Ciprofloxacin 500mg,7,Daulatpur
+2024-02-28,PH012,Antihistamine Syrup,10,Daulatpur
+2024-02-28,PH012,Vitamin C 500mg,17,Daulatpur
+2024-02-28,PH012,Ranitidine 150mg,13,Daulatpur
+2024-02-28,PH012,Antacid Tablet,19,Daulatpur
+2024-02-28,PH012,Insulin (vial),4,Daulatpur
+2024-02-28,PH012,Atorvastatin 10mg,8,Daulatpur
+2024-02-28,PH012,Losartan 50mg,9,Daulatpur
+2024-02-29,PH012,Paracetamol 500mg,59,Daulatpur
+2024-02-29,PH012,ORS Sachet,21,Daulatpur
+2024-02-29,PH012,Metronidazole 400mg,9,Daulatpur
+2024-02-29,PH012,Cetirizine 10mg,12,Daulatpur
+2024-02-29,PH012,Amoxicillin 500mg,17,Daulatpur
+2024-02-29,PH012,Azithromycin 500mg,14,Daulatpur
+2024-02-29,PH012,Zinc 20mg (child),10,Daulatpur
+2024-02-29,PH012,Ciprofloxacin 500mg,8,Daulatpur
+2024-02-29,PH012,Antihistamine Syrup,11,Daulatpur
+2024-02-29,PH012,Vitamin C 500mg,17,Daulatpur
+2024-02-29,PH012,Ranitidine 150mg,12,Daulatpur
+2024-02-29,PH012,Antacid Tablet,15,Daulatpur
+2024-02-29,PH012,Insulin (vial),5,Daulatpur
+2024-02-29,PH012,Atorvastatin 10mg,5,Daulatpur
+2024-02-29,PH012,Losartan 50mg,8,Daulatpur
+2024-03-01,PH012,Paracetamol 500mg,81,Daulatpur
+2024-03-01,PH012,ORS Sachet,17,Daulatpur
+2024-03-01,PH012,Metronidazole 400mg,11,Daulatpur
+2024-03-01,PH012,Cetirizine 10mg,14,Daulatpur
+2024-03-01,PH012,Amoxicillin 500mg,17,Daulatpur
+2024-03-01,PH012,Azithromycin 500mg,10,Daulatpur
+2024-03-01,PH012,Zinc 20mg (child),10,Daulatpur
+2024-03-01,PH012,Ciprofloxacin 500mg,7,Daulatpur
+2024-03-01,PH012,Antihistamine Syrup,11,Daulatpur
+2024-03-01,PH012,Vitamin C 500mg,23,Daulatpur
+2024-03-01,PH012,Ranitidine 150mg,18,Daulatpur
+2024-03-01,PH012,Antacid Tablet,21,Daulatpur
+2024-03-01,PH012,Insulin (vial),5,Daulatpur
+2024-03-01,PH012,Atorvastatin 10mg,7,Daulatpur
+2024-03-01,PH012,Losartan 50mg,8,Daulatpur
+2024-03-02,PH012,Paracetamol 500mg,64,Daulatpur
+2024-03-02,PH012,ORS Sachet,15,Daulatpur
+2024-03-02,PH012,Metronidazole 400mg,14,Daulatpur
+2024-03-02,PH012,Cetirizine 10mg,12,Daulatpur
+2024-03-02,PH012,Amoxicillin 500mg,11,Daulatpur
+2024-03-02,PH012,Azithromycin 500mg,11,Daulatpur
+2024-03-02,PH012,Zinc 20mg (child),9,Daulatpur
+2024-03-02,PH012,Ciprofloxacin 500mg,6,Daulatpur
+2024-03-02,PH012,Antihistamine Syrup,10,Daulatpur
+2024-03-02,PH012,Vitamin C 500mg,22,Daulatpur
+2024-03-02,PH012,Ranitidine 150mg,19,Daulatpur
+2024-03-02,PH012,Antacid Tablet,20,Daulatpur
+2024-03-02,PH012,Insulin (vial),4,Daulatpur
+2024-03-02,PH012,Atorvastatin 10mg,8,Daulatpur
+2024-03-02,PH012,Losartan 50mg,7,Daulatpur
+2024-03-03,PH012,Paracetamol 500mg,46,Daulatpur
+2024-03-03,PH012,ORS Sachet,22,Daulatpur
+2024-03-03,PH012,Metronidazole 400mg,12,Daulatpur
+2024-03-03,PH012,Cetirizine 10mg,13,Daulatpur
+2024-03-03,PH012,Amoxicillin 500mg,13,Daulatpur
+2024-03-03,PH012,Azithromycin 500mg,9,Daulatpur
+2024-03-03,PH012,Zinc 20mg (child),9,Daulatpur
+2024-03-03,PH012,Ciprofloxacin 500mg,5,Daulatpur
+2024-03-03,PH012,Antihistamine Syrup,11,Daulatpur
+2024-03-03,PH012,Vitamin C 500mg,18,Daulatpur
+2024-03-03,PH012,Ranitidine 150mg,14,Daulatpur
+2024-03-03,PH012,Antacid Tablet,15,Daulatpur
+2024-03-03,PH012,Insulin (vial),5,Daulatpur
+2024-03-03,PH012,Atorvastatin 10mg,7,Daulatpur
+2024-03-03,PH012,Losartan 50mg,8,Daulatpur
+2024-03-04,PH012,Paracetamol 500mg,53,Daulatpur
+2024-03-04,PH012,ORS Sachet,17,Daulatpur
+2024-03-04,PH012,Metronidazole 400mg,9,Daulatpur
+2024-03-04,PH012,Cetirizine 10mg,14,Daulatpur
+2024-03-04,PH012,Amoxicillin 500mg,11,Daulatpur
+2024-03-04,PH012,Azithromycin 500mg,7,Daulatpur
+2024-03-04,PH012,Zinc 20mg (child),11,Daulatpur
+2024-03-04,PH012,Ciprofloxacin 500mg,5,Daulatpur
+2024-03-04,PH012,Antihistamine Syrup,13,Daulatpur
+2024-03-04,PH012,Vitamin C 500mg,17,Daulatpur
+2024-03-04,PH012,Ranitidine 150mg,17,Daulatpur
+2024-03-04,PH012,Antacid Tablet,23,Daulatpur
+2024-03-04,PH012,Insulin (vial),5,Daulatpur
+2024-03-04,PH012,Atorvastatin 10mg,5,Daulatpur
+2024-03-04,PH012,Losartan 50mg,9,Daulatpur
+2024-03-05,PH012,Paracetamol 500mg,41,Daulatpur
+2024-03-05,PH012,ORS Sachet,15,Daulatpur
+2024-03-05,PH012,Metronidazole 400mg,14,Daulatpur
+2024-03-05,PH012,Cetirizine 10mg,14,Daulatpur
+2024-03-05,PH012,Amoxicillin 500mg,11,Daulatpur
+2024-03-05,PH012,Azithromycin 500mg,7,Daulatpur
+2024-03-05,PH012,Zinc 20mg (child),9,Daulatpur
+2024-03-05,PH012,Ciprofloxacin 500mg,7,Daulatpur
+2024-03-05,PH012,Antihistamine Syrup,10,Daulatpur
+2024-03-05,PH012,Vitamin C 500mg,22,Daulatpur
+2024-03-05,PH012,Ranitidine 150mg,18,Daulatpur
+2024-03-05,PH012,Antacid Tablet,17,Daulatpur
+2024-03-05,PH012,Insulin (vial),4,Daulatpur
+2024-03-05,PH012,Atorvastatin 10mg,7,Daulatpur
+2024-03-05,PH012,Losartan 50mg,9,Daulatpur
+2024-03-06,PH012,Paracetamol 500mg,29,Daulatpur
+2024-03-06,PH012,ORS Sachet,18,Daulatpur
+2024-03-06,PH012,Metronidazole 400mg,11,Daulatpur
+2024-03-06,PH012,Cetirizine 10mg,15,Daulatpur
+2024-03-06,PH012,Amoxicillin 500mg,12,Daulatpur
+2024-03-06,PH012,Azithromycin 500mg,7,Daulatpur
+2024-03-06,PH012,Zinc 20mg (child),12,Daulatpur
+2024-03-06,PH012,Ciprofloxacin 500mg,6,Daulatpur
+2024-03-06,PH012,Antihistamine Syrup,11,Daulatpur
+2024-03-06,PH012,Vitamin C 500mg,18,Daulatpur
+2024-03-06,PH012,Ranitidine 150mg,12,Daulatpur
+2024-03-06,PH012,Antacid Tablet,21,Daulatpur
+2024-03-06,PH012,Insulin (vial),5,Daulatpur
+2024-03-06,PH012,Atorvastatin 10mg,7,Daulatpur
+2024-03-06,PH012,Losartan 50mg,6,Daulatpur
+2024-03-07,PH012,Paracetamol 500mg,32,Daulatpur
+2024-03-07,PH012,ORS Sachet,15,Daulatpur
+2024-03-07,PH012,Metronidazole 400mg,9,Daulatpur
+2024-03-07,PH012,Cetirizine 10mg,15,Daulatpur
+2024-03-07,PH012,Amoxicillin 500mg,10,Daulatpur
+2024-03-07,PH012,Azithromycin 500mg,5,Daulatpur
+2024-03-07,PH012,Zinc 20mg (child),10,Daulatpur
+2024-03-07,PH012,Ciprofloxacin 500mg,5,Daulatpur
+2024-03-07,PH012,Antihistamine Syrup,13,Daulatpur
+2024-03-07,PH012,Vitamin C 500mg,18,Daulatpur
+2024-03-07,PH012,Ranitidine 150mg,17,Daulatpur
+2024-03-07,PH012,Antacid Tablet,19,Daulatpur
+2024-03-07,PH012,Insulin (vial),5,Daulatpur
+2024-03-07,PH012,Atorvastatin 10mg,7,Daulatpur
+2024-03-07,PH012,Losartan 50mg,8,Daulatpur
+2024-03-08,PH012,Paracetamol 500mg,37,Daulatpur
+2024-03-08,PH012,ORS Sachet,20,Daulatpur
+2024-03-08,PH012,Metronidazole 400mg,9,Daulatpur
+2024-03-08,PH012,Cetirizine 10mg,15,Daulatpur
+2024-03-08,PH012,Amoxicillin 500mg,7,Daulatpur
+2024-03-08,PH012,Azithromycin 500mg,7,Daulatpur
+2024-03-08,PH012,Zinc 20mg (child),7,Daulatpur
+2024-03-08,PH012,Ciprofloxacin 500mg,6,Daulatpur
+2024-03-08,PH012,Antihistamine Syrup,11,Daulatpur
+2024-03-08,PH012,Vitamin C 500mg,24,Daulatpur
+2024-03-08,PH012,Ranitidine 150mg,13,Daulatpur
+2024-03-08,PH012,Antacid Tablet,24,Daulatpur
+2024-03-08,PH012,Insulin (vial),4,Daulatpur
+2024-03-08,PH012,Atorvastatin 10mg,7,Daulatpur
+2024-03-08,PH012,Losartan 50mg,8,Daulatpur
+2024-03-09,PH012,Paracetamol 500mg,39,Daulatpur
+2024-03-09,PH012,ORS Sachet,20,Daulatpur
+2024-03-09,PH012,Metronidazole 400mg,14,Daulatpur
+2024-03-09,PH012,Cetirizine 10mg,11,Daulatpur
+2024-03-09,PH012,Amoxicillin 500mg,8,Daulatpur
+2024-03-09,PH012,Azithromycin 500mg,7,Daulatpur
+2024-03-09,PH012,Zinc 20mg (child),8,Daulatpur
+2024-03-09,PH012,Ciprofloxacin 500mg,8,Daulatpur
+2024-03-09,PH012,Antihistamine Syrup,12,Daulatpur
+2024-03-09,PH012,Vitamin C 500mg,27,Daulatpur
+2024-03-09,PH012,Ranitidine 150mg,15,Daulatpur
+2024-03-09,PH012,Antacid Tablet,22,Daulatpur
+2024-03-09,PH012,Insulin (vial),4,Daulatpur
+2024-03-09,PH012,Atorvastatin 10mg,6,Daulatpur
+2024-03-09,PH012,Losartan 50mg,7,Daulatpur
+2024-03-10,PH012,Paracetamol 500mg,34,Daulatpur
+2024-03-10,PH012,ORS Sachet,14,Daulatpur
+2024-03-10,PH012,Metronidazole 400mg,12,Daulatpur
+2024-03-10,PH012,Cetirizine 10mg,14,Daulatpur
+2024-03-10,PH012,Amoxicillin 500mg,9,Daulatpur
+2024-03-10,PH012,Azithromycin 500mg,6,Daulatpur
+2024-03-10,PH012,Zinc 20mg (child),9,Daulatpur
+2024-03-10,PH012,Ciprofloxacin 500mg,7,Daulatpur
+2024-03-10,PH012,Antihistamine Syrup,10,Daulatpur
+2024-03-10,PH012,Vitamin C 500mg,22,Daulatpur
+2024-03-10,PH012,Ranitidine 150mg,19,Daulatpur
+2024-03-10,PH012,Antacid Tablet,22,Daulatpur
+2024-03-10,PH012,Insulin (vial),6,Daulatpur
+2024-03-10,PH012,Atorvastatin 10mg,8,Daulatpur
+2024-03-10,PH012,Losartan 50mg,7,Daulatpur
+2024-03-11,PH012,Paracetamol 500mg,36,Daulatpur
+2024-03-11,PH012,ORS Sachet,15,Daulatpur
+2024-03-11,PH012,Metronidazole 400mg,12,Daulatpur
+2024-03-11,PH012,Cetirizine 10mg,11,Daulatpur
+2024-03-11,PH012,Amoxicillin 500mg,8,Daulatpur
+2024-03-11,PH012,Azithromycin 500mg,5,Daulatpur
+2024-03-11,PH012,Zinc 20mg (child),10,Daulatpur
+2024-03-11,PH012,Ciprofloxacin 500mg,6,Daulatpur
+2024-03-11,PH012,Antihistamine Syrup,13,Daulatpur
+2024-03-11,PH012,Vitamin C 500mg,25,Daulatpur
+2024-03-11,PH012,Ranitidine 150mg,14,Daulatpur
+2024-03-11,PH012,Antacid Tablet,21,Daulatpur
+2024-03-11,PH012,Insulin (vial),3,Daulatpur
+2024-03-11,PH012,Atorvastatin 10mg,5,Daulatpur
+2024-03-11,PH012,Losartan 50mg,8,Daulatpur
+2024-03-12,PH012,Paracetamol 500mg,30,Daulatpur
+2024-03-12,PH012,ORS Sachet,21,Daulatpur
+2024-03-12,PH012,Metronidazole 400mg,12,Daulatpur
+2024-03-12,PH012,Cetirizine 10mg,16,Daulatpur
+2024-03-12,PH012,Amoxicillin 500mg,8,Daulatpur
+2024-03-12,PH012,Azithromycin 500mg,4,Daulatpur
+2024-03-12,PH012,Zinc 20mg (child),11,Daulatpur
+2024-03-12,PH012,Ciprofloxacin 500mg,6,Daulatpur
+2024-03-12,PH012,Antihistamine Syrup,10,Daulatpur
+2024-03-12,PH012,Vitamin C 500mg,24,Daulatpur
+2024-03-12,PH012,Ranitidine 150mg,18,Daulatpur
+2024-03-12,PH012,Antacid Tablet,23,Daulatpur
+2024-03-12,PH012,Insulin (vial),5,Daulatpur
+2024-03-12,PH012,Atorvastatin 10mg,7,Daulatpur
+2024-03-12,PH012,Losartan 50mg,7,Daulatpur
+2024-03-13,PH012,Paracetamol 500mg,31,Daulatpur
+2024-03-13,PH012,ORS Sachet,21,Daulatpur
+2024-03-13,PH012,Metronidazole 400mg,10,Daulatpur
+2024-03-13,PH012,Cetirizine 10mg,15,Daulatpur
+2024-03-13,PH012,Amoxicillin 500mg,9,Daulatpur
+2024-03-13,PH012,Azithromycin 500mg,5,Daulatpur
+2024-03-13,PH012,Zinc 20mg (child),8,Daulatpur
+2024-03-13,PH012,Ciprofloxacin 500mg,6,Daulatpur
+2024-03-13,PH012,Antihistamine Syrup,11,Daulatpur
+2024-03-13,PH012,Vitamin C 500mg,24,Daulatpur
+2024-03-13,PH012,Ranitidine 150mg,18,Daulatpur
+2024-03-13,PH012,Antacid Tablet,22,Daulatpur
+2024-03-13,PH012,Insulin (vial),5,Daulatpur
+2024-03-13,PH012,Atorvastatin 10mg,5,Daulatpur
+2024-03-13,PH012,Losartan 50mg,7,Daulatpur
+2024-03-14,PH012,Paracetamol 500mg,36,Daulatpur
+2024-03-14,PH012,ORS Sachet,14,Daulatpur
+2024-03-14,PH012,Metronidazole 400mg,11,Daulatpur
+2024-03-14,PH012,Cetirizine 10mg,17,Daulatpur
+2024-03-14,PH012,Amoxicillin 500mg,8,Daulatpur
+2024-03-14,PH012,Azithromycin 500mg,4,Daulatpur
+2024-03-14,PH012,Zinc 20mg (child),8,Daulatpur
+2024-03-14,PH012,Ciprofloxacin 500mg,8,Daulatpur
+2024-03-14,PH012,Antihistamine Syrup,13,Daulatpur
+2024-03-14,PH012,Vitamin C 500mg,22,Daulatpur
+2024-03-14,PH012,Ranitidine 150mg,19,Daulatpur
+2024-03-14,PH012,Antacid Tablet,22,Daulatpur
+2024-03-14,PH012,Insulin (vial),4,Daulatpur
+2024-03-14,PH012,Atorvastatin 10mg,8,Daulatpur
+2024-03-14,PH012,Losartan 50mg,7,Daulatpur
+2024-03-15,PH012,Paracetamol 500mg,26,Daulatpur
+2024-03-15,PH012,ORS Sachet,15,Daulatpur
+2024-03-15,PH012,Metronidazole 400mg,12,Daulatpur
+2024-03-15,PH012,Cetirizine 10mg,14,Daulatpur
+2024-03-15,PH012,Amoxicillin 500mg,12,Daulatpur
+2024-03-15,PH012,Azithromycin 500mg,5,Daulatpur
+2024-03-15,PH012,Zinc 20mg (child),8,Daulatpur
+2024-03-15,PH012,Ciprofloxacin 500mg,7,Daulatpur
+2024-03-15,PH012,Antihistamine Syrup,8,Daulatpur
+2024-03-15,PH012,Vitamin C 500mg,17,Daulatpur
+2024-03-15,PH012,Ranitidine 150mg,13,Daulatpur
+2024-03-15,PH012,Antacid Tablet,17,Daulatpur
+2024-03-15,PH012,Insulin (vial),6,Daulatpur
+2024-03-15,PH012,Atorvastatin 10mg,5,Daulatpur
+2024-03-15,PH012,Losartan 50mg,6,Daulatpur
+2024-03-16,PH012,Paracetamol 500mg,36,Daulatpur
+2024-03-16,PH012,ORS Sachet,17,Daulatpur
+2024-03-16,PH012,Metronidazole 400mg,13,Daulatpur
+2024-03-16,PH012,Cetirizine 10mg,11,Daulatpur
+2024-03-16,PH012,Amoxicillin 500mg,11,Daulatpur
+2024-03-16,PH012,Azithromycin 500mg,4,Daulatpur
+2024-03-16,PH012,Zinc 20mg (child),9,Daulatpur
+2024-03-16,PH012,Ciprofloxacin 500mg,6,Daulatpur
+2024-03-16,PH012,Antihistamine Syrup,11,Daulatpur
+2024-03-16,PH012,Vitamin C 500mg,24,Daulatpur
+2024-03-16,PH012,Ranitidine 150mg,14,Daulatpur
+2024-03-16,PH012,Antacid Tablet,19,Daulatpur
+2024-03-16,PH012,Insulin (vial),5,Daulatpur
+2024-03-16,PH012,Atorvastatin 10mg,8,Daulatpur
+2024-03-16,PH012,Losartan 50mg,7,Daulatpur
+2024-03-17,PH012,Paracetamol 500mg,43,Daulatpur
+2024-03-17,PH012,ORS Sachet,18,Daulatpur
+2024-03-17,PH012,Metronidazole 400mg,14,Daulatpur
+2024-03-17,PH012,Cetirizine 10mg,14,Daulatpur
+2024-03-17,PH012,Amoxicillin 500mg,10,Daulatpur
+2024-03-17,PH012,Azithromycin 500mg,6,Daulatpur
+2024-03-17,PH012,Zinc 20mg (child),8,Daulatpur
+2024-03-17,PH012,Ciprofloxacin 500mg,5,Daulatpur
+2024-03-17,PH012,Antihistamine Syrup,10,Daulatpur
+2024-03-17,PH012,Vitamin C 500mg,24,Daulatpur
+2024-03-17,PH012,Ranitidine 150mg,13,Daulatpur
+2024-03-17,PH012,Antacid Tablet,15,Daulatpur
+2024-03-17,PH012,Insulin (vial),5,Daulatpur
+2024-03-17,PH012,Atorvastatin 10mg,8,Daulatpur
+2024-03-17,PH012,Losartan 50mg,9,Daulatpur
+2024-03-18,PH012,Paracetamol 500mg,42,Daulatpur
+2024-03-18,PH012,ORS Sachet,18,Daulatpur
+2024-03-18,PH012,Metronidazole 400mg,11,Daulatpur
+2024-03-18,PH012,Cetirizine 10mg,10,Daulatpur
+2024-03-18,PH012,Amoxicillin 500mg,11,Daulatpur
+2024-03-18,PH012,Azithromycin 500mg,6,Daulatpur
+2024-03-18,PH012,Zinc 20mg (child),8,Daulatpur
+2024-03-18,PH012,Ciprofloxacin 500mg,7,Daulatpur
+2024-03-18,PH012,Antihistamine Syrup,8,Daulatpur
+2024-03-18,PH012,Vitamin C 500mg,23,Daulatpur
+2024-03-18,PH012,Ranitidine 150mg,12,Daulatpur
+2024-03-18,PH012,Antacid Tablet,16,Daulatpur
+2024-03-18,PH012,Insulin (vial),4,Daulatpur
+2024-03-18,PH012,Atorvastatin 10mg,6,Daulatpur
+2024-03-18,PH012,Losartan 50mg,6,Daulatpur
+2024-03-19,PH012,Paracetamol 500mg,38,Daulatpur
+2024-03-19,PH012,ORS Sachet,17,Daulatpur
+2024-03-19,PH012,Metronidazole 400mg,12,Daulatpur
+2024-03-19,PH012,Cetirizine 10mg,13,Daulatpur
+2024-03-19,PH012,Amoxicillin 500mg,10,Daulatpur
+2024-03-19,PH012,Azithromycin 500mg,5,Daulatpur
+2024-03-19,PH012,Zinc 20mg (child),7,Daulatpur
+2024-03-19,PH012,Ciprofloxacin 500mg,8,Daulatpur
+2024-03-19,PH012,Antihistamine Syrup,8,Daulatpur
+2024-03-19,PH012,Vitamin C 500mg,18,Daulatpur
+2024-03-19,PH012,Ranitidine 150mg,12,Daulatpur
+2024-03-19,PH012,Antacid Tablet,17,Daulatpur
+2024-03-19,PH012,Insulin (vial),4,Daulatpur
+2024-03-19,PH012,Atorvastatin 10mg,6,Daulatpur
+2024-03-19,PH012,Losartan 50mg,7,Daulatpur
+2024-03-20,PH012,Paracetamol 500mg,36,Daulatpur
+2024-03-20,PH012,ORS Sachet,21,Daulatpur
+2024-03-20,PH012,Metronidazole 400mg,10,Daulatpur
+2024-03-20,PH012,Cetirizine 10mg,11,Daulatpur
+2024-03-20,PH012,Amoxicillin 500mg,8,Daulatpur
+2024-03-20,PH012,Azithromycin 500mg,6,Daulatpur
+2024-03-20,PH012,Zinc 20mg (child),12,Daulatpur
+2024-03-20,PH012,Ciprofloxacin 500mg,6,Daulatpur
+2024-03-20,PH012,Antihistamine Syrup,10,Daulatpur
+2024-03-20,PH012,Vitamin C 500mg,24,Daulatpur
+2024-03-20,PH012,Ranitidine 150mg,18,Daulatpur
+2024-03-20,PH012,Antacid Tablet,20,Daulatpur
+2024-03-20,PH012,Insulin (vial),6,Daulatpur
+2024-03-20,PH012,Atorvastatin 10mg,7,Daulatpur
+2024-03-20,PH012,Losartan 50mg,7,Daulatpur
+2024-03-21,PH012,Paracetamol 500mg,38,Daulatpur
+2024-03-21,PH012,ORS Sachet,15,Daulatpur
+2024-03-21,PH012,Metronidazole 400mg,10,Daulatpur
+2024-03-21,PH012,Cetirizine 10mg,14,Daulatpur
+2024-03-21,PH012,Amoxicillin 500mg,8,Daulatpur
+2024-03-21,PH012,Azithromycin 500mg,5,Daulatpur
+2024-03-21,PH012,Zinc 20mg (child),9,Daulatpur
+2024-03-21,PH012,Ciprofloxacin 500mg,8,Daulatpur
+2024-03-21,PH012,Antihistamine Syrup,11,Daulatpur
+2024-03-21,PH012,Vitamin C 500mg,24,Daulatpur
+2024-03-21,PH012,Ranitidine 150mg,16,Daulatpur
+2024-03-21,PH012,Antacid Tablet,20,Daulatpur
+2024-03-21,PH012,Insulin (vial),4,Daulatpur
+2024-03-21,PH012,Atorvastatin 10mg,8,Daulatpur
+2024-03-21,PH012,Losartan 50mg,9,Daulatpur
+2024-03-22,PH012,Paracetamol 500mg,36,Daulatpur
+2024-03-22,PH012,ORS Sachet,16,Daulatpur
+2024-03-22,PH012,Metronidazole 400mg,12,Daulatpur
+2024-03-22,PH012,Cetirizine 10mg,15,Daulatpur
+2024-03-22,PH012,Amoxicillin 500mg,11,Daulatpur
+2024-03-22,PH012,Azithromycin 500mg,5,Daulatpur
+2024-03-22,PH012,Zinc 20mg (child),10,Daulatpur
+2024-03-22,PH012,Ciprofloxacin 500mg,6,Daulatpur
+2024-03-22,PH012,Antihistamine Syrup,11,Daulatpur
+2024-03-22,PH012,Vitamin C 500mg,18,Daulatpur
+2024-03-22,PH012,Ranitidine 150mg,13,Daulatpur
+2024-03-22,PH012,Antacid Tablet,23,Daulatpur
+2024-03-22,PH012,Insulin (vial),4,Daulatpur
+2024-03-22,PH012,Atorvastatin 10mg,7,Daulatpur
+2024-03-22,PH012,Losartan 50mg,9,Daulatpur
+2024-03-23,PH012,Paracetamol 500mg,37,Daulatpur
+2024-03-23,PH012,ORS Sachet,22,Daulatpur
+2024-03-23,PH012,Metronidazole 400mg,12,Daulatpur
+2024-03-23,PH012,Cetirizine 10mg,14,Daulatpur
+2024-03-23,PH012,Amoxicillin 500mg,12,Daulatpur
+2024-03-23,PH012,Azithromycin 500mg,6,Daulatpur
+2024-03-23,PH012,Zinc 20mg (child),12,Daulatpur
+2024-03-23,PH012,Ciprofloxacin 500mg,7,Daulatpur
+2024-03-23,PH012,Antihistamine Syrup,10,Daulatpur
+2024-03-23,PH012,Vitamin C 500mg,18,Daulatpur
+2024-03-23,PH012,Ranitidine 150mg,12,Daulatpur
+2024-03-23,PH012,Antacid Tablet,24,Daulatpur
+2024-03-23,PH012,Insulin (vial),4,Daulatpur
+2024-03-23,PH012,Atorvastatin 10mg,5,Daulatpur
+2024-03-23,PH012,Losartan 50mg,6,Daulatpur
+2024-03-24,PH012,Paracetamol 500mg,29,Daulatpur
+2024-03-24,PH012,ORS Sachet,19,Daulatpur
+2024-03-24,PH012,Metronidazole 400mg,14,Daulatpur
+2024-03-24,PH012,Cetirizine 10mg,13,Daulatpur
+2024-03-24,PH012,Amoxicillin 500mg,11,Daulatpur
+2024-03-24,PH012,Azithromycin 500mg,7,Daulatpur
+2024-03-24,PH012,Zinc 20mg (child),9,Daulatpur
+2024-03-24,PH012,Ciprofloxacin 500mg,7,Daulatpur
+2024-03-24,PH012,Antihistamine Syrup,9,Daulatpur
+2024-03-24,PH012,Vitamin C 500mg,26,Daulatpur
+2024-03-24,PH012,Ranitidine 150mg,19,Daulatpur
+2024-03-24,PH012,Antacid Tablet,18,Daulatpur
+2024-03-24,PH012,Insulin (vial),6,Daulatpur
+2024-03-24,PH012,Atorvastatin 10mg,6,Daulatpur
+2024-03-24,PH012,Losartan 50mg,7,Daulatpur
+2024-03-25,PH012,Paracetamol 500mg,29,Daulatpur
+2024-03-25,PH012,ORS Sachet,21,Daulatpur
+2024-03-25,PH012,Metronidazole 400mg,9,Daulatpur
+2024-03-25,PH012,Cetirizine 10mg,10,Daulatpur
+2024-03-25,PH012,Amoxicillin 500mg,9,Daulatpur
+2024-03-25,PH012,Azithromycin 500mg,6,Daulatpur
+2024-03-25,PH012,Zinc 20mg (child),7,Daulatpur
+2024-03-25,PH012,Ciprofloxacin 500mg,7,Daulatpur
+2024-03-25,PH012,Antihistamine Syrup,9,Daulatpur
+2024-03-25,PH012,Vitamin C 500mg,21,Daulatpur
+2024-03-25,PH012,Ranitidine 150mg,14,Daulatpur
+2024-03-25,PH012,Antacid Tablet,23,Daulatpur
+2024-03-25,PH012,Insulin (vial),4,Daulatpur
+2024-03-25,PH012,Atorvastatin 10mg,8,Daulatpur
+2024-03-25,PH012,Losartan 50mg,9,Daulatpur
+2024-03-26,PH012,Paracetamol 500mg,29,Daulatpur
+2024-03-26,PH012,ORS Sachet,18,Daulatpur
+2024-03-26,PH012,Metronidazole 400mg,14,Daulatpur
+2024-03-26,PH012,Cetirizine 10mg,17,Daulatpur
+2024-03-26,PH012,Amoxicillin 500mg,11,Daulatpur
+2024-03-26,PH012,Azithromycin 500mg,7,Daulatpur
+2024-03-26,PH012,Zinc 20mg (child),12,Daulatpur
+2024-03-26,PH012,Ciprofloxacin 500mg,5,Daulatpur
+2024-03-26,PH012,Antihistamine Syrup,12,Daulatpur
+2024-03-26,PH012,Vitamin C 500mg,19,Daulatpur
+2024-03-26,PH012,Ranitidine 150mg,19,Daulatpur
+2024-03-26,PH012,Antacid Tablet,21,Daulatpur
+2024-03-26,PH012,Insulin (vial),5,Daulatpur
+2024-03-26,PH012,Atorvastatin 10mg,6,Daulatpur
+2024-03-26,PH012,Losartan 50mg,9,Daulatpur
+2024-03-27,PH012,Paracetamol 500mg,38,Daulatpur
+2024-03-27,PH012,ORS Sachet,21,Daulatpur
+2024-03-27,PH012,Metronidazole 400mg,12,Daulatpur
+2024-03-27,PH012,Cetirizine 10mg,14,Daulatpur
+2024-03-27,PH012,Amoxicillin 500mg,10,Daulatpur
+2024-03-27,PH012,Azithromycin 500mg,5,Daulatpur
+2024-03-27,PH012,Zinc 20mg (child),8,Daulatpur
+2024-03-27,PH012,Ciprofloxacin 500mg,6,Daulatpur
+2024-03-27,PH012,Antihistamine Syrup,10,Daulatpur
+2024-03-27,PH012,Vitamin C 500mg,21,Daulatpur
+2024-03-27,PH012,Ranitidine 150mg,13,Daulatpur
+2024-03-27,PH012,Antacid Tablet,15,Daulatpur
+2024-03-27,PH012,Insulin (vial),4,Daulatpur
+2024-03-27,PH012,Atorvastatin 10mg,5,Daulatpur
+2024-03-27,PH012,Losartan 50mg,9,Daulatpur
+2024-03-28,PH012,Paracetamol 500mg,38,Daulatpur
+2024-03-28,PH012,ORS Sachet,14,Daulatpur
+2024-03-28,PH012,Metronidazole 400mg,10,Daulatpur
+2024-03-28,PH012,Cetirizine 10mg,14,Daulatpur
+2024-03-28,PH012,Amoxicillin 500mg,10,Daulatpur
+2024-03-28,PH012,Azithromycin 500mg,6,Daulatpur
+2024-03-28,PH012,Zinc 20mg (child),8,Daulatpur
+2024-03-28,PH012,Ciprofloxacin 500mg,7,Daulatpur
+2024-03-28,PH012,Antihistamine Syrup,10,Daulatpur
+2024-03-28,PH012,Vitamin C 500mg,22,Daulatpur
+2024-03-28,PH012,Ranitidine 150mg,13,Daulatpur
+2024-03-28,PH012,Antacid Tablet,17,Daulatpur
+2024-03-28,PH012,Insulin (vial),3,Daulatpur
+2024-03-28,PH012,Atorvastatin 10mg,7,Daulatpur
+2024-03-28,PH012,Losartan 50mg,9,Daulatpur
+2024-03-29,PH012,Paracetamol 500mg,31,Daulatpur
+2024-03-29,PH012,ORS Sachet,14,Daulatpur
+2024-03-29,PH012,Metronidazole 400mg,14,Daulatpur
+2024-03-29,PH012,Cetirizine 10mg,14,Daulatpur
+2024-03-29,PH012,Amoxicillin 500mg,11,Daulatpur
+2024-03-29,PH012,Azithromycin 500mg,6,Daulatpur
+2024-03-29,PH012,Zinc 20mg (child),11,Daulatpur
+2024-03-29,PH012,Ciprofloxacin 500mg,6,Daulatpur
+2024-03-29,PH012,Antihistamine Syrup,12,Daulatpur
+2024-03-29,PH012,Vitamin C 500mg,17,Daulatpur
+2024-03-29,PH012,Ranitidine 150mg,19,Daulatpur
+2024-03-29,PH012,Antacid Tablet,16,Daulatpur
+2024-03-29,PH012,Insulin (vial),4,Daulatpur
+2024-03-29,PH012,Atorvastatin 10mg,6,Daulatpur
+2024-03-29,PH012,Losartan 50mg,9,Daulatpur
+2024-03-30,PH012,Paracetamol 500mg,27,Daulatpur
+2024-03-30,PH012,ORS Sachet,19,Daulatpur
+2024-03-30,PH012,Metronidazole 400mg,12,Daulatpur
+2024-03-30,PH012,Cetirizine 10mg,16,Daulatpur
+2024-03-30,PH012,Amoxicillin 500mg,8,Daulatpur
+2024-03-30,PH012,Azithromycin 500mg,7,Daulatpur
+2024-03-30,PH012,Zinc 20mg (child),9,Daulatpur
+2024-03-30,PH012,Ciprofloxacin 500mg,8,Daulatpur
+2024-03-30,PH012,Antihistamine Syrup,11,Daulatpur
+2024-03-30,PH012,Vitamin C 500mg,20,Daulatpur
+2024-03-30,PH012,Ranitidine 150mg,19,Daulatpur
+2024-03-30,PH012,Antacid Tablet,15,Daulatpur
+2024-03-30,PH012,Insulin (vial),4,Daulatpur
+2024-03-30,PH012,Atorvastatin 10mg,5,Daulatpur
+2024-03-30,PH012,Losartan 50mg,9,Daulatpur

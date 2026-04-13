@@ -1,0 +1,502 @@
+generated_at: 2026-03-30T14:46:00Z
+note: "Consolidated hospital registration and credentials. Replace generated secrets before production."
+
+hospitals:
+  - hospital_slug: city-general
+    hospital_name: City General Hospital
+    registration_number: REG-2024-00001
+    hospital_logo: null
+    contact_email: contact@citygeneral.example
+    contact_phone: "+8801700000001"
+    hospital_type: General
+    website: https://city-general.example
+    address: 12 Hospital Road
+    city: Joypurhat
+    state: Rajshahi
+    country: Bangladesh
+    location:
+      latitude: 23.818000
+      longitude: 90.415000
+    admin:
+      name: Dr. Ayesha Rahman
+      email: admin@citygeneral.example
+    integration:
+      type: api
+      healthcare_id: PH000
+      base_api_url: http://localhost:9001/mock-hospitals/city-general/api
+      base_api_url_valid: true
+      auth:
+        type: api_key
+        header: X-API-Key
+        api_key: city-general-api-key
+      notes: "Local Docker endpoint; API-key auth via header X-API-Key."
+
+  - hospital_slug: metro-medical
+    hospital_name: Metro General Hospital
+    registration_number: REG-2024-12345
+    hospital_logo: null
+    contact_email: contact@hospital.com
+    contact_phone: "+1 (555) 123-4567"
+    hospital_type: General
+    website: https://www.hospital.com
+    address: 123 Main Street
+    city: San Francisco
+    state: CA
+    country: USA
+    location:
+      latitude: 23.810331
+      longitude: 90.412521
+    admin:
+      name: Dr. Jane Smith
+      email: admin@hospital.com
+    integration:
+      type: api
+      healthcare_id: PH005
+      base_api_url: http://localhost:9002/mock-hospitals/metro-medical/api
+      base_api_url_valid: true
+      auth:
+        type: bearer
+        header: Authorization
+        bearer_token: metro-medical-bearer-token
+      notes: "Local Docker endpoint; bearer auth only (Authorization: Bearer <token>)."
+
+  - hospital_slug: sunrise-health
+    hospital_name: Sunrise Health Hospital
+    registration_number: REG-2024-00003
+    hospital_logo: null
+    contact_email: contact@sunrise.example
+    contact_phone: "+8801700000003"
+    hospital_type: General
+    website: https://sunrise-health.example
+    address: 45 Sunrise Ave
+    city: Khetlal
+    state: Joypurhat
+    country: Bangladesh
+    location:
+      latitude: 23.900000
+      longitude: 90.500000
+    admin:
+      name: Dr. Noor Ahmed
+      email: admin@sunrise.example
+    integration:
+      type: api
+      healthcare_id: PH011
+      base_api_url: http://localhost:9003/mock-hospitals/sunrise-health/api
+      base_api_url_valid: true
+      auth:
+        type: basic
+        username: sunrise
+        password: password123
+      notes: "Local Docker endpoint; Basic auth for API access."
+
+  - hospital_slug: green-valley
+    hospital_name: Green Valley Clinic
+    registration_number: REG-2024-00004
+    hospital_logo: null
+    contact_email: contact@greenvalley.example
+    contact_phone: "+8801700000004"
+    hospital_type: Clinic
+    website: https://green-valley.example
+    address: 78 Valley Road
+    city: Panchbibi
+    state: Joypurhat
+    country: Bangladesh
+    location:
+      latitude: 24.899729
+      longitude: 89.016533
+    admin:
+      name: Dr. Imran Hossain
+      email: admin@greenvalley.example
+    integration:
+      type: api
+      healthcare_id: PH014
+      base_api_url: http://localhost:9004/mock-hospitals/green-valley/api
+      base_api_url_valid: true
+      auth:
+        type: none
+        auth_details: null
+      notes: "Local Docker endpoint; no authentication required."
+
+  - hospital_slug: ph001-al-amin-drug-house
+    hospital_name: Al-Amin Drug House Hospital
+    registration_number: REG-2024-10001
+    hospital_logo: null
+    contact_email: contact@al-amin.example
+    contact_phone: "+8801700001001"
+    hospital_type: Healthcare-Client
+    website: https://ph001-al-amin-drug-house.example
+    address: 1 Market Street
+    city: Local Town
+    state: District
+    country: Bangladesh
+    location:
+      latitude: 23.820000
+      longitude: 90.420000
+    admin:
+      name: Mr. Karim Uddin
+      email: admin@al-amin.example
+    integration:
+      type: csv_only
+      healthcare_id: PH001
+      csv_bundle_path: generated/csv_clients/ph001-al-amin-drug-house
+      sales_rows: 1350
+
+  - hospital_slug: ph002-noor-medicine-corner
+    hospital_name: Noor Medicine Corner Hospital
+    registration_number: REG-2024-10002
+    hospital_logo: null
+    contact_email: contact@noor.example
+    contact_phone: "+8801700001002"
+    hospital_type: Healthcare-Client
+    website: https://ph002-noor-medicine-corner.example
+    address: 2 Market Street
+    city: Local Town
+    state: District
+    country: Bangladesh
+    location:
+      latitude: 23.821000
+      longitude: 90.421000
+    admin:
+      name: Mr. Karim Hasan
+      email: admin@noor.example
+    integration:
+      type: csv_only
+      healthcare_id: PH002
+      csv_bundle_path: generated/csv_clients/ph002-noor-medicine-corner
+      sales_rows: 1350
+
+  - hospital_slug: ph003-rahman-healthcare
+    hospital_name: Rahman Healthcare Hospital
+    registration_number: REG-2024-10003
+    hospital_logo: null
+    contact_email: contact@rahman.example
+    contact_phone: "+8801700001003"
+    hospital_type: Healthcare-Client
+    website: https://ph003-rahman-healthcare.example
+    address: 3 Market Street
+    city: Local Town
+    state: District
+    country: Bangladesh
+    location:
+      latitude: 23.822000
+      longitude: 90.422000
+    admin:
+      name: Mr. Rahman
+      email: admin@rahman.example
+    integration:
+      type: csv_only
+      healthcare_id: PH003
+      csv_bundle_path: generated/csv_clients/ph003-rahman-healthcare
+      sales_rows: 1350
+
+  - hospital_slug: ph004-city-drug-store
+    hospital_name: City Drug Store Hospital
+    registration_number: REG-2024-10004
+    hospital_logo: null
+    contact_email: contact@citydrug.example
+    contact_phone: "+8801700001004"
+    hospital_type: Healthcare-Client
+    website: https://ph004-city-drug-store.example
+    address: 4 Market Street
+    city: Local Town
+    state: District
+    country: Bangladesh
+    location:
+      latitude: 23.823000
+      longitude: 90.423000
+    admin:
+      name: Mr. Amin
+      email: admin@citydrug.example
+    integration:
+      type: csv_only
+      healthcare_id: PH004
+      csv_bundle_path: generated/csv_clients/ph004-city-drug-store
+      sales_rows: 1350
+
+  - hospital_slug: ph006-green-cross-healthcare
+    hospital_name: Green Cross Healthcare Hospital
+    registration_number: REG-2024-10006
+    hospital_logo: null
+    contact_email: contact@greencross.example
+    contact_phone: "+8801700001006"
+    hospital_type: Healthcare-Client
+    website: https://ph006-green-cross-healthcare.example
+    address: 6 Market Street
+    city: Local Town
+    state: District
+    country: Bangladesh
+    location:
+      latitude: 23.824000
+      longitude: 90.424000
+    admin:
+      name: Mr. Karim Sheikh
+      email: admin@greencross.example
+    integration:
+      type: csv_only
+      healthcare_id: PH006
+      csv_bundle_path: generated/csv_clients/ph006-green-cross-healthcare
+      sales_rows: 1350
+
+  - hospital_slug: ph007-sathi-drug-house
+    hospital_name: Sathi Drug House Hospital
+    registration_number: REG-2024-10007
+    hospital_logo: null
+    contact_email: contact@sathi.example
+    contact_phone: "+8801700001007"
+    hospital_type: Healthcare-Client
+    website: https://ph007-sathi-drug-house.example
+    address: 7 Market Street
+    city: Local Town
+    state: District
+    country: Bangladesh
+    location:
+      latitude: 23.825000
+      longitude: 90.425000
+    admin:
+      name: Ms. Sathi
+      email: admin@sathi.example
+    integration:
+      type: csv_only
+      healthcare_id: PH007
+      csv_bundle_path: generated/csv_clients/ph007-sathi-drug-house
+      sales_rows: 1350
+
+  - hospital_slug: ph008-bismillah-healthcare
+    hospital_name: Bismillah Healthcare Hospital
+    registration_number: REG-2024-10008
+    hospital_logo: null
+    contact_email: contact@bismillah.example
+    contact_phone: "+8801700001008"
+    hospital_type: Healthcare-Client
+    website: https://ph008-bismillah-healthcare.example
+    address: 8 Market Street
+    city: Local Town
+    state: District
+    country: Bangladesh
+    location:
+      latitude: 23.826000
+      longitude: 90.426000
+    admin:
+      name: Mr. Karim Ali
+      email: admin@bismillah.example
+    integration:
+      type: csv_only
+      healthcare_id: PH008
+      csv_bundle_path: generated/csv_clients/ph008-bismillah-healthcare
+      sales_rows: 1350
+
+  - hospital_slug: ph009-popular-healthcare
+    hospital_name: Popular Healthcare Hospital
+    registration_number: REG-2024-10009
+    hospital_logo: null
+    contact_email: contact@popular.example
+    contact_phone: "+8801700001009"
+    hospital_type: Healthcare-Client
+    website: https://ph009-popular-healthcare.example
+    address: 9 Market Street
+    city: Local Town
+    state: District
+    country: Bangladesh
+    location:
+      latitude: 23.827000
+      longitude: 90.427000
+    admin:
+      name: Mr. Popular
+      email: admin@popular.example
+    integration:
+      type: csv_only
+      healthcare_id: PH009
+      csv_bundle_path: generated/csv_clients/ph009-popular-healthcare
+      sales_rows: 1350
+
+  - hospital_slug: ph010-hasan-medicine
+    hospital_name: Hasan Medicine Hospital
+    registration_number: REG-2024-10010
+    hospital_logo: null
+    contact_email: contact@hasan.example
+    contact_phone: "+8801700001010"
+    hospital_type: Healthcare-Client
+    website: https://ph010-hasan-medicine.example
+    address: 10 Market Street
+    city: Local Town
+    state: District
+    country: Bangladesh
+    location:
+      latitude: 23.828000
+      longitude: 90.428000
+    admin:
+      name: Mr. Hasan
+      email: admin@hasan.example
+    integration:
+      type: csv_only
+      healthcare_id: PH010
+      csv_bundle_path: generated/csv_clients/ph010-hasan-medicine
+      sales_rows: 1350
+
+  - hospital_slug: ph012-moon-drug-store
+    hospital_name: Moon Drug Store Hospital
+    registration_number: REG-2024-10012
+    hospital_logo: null
+    contact_email: contact@moon.example
+    contact_phone: "+8801700001012"
+    hospital_type: Healthcare-Client
+    website: https://ph012-moon-drug-store.example
+    address: 12 Market Street
+    city: Local Town
+    state: District
+    country: Bangladesh
+    location:
+      latitude: 23.829000
+      longitude: 90.429000
+    admin:
+      name: Mr. Moon
+      email: admin@moon.example
+    integration:
+      type: csv_only
+      healthcare_id: PH012
+      csv_bundle_path: generated/csv_clients/ph012-moon-drug-store
+      sales_rows: 1350
+
+  - hospital_slug: ph013-rupali-healthcare
+    hospital_name: Rupali Healthcare Hospital
+    registration_number: REG-2024-10013
+    hospital_logo: null
+    contact_email: contact@rupali.example
+    contact_phone: "+8801700001013"
+    hospital_type: Healthcare-Client
+    website: https://ph013-rupali-healthcare.example
+    address: 13 Market Street
+    city: Local Town
+    state: District
+    country: Bangladesh
+    location:
+      latitude: 23.830000
+      longitude: 90.430000
+    admin:
+      name: Mr. Rupali
+      email: admin@rupali.example
+    integration:
+      type: csv_only
+      healthcare_id: PH013
+      csv_bundle_path: generated/csv_clients/ph013-rupali-healthcare
+      sales_rows: 1350
+
+  - hospital_slug: ph015-taher-drug-house
+    hospital_name: Taher Drug House Hospital
+    registration_number: REG-2024-10015
+    hospital_logo: null
+    contact_email: contact@taher.example
+    contact_phone: "+8801700001015"
+    hospital_type: Healthcare-Client
+    website: https://ph015-taher-drug-house.example
+    address: 15 Market Street
+    city: Local Town
+    state: District
+    country: Bangladesh
+    location:
+      latitude: 23.831000
+      longitude: 90.431000
+    admin:
+      name: Mr. Taher
+      email: admin@taher.example
+    integration:
+      type: csv_only
+      healthcare_id: PH015
+      csv_bundle_path: generated/csv_clients/ph015-taher-drug-house
+      sales_rows: 1350
+
+  - hospital_slug: ph016-health-plus-healthcare
+    hospital_name: Health Plus Healthcare Hospital
+    registration_number: REG-2024-10016
+    hospital_logo: null
+    contact_email: contact@healthplus.example
+    contact_phone: "+8801700001016"
+    hospital_type: Healthcare-Client
+    website: https://ph016-health-plus-healthcare.example
+    address: 16 Market Street
+    city: Local Town
+    state: District
+    country: Bangladesh
+    location:
+      latitude: 23.832000
+      longitude: 90.432000
+    admin:
+      name: Mr. Rahat
+      email: admin@healthplus.example
+    integration:
+      type: csv_only
+      healthcare_id: PH016
+      csv_bundle_path: generated/csv_clients/ph016-health-plus-healthcare
+      sales_rows: 1350
+
+  - hospital_slug: ph017-mamun-medicine-corner
+    hospital_name: Mamun Medicine Corner Hospital
+    registration_number: REG-2024-10017
+    hospital_logo: null
+    contact_email: contact@mamun.example
+    contact_phone: "+8801700001017"
+    hospital_type: Healthcare-Client
+    website: https://ph017-mamun-medicine-corner.example
+    address: 17 Market Street
+    city: Local Town
+    state: District
+    country: Bangladesh
+    location:
+      latitude: 23.833000
+      longitude: 90.433000
+    admin:
+      name: Mr. Mamun
+      email: admin@mamun.example
+    integration:
+      type: csv_only
+      healthcare_id: PH017
+      csv_bundle_path: generated/csv_clients/ph017-mamun-medicine-corner
+      sales_rows: 1350
+
+  - hospital_slug: ph018-riya-healthcare
+    hospital_name: Riya Healthcare Hospital
+    registration_number: REG-2024-10018
+    hospital_logo: null
+    contact_email: contact@riya.example
+    contact_phone: "+8801700001018"
+    hospital_type: Healthcare-Client
+    website: https://ph018-riya-healthcare.example
+    address: 18 Market Street
+    city: Local Town
+    state: District
+    country: Bangladesh
+    location:
+      latitude: 23.834000
+      longitude: 90.434000
+    admin:
+      name: Ms. Riya
+      email: admin@riya.example
+    integration:
+      type: csv_only
+      healthcare_id: PH018
+      csv_bundle_path: generated/csv_clients/ph018-riya-healthcare
+      sales_rows: 1350
+
+  - hospital_slug: ph019-trust-healthcare
+    hospital_name: Trust Healthcare Hospital
+    registration_number: REG-2024-10019
+    hospital_logo: null
+    contact_email: contact@trust.example
+    contact_phone: "+8801700001019"
+    hospital_type: Healthcare-Client
+    website: https://ph019-trust-healthcare.example
+    address: 19 Market Street
+    city: Local Town
+    state: District
+    country: Bangladesh
+    location:
+      latitude: 23.835000
+      longitude: 90.435000
+    admin:
+      name: Mr. Trust
+      email: admin@trust.example
+    integration:
+      type: csv_only
+      healthcare_id: PH019
+      csv_bundle_path: generated/csv_clients/ph019-trust-healthcare
+      sales_rows: 1350

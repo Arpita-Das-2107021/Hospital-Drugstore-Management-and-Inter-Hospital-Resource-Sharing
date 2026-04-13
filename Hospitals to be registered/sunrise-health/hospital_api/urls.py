@@ -23,4 +23,9 @@ urlpatterns = [
         views.staff,
         name="sunrise_health_staff",
     ),
+    path(
+        "mock-hospitals/sunrise-health/api/sales",
+        views.sales,
+        name="sunrise_health_sales",
+    ),
 ]

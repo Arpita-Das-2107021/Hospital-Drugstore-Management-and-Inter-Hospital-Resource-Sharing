@@ -1,0 +1,2 @@
+hospital_id,hospital_name,source_healthcare_id,source_healthcare_name,source_upazila,sales_zone_upazila,lat,lon,data_start_date,data_end_date,source_sales_rows,source_medicine_count
+HOSP-PH009,Popular Healthcare Hospital,PH009,Popular Healthcare,Kalai,Daulatpur,25.028188609133554,89.04812997519358,2024-01-01,2024-03-30,1350,15

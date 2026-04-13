@@ -1,22 +1,28 @@
-version: "3.9"
-
 services:
   city-general:
     build: ./city-general
     ports:
       - "9001:8000"
+    volumes:
+      - ./sales.csv:/app/sales.csv:ro
 
   metro-medical:
     build: ./metro-medical
     ports:
       - "9002:8000"
+    volumes:
+      - ./sales.csv:/app/sales.csv:ro
 
   sunrise-health:
     build: ./sunrise-health
     ports:
       - "9003:8000"
+    volumes:
+      - ./sales.csv:/app/sales.csv:ro
 
   green-valley:
     build: ./green-valley
     ports:
       - "9004:8000"
+    volumes:
+      - ./sales.csv:/app/sales.csv:ro

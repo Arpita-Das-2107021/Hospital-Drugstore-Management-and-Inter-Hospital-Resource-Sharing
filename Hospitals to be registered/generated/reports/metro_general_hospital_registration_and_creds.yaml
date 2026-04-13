@@ -1,0 +1,67 @@
+generated_at: 2026-03-30T14:30:00Z
+note: "Contains auth mapping for hospitals and the hospital registration info for Metro General Hospital. Replace generated passwords/tokens before production."
+
+api_auth_mapping:
+  - hospital_slug: city-general
+    hospital_name: City General Hospital
+    healthcare_id: PH000
+    auth_type: api_key
+    auth_details:
+      header: X-API-Key
+      value: city-general-api-key
+  - hospital_slug: metro-medical
+    hospital_name: Metro Medical
+    healthcare_id: PH005
+    auth_type: bearer
+    auth_details:
+      header: Authorization
+      value: "Bearer metro-medical-bearer-token"
+  - hospital_slug: sunrise-health
+    hospital_name: Sunrise Health
+    healthcare_id: PH011
+    auth_type: basic
+    auth_details:
+      username: sunrise
+      password: password123
+  - hospital_slug: green-valley
+    hospital_name: Green Valley Hospital
+    healthcare_id: PH014
+    auth_type: none
+    auth_details: null
+
+hospital_registration:
+  hospital_name: Metro General Hospital
+  registration_number: REG-2024-12345
+  hospital_logo: null
+  contact_email: contact@hospital.com
+  contact_phone: "+1 (555) 123-4567"
+  hospital_type: General
+  website: https://www.hospital.com
+  address: 123 Main Street
+  city: San Francisco
+  state: CA
+  country: USA
+  location:
+    latitude: 23.810331
+    longitude: 90.412521
+  admin:
+    name: Dr. Jane Smith
+    email: admin@hospital.com
+
+api_integration:
+  base_api_url: d
+  base_api_url_valid: false
+  base_api_url_notes: "Provided value does not start with http:// or https://"
+  recommended_auth_type: bearer
+  provided_auth_types:
+    api_key:
+      api_key: metro-general-api-key-6f3a2b
+      header: X-API-Key
+    bearer:
+      bearer_token: metro-general-bearer-token-9c7d1e
+      header: Authorization
+      format: "Bearer <token>"
+    basic:
+      username: metro_user
+      password: MetroG3n!2026
+  notes: "Replace generated credentials before use. Set `recommended_auth_type` as desired."

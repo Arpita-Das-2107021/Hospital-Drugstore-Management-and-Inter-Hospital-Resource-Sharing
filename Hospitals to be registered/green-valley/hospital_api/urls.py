@@ -23,4 +23,9 @@ urlpatterns = [
         views.staff,
         name="green_valley_staff",
     ),
+    path(
+        "mock-hospitals/green-valley/api/sales",
+        views.sales,
+        name="green_valley_sales",
+    ),
 ]

@@ -1,0 +1,148 @@
+{
+  "generated_at": "2026-03-30T14:18:18Z",
+  "source": {
+    "medicines_rows": 15,
+    "healthcares_rows": 20,
+    "sales_rows": 27000
+  },
+  "api_hospitals": [
+    {
+      "hospital_slug": "city-general",
+      "hospital_name": "City General Hospital",
+      "healthcare_id": "PH000",
+      "healthcare_name": "Asha Healthcare",
+      "source_upazila": "Joypurhat Sadar",
+      "sales_zone_upazila": "Khulna Sadar",
+      "auth_type": "api_key",
+      "auth_details": "X-API-Key: city-general-api-key"
+    },
+    {
+      "hospital_slug": "metro-medical",
+      "hospital_name": "Metro Medical Center",
+      "healthcare_id": "PH005",
+      "healthcare_name": "Akbar Medicine",
+      "source_upazila": "Akkelpur",
+      "sales_zone_upazila": "Sonadanga",
+      "auth_type": "bearer",
+      "auth_details": "Authorization: Bearer metro-medical-bearer-token"
+    },
+    {
+      "hospital_slug": "sunrise-health",
+      "hospital_name": "Sunrise Health Hospital",
+      "healthcare_id": "PH011",
+      "healthcare_name": "New Life Healthcare",
+      "source_upazila": "Khetlal",
+      "sales_zone_upazila": "Daulatpur",
+      "auth_type": "basic",
+      "auth_details": "username=sunrise, password=password123"
+    },
+    {
+      "hospital_slug": "green-valley",
+      "hospital_name": "Green Valley Clinic",
+      "healthcare_id": "PH014",
+      "healthcare_name": "Al-Shifa Medicine",
+      "source_upazila": "Panchbibi",
+      "sales_zone_upazila": "Khalishpur",
+      "auth_type": "none",
+      "auth_details": "No authentication"
+    }
+  ],
+  "csv_clients": [
+    {
+      "client_slug": "ph001-al-amin-drug-house",
+      "healthcare_id": "PH001",
+      "hospital_name": "Al-Amin Drug House Hospital",
+      "sales_rows": 1350
+    },
+    {
+      "client_slug": "ph002-noor-medicine-corner",
+      "healthcare_id": "PH002",
+      "hospital_name": "Noor Medicine Corner Hospital",
+      "sales_rows": 1350
+    },
+    {
+      "client_slug": "ph003-rahman-healthcare",
+      "healthcare_id": "PH003",
+      "hospital_name": "Rahman Healthcare Hospital",
+      "sales_rows": 1350
+    },
+    {
+      "client_slug": "ph004-city-drug-store",
+      "healthcare_id": "PH004",
+      "hospital_name": "City Drug Store Hospital",
+      "sales_rows": 1350
+    },
+    {
+      "client_slug": "ph006-green-cross-healthcare",
+      "healthcare_id": "PH006",
+      "hospital_name": "Green Cross Healthcare Hospital",
+      "sales_rows": 1350
+    },
+    {
+      "client_slug": "ph007-sathi-drug-house",
+      "healthcare_id": "PH007",
+      "hospital_name": "Sathi Drug House Hospital",
+      "sales_rows": 1350
+    },
+    {
+      "client_slug": "ph008-bismillah-healthcare",
+      "healthcare_id": "PH008",
+      "hospital_name": "Bismillah Healthcare Hospital",
+      "sales_rows": 1350
+    },
+    {
+      "client_slug": "ph009-popular-healthcare",
+      "healthcare_id": "PH009",
+      "hospital_name": "Popular Healthcare Hospital",
+      "sales_rows": 1350
+    },
+    {
+      "client_slug": "ph010-hasan-medicine",
+      "healthcare_id": "PH010",
+      "hospital_name": "Hasan Medicine Hospital",
+      "sales_rows": 1350
+    },
+    {
+      "client_slug": "ph012-moon-drug-store",
+      "healthcare_id": "PH012",
+      "hospital_name": "Moon Drug Store Hospital",
+      "sales_rows": 1350
+    },
+    {
+      "client_slug": "ph013-rupali-healthcare",
+      "healthcare_id": "PH013",
+      "hospital_name": "Rupali Healthcare Hospital",
+      "sales_rows": 1350
+    },
+    {
+      "client_slug": "ph015-taher-drug-house",
+      "healthcare_id": "PH015",
+      "hospital_name": "Taher Drug House Hospital",
+      "sales_rows": 1350
+    },
+    {
+      "client_slug": "ph016-health-plus-healthcare",
+      "healthcare_id": "PH016",
+      "hospital_name": "Health Plus Healthcare Hospital",
+      "sales_rows": 1350
+    },
+    {
+      "client_slug": "ph017-mamun-medicine-corner",
+      "healthcare_id": "PH017",
+      "hospital_name": "Mamun Medicine Corner Hospital",
+      "sales_rows": 1350
+    },
+    {
+      "client_slug": "ph018-riya-healthcare",
+      "healthcare_id": "PH018",
+      "hospital_name": "Riya Healthcare Hospital",
+      "sales_rows": 1350
+    },
+    {
+      "client_slug": "ph019-trust-healthcare",
+      "healthcare_id": "PH019",
+      "hospital_name": "Trust Healthcare Hospital",
+      "sales_rows": 1350
+    }
+  ]
+}

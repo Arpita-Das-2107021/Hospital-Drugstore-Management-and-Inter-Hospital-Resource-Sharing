@@ -1,0 +1,401 @@
+{
+  "hospital": {
+    "name": "Green Valley Clinic",
+    "slug": "green-valley",
+    "healthcare_id": "PH014",
+    "healthcare_name": "Al-Shifa Medicine",
+    "source_upazila": "Panchbibi",
+    "sales_zone_upazila": "Khalishpur",
+    "auth_type": "none",
+    "auth_details": "No authentication"
+  },
+  "resources": [
+    {
+      "code": "MED-001-PARACE",
+      "name": "Paracetamol 500mg",
+      "category": "medicine",
+      "quantity_available": 310,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-002-ORSSAC",
+      "name": "ORS Sachet",
+      "category": "medicine",
+      "quantity_available": 214,
+      "unit": "sachet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-003-METRON",
+      "name": "Metronidazole 400mg",
+      "category": "medicine",
+      "quantity_available": 132,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-004-CETIRI",
+      "name": "Cetirizine 10mg",
+      "category": "medicine",
+      "quantity_available": 121,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-005-AMOXIC",
+      "name": "Amoxicillin 500mg",
+      "category": "medicine",
+      "quantity_available": 85,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-006-AZITHR",
+      "name": "Azithromycin 500mg",
+      "category": "medicine",
+      "quantity_available": 55,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-007-ZINC20",
+      "name": "Zinc 20mg (child)",
+      "category": "medicine",
+      "quantity_available": 116,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-008-CIPROF",
+      "name": "Ciprofloxacin 500mg",
+      "category": "medicine",
+      "quantity_available": 73,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-009-ANTIHI",
+      "name": "Antihistamine Syrup",
+      "category": "medicine",
+      "quantity_available": 95,
+      "unit": "bottle",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-010-VITAMI",
+      "name": "Vitamin C 500mg",
+      "category": "medicine",
+      "quantity_available": 194,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-011-RANITI",
+      "name": "Ranitidine 150mg",
+      "category": "medicine",
+      "quantity_available": 138,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-012-ANTACI",
+      "name": "Antacid Tablet",
+      "category": "medicine",
+      "quantity_available": 172,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-013-INSULI",
+      "name": "Insulin (vial)",
+      "category": "medicine",
+      "quantity_available": 42,
+      "unit": "vial",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-014-ATORVA",
+      "name": "Atorvastatin 10mg",
+      "category": "medicine",
+      "quantity_available": 60,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-015-LOSART",
+      "name": "Losartan 50mg",
+      "category": "medicine",
+      "quantity_available": 68,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    }
+  ],
+  "beds": {
+    "bed_total": 311,
+    "bed_available": 76,
+    "icu_total": 50,
+    "icu_available": 10,
+    "last_updated": "2024-03-30T23:59:59Z"
+  },
+  "blood_units": [
+    {
+      "blood_group": "A+",
+      "units_available": 31,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "A-",
+      "units_available": 6,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "B+",
+      "units_available": 26,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "B-",
+      "units_available": 5,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "O+",
+      "units_available": 36,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "O-",
+      "units_available": 7,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "AB+",
+      "units_available": 8,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "AB-",
+      "units_available": 1,
+      "last_updated": "2024-03-30T23:59:59Z"
+    }
+  ],
+  "staff": [
+    {
+      "employee_id": "GVC-EMP-1001",
+      "first_name": "Arif",
+      "last_name": "Akter",
+      "department": "Family Medicine",
+      "position": "Family Physician",
+      "email": "arif.akter.1@green-valley.hrsp.local",
+      "phone": "+8801727031",
+      "status": "active"
+    },
+    {
+      "employee_id": "GVC-EMP-1002",
+      "first_name": "Nadia",
+      "last_name": "Sarker",
+      "department": "Outpatient",
+      "position": "OPD Coordinator",
+      "email": "nadia.sarker.2@green-valley.hrsp.local",
+      "phone": "+8801738362",
+      "status": "active"
+    },
+    {
+      "employee_id": "GVC-EMP-1003",
+      "first_name": "Tasnia",
+      "last_name": "Hasan",
+      "department": "Healthcare",
+      "position": "Dispensing Pharmacist",
+      "email": "tasnia.hasan.3@green-valley.hrsp.local",
+      "phone": "+8801774723",
+      "status": "active"
+    },
+    {
+      "employee_id": "GVC-EMP-1004",
+      "first_name": "Tariq",
+      "last_name": "Arefin",
+      "department": "Administration",
+      "position": "Clinic Coordinator",
+      "email": "tariq.arefin.4@green-valley.hrsp.local",
+      "phone": "+8801727094",
+      "status": "active"
+    },
+    {
+      "employee_id": "GVC-EMP-1005",
+      "first_name": "Sadia",
+      "last_name": "Morshed",
+      "department": "Family Medicine",
+      "position": "General Medical Officer",
+      "email": "sadia.morshed.5@green-valley.hrsp.local",
+      "phone": "+8801779145",
+      "status": "active"
+    },
+    {
+      "employee_id": "GVC-EMP-1006",
+      "first_name": "Tanvir",
+      "last_name": "Jahan",
+      "department": "Outpatient",
+      "position": "Duty Medical Officer",
+      "email": "tanvir.jahan.6@green-valley.hrsp.local",
+      "phone": "+8801745336",
+      "status": "inactive"
+    },
+    {
+      "employee_id": "GVC-EMP-1007",
+      "first_name": "Jamil",
+      "last_name": "Jahan",
+      "department": "Healthcare",
+      "position": "Healthcare Assistant",
+      "email": "jamil.jahan.7@green-valley.hrsp.local",
+      "phone": "+8801750187",
+      "status": "active"
+    },
+    {
+      "employee_id": "GVC-EMP-1008",
+      "first_name": "Afsana",
+      "last_name": "Rahman",
+      "department": "Administration",
+      "position": "Admin Officer",
+      "email": "afsana.rahman.8@green-valley.hrsp.local",
+      "phone": "+8801757408",
+      "status": "active"
+    },
+    {
+      "employee_id": "GVC-EMP-1009",
+      "first_name": "Ayman",
+      "last_name": "Akter",
+      "department": "Family Medicine",
+      "position": "Family Physician",
+      "email": "ayman.akter.9@green-valley.hrsp.local",
+      "phone": "+8801785919",
+      "status": "active"
+    },
+    {
+      "employee_id": "GVC-EMP-1010",
+      "first_name": "Mehnaz",
+      "last_name": "Kabir",
+      "department": "Outpatient",
+      "position": "OPD Coordinator",
+      "email": "mehnaz.kabir.10@green-valley.hrsp.local",
+      "phone": "+8801774960",
+      "status": "inactive"
+    },
+    {
+      "employee_id": "GVC-EMP-1011",
+      "first_name": "Farzana",
+      "last_name": "Anwar",
+      "department": "Healthcare",
+      "position": "Dispensing Pharmacist",
+      "email": "farzana.anwar.11@green-valley.hrsp.local",
+      "phone": "+8801778171",
+      "status": "active"
+    },
+    {
+      "employee_id": "GVC-EMP-1012",
+      "first_name": "Ayman",
+      "last_name": "Rahman",
+      "department": "Administration",
+      "position": "Clinic Coordinator",
+      "email": "ayman.rahman.12@green-valley.hrsp.local",
+      "phone": "+8801739592",
+      "status": "active"
+    },
+    {
+      "employee_id": "GVC-EMP-1013",
+      "first_name": "Nafisa",
+      "last_name": "Noor",
+      "department": "Family Medicine",
+      "position": "General Medical Officer",
+      "email": "nafisa.noor.13@green-valley.hrsp.local",
+      "phone": "+8801741703",
+      "status": "active"
+    },
+    {
+      "employee_id": "GVC-EMP-1014",
+      "first_name": "Nabil",
+      "last_name": "Hossain",
+      "department": "Outpatient",
+      "position": "Duty Medical Officer",
+      "email": "nabil.hossain.14@green-valley.hrsp.local",
+      "phone": "+8801750334",
+      "status": "active"
+    },
+    {
+      "employee_id": "GVC-EMP-1015",
+      "first_name": "Tahsin",
+      "last_name": "Sarker",
+      "department": "Healthcare",
+      "position": "Healthcare Assistant",
+      "email": "tahsin.sarker.15@green-valley.hrsp.local",
+      "phone": "+8801715365",
+      "status": "active"
+    },
+    {
+      "employee_id": "GVC-EMP-1016",
+      "first_name": "Rafi",
+      "last_name": "Hasan",
+      "department": "Administration",
+      "position": "Admin Officer",
+      "email": "rafi.hasan.16@green-valley.hrsp.local",
+      "phone": "+8801753406",
+      "status": "active"
+    },
+    {
+      "employee_id": "GVC-EMP-1017",
+      "first_name": "Rashed",
+      "last_name": "Khan",
+      "department": "Family Medicine",
+      "position": "Family Physician",
+      "email": "rashed.khan.17@green-valley.hrsp.local",
+      "phone": "+8801799257",
+      "status": "active"
+    },
+    {
+      "employee_id": "GVC-EMP-1018",
+      "first_name": "Tariq",
+      "last_name": "Rahman",
+      "department": "Outpatient",
+      "position": "OPD Coordinator",
+      "email": "tariq.rahman.18@green-valley.hrsp.local",
+      "phone": "+8801782088",
+      "status": "on_leave"
+    },
+    {
+      "employee_id": "GVC-EMP-1019",
+      "first_name": "Iffat",
+      "last_name": "Hasan",
+      "department": "Healthcare",
+      "position": "Dispensing Pharmacist",
+      "email": "iffat.hasan.19@green-valley.hrsp.local",
+      "phone": "+8801767629",
+      "status": "active"
+    },
+    {
+      "employee_id": "GVC-EMP-1020",
+      "first_name": "Munira",
+      "last_name": "Mahmud",
+      "department": "Administration",
+      "position": "Clinic Coordinator",
+      "email": "munira.mahmud.20@green-valley.hrsp.local",
+      "phone": "+8801727890",
+      "status": "inactive"
+    },
+    {
+      "employee_id": "GVC-EMP-1021",
+      "first_name": "Fahim",
+      "last_name": "Chowdhury",
+      "department": "Family Medicine",
+      "position": "General Medical Officer",
+      "email": "fahim.chowdhury.21@green-valley.hrsp.local",
+      "phone": "+8801780081",
+      "status": "active"
+    }
+  ],
+  "meta": {
+    "generated_at": "2026-03-30T14:18:18Z",
+    "source_sales_rows": 1350,
+    "source_unique_days": 90,
+    "source_medicine_count": 15
+  }
+}

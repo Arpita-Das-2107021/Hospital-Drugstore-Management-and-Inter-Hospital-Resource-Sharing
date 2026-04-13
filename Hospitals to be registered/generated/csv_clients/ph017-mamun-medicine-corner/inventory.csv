@@ -1,0 +1,16 @@
+resource_code,medicine_name,category,unit,quantity_available,avg_daily_demand,total_quantity_sold,base_daily_sales,outbreak_multiplier,signals_disease,last_updated
+MED-001-PARACE,Paracetamol 500mg,medicine,tablet,378,34.98,3148,30,3.5,Fever/Flu,2024-03-30T23:59:59Z
+MED-002-ORSSAC,ORS Sachet,medicine,sachet,264,26.03,2343,15,4.0,Diarrhea,2024-03-30T23:59:59Z
+MED-003-METRON,Metronidazole 400mg,medicine,tablet,160,15.32,1379,10,3.0,Diarrhea,2024-03-30T23:59:59Z
+MED-004-CETIRI,Cetirizine 10mg,medicine,tablet,150,13.60,1224,12,2.5,Allergy/Fever,2024-03-30T23:59:59Z
+MED-005-AMOXIC,Amoxicillin 500mg,medicine,tablet,106,9.50,855,8,2.8,Respiratory,2024-03-30T23:59:59Z
+MED-006-AZITHR,Azithromycin 500mg,medicine,tablet,66,5.61,505,5,3.2,Respiratory,2024-03-30T23:59:59Z
+MED-007-ZINC20,Zinc 20mg (child),medicine,tablet,139,13.37,1203,8,3.5,Diarrhea,2024-03-30T23:59:59Z
+MED-008-CIPROF,Ciprofloxacin 500mg,medicine,tablet,89,8.23,741,6,2.5,Diarrhea,2024-03-30T23:59:59Z
+MED-009-ANTIHI,Antihistamine Syrup,medicine,bottle,119,10.63,957,10,2.0,Allergy/Fever,2024-03-30T23:59:59Z
+MED-010-VITAMI,Vitamin C 500mg,medicine,tablet,238,21.69,1952,20,1.8,Fever/Flu,2024-03-30T23:59:59Z
+MED-011-RANITI,Ranitidine 150mg,medicine,tablet,171,15.69,1412,14,1.5,Normal,2024-03-30T23:59:59Z
+MED-012-ANTACI,Antacid Tablet,medicine,tablet,216,19.83,1785,18,1.3,Normal,2024-03-30T23:59:59Z
+MED-013-INSULI,Insulin (vial),medicine,vial,49,4.39,395,4,1.1,Normal,2024-03-30T23:59:59Z
+MED-014-ATORVA,Atorvastatin 10mg,medicine,tablet,71,6.42,578,6,1.0,Normal,2024-03-30T23:59:59Z
+MED-015-LOSART,Losartan 50mg,medicine,tablet,82,7.33,660,7,1.0,Normal,2024-03-30T23:59:59Z

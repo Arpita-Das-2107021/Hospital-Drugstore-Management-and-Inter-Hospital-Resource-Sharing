@@ -1,0 +1,401 @@
+{
+  "hospital": {
+    "name": "Sunrise Health Hospital",
+    "slug": "sunrise-health",
+    "healthcare_id": "PH011",
+    "healthcare_name": "New Life Healthcare",
+    "source_upazila": "Khetlal",
+    "sales_zone_upazila": "Daulatpur",
+    "auth_type": "basic",
+    "auth_details": "username=sunrise, password=password123"
+  },
+  "resources": [
+    {
+      "code": "MED-001-PARACE",
+      "name": "Paracetamol 500mg",
+      "category": "medicine",
+      "quantity_available": 438,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-002-ORSSAC",
+      "name": "ORS Sachet",
+      "category": "medicine",
+      "quantity_available": 181,
+      "unit": "sachet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-003-METRON",
+      "name": "Metronidazole 400mg",
+      "category": "medicine",
+      "quantity_available": 118,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-004-CETIRI",
+      "name": "Cetirizine 10mg",
+      "category": "medicine",
+      "quantity_available": 136,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-005-AMOXIC",
+      "name": "Amoxicillin 500mg",
+      "category": "medicine",
+      "quantity_available": 114,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-006-AZITHR",
+      "name": "Azithromycin 500mg",
+      "category": "medicine",
+      "quantity_available": 73,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-007-ZINC20",
+      "name": "Zinc 20mg (child)",
+      "category": "medicine",
+      "quantity_available": 101,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-008-CIPROF",
+      "name": "Ciprofloxacin 500mg",
+      "category": "medicine",
+      "quantity_available": 69,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-009-ANTIHI",
+      "name": "Antihistamine Syrup",
+      "category": "medicine",
+      "quantity_available": 107,
+      "unit": "bottle",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-010-VITAMI",
+      "name": "Vitamin C 500mg",
+      "category": "medicine",
+      "quantity_available": 211,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-011-RANITI",
+      "name": "Ranitidine 150mg",
+      "category": "medicine",
+      "quantity_available": 152,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-012-ANTACI",
+      "name": "Antacid Tablet",
+      "category": "medicine",
+      "quantity_available": 192,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-013-INSULI",
+      "name": "Insulin (vial)",
+      "category": "medicine",
+      "quantity_available": 46,
+      "unit": "vial",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-014-ATORVA",
+      "name": "Atorvastatin 10mg",
+      "category": "medicine",
+      "quantity_available": 65,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-015-LOSART",
+      "name": "Losartan 50mg",
+      "category": "medicine",
+      "quantity_available": 76,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    }
+  ],
+  "beds": {
+    "bed_total": 331,
+    "bed_available": 61,
+    "icu_total": 53,
+    "icu_available": 8,
+    "last_updated": "2024-03-30T23:59:59Z"
+  },
+  "blood_units": [
+    {
+      "blood_group": "A+",
+      "units_available": 31,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "A-",
+      "units_available": 6,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "B+",
+      "units_available": 26,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "B-",
+      "units_available": 5,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "O+",
+      "units_available": 33,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "O-",
+      "units_available": 8,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "AB+",
+      "units_available": 8,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "AB-",
+      "units_available": 1,
+      "last_updated": "2024-03-30T23:59:59Z"
+    }
+  ],
+  "staff": [
+    {
+      "employee_id": "SHH-EMP-1001",
+      "first_name": "Jamil",
+      "last_name": "Anwar",
+      "department": "Neonatology",
+      "position": "NICU Registrar",
+      "email": "jamil.anwar.1@sunrise-health.hrsp.local",
+      "phone": "+8801712601",
+      "status": "active"
+    },
+    {
+      "employee_id": "SHH-EMP-1002",
+      "first_name": "Fahim",
+      "last_name": "Imam",
+      "department": "Endocrinology",
+      "position": "Endocrine Consultant",
+      "email": "fahim.imam.2@sunrise-health.hrsp.local",
+      "phone": "+8801737122",
+      "status": "active"
+    },
+    {
+      "employee_id": "SHH-EMP-1003",
+      "first_name": "Adnan",
+      "last_name": "Siddique",
+      "department": "Pediatrics",
+      "position": "Pediatric Medical Officer",
+      "email": "adnan.siddique.3@sunrise-health.hrsp.local",
+      "phone": "+8801744883",
+      "status": "active"
+    },
+    {
+      "employee_id": "SHH-EMP-1004",
+      "first_name": "Ayman",
+      "last_name": "Islam",
+      "department": "Biomedical",
+      "position": "Biomedical Engineer",
+      "email": "ayman.islam.4@sunrise-health.hrsp.local",
+      "phone": "+8801749734",
+      "status": "active"
+    },
+    {
+      "employee_id": "SHH-EMP-1005",
+      "first_name": "Tahsin",
+      "last_name": "Arefin",
+      "department": "Neonatology",
+      "position": "Neonatal Specialist",
+      "email": "tahsin.arefin.5@sunrise-health.hrsp.local",
+      "phone": "+8801744555",
+      "status": "active"
+    },
+    {
+      "employee_id": "SHH-EMP-1006",
+      "first_name": "Lamia",
+      "last_name": "Arefin",
+      "department": "Endocrinology",
+      "position": "Diabetes Educator",
+      "email": "lamia.arefin.6@sunrise-health.hrsp.local",
+      "phone": "+8801715286",
+      "status": "active"
+    },
+    {
+      "employee_id": "SHH-EMP-1007",
+      "first_name": "Ayman",
+      "last_name": "Mahmud",
+      "department": "Pediatrics",
+      "position": "Pediatric Nurse",
+      "email": "ayman.mahmud.7@sunrise-health.hrsp.local",
+      "phone": "+8801739567",
+      "status": "active"
+    },
+    {
+      "employee_id": "SHH-EMP-1008",
+      "first_name": "Munira",
+      "last_name": "Imam",
+      "department": "Biomedical",
+      "position": "Device Safety Officer",
+      "email": "munira.imam.8@sunrise-health.hrsp.local",
+      "phone": "+8801726998",
+      "status": "on_leave"
+    },
+    {
+      "employee_id": "SHH-EMP-1009",
+      "first_name": "Tahsin",
+      "last_name": "Hossain",
+      "department": "Neonatology",
+      "position": "NICU Registrar",
+      "email": "tahsin.hossain.9@sunrise-health.hrsp.local",
+      "phone": "+8801756229",
+      "status": "active"
+    },
+    {
+      "employee_id": "SHH-EMP-1010",
+      "first_name": "Lamia",
+      "last_name": "Islam",
+      "department": "Endocrinology",
+      "position": "Endocrine Consultant",
+      "email": "lamia.islam.10@sunrise-health.hrsp.local",
+      "phone": "+8801748900",
+      "status": "inactive"
+    },
+    {
+      "employee_id": "SHH-EMP-1011",
+      "first_name": "Jamil",
+      "last_name": "Khan",
+      "department": "Pediatrics",
+      "position": "Pediatric Medical Officer",
+      "email": "jamil.khan.11@sunrise-health.hrsp.local",
+      "phone": "+8801752501",
+      "status": "active"
+    },
+    {
+      "employee_id": "SHH-EMP-1012",
+      "first_name": "Tanvir",
+      "last_name": "Rahman",
+      "department": "Biomedical",
+      "position": "Biomedical Engineer",
+      "email": "tanvir.rahman.12@sunrise-health.hrsp.local",
+      "phone": "+8801757062",
+      "status": "on_leave"
+    },
+    {
+      "employee_id": "SHH-EMP-1013",
+      "first_name": "Rashed",
+      "last_name": "Khan",
+      "department": "Neonatology",
+      "position": "Neonatal Specialist",
+      "email": "rashed.khan.13@sunrise-health.hrsp.local",
+      "phone": "+8801740013",
+      "status": "active"
+    },
+    {
+      "employee_id": "SHH-EMP-1014",
+      "first_name": "Rabbi",
+      "last_name": "Siddique",
+      "department": "Endocrinology",
+      "position": "Diabetes Educator",
+      "email": "rabbi.siddique.14@sunrise-health.hrsp.local",
+      "phone": "+8801736854",
+      "status": "active"
+    },
+    {
+      "employee_id": "SHH-EMP-1015",
+      "first_name": "Sharmeen",
+      "last_name": "Arefin",
+      "department": "Pediatrics",
+      "position": "Pediatric Nurse",
+      "email": "sharmeen.arefin.15@sunrise-health.hrsp.local",
+      "phone": "+8801736315",
+      "status": "active"
+    },
+    {
+      "employee_id": "SHH-EMP-1016",
+      "first_name": "Rabbi",
+      "last_name": "Siddique",
+      "department": "Biomedical",
+      "position": "Device Safety Officer",
+      "email": "rabbi.siddique.16@sunrise-health.hrsp.local",
+      "phone": "+8801769826",
+      "status": "inactive"
+    },
+    {
+      "employee_id": "SHH-EMP-1017",
+      "first_name": "Sadia",
+      "last_name": "Mahmud",
+      "department": "Neonatology",
+      "position": "NICU Registrar",
+      "email": "sadia.mahmud.17@sunrise-health.hrsp.local",
+      "phone": "+8801791027",
+      "status": "active"
+    },
+    {
+      "employee_id": "SHH-EMP-1018",
+      "first_name": "Ishraq",
+      "last_name": "Chowdhury",
+      "department": "Endocrinology",
+      "position": "Endocrine Consultant",
+      "email": "ishraq.chowdhury.18@sunrise-health.hrsp.local",
+      "phone": "+8801716688",
+      "status": "active"
+    },
+    {
+      "employee_id": "SHH-EMP-1019",
+      "first_name": "Samiha",
+      "last_name": "Noor",
+      "department": "Pediatrics",
+      "position": "Pediatric Medical Officer",
+      "email": "samiha.noor.19@sunrise-health.hrsp.local",
+      "phone": "+8801778599",
+      "status": "active"
+    },
+    {
+      "employee_id": "SHH-EMP-1020",
+      "first_name": "Arif",
+      "last_name": "Siddique",
+      "department": "Biomedical",
+      "position": "Biomedical Engineer",
+      "email": "arif.siddique.20@sunrise-health.hrsp.local",
+      "phone": "+8801740770",
+      "status": "active"
+    },
+    {
+      "employee_id": "SHH-EMP-1021",
+      "first_name": "Rashed",
+      "last_name": "Hasan",
+      "department": "Neonatology",
+      "position": "Neonatal Specialist",
+      "email": "rashed.hasan.21@sunrise-health.hrsp.local",
+      "phone": "+8801787791",
+      "status": "active"
+    }
+  ],
+  "meta": {
+    "generated_at": "2026-03-30T14:18:18Z",
+    "source_sales_rows": 1350,
+    "source_unique_days": 90,
+    "source_medicine_count": 15
+  }
+}

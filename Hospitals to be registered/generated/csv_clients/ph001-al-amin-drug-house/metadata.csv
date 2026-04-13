@@ -1,0 +1,2 @@
+hospital_id,hospital_name,source_healthcare_id,source_healthcare_name,source_upazila,sales_zone_upazila,lat,lon,data_start_date,data_end_date,source_sales_rows,source_medicine_count
+HOSP-PH001,Al-Amin Drug House Hospital,PH001,Al-Amin Drug House,Joypurhat Sadar,Khulna Sadar,24.897500586367382,89.01546421476297,2024-01-01,2024-03-30,1350,15

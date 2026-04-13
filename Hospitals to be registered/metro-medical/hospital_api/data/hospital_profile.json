@@ -1,0 +1,411 @@
+{
+  "hospital": {
+    "name": "Metro Medical Center",
+    "slug": "metro-medical",
+    "healthcare_id": "PH005",
+    "healthcare_name": "Akbar Medicine",
+    "source_upazila": "Akkelpur",
+    "sales_zone_upazila": "Sonadanga",
+    "auth_type": "bearer",
+    "auth_details": "Authorization: Bearer metro-medical-bearer-token"
+  },
+  "resources": [
+    {
+      "code": "MED-001-PARACE",
+      "name": "Paracetamol 500mg",
+      "category": "medicine",
+      "quantity_available": 545,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-002-ORSSAC",
+      "name": "ORS Sachet",
+      "category": "medicine",
+      "quantity_available": 213,
+      "unit": "sachet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-003-METRON",
+      "name": "Metronidazole 400mg",
+      "category": "medicine",
+      "quantity_available": 139,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-004-CETIRI",
+      "name": "Cetirizine 10mg",
+      "category": "medicine",
+      "quantity_available": 194,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-005-AMOXIC",
+      "name": "Amoxicillin 500mg",
+      "category": "medicine",
+      "quantity_available": 116,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-006-AZITHR",
+      "name": "Azithromycin 500mg",
+      "category": "medicine",
+      "quantity_available": 71,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-007-ZINC20",
+      "name": "Zinc 20mg (child)",
+      "category": "medicine",
+      "quantity_available": 116,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-008-CIPROF",
+      "name": "Ciprofloxacin 500mg",
+      "category": "medicine",
+      "quantity_available": 82,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-009-ANTIHI",
+      "name": "Antihistamine Syrup",
+      "category": "medicine",
+      "quantity_available": 129,
+      "unit": "bottle",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-010-VITAMI",
+      "name": "Vitamin C 500mg",
+      "category": "medicine",
+      "quantity_available": 282,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-011-RANITI",
+      "name": "Ranitidine 150mg",
+      "category": "medicine",
+      "quantity_available": 189,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-012-ANTACI",
+      "name": "Antacid Tablet",
+      "category": "medicine",
+      "quantity_available": 227,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-013-INSULI",
+      "name": "Insulin (vial)",
+      "category": "medicine",
+      "quantity_available": 54,
+      "unit": "vial",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-014-ATORVA",
+      "name": "Atorvastatin 10mg",
+      "category": "medicine",
+      "quantity_available": 78,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-015-LOSART",
+      "name": "Losartan 50mg",
+      "category": "medicine",
+      "quantity_available": 90,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    }
+  ],
+  "beds": {
+    "bed_total": 370,
+    "bed_available": 66,
+    "icu_total": 59,
+    "icu_available": 8,
+    "last_updated": "2024-03-30T23:59:59Z"
+  },
+  "blood_units": [
+    {
+      "blood_group": "A+",
+      "units_available": 30,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "A-",
+      "units_available": 6,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "B+",
+      "units_available": 28,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "B-",
+      "units_available": 5,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "O+",
+      "units_available": 34,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "O-",
+      "units_available": 8,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "AB+",
+      "units_available": 9,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "AB-",
+      "units_available": 1,
+      "last_updated": "2024-03-30T23:59:59Z"
+    }
+  ],
+  "staff": [
+    {
+      "employee_id": "MMC-EMP-1001",
+      "first_name": "Fahim",
+      "last_name": "Ahmed",
+      "department": "Cardiology",
+      "position": "Consultant Cardiologist",
+      "email": "fahim.ahmed.1@metro-medical.hrsp.local",
+      "phone": "+8801742151",
+      "status": "active"
+    },
+    {
+      "employee_id": "MMC-EMP-1002",
+      "first_name": "Sharmeen",
+      "last_name": "Jahan",
+      "department": "Nephrology",
+      "position": "Dialysis Supervisor",
+      "email": "sharmeen.jahan.2@metro-medical.hrsp.local",
+      "phone": "+8801722652",
+      "status": "active"
+    },
+    {
+      "employee_id": "MMC-EMP-1003",
+      "first_name": "Nusrat",
+      "last_name": "Khan",
+      "department": "Radiology",
+      "position": "Imaging Specialist",
+      "email": "nusrat.khan.3@metro-medical.hrsp.local",
+      "phone": "+8801791483",
+      "status": "active"
+    },
+    {
+      "employee_id": "MMC-EMP-1004",
+      "first_name": "Nusrat",
+      "last_name": "Ahmed",
+      "department": "Critical Care",
+      "position": "ICU Consultant",
+      "email": "nusrat.ahmed.4@metro-medical.hrsp.local",
+      "phone": "+8801769214",
+      "status": "active"
+    },
+    {
+      "employee_id": "MMC-EMP-1005",
+      "first_name": "Ishraq",
+      "last_name": "Rahman",
+      "department": "Cardiology",
+      "position": "Cardiac Registrar",
+      "email": "ishraq.rahman.5@metro-medical.hrsp.local",
+      "phone": "+8801759375",
+      "status": "on_leave"
+    },
+    {
+      "employee_id": "MMC-EMP-1006",
+      "first_name": "Arif",
+      "last_name": "Imam",
+      "department": "Nephrology",
+      "position": "Renal Medical Officer",
+      "email": "arif.imam.6@metro-medical.hrsp.local",
+      "phone": "+8801739806",
+      "status": "active"
+    },
+    {
+      "employee_id": "MMC-EMP-1007",
+      "first_name": "Nusrat",
+      "last_name": "Mahmud",
+      "department": "Radiology",
+      "position": "Radiology Technologist",
+      "email": "nusrat.mahmud.7@metro-medical.hrsp.local",
+      "phone": "+8801738247",
+      "status": "active"
+    },
+    {
+      "employee_id": "MMC-EMP-1008",
+      "first_name": "Ishraq",
+      "last_name": "Jahan",
+      "department": "Critical Care",
+      "position": "Critical Care Nurse",
+      "email": "ishraq.jahan.8@metro-medical.hrsp.local",
+      "phone": "+8801774198",
+      "status": "on_leave"
+    },
+    {
+      "employee_id": "MMC-EMP-1009",
+      "first_name": "Ishraq",
+      "last_name": "Hossain",
+      "department": "Cardiology",
+      "position": "Consultant Cardiologist",
+      "email": "ishraq.hossain.9@metro-medical.hrsp.local",
+      "phone": "+8801790399",
+      "status": "active"
+    },
+    {
+      "employee_id": "MMC-EMP-1010",
+      "first_name": "Nafisa",
+      "last_name": "Hossain",
+      "department": "Nephrology",
+      "position": "Dialysis Supervisor",
+      "email": "nafisa.hossain.10@metro-medical.hrsp.local",
+      "phone": "+8801721270",
+      "status": "active"
+    },
+    {
+      "employee_id": "MMC-EMP-1011",
+      "first_name": "Sharmeen",
+      "last_name": "Sarker",
+      "department": "Radiology",
+      "position": "Imaging Specialist",
+      "email": "sharmeen.sarker.11@metro-medical.hrsp.local",
+      "phone": "+8801767031",
+      "status": "active"
+    },
+    {
+      "employee_id": "MMC-EMP-1012",
+      "first_name": "Munira",
+      "last_name": "Kabir",
+      "department": "Critical Care",
+      "position": "ICU Consultant",
+      "email": "munira.kabir.12@metro-medical.hrsp.local",
+      "phone": "+8801774682",
+      "status": "active"
+    },
+    {
+      "employee_id": "MMC-EMP-1013",
+      "first_name": "Farzana",
+      "last_name": "Kabir",
+      "department": "Cardiology",
+      "position": "Cardiac Registrar",
+      "email": "farzana.kabir.13@metro-medical.hrsp.local",
+      "phone": "+8801797283",
+      "status": "active"
+    },
+    {
+      "employee_id": "MMC-EMP-1014",
+      "first_name": "Tanvir",
+      "last_name": "Khan",
+      "department": "Nephrology",
+      "position": "Renal Medical Officer",
+      "email": "tanvir.khan.14@metro-medical.hrsp.local",
+      "phone": "+8801791914",
+      "status": "active"
+    },
+    {
+      "employee_id": "MMC-EMP-1015",
+      "first_name": "Jannat",
+      "last_name": "Rahman",
+      "department": "Radiology",
+      "position": "Radiology Technologist",
+      "email": "jannat.rahman.15@metro-medical.hrsp.local",
+      "phone": "+8801711825",
+      "status": "inactive"
+    },
+    {
+      "employee_id": "MMC-EMP-1016",
+      "first_name": "Arif",
+      "last_name": "Hasan",
+      "department": "Critical Care",
+      "position": "Critical Care Nurse",
+      "email": "arif.hasan.16@metro-medical.hrsp.local",
+      "phone": "+8801782416",
+      "status": "active"
+    },
+    {
+      "employee_id": "MMC-EMP-1017",
+      "first_name": "Mehnaz",
+      "last_name": "Morshed",
+      "department": "Cardiology",
+      "position": "Consultant Cardiologist",
+      "email": "mehnaz.morshed.17@metro-medical.hrsp.local",
+      "phone": "+8801750107",
+      "status": "active"
+    },
+    {
+      "employee_id": "MMC-EMP-1018",
+      "first_name": "Nafisa",
+      "last_name": "Ahmed",
+      "department": "Nephrology",
+      "position": "Dialysis Supervisor",
+      "email": "nafisa.ahmed.18@metro-medical.hrsp.local",
+      "phone": "+8801732458",
+      "status": "active"
+    },
+    {
+      "employee_id": "MMC-EMP-1019",
+      "first_name": "Munira",
+      "last_name": "Islam",
+      "department": "Radiology",
+      "position": "Imaging Specialist",
+      "email": "munira.islam.19@metro-medical.hrsp.local",
+      "phone": "+8801753999",
+      "status": "active"
+    },
+    {
+      "employee_id": "MMC-EMP-1020",
+      "first_name": "Samiha",
+      "last_name": "Sarker",
+      "department": "Critical Care",
+      "position": "ICU Consultant",
+      "email": "samiha.sarker.20@metro-medical.hrsp.local",
+      "phone": "+8801741690",
+      "status": "active"
+    },
+    {
+      "employee_id": "MMC-EMP-1021",
+      "first_name": "Afsana",
+      "last_name": "Rahman",
+      "department": "Cardiology",
+      "position": "Cardiac Registrar",
+      "email": "afsana.rahman.21@metro-medical.hrsp.local",
+      "phone": "+8801772591",
+      "status": "active"
+    },
+    {
+      "employee_id": "MMC-EMP-1022",
+      "first_name": "Sadia",
+      "last_name": "Kabir",
+      "department": "Nephrology",
+      "position": "Renal Medical Officer",
+      "email": "sadia.kabir.22@metro-medical.hrsp.local",
+      "phone": "+8801723222",
+      "status": "active"
+    }
+  ],
+  "meta": {
+    "generated_at": "2026-03-30T14:18:18Z",
+    "source_sales_rows": 1350,
+    "source_unique_days": 90,
+    "source_medicine_count": 15
+  }
+}

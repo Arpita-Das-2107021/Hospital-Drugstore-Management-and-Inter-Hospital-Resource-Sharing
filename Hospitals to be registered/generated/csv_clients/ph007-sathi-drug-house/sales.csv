@@ -1,0 +1,1351 @@
+date,healthcare_id,medicine_name,quantity_sold,upazila
+2024-01-01,PH007,Paracetamol 500mg,39,Sonadanga
+2024-01-01,PH007,ORS Sachet,21,Sonadanga
+2024-01-01,PH007,Metronidazole 400mg,10,Sonadanga
+2024-01-01,PH007,Cetirizine 10mg,16,Sonadanga
+2024-01-01,PH007,Amoxicillin 500mg,9,Sonadanga
+2024-01-01,PH007,Azithromycin 500mg,5,Sonadanga
+2024-01-01,PH007,Zinc 20mg (child),8,Sonadanga
+2024-01-01,PH007,Ciprofloxacin 500mg,7,Sonadanga
+2024-01-01,PH007,Antihistamine Syrup,8,Sonadanga
+2024-01-01,PH007,Vitamin C 500mg,19,Sonadanga
+2024-01-01,PH007,Ranitidine 150mg,17,Sonadanga
+2024-01-01,PH007,Antacid Tablet,22,Sonadanga
+2024-01-01,PH007,Insulin (vial),4,Sonadanga
+2024-01-01,PH007,Atorvastatin 10mg,7,Sonadanga
+2024-01-01,PH007,Losartan 50mg,7,Sonadanga
+2024-01-02,PH007,Paracetamol 500mg,39,Sonadanga
+2024-01-02,PH007,ORS Sachet,14,Sonadanga
+2024-01-02,PH007,Metronidazole 400mg,14,Sonadanga
+2024-01-02,PH007,Cetirizine 10mg,13,Sonadanga
+2024-01-02,PH007,Amoxicillin 500mg,9,Sonadanga
+2024-01-02,PH007,Azithromycin 500mg,7,Sonadanga
+2024-01-02,PH007,Zinc 20mg (child),7,Sonadanga
+2024-01-02,PH007,Ciprofloxacin 500mg,5,Sonadanga
+2024-01-02,PH007,Antihistamine Syrup,11,Sonadanga
+2024-01-02,PH007,Vitamin C 500mg,23,Sonadanga
+2024-01-02,PH007,Ranitidine 150mg,18,Sonadanga
+2024-01-02,PH007,Antacid Tablet,16,Sonadanga
+2024-01-02,PH007,Insulin (vial),5,Sonadanga
+2024-01-02,PH007,Atorvastatin 10mg,7,Sonadanga
+2024-01-02,PH007,Losartan 50mg,8,Sonadanga
+2024-01-03,PH007,Paracetamol 500mg,31,Sonadanga
+2024-01-03,PH007,ORS Sachet,22,Sonadanga
+2024-01-03,PH007,Metronidazole 400mg,12,Sonadanga
+2024-01-03,PH007,Cetirizine 10mg,11,Sonadanga
+2024-01-03,PH007,Amoxicillin 500mg,10,Sonadanga
+2024-01-03,PH007,Azithromycin 500mg,6,Sonadanga
+2024-01-03,PH007,Zinc 20mg (child),8,Sonadanga
+2024-01-03,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-01-03,PH007,Antihistamine Syrup,10,Sonadanga
+2024-01-03,PH007,Vitamin C 500mg,18,Sonadanga
+2024-01-03,PH007,Ranitidine 150mg,17,Sonadanga
+2024-01-03,PH007,Antacid Tablet,19,Sonadanga
+2024-01-03,PH007,Insulin (vial),5,Sonadanga
+2024-01-03,PH007,Atorvastatin 10mg,7,Sonadanga
+2024-01-03,PH007,Losartan 50mg,8,Sonadanga
+2024-01-04,PH007,Paracetamol 500mg,35,Sonadanga
+2024-01-04,PH007,ORS Sachet,17,Sonadanga
+2024-01-04,PH007,Metronidazole 400mg,9,Sonadanga
+2024-01-04,PH007,Cetirizine 10mg,11,Sonadanga
+2024-01-04,PH007,Amoxicillin 500mg,10,Sonadanga
+2024-01-04,PH007,Azithromycin 500mg,6,Sonadanga
+2024-01-04,PH007,Zinc 20mg (child),9,Sonadanga
+2024-01-04,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-01-04,PH007,Antihistamine Syrup,8,Sonadanga
+2024-01-04,PH007,Vitamin C 500mg,23,Sonadanga
+2024-01-04,PH007,Ranitidine 150mg,17,Sonadanga
+2024-01-04,PH007,Antacid Tablet,16,Sonadanga
+2024-01-04,PH007,Insulin (vial),4,Sonadanga
+2024-01-04,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-01-04,PH007,Losartan 50mg,7,Sonadanga
+2024-01-05,PH007,Paracetamol 500mg,27,Sonadanga
+2024-01-05,PH007,ORS Sachet,22,Sonadanga
+2024-01-05,PH007,Metronidazole 400mg,13,Sonadanga
+2024-01-05,PH007,Cetirizine 10mg,11,Sonadanga
+2024-01-05,PH007,Amoxicillin 500mg,9,Sonadanga
+2024-01-05,PH007,Azithromycin 500mg,7,Sonadanga
+2024-01-05,PH007,Zinc 20mg (child),8,Sonadanga
+2024-01-05,PH007,Ciprofloxacin 500mg,5,Sonadanga
+2024-01-05,PH007,Antihistamine Syrup,8,Sonadanga
+2024-01-05,PH007,Vitamin C 500mg,21,Sonadanga
+2024-01-05,PH007,Ranitidine 150mg,15,Sonadanga
+2024-01-05,PH007,Antacid Tablet,15,Sonadanga
+2024-01-05,PH007,Insulin (vial),5,Sonadanga
+2024-01-05,PH007,Atorvastatin 10mg,7,Sonadanga
+2024-01-05,PH007,Losartan 50mg,8,Sonadanga
+2024-01-06,PH007,Paracetamol 500mg,26,Sonadanga
+2024-01-06,PH007,ORS Sachet,20,Sonadanga
+2024-01-06,PH007,Metronidazole 400mg,14,Sonadanga
+2024-01-06,PH007,Cetirizine 10mg,14,Sonadanga
+2024-01-06,PH007,Amoxicillin 500mg,9,Sonadanga
+2024-01-06,PH007,Azithromycin 500mg,4,Sonadanga
+2024-01-06,PH007,Zinc 20mg (child),8,Sonadanga
+2024-01-06,PH007,Ciprofloxacin 500mg,7,Sonadanga
+2024-01-06,PH007,Antihistamine Syrup,8,Sonadanga
+2024-01-06,PH007,Vitamin C 500mg,21,Sonadanga
+2024-01-06,PH007,Ranitidine 150mg,19,Sonadanga
+2024-01-06,PH007,Antacid Tablet,24,Sonadanga
+2024-01-06,PH007,Insulin (vial),5,Sonadanga
+2024-01-06,PH007,Atorvastatin 10mg,7,Sonadanga
+2024-01-06,PH007,Losartan 50mg,7,Sonadanga
+2024-01-07,PH007,Paracetamol 500mg,30,Sonadanga
+2024-01-07,PH007,ORS Sachet,21,Sonadanga
+2024-01-07,PH007,Metronidazole 400mg,9,Sonadanga
+2024-01-07,PH007,Cetirizine 10mg,15,Sonadanga
+2024-01-07,PH007,Amoxicillin 500mg,11,Sonadanga
+2024-01-07,PH007,Azithromycin 500mg,4,Sonadanga
+2024-01-07,PH007,Zinc 20mg (child),8,Sonadanga
+2024-01-07,PH007,Ciprofloxacin 500mg,8,Sonadanga
+2024-01-07,PH007,Antihistamine Syrup,12,Sonadanga
+2024-01-07,PH007,Vitamin C 500mg,25,Sonadanga
+2024-01-07,PH007,Ranitidine 150mg,15,Sonadanga
+2024-01-07,PH007,Antacid Tablet,17,Sonadanga
+2024-01-07,PH007,Insulin (vial),5,Sonadanga
+2024-01-07,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-01-07,PH007,Losartan 50mg,9,Sonadanga
+2024-01-08,PH007,Paracetamol 500mg,38,Sonadanga
+2024-01-08,PH007,ORS Sachet,18,Sonadanga
+2024-01-08,PH007,Metronidazole 400mg,10,Sonadanga
+2024-01-08,PH007,Cetirizine 10mg,14,Sonadanga
+2024-01-08,PH007,Amoxicillin 500mg,9,Sonadanga
+2024-01-08,PH007,Azithromycin 500mg,7,Sonadanga
+2024-01-08,PH007,Zinc 20mg (child),9,Sonadanga
+2024-01-08,PH007,Ciprofloxacin 500mg,7,Sonadanga
+2024-01-08,PH007,Antihistamine Syrup,12,Sonadanga
+2024-01-08,PH007,Vitamin C 500mg,26,Sonadanga
+2024-01-08,PH007,Ranitidine 150mg,15,Sonadanga
+2024-01-08,PH007,Antacid Tablet,16,Sonadanga
+2024-01-08,PH007,Insulin (vial),6,Sonadanga
+2024-01-08,PH007,Atorvastatin 10mg,7,Sonadanga
+2024-01-08,PH007,Losartan 50mg,6,Sonadanga
+2024-01-09,PH007,Paracetamol 500mg,41,Sonadanga
+2024-01-09,PH007,ORS Sachet,20,Sonadanga
+2024-01-09,PH007,Metronidazole 400mg,11,Sonadanga
+2024-01-09,PH007,Cetirizine 10mg,13,Sonadanga
+2024-01-09,PH007,Amoxicillin 500mg,11,Sonadanga
+2024-01-09,PH007,Azithromycin 500mg,4,Sonadanga
+2024-01-09,PH007,Zinc 20mg (child),11,Sonadanga
+2024-01-09,PH007,Ciprofloxacin 500mg,8,Sonadanga
+2024-01-09,PH007,Antihistamine Syrup,8,Sonadanga
+2024-01-09,PH007,Vitamin C 500mg,17,Sonadanga
+2024-01-09,PH007,Ranitidine 150mg,19,Sonadanga
+2024-01-09,PH007,Antacid Tablet,20,Sonadanga
+2024-01-09,PH007,Insulin (vial),5,Sonadanga
+2024-01-09,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-01-09,PH007,Losartan 50mg,9,Sonadanga
+2024-01-10,PH007,Paracetamol 500mg,34,Sonadanga
+2024-01-10,PH007,ORS Sachet,20,Sonadanga
+2024-01-10,PH007,Metronidazole 400mg,14,Sonadanga
+2024-01-10,PH007,Cetirizine 10mg,11,Sonadanga
+2024-01-10,PH007,Amoxicillin 500mg,9,Sonadanga
+2024-01-10,PH007,Azithromycin 500mg,5,Sonadanga
+2024-01-10,PH007,Zinc 20mg (child),7,Sonadanga
+2024-01-10,PH007,Ciprofloxacin 500mg,5,Sonadanga
+2024-01-10,PH007,Antihistamine Syrup,9,Sonadanga
+2024-01-10,PH007,Vitamin C 500mg,23,Sonadanga
+2024-01-10,PH007,Ranitidine 150mg,15,Sonadanga
+2024-01-10,PH007,Antacid Tablet,17,Sonadanga
+2024-01-10,PH007,Insulin (vial),5,Sonadanga
+2024-01-10,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-01-10,PH007,Losartan 50mg,7,Sonadanga
+2024-01-11,PH007,Paracetamol 500mg,30,Sonadanga
+2024-01-11,PH007,ORS Sachet,21,Sonadanga
+2024-01-11,PH007,Metronidazole 400mg,11,Sonadanga
+2024-01-11,PH007,Cetirizine 10mg,13,Sonadanga
+2024-01-11,PH007,Amoxicillin 500mg,9,Sonadanga
+2024-01-11,PH007,Azithromycin 500mg,7,Sonadanga
+2024-01-11,PH007,Zinc 20mg (child),12,Sonadanga
+2024-01-11,PH007,Ciprofloxacin 500mg,7,Sonadanga
+2024-01-11,PH007,Antihistamine Syrup,12,Sonadanga
+2024-01-11,PH007,Vitamin C 500mg,25,Sonadanga
+2024-01-11,PH007,Ranitidine 150mg,13,Sonadanga
+2024-01-11,PH007,Antacid Tablet,24,Sonadanga
+2024-01-11,PH007,Insulin (vial),4,Sonadanga
+2024-01-11,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-01-11,PH007,Losartan 50mg,6,Sonadanga
+2024-01-12,PH007,Paracetamol 500mg,51,Sonadanga
+2024-01-12,PH007,ORS Sachet,20,Sonadanga
+2024-01-12,PH007,Metronidazole 400mg,10,Sonadanga
+2024-01-12,PH007,Cetirizine 10mg,16,Sonadanga
+2024-01-12,PH007,Amoxicillin 500mg,9,Sonadanga
+2024-01-12,PH007,Azithromycin 500mg,6,Sonadanga
+2024-01-12,PH007,Zinc 20mg (child),11,Sonadanga
+2024-01-12,PH007,Ciprofloxacin 500mg,8,Sonadanga
+2024-01-12,PH007,Antihistamine Syrup,11,Sonadanga
+2024-01-12,PH007,Vitamin C 500mg,25,Sonadanga
+2024-01-12,PH007,Ranitidine 150mg,16,Sonadanga
+2024-01-12,PH007,Antacid Tablet,18,Sonadanga
+2024-01-12,PH007,Insulin (vial),5,Sonadanga
+2024-01-12,PH007,Atorvastatin 10mg,7,Sonadanga
+2024-01-12,PH007,Losartan 50mg,9,Sonadanga
+2024-01-13,PH007,Paracetamol 500mg,37,Sonadanga
+2024-01-13,PH007,ORS Sachet,19,Sonadanga
+2024-01-13,PH007,Metronidazole 400mg,14,Sonadanga
+2024-01-13,PH007,Cetirizine 10mg,13,Sonadanga
+2024-01-13,PH007,Amoxicillin 500mg,11,Sonadanga
+2024-01-13,PH007,Azithromycin 500mg,7,Sonadanga
+2024-01-13,PH007,Zinc 20mg (child),8,Sonadanga
+2024-01-13,PH007,Ciprofloxacin 500mg,7,Sonadanga
+2024-01-13,PH007,Antihistamine Syrup,10,Sonadanga
+2024-01-13,PH007,Vitamin C 500mg,23,Sonadanga
+2024-01-13,PH007,Ranitidine 150mg,15,Sonadanga
+2024-01-13,PH007,Antacid Tablet,23,Sonadanga
+2024-01-13,PH007,Insulin (vial),5,Sonadanga
+2024-01-13,PH007,Atorvastatin 10mg,7,Sonadanga
+2024-01-13,PH007,Losartan 50mg,7,Sonadanga
+2024-01-14,PH007,Paracetamol 500mg,48,Sonadanga
+2024-01-14,PH007,ORS Sachet,13,Sonadanga
+2024-01-14,PH007,Metronidazole 400mg,10,Sonadanga
+2024-01-14,PH007,Cetirizine 10mg,15,Sonadanga
+2024-01-14,PH007,Amoxicillin 500mg,8,Sonadanga
+2024-01-14,PH007,Azithromycin 500mg,4,Sonadanga
+2024-01-14,PH007,Zinc 20mg (child),8,Sonadanga
+2024-01-14,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-01-14,PH007,Antihistamine Syrup,11,Sonadanga
+2024-01-14,PH007,Vitamin C 500mg,29,Sonadanga
+2024-01-14,PH007,Ranitidine 150mg,13,Sonadanga
+2024-01-14,PH007,Antacid Tablet,23,Sonadanga
+2024-01-14,PH007,Insulin (vial),4,Sonadanga
+2024-01-14,PH007,Atorvastatin 10mg,5,Sonadanga
+2024-01-14,PH007,Losartan 50mg,9,Sonadanga
+2024-01-15,PH007,Paracetamol 500mg,55,Sonadanga
+2024-01-15,PH007,ORS Sachet,14,Sonadanga
+2024-01-15,PH007,Metronidazole 400mg,11,Sonadanga
+2024-01-15,PH007,Cetirizine 10mg,16,Sonadanga
+2024-01-15,PH007,Amoxicillin 500mg,11,Sonadanga
+2024-01-15,PH007,Azithromycin 500mg,6,Sonadanga
+2024-01-15,PH007,Zinc 20mg (child),12,Sonadanga
+2024-01-15,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-01-15,PH007,Antihistamine Syrup,12,Sonadanga
+2024-01-15,PH007,Vitamin C 500mg,26,Sonadanga
+2024-01-15,PH007,Ranitidine 150mg,18,Sonadanga
+2024-01-15,PH007,Antacid Tablet,15,Sonadanga
+2024-01-15,PH007,Insulin (vial),6,Sonadanga
+2024-01-15,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-01-15,PH007,Losartan 50mg,6,Sonadanga
+2024-01-16,PH007,Paracetamol 500mg,68,Sonadanga
+2024-01-16,PH007,ORS Sachet,13,Sonadanga
+2024-01-16,PH007,Metronidazole 400mg,9,Sonadanga
+2024-01-16,PH007,Cetirizine 10mg,17,Sonadanga
+2024-01-16,PH007,Amoxicillin 500mg,8,Sonadanga
+2024-01-16,PH007,Azithromycin 500mg,5,Sonadanga
+2024-01-16,PH007,Zinc 20mg (child),9,Sonadanga
+2024-01-16,PH007,Ciprofloxacin 500mg,8,Sonadanga
+2024-01-16,PH007,Antihistamine Syrup,12,Sonadanga
+2024-01-16,PH007,Vitamin C 500mg,30,Sonadanga
+2024-01-16,PH007,Ranitidine 150mg,14,Sonadanga
+2024-01-16,PH007,Antacid Tablet,17,Sonadanga
+2024-01-16,PH007,Insulin (vial),4,Sonadanga
+2024-01-16,PH007,Atorvastatin 10mg,8,Sonadanga
+2024-01-16,PH007,Losartan 50mg,9,Sonadanga
+2024-01-17,PH007,Paracetamol 500mg,71,Sonadanga
+2024-01-17,PH007,ORS Sachet,19,Sonadanga
+2024-01-17,PH007,Metronidazole 400mg,14,Sonadanga
+2024-01-17,PH007,Cetirizine 10mg,28,Sonadanga
+2024-01-17,PH007,Amoxicillin 500mg,7,Sonadanga
+2024-01-17,PH007,Azithromycin 500mg,6,Sonadanga
+2024-01-17,PH007,Zinc 20mg (child),9,Sonadanga
+2024-01-17,PH007,Ciprofloxacin 500mg,8,Sonadanga
+2024-01-17,PH007,Antihistamine Syrup,10,Sonadanga
+2024-01-17,PH007,Vitamin C 500mg,29,Sonadanga
+2024-01-17,PH007,Ranitidine 150mg,16,Sonadanga
+2024-01-17,PH007,Antacid Tablet,18,Sonadanga
+2024-01-17,PH007,Insulin (vial),3,Sonadanga
+2024-01-17,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-01-17,PH007,Losartan 50mg,9,Sonadanga
+2024-01-18,PH007,Paracetamol 500mg,83,Sonadanga
+2024-01-18,PH007,ORS Sachet,21,Sonadanga
+2024-01-18,PH007,Metronidazole 400mg,9,Sonadanga
+2024-01-18,PH007,Cetirizine 10mg,29,Sonadanga
+2024-01-18,PH007,Amoxicillin 500mg,11,Sonadanga
+2024-01-18,PH007,Azithromycin 500mg,6,Sonadanga
+2024-01-18,PH007,Zinc 20mg (child),11,Sonadanga
+2024-01-18,PH007,Ciprofloxacin 500mg,8,Sonadanga
+2024-01-18,PH007,Antihistamine Syrup,12,Sonadanga
+2024-01-18,PH007,Vitamin C 500mg,25,Sonadanga
+2024-01-18,PH007,Ranitidine 150mg,16,Sonadanga
+2024-01-18,PH007,Antacid Tablet,16,Sonadanga
+2024-01-18,PH007,Insulin (vial),5,Sonadanga
+2024-01-18,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-01-18,PH007,Losartan 50mg,8,Sonadanga
+2024-01-19,PH007,Paracetamol 500mg,68,Sonadanga
+2024-01-19,PH007,ORS Sachet,14,Sonadanga
+2024-01-19,PH007,Metronidazole 400mg,9,Sonadanga
+2024-01-19,PH007,Cetirizine 10mg,24,Sonadanga
+2024-01-19,PH007,Amoxicillin 500mg,11,Sonadanga
+2024-01-19,PH007,Azithromycin 500mg,7,Sonadanga
+2024-01-19,PH007,Zinc 20mg (child),9,Sonadanga
+2024-01-19,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-01-19,PH007,Antihistamine Syrup,8,Sonadanga
+2024-01-19,PH007,Vitamin C 500mg,28,Sonadanga
+2024-01-19,PH007,Ranitidine 150mg,19,Sonadanga
+2024-01-19,PH007,Antacid Tablet,21,Sonadanga
+2024-01-19,PH007,Insulin (vial),6,Sonadanga
+2024-01-19,PH007,Atorvastatin 10mg,8,Sonadanga
+2024-01-19,PH007,Losartan 50mg,6,Sonadanga
+2024-01-20,PH007,Paracetamol 500mg,113,Sonadanga
+2024-01-20,PH007,ORS Sachet,21,Sonadanga
+2024-01-20,PH007,Metronidazole 400mg,11,Sonadanga
+2024-01-20,PH007,Cetirizine 10mg,23,Sonadanga
+2024-01-20,PH007,Amoxicillin 500mg,9,Sonadanga
+2024-01-20,PH007,Azithromycin 500mg,6,Sonadanga
+2024-01-20,PH007,Zinc 20mg (child),7,Sonadanga
+2024-01-20,PH007,Ciprofloxacin 500mg,5,Sonadanga
+2024-01-20,PH007,Antihistamine Syrup,12,Sonadanga
+2024-01-20,PH007,Vitamin C 500mg,28,Sonadanga
+2024-01-20,PH007,Ranitidine 150mg,16,Sonadanga
+2024-01-20,PH007,Antacid Tablet,20,Sonadanga
+2024-01-20,PH007,Insulin (vial),5,Sonadanga
+2024-01-20,PH007,Atorvastatin 10mg,5,Sonadanga
+2024-01-20,PH007,Losartan 50mg,8,Sonadanga
+2024-01-21,PH007,Paracetamol 500mg,118,Sonadanga
+2024-01-21,PH007,ORS Sachet,13,Sonadanga
+2024-01-21,PH007,Metronidazole 400mg,9,Sonadanga
+2024-01-21,PH007,Cetirizine 10mg,34,Sonadanga
+2024-01-21,PH007,Amoxicillin 500mg,9,Sonadanga
+2024-01-21,PH007,Azithromycin 500mg,7,Sonadanga
+2024-01-21,PH007,Zinc 20mg (child),8,Sonadanga
+2024-01-21,PH007,Ciprofloxacin 500mg,5,Sonadanga
+2024-01-21,PH007,Antihistamine Syrup,9,Sonadanga
+2024-01-21,PH007,Vitamin C 500mg,27,Sonadanga
+2024-01-21,PH007,Ranitidine 150mg,19,Sonadanga
+2024-01-21,PH007,Antacid Tablet,22,Sonadanga
+2024-01-21,PH007,Insulin (vial),4,Sonadanga
+2024-01-21,PH007,Atorvastatin 10mg,7,Sonadanga
+2024-01-21,PH007,Losartan 50mg,8,Sonadanga
+2024-01-22,PH007,Paracetamol 500mg,114,Sonadanga
+2024-01-22,PH007,ORS Sachet,19,Sonadanga
+2024-01-22,PH007,Metronidazole 400mg,14,Sonadanga
+2024-01-22,PH007,Cetirizine 10mg,31,Sonadanga
+2024-01-22,PH007,Amoxicillin 500mg,11,Sonadanga
+2024-01-22,PH007,Azithromycin 500mg,4,Sonadanga
+2024-01-22,PH007,Zinc 20mg (child),8,Sonadanga
+2024-01-22,PH007,Ciprofloxacin 500mg,7,Sonadanga
+2024-01-22,PH007,Antihistamine Syrup,11,Sonadanga
+2024-01-22,PH007,Vitamin C 500mg,43,Sonadanga
+2024-01-22,PH007,Ranitidine 150mg,17,Sonadanga
+2024-01-22,PH007,Antacid Tablet,22,Sonadanga
+2024-01-22,PH007,Insulin (vial),4,Sonadanga
+2024-01-22,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-01-22,PH007,Losartan 50mg,8,Sonadanga
+2024-01-23,PH007,Paracetamol 500mg,114,Sonadanga
+2024-01-23,PH007,ORS Sachet,20,Sonadanga
+2024-01-23,PH007,Metronidazole 400mg,11,Sonadanga
+2024-01-23,PH007,Cetirizine 10mg,38,Sonadanga
+2024-01-23,PH007,Amoxicillin 500mg,12,Sonadanga
+2024-01-23,PH007,Azithromycin 500mg,5,Sonadanga
+2024-01-23,PH007,Zinc 20mg (child),12,Sonadanga
+2024-01-23,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-01-23,PH007,Antihistamine Syrup,12,Sonadanga
+2024-01-23,PH007,Vitamin C 500mg,30,Sonadanga
+2024-01-23,PH007,Ranitidine 150mg,17,Sonadanga
+2024-01-23,PH007,Antacid Tablet,21,Sonadanga
+2024-01-23,PH007,Insulin (vial),5,Sonadanga
+2024-01-23,PH007,Atorvastatin 10mg,8,Sonadanga
+2024-01-23,PH007,Losartan 50mg,7,Sonadanga
+2024-01-24,PH007,Paracetamol 500mg,102,Sonadanga
+2024-01-24,PH007,ORS Sachet,18,Sonadanga
+2024-01-24,PH007,Metronidazole 400mg,13,Sonadanga
+2024-01-24,PH007,Cetirizine 10mg,36,Sonadanga
+2024-01-24,PH007,Amoxicillin 500mg,10,Sonadanga
+2024-01-24,PH007,Azithromycin 500mg,5,Sonadanga
+2024-01-24,PH007,Zinc 20mg (child),7,Sonadanga
+2024-01-24,PH007,Ciprofloxacin 500mg,8,Sonadanga
+2024-01-24,PH007,Antihistamine Syrup,11,Sonadanga
+2024-01-24,PH007,Vitamin C 500mg,47,Sonadanga
+2024-01-24,PH007,Ranitidine 150mg,13,Sonadanga
+2024-01-24,PH007,Antacid Tablet,23,Sonadanga
+2024-01-24,PH007,Insulin (vial),5,Sonadanga
+2024-01-24,PH007,Atorvastatin 10mg,8,Sonadanga
+2024-01-24,PH007,Losartan 50mg,7,Sonadanga
+2024-01-25,PH007,Paracetamol 500mg,138,Sonadanga
+2024-01-25,PH007,ORS Sachet,19,Sonadanga
+2024-01-25,PH007,Metronidazole 400mg,13,Sonadanga
+2024-01-25,PH007,Cetirizine 10mg,39,Sonadanga
+2024-01-25,PH007,Amoxicillin 500mg,9,Sonadanga
+2024-01-25,PH007,Azithromycin 500mg,4,Sonadanga
+2024-01-25,PH007,Zinc 20mg (child),9,Sonadanga
+2024-01-25,PH007,Ciprofloxacin 500mg,7,Sonadanga
+2024-01-25,PH007,Antihistamine Syrup,10,Sonadanga
+2024-01-25,PH007,Vitamin C 500mg,32,Sonadanga
+2024-01-25,PH007,Ranitidine 150mg,17,Sonadanga
+2024-01-25,PH007,Antacid Tablet,23,Sonadanga
+2024-01-25,PH007,Insulin (vial),5,Sonadanga
+2024-01-25,PH007,Atorvastatin 10mg,8,Sonadanga
+2024-01-25,PH007,Losartan 50mg,7,Sonadanga
+2024-01-26,PH007,Paracetamol 500mg,93,Sonadanga
+2024-01-26,PH007,ORS Sachet,18,Sonadanga
+2024-01-26,PH007,Metronidazole 400mg,9,Sonadanga
+2024-01-26,PH007,Cetirizine 10mg,33,Sonadanga
+2024-01-26,PH007,Amoxicillin 500mg,8,Sonadanga
+2024-01-26,PH007,Azithromycin 500mg,4,Sonadanga
+2024-01-26,PH007,Zinc 20mg (child),7,Sonadanga
+2024-01-26,PH007,Ciprofloxacin 500mg,7,Sonadanga
+2024-01-26,PH007,Antihistamine Syrup,10,Sonadanga
+2024-01-26,PH007,Vitamin C 500mg,35,Sonadanga
+2024-01-26,PH007,Ranitidine 150mg,12,Sonadanga
+2024-01-26,PH007,Antacid Tablet,20,Sonadanga
+2024-01-26,PH007,Insulin (vial),4,Sonadanga
+2024-01-26,PH007,Atorvastatin 10mg,5,Sonadanga
+2024-01-26,PH007,Losartan 50mg,8,Sonadanga
+2024-01-27,PH007,Paracetamol 500mg,129,Sonadanga
+2024-01-27,PH007,ORS Sachet,21,Sonadanga
+2024-01-27,PH007,Metronidazole 400mg,13,Sonadanga
+2024-01-27,PH007,Cetirizine 10mg,31,Sonadanga
+2024-01-27,PH007,Amoxicillin 500mg,10,Sonadanga
+2024-01-27,PH007,Azithromycin 500mg,4,Sonadanga
+2024-01-27,PH007,Zinc 20mg (child),10,Sonadanga
+2024-01-27,PH007,Ciprofloxacin 500mg,8,Sonadanga
+2024-01-27,PH007,Antihistamine Syrup,8,Sonadanga
+2024-01-27,PH007,Vitamin C 500mg,33,Sonadanga
+2024-01-27,PH007,Ranitidine 150mg,12,Sonadanga
+2024-01-27,PH007,Antacid Tablet,24,Sonadanga
+2024-01-27,PH007,Insulin (vial),5,Sonadanga
+2024-01-27,PH007,Atorvastatin 10mg,8,Sonadanga
+2024-01-27,PH007,Losartan 50mg,6,Sonadanga
+2024-01-28,PH007,Paracetamol 500mg,118,Sonadanga
+2024-01-28,PH007,ORS Sachet,19,Sonadanga
+2024-01-28,PH007,Metronidazole 400mg,12,Sonadanga
+2024-01-28,PH007,Cetirizine 10mg,32,Sonadanga
+2024-01-28,PH007,Amoxicillin 500mg,8,Sonadanga
+2024-01-28,PH007,Azithromycin 500mg,6,Sonadanga
+2024-01-28,PH007,Zinc 20mg (child),8,Sonadanga
+2024-01-28,PH007,Ciprofloxacin 500mg,5,Sonadanga
+2024-01-28,PH007,Antihistamine Syrup,11,Sonadanga
+2024-01-28,PH007,Vitamin C 500mg,45,Sonadanga
+2024-01-28,PH007,Ranitidine 150mg,15,Sonadanga
+2024-01-28,PH007,Antacid Tablet,24,Sonadanga
+2024-01-28,PH007,Insulin (vial),4,Sonadanga
+2024-01-28,PH007,Atorvastatin 10mg,7,Sonadanga
+2024-01-28,PH007,Losartan 50mg,6,Sonadanga
+2024-01-29,PH007,Paracetamol 500mg,86,Sonadanga
+2024-01-29,PH007,ORS Sachet,16,Sonadanga
+2024-01-29,PH007,Metronidazole 400mg,12,Sonadanga
+2024-01-29,PH007,Cetirizine 10mg,29,Sonadanga
+2024-01-29,PH007,Amoxicillin 500mg,8,Sonadanga
+2024-01-29,PH007,Azithromycin 500mg,5,Sonadanga
+2024-01-29,PH007,Zinc 20mg (child),11,Sonadanga
+2024-01-29,PH007,Ciprofloxacin 500mg,8,Sonadanga
+2024-01-29,PH007,Antihistamine Syrup,12,Sonadanga
+2024-01-29,PH007,Vitamin C 500mg,33,Sonadanga
+2024-01-29,PH007,Ranitidine 150mg,14,Sonadanga
+2024-01-29,PH007,Antacid Tablet,20,Sonadanga
+2024-01-29,PH007,Insulin (vial),4,Sonadanga
+2024-01-29,PH007,Atorvastatin 10mg,7,Sonadanga
+2024-01-29,PH007,Losartan 50mg,9,Sonadanga
+2024-01-30,PH007,Paracetamol 500mg,76,Sonadanga
+2024-01-30,PH007,ORS Sachet,21,Sonadanga
+2024-01-30,PH007,Metronidazole 400mg,14,Sonadanga
+2024-01-30,PH007,Cetirizine 10mg,24,Sonadanga
+2024-01-30,PH007,Amoxicillin 500mg,9,Sonadanga
+2024-01-30,PH007,Azithromycin 500mg,4,Sonadanga
+2024-01-30,PH007,Zinc 20mg (child),11,Sonadanga
+2024-01-30,PH007,Ciprofloxacin 500mg,7,Sonadanga
+2024-01-30,PH007,Antihistamine Syrup,11,Sonadanga
+2024-01-30,PH007,Vitamin C 500mg,40,Sonadanga
+2024-01-30,PH007,Ranitidine 150mg,15,Sonadanga
+2024-01-30,PH007,Antacid Tablet,20,Sonadanga
+2024-01-30,PH007,Insulin (vial),6,Sonadanga
+2024-01-30,PH007,Atorvastatin 10mg,5,Sonadanga
+2024-01-30,PH007,Losartan 50mg,7,Sonadanga
+2024-01-31,PH007,Paracetamol 500mg,97,Sonadanga
+2024-01-31,PH007,ORS Sachet,21,Sonadanga
+2024-01-31,PH007,Metronidazole 400mg,9,Sonadanga
+2024-01-31,PH007,Cetirizine 10mg,26,Sonadanga
+2024-01-31,PH007,Amoxicillin 500mg,10,Sonadanga
+2024-01-31,PH007,Azithromycin 500mg,4,Sonadanga
+2024-01-31,PH007,Zinc 20mg (child),12,Sonadanga
+2024-01-31,PH007,Ciprofloxacin 500mg,7,Sonadanga
+2024-01-31,PH007,Antihistamine Syrup,8,Sonadanga
+2024-01-31,PH007,Vitamin C 500mg,33,Sonadanga
+2024-01-31,PH007,Ranitidine 150mg,16,Sonadanga
+2024-01-31,PH007,Antacid Tablet,21,Sonadanga
+2024-01-31,PH007,Insulin (vial),5,Sonadanga
+2024-01-31,PH007,Atorvastatin 10mg,8,Sonadanga
+2024-01-31,PH007,Losartan 50mg,7,Sonadanga
+2024-02-01,PH007,Paracetamol 500mg,85,Sonadanga
+2024-02-01,PH007,ORS Sachet,21,Sonadanga
+2024-02-01,PH007,Metronidazole 400mg,9,Sonadanga
+2024-02-01,PH007,Cetirizine 10mg,20,Sonadanga
+2024-02-01,PH007,Amoxicillin 500mg,11,Sonadanga
+2024-02-01,PH007,Azithromycin 500mg,7,Sonadanga
+2024-02-01,PH007,Zinc 20mg (child),11,Sonadanga
+2024-02-01,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-02-01,PH007,Antihistamine Syrup,13,Sonadanga
+2024-02-01,PH007,Vitamin C 500mg,39,Sonadanga
+2024-02-01,PH007,Ranitidine 150mg,13,Sonadanga
+2024-02-01,PH007,Antacid Tablet,23,Sonadanga
+2024-02-01,PH007,Insulin (vial),3,Sonadanga
+2024-02-01,PH007,Atorvastatin 10mg,8,Sonadanga
+2024-02-01,PH007,Losartan 50mg,8,Sonadanga
+2024-02-02,PH007,Paracetamol 500mg,84,Sonadanga
+2024-02-02,PH007,ORS Sachet,22,Sonadanga
+2024-02-02,PH007,Metronidazole 400mg,11,Sonadanga
+2024-02-02,PH007,Cetirizine 10mg,26,Sonadanga
+2024-02-02,PH007,Amoxicillin 500mg,11,Sonadanga
+2024-02-02,PH007,Azithromycin 500mg,5,Sonadanga
+2024-02-02,PH007,Zinc 20mg (child),7,Sonadanga
+2024-02-02,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-02-02,PH007,Antihistamine Syrup,11,Sonadanga
+2024-02-02,PH007,Vitamin C 500mg,36,Sonadanga
+2024-02-02,PH007,Ranitidine 150mg,14,Sonadanga
+2024-02-02,PH007,Antacid Tablet,24,Sonadanga
+2024-02-02,PH007,Insulin (vial),4,Sonadanga
+2024-02-02,PH007,Atorvastatin 10mg,8,Sonadanga
+2024-02-02,PH007,Losartan 50mg,6,Sonadanga
+2024-02-03,PH007,Paracetamol 500mg,55,Sonadanga
+2024-02-03,PH007,ORS Sachet,18,Sonadanga
+2024-02-03,PH007,Metronidazole 400mg,11,Sonadanga
+2024-02-03,PH007,Cetirizine 10mg,16,Sonadanga
+2024-02-03,PH007,Amoxicillin 500mg,8,Sonadanga
+2024-02-03,PH007,Azithromycin 500mg,5,Sonadanga
+2024-02-03,PH007,Zinc 20mg (child),11,Sonadanga
+2024-02-03,PH007,Ciprofloxacin 500mg,7,Sonadanga
+2024-02-03,PH007,Antihistamine Syrup,9,Sonadanga
+2024-02-03,PH007,Vitamin C 500mg,29,Sonadanga
+2024-02-03,PH007,Ranitidine 150mg,16,Sonadanga
+2024-02-03,PH007,Antacid Tablet,18,Sonadanga
+2024-02-03,PH007,Insulin (vial),5,Sonadanga
+2024-02-03,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-02-03,PH007,Losartan 50mg,9,Sonadanga
+2024-02-04,PH007,Paracetamol 500mg,48,Sonadanga
+2024-02-04,PH007,ORS Sachet,13,Sonadanga
+2024-02-04,PH007,Metronidazole 400mg,9,Sonadanga
+2024-02-04,PH007,Cetirizine 10mg,16,Sonadanga
+2024-02-04,PH007,Amoxicillin 500mg,12,Sonadanga
+2024-02-04,PH007,Azithromycin 500mg,4,Sonadanga
+2024-02-04,PH007,Zinc 20mg (child),10,Sonadanga
+2024-02-04,PH007,Ciprofloxacin 500mg,7,Sonadanga
+2024-02-04,PH007,Antihistamine Syrup,9,Sonadanga
+2024-02-04,PH007,Vitamin C 500mg,25,Sonadanga
+2024-02-04,PH007,Ranitidine 150mg,16,Sonadanga
+2024-02-04,PH007,Antacid Tablet,21,Sonadanga
+2024-02-04,PH007,Insulin (vial),5,Sonadanga
+2024-02-04,PH007,Atorvastatin 10mg,7,Sonadanga
+2024-02-04,PH007,Losartan 50mg,6,Sonadanga
+2024-02-05,PH007,Paracetamol 500mg,46,Sonadanga
+2024-02-05,PH007,ORS Sachet,21,Sonadanga
+2024-02-05,PH007,Metronidazole 400mg,9,Sonadanga
+2024-02-05,PH007,Cetirizine 10mg,17,Sonadanga
+2024-02-05,PH007,Amoxicillin 500mg,8,Sonadanga
+2024-02-05,PH007,Azithromycin 500mg,6,Sonadanga
+2024-02-05,PH007,Zinc 20mg (child),8,Sonadanga
+2024-02-05,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-02-05,PH007,Antihistamine Syrup,10,Sonadanga
+2024-02-05,PH007,Vitamin C 500mg,29,Sonadanga
+2024-02-05,PH007,Ranitidine 150mg,12,Sonadanga
+2024-02-05,PH007,Antacid Tablet,17,Sonadanga
+2024-02-05,PH007,Insulin (vial),5,Sonadanga
+2024-02-05,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-02-05,PH007,Losartan 50mg,8,Sonadanga
+2024-02-06,PH007,Paracetamol 500mg,47,Sonadanga
+2024-02-06,PH007,ORS Sachet,22,Sonadanga
+2024-02-06,PH007,Metronidazole 400mg,10,Sonadanga
+2024-02-06,PH007,Cetirizine 10mg,17,Sonadanga
+2024-02-06,PH007,Amoxicillin 500mg,12,Sonadanga
+2024-02-06,PH007,Azithromycin 500mg,6,Sonadanga
+2024-02-06,PH007,Zinc 20mg (child),10,Sonadanga
+2024-02-06,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-02-06,PH007,Antihistamine Syrup,11,Sonadanga
+2024-02-06,PH007,Vitamin C 500mg,20,Sonadanga
+2024-02-06,PH007,Ranitidine 150mg,13,Sonadanga
+2024-02-06,PH007,Antacid Tablet,17,Sonadanga
+2024-02-06,PH007,Insulin (vial),4,Sonadanga
+2024-02-06,PH007,Atorvastatin 10mg,5,Sonadanga
+2024-02-06,PH007,Losartan 50mg,9,Sonadanga
+2024-02-07,PH007,Paracetamol 500mg,47,Sonadanga
+2024-02-07,PH007,ORS Sachet,16,Sonadanga
+2024-02-07,PH007,Metronidazole 400mg,14,Sonadanga
+2024-02-07,PH007,Cetirizine 10mg,19,Sonadanga
+2024-02-07,PH007,Amoxicillin 500mg,8,Sonadanga
+2024-02-07,PH007,Azithromycin 500mg,7,Sonadanga
+2024-02-07,PH007,Zinc 20mg (child),8,Sonadanga
+2024-02-07,PH007,Ciprofloxacin 500mg,7,Sonadanga
+2024-02-07,PH007,Antihistamine Syrup,11,Sonadanga
+2024-02-07,PH007,Vitamin C 500mg,27,Sonadanga
+2024-02-07,PH007,Ranitidine 150mg,17,Sonadanga
+2024-02-07,PH007,Antacid Tablet,18,Sonadanga
+2024-02-07,PH007,Insulin (vial),5,Sonadanga
+2024-02-07,PH007,Atorvastatin 10mg,8,Sonadanga
+2024-02-07,PH007,Losartan 50mg,6,Sonadanga
+2024-02-08,PH007,Paracetamol 500mg,31,Sonadanga
+2024-02-08,PH007,ORS Sachet,18,Sonadanga
+2024-02-08,PH007,Metronidazole 400mg,14,Sonadanga
+2024-02-08,PH007,Cetirizine 10mg,15,Sonadanga
+2024-02-08,PH007,Amoxicillin 500mg,11,Sonadanga
+2024-02-08,PH007,Azithromycin 500mg,6,Sonadanga
+2024-02-08,PH007,Zinc 20mg (child),12,Sonadanga
+2024-02-08,PH007,Ciprofloxacin 500mg,8,Sonadanga
+2024-02-08,PH007,Antihistamine Syrup,10,Sonadanga
+2024-02-08,PH007,Vitamin C 500mg,26,Sonadanga
+2024-02-08,PH007,Ranitidine 150mg,13,Sonadanga
+2024-02-08,PH007,Antacid Tablet,20,Sonadanga
+2024-02-08,PH007,Insulin (vial),4,Sonadanga
+2024-02-08,PH007,Atorvastatin 10mg,7,Sonadanga
+2024-02-08,PH007,Losartan 50mg,6,Sonadanga
+2024-02-09,PH007,Paracetamol 500mg,32,Sonadanga
+2024-02-09,PH007,ORS Sachet,19,Sonadanga
+2024-02-09,PH007,Metronidazole 400mg,9,Sonadanga
+2024-02-09,PH007,Cetirizine 10mg,15,Sonadanga
+2024-02-09,PH007,Amoxicillin 500mg,7,Sonadanga
+2024-02-09,PH007,Azithromycin 500mg,7,Sonadanga
+2024-02-09,PH007,Zinc 20mg (child),10,Sonadanga
+2024-02-09,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-02-09,PH007,Antihistamine Syrup,13,Sonadanga
+2024-02-09,PH007,Vitamin C 500mg,24,Sonadanga
+2024-02-09,PH007,Ranitidine 150mg,13,Sonadanga
+2024-02-09,PH007,Antacid Tablet,22,Sonadanga
+2024-02-09,PH007,Insulin (vial),5,Sonadanga
+2024-02-09,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-02-09,PH007,Losartan 50mg,6,Sonadanga
+2024-02-10,PH007,Paracetamol 500mg,26,Sonadanga
+2024-02-10,PH007,ORS Sachet,15,Sonadanga
+2024-02-10,PH007,Metronidazole 400mg,11,Sonadanga
+2024-02-10,PH007,Cetirizine 10mg,15,Sonadanga
+2024-02-10,PH007,Amoxicillin 500mg,8,Sonadanga
+2024-02-10,PH007,Azithromycin 500mg,5,Sonadanga
+2024-02-10,PH007,Zinc 20mg (child),10,Sonadanga
+2024-02-10,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-02-10,PH007,Antihistamine Syrup,11,Sonadanga
+2024-02-10,PH007,Vitamin C 500mg,18,Sonadanga
+2024-02-10,PH007,Ranitidine 150mg,16,Sonadanga
+2024-02-10,PH007,Antacid Tablet,24,Sonadanga
+2024-02-10,PH007,Insulin (vial),6,Sonadanga
+2024-02-10,PH007,Atorvastatin 10mg,8,Sonadanga
+2024-02-10,PH007,Losartan 50mg,8,Sonadanga
+2024-02-11,PH007,Paracetamol 500mg,36,Sonadanga
+2024-02-11,PH007,ORS Sachet,16,Sonadanga
+2024-02-11,PH007,Metronidazole 400mg,10,Sonadanga
+2024-02-11,PH007,Cetirizine 10mg,14,Sonadanga
+2024-02-11,PH007,Amoxicillin 500mg,9,Sonadanga
+2024-02-11,PH007,Azithromycin 500mg,4,Sonadanga
+2024-02-11,PH007,Zinc 20mg (child),11,Sonadanga
+2024-02-11,PH007,Ciprofloxacin 500mg,5,Sonadanga
+2024-02-11,PH007,Antihistamine Syrup,10,Sonadanga
+2024-02-11,PH007,Vitamin C 500mg,22,Sonadanga
+2024-02-11,PH007,Ranitidine 150mg,16,Sonadanga
+2024-02-11,PH007,Antacid Tablet,19,Sonadanga
+2024-02-11,PH007,Insulin (vial),5,Sonadanga
+2024-02-11,PH007,Atorvastatin 10mg,7,Sonadanga
+2024-02-11,PH007,Losartan 50mg,8,Sonadanga
+2024-02-12,PH007,Paracetamol 500mg,29,Sonadanga
+2024-02-12,PH007,ORS Sachet,13,Sonadanga
+2024-02-12,PH007,Metronidazole 400mg,11,Sonadanga
+2024-02-12,PH007,Cetirizine 10mg,12,Sonadanga
+2024-02-12,PH007,Amoxicillin 500mg,8,Sonadanga
+2024-02-12,PH007,Azithromycin 500mg,6,Sonadanga
+2024-02-12,PH007,Zinc 20mg (child),11,Sonadanga
+2024-02-12,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-02-12,PH007,Antihistamine Syrup,11,Sonadanga
+2024-02-12,PH007,Vitamin C 500mg,17,Sonadanga
+2024-02-12,PH007,Ranitidine 150mg,16,Sonadanga
+2024-02-12,PH007,Antacid Tablet,19,Sonadanga
+2024-02-12,PH007,Insulin (vial),5,Sonadanga
+2024-02-12,PH007,Atorvastatin 10mg,8,Sonadanga
+2024-02-12,PH007,Losartan 50mg,9,Sonadanga
+2024-02-13,PH007,Paracetamol 500mg,40,Sonadanga
+2024-02-13,PH007,ORS Sachet,21,Sonadanga
+2024-02-13,PH007,Metronidazole 400mg,11,Sonadanga
+2024-02-13,PH007,Cetirizine 10mg,17,Sonadanga
+2024-02-13,PH007,Amoxicillin 500mg,10,Sonadanga
+2024-02-13,PH007,Azithromycin 500mg,6,Sonadanga
+2024-02-13,PH007,Zinc 20mg (child),11,Sonadanga
+2024-02-13,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-02-13,PH007,Antihistamine Syrup,11,Sonadanga
+2024-02-13,PH007,Vitamin C 500mg,24,Sonadanga
+2024-02-13,PH007,Ranitidine 150mg,15,Sonadanga
+2024-02-13,PH007,Antacid Tablet,22,Sonadanga
+2024-02-13,PH007,Insulin (vial),5,Sonadanga
+2024-02-13,PH007,Atorvastatin 10mg,5,Sonadanga
+2024-02-13,PH007,Losartan 50mg,8,Sonadanga
+2024-02-14,PH007,Paracetamol 500mg,39,Sonadanga
+2024-02-14,PH007,ORS Sachet,20,Sonadanga
+2024-02-14,PH007,Metronidazole 400mg,12,Sonadanga
+2024-02-14,PH007,Cetirizine 10mg,14,Sonadanga
+2024-02-14,PH007,Amoxicillin 500mg,10,Sonadanga
+2024-02-14,PH007,Azithromycin 500mg,6,Sonadanga
+2024-02-14,PH007,Zinc 20mg (child),10,Sonadanga
+2024-02-14,PH007,Ciprofloxacin 500mg,8,Sonadanga
+2024-02-14,PH007,Antihistamine Syrup,10,Sonadanga
+2024-02-14,PH007,Vitamin C 500mg,26,Sonadanga
+2024-02-14,PH007,Ranitidine 150mg,15,Sonadanga
+2024-02-14,PH007,Antacid Tablet,23,Sonadanga
+2024-02-14,PH007,Insulin (vial),5,Sonadanga
+2024-02-14,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-02-14,PH007,Losartan 50mg,6,Sonadanga
+2024-02-15,PH007,Paracetamol 500mg,39,Sonadanga
+2024-02-15,PH007,ORS Sachet,15,Sonadanga
+2024-02-15,PH007,Metronidazole 400mg,9,Sonadanga
+2024-02-15,PH007,Cetirizine 10mg,14,Sonadanga
+2024-02-15,PH007,Amoxicillin 500mg,8,Sonadanga
+2024-02-15,PH007,Azithromycin 500mg,5,Sonadanga
+2024-02-15,PH007,Zinc 20mg (child),12,Sonadanga
+2024-02-15,PH007,Ciprofloxacin 500mg,5,Sonadanga
+2024-02-15,PH007,Antihistamine Syrup,13,Sonadanga
+2024-02-15,PH007,Vitamin C 500mg,21,Sonadanga
+2024-02-15,PH007,Ranitidine 150mg,17,Sonadanga
+2024-02-15,PH007,Antacid Tablet,23,Sonadanga
+2024-02-15,PH007,Insulin (vial),6,Sonadanga
+2024-02-15,PH007,Atorvastatin 10mg,8,Sonadanga
+2024-02-15,PH007,Losartan 50mg,8,Sonadanga
+2024-02-16,PH007,Paracetamol 500mg,37,Sonadanga
+2024-02-16,PH007,ORS Sachet,20,Sonadanga
+2024-02-16,PH007,Metronidazole 400mg,10,Sonadanga
+2024-02-16,PH007,Cetirizine 10mg,16,Sonadanga
+2024-02-16,PH007,Amoxicillin 500mg,9,Sonadanga
+2024-02-16,PH007,Azithromycin 500mg,6,Sonadanga
+2024-02-16,PH007,Zinc 20mg (child),10,Sonadanga
+2024-02-16,PH007,Ciprofloxacin 500mg,7,Sonadanga
+2024-02-16,PH007,Antihistamine Syrup,11,Sonadanga
+2024-02-16,PH007,Vitamin C 500mg,20,Sonadanga
+2024-02-16,PH007,Ranitidine 150mg,14,Sonadanga
+2024-02-16,PH007,Antacid Tablet,22,Sonadanga
+2024-02-16,PH007,Insulin (vial),5,Sonadanga
+2024-02-16,PH007,Atorvastatin 10mg,5,Sonadanga
+2024-02-16,PH007,Losartan 50mg,9,Sonadanga
+2024-02-17,PH007,Paracetamol 500mg,35,Sonadanga
+2024-02-17,PH007,ORS Sachet,13,Sonadanga
+2024-02-17,PH007,Metronidazole 400mg,9,Sonadanga
+2024-02-17,PH007,Cetirizine 10mg,14,Sonadanga
+2024-02-17,PH007,Amoxicillin 500mg,10,Sonadanga
+2024-02-17,PH007,Azithromycin 500mg,6,Sonadanga
+2024-02-17,PH007,Zinc 20mg (child),8,Sonadanga
+2024-02-17,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-02-17,PH007,Antihistamine Syrup,9,Sonadanga
+2024-02-17,PH007,Vitamin C 500mg,20,Sonadanga
+2024-02-17,PH007,Ranitidine 150mg,13,Sonadanga
+2024-02-17,PH007,Antacid Tablet,17,Sonadanga
+2024-02-17,PH007,Insulin (vial),4,Sonadanga
+2024-02-17,PH007,Atorvastatin 10mg,7,Sonadanga
+2024-02-17,PH007,Losartan 50mg,8,Sonadanga
+2024-02-18,PH007,Paracetamol 500mg,28,Sonadanga
+2024-02-18,PH007,ORS Sachet,14,Sonadanga
+2024-02-18,PH007,Metronidazole 400mg,13,Sonadanga
+2024-02-18,PH007,Cetirizine 10mg,15,Sonadanga
+2024-02-18,PH007,Amoxicillin 500mg,10,Sonadanga
+2024-02-18,PH007,Azithromycin 500mg,5,Sonadanga
+2024-02-18,PH007,Zinc 20mg (child),11,Sonadanga
+2024-02-18,PH007,Ciprofloxacin 500mg,8,Sonadanga
+2024-02-18,PH007,Antihistamine Syrup,10,Sonadanga
+2024-02-18,PH007,Vitamin C 500mg,16,Sonadanga
+2024-02-18,PH007,Ranitidine 150mg,15,Sonadanga
+2024-02-18,PH007,Antacid Tablet,22,Sonadanga
+2024-02-18,PH007,Insulin (vial),6,Sonadanga
+2024-02-18,PH007,Atorvastatin 10mg,5,Sonadanga
+2024-02-18,PH007,Losartan 50mg,6,Sonadanga
+2024-02-19,PH007,Paracetamol 500mg,40,Sonadanga
+2024-02-19,PH007,ORS Sachet,16,Sonadanga
+2024-02-19,PH007,Metronidazole 400mg,14,Sonadanga
+2024-02-19,PH007,Cetirizine 10mg,16,Sonadanga
+2024-02-19,PH007,Amoxicillin 500mg,9,Sonadanga
+2024-02-19,PH007,Azithromycin 500mg,6,Sonadanga
+2024-02-19,PH007,Zinc 20mg (child),8,Sonadanga
+2024-02-19,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-02-19,PH007,Antihistamine Syrup,11,Sonadanga
+2024-02-19,PH007,Vitamin C 500mg,20,Sonadanga
+2024-02-19,PH007,Ranitidine 150mg,15,Sonadanga
+2024-02-19,PH007,Antacid Tablet,19,Sonadanga
+2024-02-19,PH007,Insulin (vial),5,Sonadanga
+2024-02-19,PH007,Atorvastatin 10mg,8,Sonadanga
+2024-02-19,PH007,Losartan 50mg,6,Sonadanga
+2024-02-20,PH007,Paracetamol 500mg,39,Sonadanga
+2024-02-20,PH007,ORS Sachet,14,Sonadanga
+2024-02-20,PH007,Metronidazole 400mg,10,Sonadanga
+2024-02-20,PH007,Cetirizine 10mg,13,Sonadanga
+2024-02-20,PH007,Amoxicillin 500mg,10,Sonadanga
+2024-02-20,PH007,Azithromycin 500mg,5,Sonadanga
+2024-02-20,PH007,Zinc 20mg (child),12,Sonadanga
+2024-02-20,PH007,Ciprofloxacin 500mg,8,Sonadanga
+2024-02-20,PH007,Antihistamine Syrup,9,Sonadanga
+2024-02-20,PH007,Vitamin C 500mg,19,Sonadanga
+2024-02-20,PH007,Ranitidine 150mg,13,Sonadanga
+2024-02-20,PH007,Antacid Tablet,23,Sonadanga
+2024-02-20,PH007,Insulin (vial),5,Sonadanga
+2024-02-20,PH007,Atorvastatin 10mg,7,Sonadanga
+2024-02-20,PH007,Losartan 50mg,6,Sonadanga
+2024-02-21,PH007,Paracetamol 500mg,35,Sonadanga
+2024-02-21,PH007,ORS Sachet,22,Sonadanga
+2024-02-21,PH007,Metronidazole 400mg,13,Sonadanga
+2024-02-21,PH007,Cetirizine 10mg,14,Sonadanga
+2024-02-21,PH007,Amoxicillin 500mg,9,Sonadanga
+2024-02-21,PH007,Azithromycin 500mg,6,Sonadanga
+2024-02-21,PH007,Zinc 20mg (child),10,Sonadanga
+2024-02-21,PH007,Ciprofloxacin 500mg,5,Sonadanga
+2024-02-21,PH007,Antihistamine Syrup,13,Sonadanga
+2024-02-21,PH007,Vitamin C 500mg,16,Sonadanga
+2024-02-21,PH007,Ranitidine 150mg,12,Sonadanga
+2024-02-21,PH007,Antacid Tablet,16,Sonadanga
+2024-02-21,PH007,Insulin (vial),4,Sonadanga
+2024-02-21,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-02-21,PH007,Losartan 50mg,9,Sonadanga
+2024-02-22,PH007,Paracetamol 500mg,39,Sonadanga
+2024-02-22,PH007,ORS Sachet,18,Sonadanga
+2024-02-22,PH007,Metronidazole 400mg,14,Sonadanga
+2024-02-22,PH007,Cetirizine 10mg,12,Sonadanga
+2024-02-22,PH007,Amoxicillin 500mg,9,Sonadanga
+2024-02-22,PH007,Azithromycin 500mg,7,Sonadanga
+2024-02-22,PH007,Zinc 20mg (child),9,Sonadanga
+2024-02-22,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-02-22,PH007,Antihistamine Syrup,11,Sonadanga
+2024-02-22,PH007,Vitamin C 500mg,21,Sonadanga
+2024-02-22,PH007,Ranitidine 150mg,14,Sonadanga
+2024-02-22,PH007,Antacid Tablet,18,Sonadanga
+2024-02-22,PH007,Insulin (vial),4,Sonadanga
+2024-02-22,PH007,Atorvastatin 10mg,5,Sonadanga
+2024-02-22,PH007,Losartan 50mg,8,Sonadanga
+2024-02-23,PH007,Paracetamol 500mg,34,Sonadanga
+2024-02-23,PH007,ORS Sachet,22,Sonadanga
+2024-02-23,PH007,Metronidazole 400mg,12,Sonadanga
+2024-02-23,PH007,Cetirizine 10mg,14,Sonadanga
+2024-02-23,PH007,Amoxicillin 500mg,12,Sonadanga
+2024-02-23,PH007,Azithromycin 500mg,6,Sonadanga
+2024-02-23,PH007,Zinc 20mg (child),9,Sonadanga
+2024-02-23,PH007,Ciprofloxacin 500mg,7,Sonadanga
+2024-02-23,PH007,Antihistamine Syrup,11,Sonadanga
+2024-02-23,PH007,Vitamin C 500mg,17,Sonadanga
+2024-02-23,PH007,Ranitidine 150mg,13,Sonadanga
+2024-02-23,PH007,Antacid Tablet,18,Sonadanga
+2024-02-23,PH007,Insulin (vial),5,Sonadanga
+2024-02-23,PH007,Atorvastatin 10mg,8,Sonadanga
+2024-02-23,PH007,Losartan 50mg,6,Sonadanga
+2024-02-24,PH007,Paracetamol 500mg,39,Sonadanga
+2024-02-24,PH007,ORS Sachet,18,Sonadanga
+2024-02-24,PH007,Metronidazole 400mg,9,Sonadanga
+2024-02-24,PH007,Cetirizine 10mg,10,Sonadanga
+2024-02-24,PH007,Amoxicillin 500mg,7,Sonadanga
+2024-02-24,PH007,Azithromycin 500mg,6,Sonadanga
+2024-02-24,PH007,Zinc 20mg (child),10,Sonadanga
+2024-02-24,PH007,Ciprofloxacin 500mg,5,Sonadanga
+2024-02-24,PH007,Antihistamine Syrup,12,Sonadanga
+2024-02-24,PH007,Vitamin C 500mg,23,Sonadanga
+2024-02-24,PH007,Ranitidine 150mg,12,Sonadanga
+2024-02-24,PH007,Antacid Tablet,19,Sonadanga
+2024-02-24,PH007,Insulin (vial),5,Sonadanga
+2024-02-24,PH007,Atorvastatin 10mg,5,Sonadanga
+2024-02-24,PH007,Losartan 50mg,7,Sonadanga
+2024-02-25,PH007,Paracetamol 500mg,37,Sonadanga
+2024-02-25,PH007,ORS Sachet,14,Sonadanga
+2024-02-25,PH007,Metronidazole 400mg,12,Sonadanga
+2024-02-25,PH007,Cetirizine 10mg,16,Sonadanga
+2024-02-25,PH007,Amoxicillin 500mg,10,Sonadanga
+2024-02-25,PH007,Azithromycin 500mg,5,Sonadanga
+2024-02-25,PH007,Zinc 20mg (child),8,Sonadanga
+2024-02-25,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-02-25,PH007,Antihistamine Syrup,9,Sonadanga
+2024-02-25,PH007,Vitamin C 500mg,21,Sonadanga
+2024-02-25,PH007,Ranitidine 150mg,19,Sonadanga
+2024-02-25,PH007,Antacid Tablet,16,Sonadanga
+2024-02-25,PH007,Insulin (vial),4,Sonadanga
+2024-02-25,PH007,Atorvastatin 10mg,8,Sonadanga
+2024-02-25,PH007,Losartan 50mg,6,Sonadanga
+2024-02-26,PH007,Paracetamol 500mg,39,Sonadanga
+2024-02-26,PH007,ORS Sachet,22,Sonadanga
+2024-02-26,PH007,Metronidazole 400mg,9,Sonadanga
+2024-02-26,PH007,Cetirizine 10mg,14,Sonadanga
+2024-02-26,PH007,Amoxicillin 500mg,11,Sonadanga
+2024-02-26,PH007,Azithromycin 500mg,6,Sonadanga
+2024-02-26,PH007,Zinc 20mg (child),9,Sonadanga
+2024-02-26,PH007,Ciprofloxacin 500mg,8,Sonadanga
+2024-02-26,PH007,Antihistamine Syrup,10,Sonadanga
+2024-02-26,PH007,Vitamin C 500mg,19,Sonadanga
+2024-02-26,PH007,Ranitidine 150mg,17,Sonadanga
+2024-02-26,PH007,Antacid Tablet,20,Sonadanga
+2024-02-26,PH007,Insulin (vial),5,Sonadanga
+2024-02-26,PH007,Atorvastatin 10mg,8,Sonadanga
+2024-02-26,PH007,Losartan 50mg,8,Sonadanga
+2024-02-27,PH007,Paracetamol 500mg,30,Sonadanga
+2024-02-27,PH007,ORS Sachet,15,Sonadanga
+2024-02-27,PH007,Metronidazole 400mg,9,Sonadanga
+2024-02-27,PH007,Cetirizine 10mg,17,Sonadanga
+2024-02-27,PH007,Amoxicillin 500mg,8,Sonadanga
+2024-02-27,PH007,Azithromycin 500mg,7,Sonadanga
+2024-02-27,PH007,Zinc 20mg (child),8,Sonadanga
+2024-02-27,PH007,Ciprofloxacin 500mg,7,Sonadanga
+2024-02-27,PH007,Antihistamine Syrup,10,Sonadanga
+2024-02-27,PH007,Vitamin C 500mg,24,Sonadanga
+2024-02-27,PH007,Ranitidine 150mg,17,Sonadanga
+2024-02-27,PH007,Antacid Tablet,23,Sonadanga
+2024-02-27,PH007,Insulin (vial),5,Sonadanga
+2024-02-27,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-02-27,PH007,Losartan 50mg,7,Sonadanga
+2024-02-28,PH007,Paracetamol 500mg,28,Sonadanga
+2024-02-28,PH007,ORS Sachet,15,Sonadanga
+2024-02-28,PH007,Metronidazole 400mg,9,Sonadanga
+2024-02-28,PH007,Cetirizine 10mg,10,Sonadanga
+2024-02-28,PH007,Amoxicillin 500mg,12,Sonadanga
+2024-02-28,PH007,Azithromycin 500mg,5,Sonadanga
+2024-02-28,PH007,Zinc 20mg (child),11,Sonadanga
+2024-02-28,PH007,Ciprofloxacin 500mg,5,Sonadanga
+2024-02-28,PH007,Antihistamine Syrup,8,Sonadanga
+2024-02-28,PH007,Vitamin C 500mg,22,Sonadanga
+2024-02-28,PH007,Ranitidine 150mg,17,Sonadanga
+2024-02-28,PH007,Antacid Tablet,17,Sonadanga
+2024-02-28,PH007,Insulin (vial),6,Sonadanga
+2024-02-28,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-02-28,PH007,Losartan 50mg,8,Sonadanga
+2024-02-29,PH007,Paracetamol 500mg,35,Sonadanga
+2024-02-29,PH007,ORS Sachet,21,Sonadanga
+2024-02-29,PH007,Metronidazole 400mg,12,Sonadanga
+2024-02-29,PH007,Cetirizine 10mg,16,Sonadanga
+2024-02-29,PH007,Amoxicillin 500mg,9,Sonadanga
+2024-02-29,PH007,Azithromycin 500mg,5,Sonadanga
+2024-02-29,PH007,Zinc 20mg (child),12,Sonadanga
+2024-02-29,PH007,Ciprofloxacin 500mg,5,Sonadanga
+2024-02-29,PH007,Antihistamine Syrup,8,Sonadanga
+2024-02-29,PH007,Vitamin C 500mg,24,Sonadanga
+2024-02-29,PH007,Ranitidine 150mg,13,Sonadanga
+2024-02-29,PH007,Antacid Tablet,17,Sonadanga
+2024-02-29,PH007,Insulin (vial),6,Sonadanga
+2024-02-29,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-02-29,PH007,Losartan 50mg,9,Sonadanga
+2024-03-01,PH007,Paracetamol 500mg,41,Sonadanga
+2024-03-01,PH007,ORS Sachet,13,Sonadanga
+2024-03-01,PH007,Metronidazole 400mg,9,Sonadanga
+2024-03-01,PH007,Cetirizine 10mg,11,Sonadanga
+2024-03-01,PH007,Amoxicillin 500mg,10,Sonadanga
+2024-03-01,PH007,Azithromycin 500mg,5,Sonadanga
+2024-03-01,PH007,Zinc 20mg (child),9,Sonadanga
+2024-03-01,PH007,Ciprofloxacin 500mg,7,Sonadanga
+2024-03-01,PH007,Antihistamine Syrup,8,Sonadanga
+2024-03-01,PH007,Vitamin C 500mg,21,Sonadanga
+2024-03-01,PH007,Ranitidine 150mg,16,Sonadanga
+2024-03-01,PH007,Antacid Tablet,23,Sonadanga
+2024-03-01,PH007,Insulin (vial),6,Sonadanga
+2024-03-01,PH007,Atorvastatin 10mg,8,Sonadanga
+2024-03-01,PH007,Losartan 50mg,9,Sonadanga
+2024-03-02,PH007,Paracetamol 500mg,27,Sonadanga
+2024-03-02,PH007,ORS Sachet,13,Sonadanga
+2024-03-02,PH007,Metronidazole 400mg,10,Sonadanga
+2024-03-02,PH007,Cetirizine 10mg,12,Sonadanga
+2024-03-02,PH007,Amoxicillin 500mg,12,Sonadanga
+2024-03-02,PH007,Azithromycin 500mg,4,Sonadanga
+2024-03-02,PH007,Zinc 20mg (child),11,Sonadanga
+2024-03-02,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-03-02,PH007,Antihistamine Syrup,8,Sonadanga
+2024-03-02,PH007,Vitamin C 500mg,22,Sonadanga
+2024-03-02,PH007,Ranitidine 150mg,14,Sonadanga
+2024-03-02,PH007,Antacid Tablet,19,Sonadanga
+2024-03-02,PH007,Insulin (vial),3,Sonadanga
+2024-03-02,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-03-02,PH007,Losartan 50mg,8,Sonadanga
+2024-03-03,PH007,Paracetamol 500mg,35,Sonadanga
+2024-03-03,PH007,ORS Sachet,20,Sonadanga
+2024-03-03,PH007,Metronidazole 400mg,10,Sonadanga
+2024-03-03,PH007,Cetirizine 10mg,17,Sonadanga
+2024-03-03,PH007,Amoxicillin 500mg,7,Sonadanga
+2024-03-03,PH007,Azithromycin 500mg,4,Sonadanga
+2024-03-03,PH007,Zinc 20mg (child),8,Sonadanga
+2024-03-03,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-03-03,PH007,Antihistamine Syrup,11,Sonadanga
+2024-03-03,PH007,Vitamin C 500mg,20,Sonadanga
+2024-03-03,PH007,Ranitidine 150mg,14,Sonadanga
+2024-03-03,PH007,Antacid Tablet,17,Sonadanga
+2024-03-03,PH007,Insulin (vial),4,Sonadanga
+2024-03-03,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-03-03,PH007,Losartan 50mg,8,Sonadanga
+2024-03-04,PH007,Paracetamol 500mg,42,Sonadanga
+2024-03-04,PH007,ORS Sachet,16,Sonadanga
+2024-03-04,PH007,Metronidazole 400mg,11,Sonadanga
+2024-03-04,PH007,Cetirizine 10mg,15,Sonadanga
+2024-03-04,PH007,Amoxicillin 500mg,10,Sonadanga
+2024-03-04,PH007,Azithromycin 500mg,5,Sonadanga
+2024-03-04,PH007,Zinc 20mg (child),10,Sonadanga
+2024-03-04,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-03-04,PH007,Antihistamine Syrup,10,Sonadanga
+2024-03-04,PH007,Vitamin C 500mg,24,Sonadanga
+2024-03-04,PH007,Ranitidine 150mg,12,Sonadanga
+2024-03-04,PH007,Antacid Tablet,24,Sonadanga
+2024-03-04,PH007,Insulin (vial),5,Sonadanga
+2024-03-04,PH007,Atorvastatin 10mg,5,Sonadanga
+2024-03-04,PH007,Losartan 50mg,9,Sonadanga
+2024-03-05,PH007,Paracetamol 500mg,26,Sonadanga
+2024-03-05,PH007,ORS Sachet,18,Sonadanga
+2024-03-05,PH007,Metronidazole 400mg,14,Sonadanga
+2024-03-05,PH007,Cetirizine 10mg,14,Sonadanga
+2024-03-05,PH007,Amoxicillin 500mg,11,Sonadanga
+2024-03-05,PH007,Azithromycin 500mg,6,Sonadanga
+2024-03-05,PH007,Zinc 20mg (child),10,Sonadanga
+2024-03-05,PH007,Ciprofloxacin 500mg,5,Sonadanga
+2024-03-05,PH007,Antihistamine Syrup,10,Sonadanga
+2024-03-05,PH007,Vitamin C 500mg,27,Sonadanga
+2024-03-05,PH007,Ranitidine 150mg,16,Sonadanga
+2024-03-05,PH007,Antacid Tablet,21,Sonadanga
+2024-03-05,PH007,Insulin (vial),3,Sonadanga
+2024-03-05,PH007,Atorvastatin 10mg,7,Sonadanga
+2024-03-05,PH007,Losartan 50mg,6,Sonadanga
+2024-03-06,PH007,Paracetamol 500mg,29,Sonadanga
+2024-03-06,PH007,ORS Sachet,14,Sonadanga
+2024-03-06,PH007,Metronidazole 400mg,12,Sonadanga
+2024-03-06,PH007,Cetirizine 10mg,12,Sonadanga
+2024-03-06,PH007,Amoxicillin 500mg,10,Sonadanga
+2024-03-06,PH007,Azithromycin 500mg,6,Sonadanga
+2024-03-06,PH007,Zinc 20mg (child),11,Sonadanga
+2024-03-06,PH007,Ciprofloxacin 500mg,8,Sonadanga
+2024-03-06,PH007,Antihistamine Syrup,12,Sonadanga
+2024-03-06,PH007,Vitamin C 500mg,23,Sonadanga
+2024-03-06,PH007,Ranitidine 150mg,13,Sonadanga
+2024-03-06,PH007,Antacid Tablet,24,Sonadanga
+2024-03-06,PH007,Insulin (vial),4,Sonadanga
+2024-03-06,PH007,Atorvastatin 10mg,8,Sonadanga
+2024-03-06,PH007,Losartan 50mg,8,Sonadanga
+2024-03-07,PH007,Paracetamol 500mg,41,Sonadanga
+2024-03-07,PH007,ORS Sachet,20,Sonadanga
+2024-03-07,PH007,Metronidazole 400mg,10,Sonadanga
+2024-03-07,PH007,Cetirizine 10mg,12,Sonadanga
+2024-03-07,PH007,Amoxicillin 500mg,9,Sonadanga
+2024-03-07,PH007,Azithromycin 500mg,5,Sonadanga
+2024-03-07,PH007,Zinc 20mg (child),12,Sonadanga
+2024-03-07,PH007,Ciprofloxacin 500mg,7,Sonadanga
+2024-03-07,PH007,Antihistamine Syrup,10,Sonadanga
+2024-03-07,PH007,Vitamin C 500mg,25,Sonadanga
+2024-03-07,PH007,Ranitidine 150mg,12,Sonadanga
+2024-03-07,PH007,Antacid Tablet,21,Sonadanga
+2024-03-07,PH007,Insulin (vial),5,Sonadanga
+2024-03-07,PH007,Atorvastatin 10mg,5,Sonadanga
+2024-03-07,PH007,Losartan 50mg,6,Sonadanga
+2024-03-08,PH007,Paracetamol 500mg,34,Sonadanga
+2024-03-08,PH007,ORS Sachet,19,Sonadanga
+2024-03-08,PH007,Metronidazole 400mg,9,Sonadanga
+2024-03-08,PH007,Cetirizine 10mg,15,Sonadanga
+2024-03-08,PH007,Amoxicillin 500mg,8,Sonadanga
+2024-03-08,PH007,Azithromycin 500mg,6,Sonadanga
+2024-03-08,PH007,Zinc 20mg (child),12,Sonadanga
+2024-03-08,PH007,Ciprofloxacin 500mg,8,Sonadanga
+2024-03-08,PH007,Antihistamine Syrup,11,Sonadanga
+2024-03-08,PH007,Vitamin C 500mg,23,Sonadanga
+2024-03-08,PH007,Ranitidine 150mg,13,Sonadanga
+2024-03-08,PH007,Antacid Tablet,19,Sonadanga
+2024-03-08,PH007,Insulin (vial),6,Sonadanga
+2024-03-08,PH007,Atorvastatin 10mg,5,Sonadanga
+2024-03-08,PH007,Losartan 50mg,8,Sonadanga
+2024-03-09,PH007,Paracetamol 500mg,35,Sonadanga
+2024-03-09,PH007,ORS Sachet,17,Sonadanga
+2024-03-09,PH007,Metronidazole 400mg,9,Sonadanga
+2024-03-09,PH007,Cetirizine 10mg,14,Sonadanga
+2024-03-09,PH007,Amoxicillin 500mg,10,Sonadanga
+2024-03-09,PH007,Azithromycin 500mg,6,Sonadanga
+2024-03-09,PH007,Zinc 20mg (child),12,Sonadanga
+2024-03-09,PH007,Ciprofloxacin 500mg,8,Sonadanga
+2024-03-09,PH007,Antihistamine Syrup,10,Sonadanga
+2024-03-09,PH007,Vitamin C 500mg,25,Sonadanga
+2024-03-09,PH007,Ranitidine 150mg,16,Sonadanga
+2024-03-09,PH007,Antacid Tablet,24,Sonadanga
+2024-03-09,PH007,Insulin (vial),4,Sonadanga
+2024-03-09,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-03-09,PH007,Losartan 50mg,9,Sonadanga
+2024-03-10,PH007,Paracetamol 500mg,43,Sonadanga
+2024-03-10,PH007,ORS Sachet,22,Sonadanga
+2024-03-10,PH007,Metronidazole 400mg,9,Sonadanga
+2024-03-10,PH007,Cetirizine 10mg,15,Sonadanga
+2024-03-10,PH007,Amoxicillin 500mg,8,Sonadanga
+2024-03-10,PH007,Azithromycin 500mg,5,Sonadanga
+2024-03-10,PH007,Zinc 20mg (child),8,Sonadanga
+2024-03-10,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-03-10,PH007,Antihistamine Syrup,10,Sonadanga
+2024-03-10,PH007,Vitamin C 500mg,26,Sonadanga
+2024-03-10,PH007,Ranitidine 150mg,19,Sonadanga
+2024-03-10,PH007,Antacid Tablet,23,Sonadanga
+2024-03-10,PH007,Insulin (vial),5,Sonadanga
+2024-03-10,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-03-10,PH007,Losartan 50mg,6,Sonadanga
+2024-03-11,PH007,Paracetamol 500mg,38,Sonadanga
+2024-03-11,PH007,ORS Sachet,15,Sonadanga
+2024-03-11,PH007,Metronidazole 400mg,11,Sonadanga
+2024-03-11,PH007,Cetirizine 10mg,15,Sonadanga
+2024-03-11,PH007,Amoxicillin 500mg,10,Sonadanga
+2024-03-11,PH007,Azithromycin 500mg,6,Sonadanga
+2024-03-11,PH007,Zinc 20mg (child),7,Sonadanga
+2024-03-11,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-03-11,PH007,Antihistamine Syrup,12,Sonadanga
+2024-03-11,PH007,Vitamin C 500mg,27,Sonadanga
+2024-03-11,PH007,Ranitidine 150mg,14,Sonadanga
+2024-03-11,PH007,Antacid Tablet,20,Sonadanga
+2024-03-11,PH007,Insulin (vial),5,Sonadanga
+2024-03-11,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-03-11,PH007,Losartan 50mg,6,Sonadanga
+2024-03-12,PH007,Paracetamol 500mg,33,Sonadanga
+2024-03-12,PH007,ORS Sachet,17,Sonadanga
+2024-03-12,PH007,Metronidazole 400mg,11,Sonadanga
+2024-03-12,PH007,Cetirizine 10mg,16,Sonadanga
+2024-03-12,PH007,Amoxicillin 500mg,8,Sonadanga
+2024-03-12,PH007,Azithromycin 500mg,5,Sonadanga
+2024-03-12,PH007,Zinc 20mg (child),11,Sonadanga
+2024-03-12,PH007,Ciprofloxacin 500mg,7,Sonadanga
+2024-03-12,PH007,Antihistamine Syrup,13,Sonadanga
+2024-03-12,PH007,Vitamin C 500mg,21,Sonadanga
+2024-03-12,PH007,Ranitidine 150mg,15,Sonadanga
+2024-03-12,PH007,Antacid Tablet,15,Sonadanga
+2024-03-12,PH007,Insulin (vial),4,Sonadanga
+2024-03-12,PH007,Atorvastatin 10mg,8,Sonadanga
+2024-03-12,PH007,Losartan 50mg,8,Sonadanga
+2024-03-13,PH007,Paracetamol 500mg,38,Sonadanga
+2024-03-13,PH007,ORS Sachet,17,Sonadanga
+2024-03-13,PH007,Metronidazole 400mg,11,Sonadanga
+2024-03-13,PH007,Cetirizine 10mg,12,Sonadanga
+2024-03-13,PH007,Amoxicillin 500mg,10,Sonadanga
+2024-03-13,PH007,Azithromycin 500mg,5,Sonadanga
+2024-03-13,PH007,Zinc 20mg (child),9,Sonadanga
+2024-03-13,PH007,Ciprofloxacin 500mg,7,Sonadanga
+2024-03-13,PH007,Antihistamine Syrup,12,Sonadanga
+2024-03-13,PH007,Vitamin C 500mg,18,Sonadanga
+2024-03-13,PH007,Ranitidine 150mg,14,Sonadanga
+2024-03-13,PH007,Antacid Tablet,20,Sonadanga
+2024-03-13,PH007,Insulin (vial),6,Sonadanga
+2024-03-13,PH007,Atorvastatin 10mg,7,Sonadanga
+2024-03-13,PH007,Losartan 50mg,7,Sonadanga
+2024-03-14,PH007,Paracetamol 500mg,32,Sonadanga
+2024-03-14,PH007,ORS Sachet,21,Sonadanga
+2024-03-14,PH007,Metronidazole 400mg,9,Sonadanga
+2024-03-14,PH007,Cetirizine 10mg,13,Sonadanga
+2024-03-14,PH007,Amoxicillin 500mg,10,Sonadanga
+2024-03-14,PH007,Azithromycin 500mg,6,Sonadanga
+2024-03-14,PH007,Zinc 20mg (child),10,Sonadanga
+2024-03-14,PH007,Ciprofloxacin 500mg,5,Sonadanga
+2024-03-14,PH007,Antihistamine Syrup,9,Sonadanga
+2024-03-14,PH007,Vitamin C 500mg,21,Sonadanga
+2024-03-14,PH007,Ranitidine 150mg,17,Sonadanga
+2024-03-14,PH007,Antacid Tablet,24,Sonadanga
+2024-03-14,PH007,Insulin (vial),6,Sonadanga
+2024-03-14,PH007,Atorvastatin 10mg,5,Sonadanga
+2024-03-14,PH007,Losartan 50mg,8,Sonadanga
+2024-03-15,PH007,Paracetamol 500mg,42,Sonadanga
+2024-03-15,PH007,ORS Sachet,15,Sonadanga
+2024-03-15,PH007,Metronidazole 400mg,14,Sonadanga
+2024-03-15,PH007,Cetirizine 10mg,10,Sonadanga
+2024-03-15,PH007,Amoxicillin 500mg,11,Sonadanga
+2024-03-15,PH007,Azithromycin 500mg,6,Sonadanga
+2024-03-15,PH007,Zinc 20mg (child),11,Sonadanga
+2024-03-15,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-03-15,PH007,Antihistamine Syrup,12,Sonadanga
+2024-03-15,PH007,Vitamin C 500mg,22,Sonadanga
+2024-03-15,PH007,Ranitidine 150mg,14,Sonadanga
+2024-03-15,PH007,Antacid Tablet,20,Sonadanga
+2024-03-15,PH007,Insulin (vial),5,Sonadanga
+2024-03-15,PH007,Atorvastatin 10mg,8,Sonadanga
+2024-03-15,PH007,Losartan 50mg,6,Sonadanga
+2024-03-16,PH007,Paracetamol 500mg,37,Sonadanga
+2024-03-16,PH007,ORS Sachet,17,Sonadanga
+2024-03-16,PH007,Metronidazole 400mg,10,Sonadanga
+2024-03-16,PH007,Cetirizine 10mg,11,Sonadanga
+2024-03-16,PH007,Amoxicillin 500mg,9,Sonadanga
+2024-03-16,PH007,Azithromycin 500mg,4,Sonadanga
+2024-03-16,PH007,Zinc 20mg (child),12,Sonadanga
+2024-03-16,PH007,Ciprofloxacin 500mg,5,Sonadanga
+2024-03-16,PH007,Antihistamine Syrup,11,Sonadanga
+2024-03-16,PH007,Vitamin C 500mg,21,Sonadanga
+2024-03-16,PH007,Ranitidine 150mg,18,Sonadanga
+2024-03-16,PH007,Antacid Tablet,15,Sonadanga
+2024-03-16,PH007,Insulin (vial),4,Sonadanga
+2024-03-16,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-03-16,PH007,Losartan 50mg,6,Sonadanga
+2024-03-17,PH007,Paracetamol 500mg,34,Sonadanga
+2024-03-17,PH007,ORS Sachet,16,Sonadanga
+2024-03-17,PH007,Metronidazole 400mg,11,Sonadanga
+2024-03-17,PH007,Cetirizine 10mg,13,Sonadanga
+2024-03-17,PH007,Amoxicillin 500mg,10,Sonadanga
+2024-03-17,PH007,Azithromycin 500mg,7,Sonadanga
+2024-03-17,PH007,Zinc 20mg (child),8,Sonadanga
+2024-03-17,PH007,Ciprofloxacin 500mg,5,Sonadanga
+2024-03-17,PH007,Antihistamine Syrup,11,Sonadanga
+2024-03-17,PH007,Vitamin C 500mg,17,Sonadanga
+2024-03-17,PH007,Ranitidine 150mg,13,Sonadanga
+2024-03-17,PH007,Antacid Tablet,21,Sonadanga
+2024-03-17,PH007,Insulin (vial),3,Sonadanga
+2024-03-17,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-03-17,PH007,Losartan 50mg,9,Sonadanga
+2024-03-18,PH007,Paracetamol 500mg,40,Sonadanga
+2024-03-18,PH007,ORS Sachet,13,Sonadanga
+2024-03-18,PH007,Metronidazole 400mg,12,Sonadanga
+2024-03-18,PH007,Cetirizine 10mg,16,Sonadanga
+2024-03-18,PH007,Amoxicillin 500mg,7,Sonadanga
+2024-03-18,PH007,Azithromycin 500mg,4,Sonadanga
+2024-03-18,PH007,Zinc 20mg (child),10,Sonadanga
+2024-03-18,PH007,Ciprofloxacin 500mg,7,Sonadanga
+2024-03-18,PH007,Antihistamine Syrup,10,Sonadanga
+2024-03-18,PH007,Vitamin C 500mg,22,Sonadanga
+2024-03-18,PH007,Ranitidine 150mg,18,Sonadanga
+2024-03-18,PH007,Antacid Tablet,21,Sonadanga
+2024-03-18,PH007,Insulin (vial),4,Sonadanga
+2024-03-18,PH007,Atorvastatin 10mg,7,Sonadanga
+2024-03-18,PH007,Losartan 50mg,9,Sonadanga
+2024-03-19,PH007,Paracetamol 500mg,32,Sonadanga
+2024-03-19,PH007,ORS Sachet,18,Sonadanga
+2024-03-19,PH007,Metronidazole 400mg,12,Sonadanga
+2024-03-19,PH007,Cetirizine 10mg,14,Sonadanga
+2024-03-19,PH007,Amoxicillin 500mg,11,Sonadanga
+2024-03-19,PH007,Azithromycin 500mg,6,Sonadanga
+2024-03-19,PH007,Zinc 20mg (child),8,Sonadanga
+2024-03-19,PH007,Ciprofloxacin 500mg,5,Sonadanga
+2024-03-19,PH007,Antihistamine Syrup,9,Sonadanga
+2024-03-19,PH007,Vitamin C 500mg,27,Sonadanga
+2024-03-19,PH007,Ranitidine 150mg,19,Sonadanga
+2024-03-19,PH007,Antacid Tablet,24,Sonadanga
+2024-03-19,PH007,Insulin (vial),4,Sonadanga
+2024-03-19,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-03-19,PH007,Losartan 50mg,8,Sonadanga
+2024-03-20,PH007,Paracetamol 500mg,34,Sonadanga
+2024-03-20,PH007,ORS Sachet,13,Sonadanga
+2024-03-20,PH007,Metronidazole 400mg,10,Sonadanga
+2024-03-20,PH007,Cetirizine 10mg,14,Sonadanga
+2024-03-20,PH007,Amoxicillin 500mg,8,Sonadanga
+2024-03-20,PH007,Azithromycin 500mg,6,Sonadanga
+2024-03-20,PH007,Zinc 20mg (child),8,Sonadanga
+2024-03-20,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-03-20,PH007,Antihistamine Syrup,8,Sonadanga
+2024-03-20,PH007,Vitamin C 500mg,25,Sonadanga
+2024-03-20,PH007,Ranitidine 150mg,12,Sonadanga
+2024-03-20,PH007,Antacid Tablet,17,Sonadanga
+2024-03-20,PH007,Insulin (vial),5,Sonadanga
+2024-03-20,PH007,Atorvastatin 10mg,5,Sonadanga
+2024-03-20,PH007,Losartan 50mg,7,Sonadanga
+2024-03-21,PH007,Paracetamol 500mg,32,Sonadanga
+2024-03-21,PH007,ORS Sachet,16,Sonadanga
+2024-03-21,PH007,Metronidazole 400mg,10,Sonadanga
+2024-03-21,PH007,Cetirizine 10mg,16,Sonadanga
+2024-03-21,PH007,Amoxicillin 500mg,9,Sonadanga
+2024-03-21,PH007,Azithromycin 500mg,6,Sonadanga
+2024-03-21,PH007,Zinc 20mg (child),11,Sonadanga
+2024-03-21,PH007,Ciprofloxacin 500mg,8,Sonadanga
+2024-03-21,PH007,Antihistamine Syrup,13,Sonadanga
+2024-03-21,PH007,Vitamin C 500mg,18,Sonadanga
+2024-03-21,PH007,Ranitidine 150mg,12,Sonadanga
+2024-03-21,PH007,Antacid Tablet,16,Sonadanga
+2024-03-21,PH007,Insulin (vial),5,Sonadanga
+2024-03-21,PH007,Atorvastatin 10mg,8,Sonadanga
+2024-03-21,PH007,Losartan 50mg,6,Sonadanga
+2024-03-22,PH007,Paracetamol 500mg,31,Sonadanga
+2024-03-22,PH007,ORS Sachet,17,Sonadanga
+2024-03-22,PH007,Metronidazole 400mg,9,Sonadanga
+2024-03-22,PH007,Cetirizine 10mg,11,Sonadanga
+2024-03-22,PH007,Amoxicillin 500mg,7,Sonadanga
+2024-03-22,PH007,Azithromycin 500mg,5,Sonadanga
+2024-03-22,PH007,Zinc 20mg (child),8,Sonadanga
+2024-03-22,PH007,Ciprofloxacin 500mg,8,Sonadanga
+2024-03-22,PH007,Antihistamine Syrup,8,Sonadanga
+2024-03-22,PH007,Vitamin C 500mg,19,Sonadanga
+2024-03-22,PH007,Ranitidine 150mg,13,Sonadanga
+2024-03-22,PH007,Antacid Tablet,21,Sonadanga
+2024-03-22,PH007,Insulin (vial),5,Sonadanga
+2024-03-22,PH007,Atorvastatin 10mg,8,Sonadanga
+2024-03-22,PH007,Losartan 50mg,7,Sonadanga
+2024-03-23,PH007,Paracetamol 500mg,38,Sonadanga
+2024-03-23,PH007,ORS Sachet,19,Sonadanga
+2024-03-23,PH007,Metronidazole 400mg,11,Sonadanga
+2024-03-23,PH007,Cetirizine 10mg,11,Sonadanga
+2024-03-23,PH007,Amoxicillin 500mg,11,Sonadanga
+2024-03-23,PH007,Azithromycin 500mg,6,Sonadanga
+2024-03-23,PH007,Zinc 20mg (child),9,Sonadanga
+2024-03-23,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-03-23,PH007,Antihistamine Syrup,10,Sonadanga
+2024-03-23,PH007,Vitamin C 500mg,20,Sonadanga
+2024-03-23,PH007,Ranitidine 150mg,12,Sonadanga
+2024-03-23,PH007,Antacid Tablet,24,Sonadanga
+2024-03-23,PH007,Insulin (vial),6,Sonadanga
+2024-03-23,PH007,Atorvastatin 10mg,8,Sonadanga
+2024-03-23,PH007,Losartan 50mg,8,Sonadanga
+2024-03-24,PH007,Paracetamol 500mg,33,Sonadanga
+2024-03-24,PH007,ORS Sachet,14,Sonadanga
+2024-03-24,PH007,Metronidazole 400mg,9,Sonadanga
+2024-03-24,PH007,Cetirizine 10mg,16,Sonadanga
+2024-03-24,PH007,Amoxicillin 500mg,12,Sonadanga
+2024-03-24,PH007,Azithromycin 500mg,7,Sonadanga
+2024-03-24,PH007,Zinc 20mg (child),10,Sonadanga
+2024-03-24,PH007,Ciprofloxacin 500mg,7,Sonadanga
+2024-03-24,PH007,Antihistamine Syrup,13,Sonadanga
+2024-03-24,PH007,Vitamin C 500mg,18,Sonadanga
+2024-03-24,PH007,Ranitidine 150mg,15,Sonadanga
+2024-03-24,PH007,Antacid Tablet,21,Sonadanga
+2024-03-24,PH007,Insulin (vial),4,Sonadanga
+2024-03-24,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-03-24,PH007,Losartan 50mg,7,Sonadanga
+2024-03-25,PH007,Paracetamol 500mg,34,Sonadanga
+2024-03-25,PH007,ORS Sachet,16,Sonadanga
+2024-03-25,PH007,Metronidazole 400mg,11,Sonadanga
+2024-03-25,PH007,Cetirizine 10mg,15,Sonadanga
+2024-03-25,PH007,Amoxicillin 500mg,10,Sonadanga
+2024-03-25,PH007,Azithromycin 500mg,5,Sonadanga
+2024-03-25,PH007,Zinc 20mg (child),7,Sonadanga
+2024-03-25,PH007,Ciprofloxacin 500mg,5,Sonadanga
+2024-03-25,PH007,Antihistamine Syrup,8,Sonadanga
+2024-03-25,PH007,Vitamin C 500mg,20,Sonadanga
+2024-03-25,PH007,Ranitidine 150mg,17,Sonadanga
+2024-03-25,PH007,Antacid Tablet,20,Sonadanga
+2024-03-25,PH007,Insulin (vial),3,Sonadanga
+2024-03-25,PH007,Atorvastatin 10mg,7,Sonadanga
+2024-03-25,PH007,Losartan 50mg,9,Sonadanga
+2024-03-26,PH007,Paracetamol 500mg,39,Sonadanga
+2024-03-26,PH007,ORS Sachet,15,Sonadanga
+2024-03-26,PH007,Metronidazole 400mg,14,Sonadanga
+2024-03-26,PH007,Cetirizine 10mg,14,Sonadanga
+2024-03-26,PH007,Amoxicillin 500mg,10,Sonadanga
+2024-03-26,PH007,Azithromycin 500mg,5,Sonadanga
+2024-03-26,PH007,Zinc 20mg (child),9,Sonadanga
+2024-03-26,PH007,Ciprofloxacin 500mg,5,Sonadanga
+2024-03-26,PH007,Antihistamine Syrup,11,Sonadanga
+2024-03-26,PH007,Vitamin C 500mg,24,Sonadanga
+2024-03-26,PH007,Ranitidine 150mg,13,Sonadanga
+2024-03-26,PH007,Antacid Tablet,19,Sonadanga
+2024-03-26,PH007,Insulin (vial),4,Sonadanga
+2024-03-26,PH007,Atorvastatin 10mg,5,Sonadanga
+2024-03-26,PH007,Losartan 50mg,9,Sonadanga
+2024-03-27,PH007,Paracetamol 500mg,42,Sonadanga
+2024-03-27,PH007,ORS Sachet,18,Sonadanga
+2024-03-27,PH007,Metronidazole 400mg,12,Sonadanga
+2024-03-27,PH007,Cetirizine 10mg,13,Sonadanga
+2024-03-27,PH007,Amoxicillin 500mg,9,Sonadanga
+2024-03-27,PH007,Azithromycin 500mg,5,Sonadanga
+2024-03-27,PH007,Zinc 20mg (child),10,Sonadanga
+2024-03-27,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-03-27,PH007,Antihistamine Syrup,12,Sonadanga
+2024-03-27,PH007,Vitamin C 500mg,19,Sonadanga
+2024-03-27,PH007,Ranitidine 150mg,18,Sonadanga
+2024-03-27,PH007,Antacid Tablet,16,Sonadanga
+2024-03-27,PH007,Insulin (vial),4,Sonadanga
+2024-03-27,PH007,Atorvastatin 10mg,8,Sonadanga
+2024-03-27,PH007,Losartan 50mg,6,Sonadanga
+2024-03-28,PH007,Paracetamol 500mg,39,Sonadanga
+2024-03-28,PH007,ORS Sachet,14,Sonadanga
+2024-03-28,PH007,Metronidazole 400mg,10,Sonadanga
+2024-03-28,PH007,Cetirizine 10mg,17,Sonadanga
+2024-03-28,PH007,Amoxicillin 500mg,11,Sonadanga
+2024-03-28,PH007,Azithromycin 500mg,6,Sonadanga
+2024-03-28,PH007,Zinc 20mg (child),7,Sonadanga
+2024-03-28,PH007,Ciprofloxacin 500mg,6,Sonadanga
+2024-03-28,PH007,Antihistamine Syrup,11,Sonadanga
+2024-03-28,PH007,Vitamin C 500mg,19,Sonadanga
+2024-03-28,PH007,Ranitidine 150mg,12,Sonadanga
+2024-03-28,PH007,Antacid Tablet,18,Sonadanga
+2024-03-28,PH007,Insulin (vial),5,Sonadanga
+2024-03-28,PH007,Atorvastatin 10mg,6,Sonadanga
+2024-03-28,PH007,Losartan 50mg,6,Sonadanga
+2024-03-29,PH007,Paracetamol 500mg,28,Sonadanga
+2024-03-29,PH007,ORS Sachet,15,Sonadanga
+2024-03-29,PH007,Metronidazole 400mg,13,Sonadanga
+2024-03-29,PH007,Cetirizine 10mg,12,Sonadanga
+2024-03-29,PH007,Amoxicillin 500mg,11,Sonadanga
+2024-03-29,PH007,Azithromycin 500mg,5,Sonadanga
+2024-03-29,PH007,Zinc 20mg (child),10,Sonadanga
+2024-03-29,PH007,Ciprofloxacin 500mg,8,Sonadanga
+2024-03-29,PH007,Antihistamine Syrup,12,Sonadanga
+2024-03-29,PH007,Vitamin C 500mg,16,Sonadanga
+2024-03-29,PH007,Ranitidine 150mg,13,Sonadanga
+2024-03-29,PH007,Antacid Tablet,17,Sonadanga
+2024-03-29,PH007,Insulin (vial),4,Sonadanga
+2024-03-29,PH007,Atorvastatin 10mg,7,Sonadanga
+2024-03-29,PH007,Losartan 50mg,8,Sonadanga
+2024-03-30,PH007,Paracetamol 500mg,43,Sonadanga
+2024-03-30,PH007,ORS Sachet,17,Sonadanga
+2024-03-30,PH007,Metronidazole 400mg,10,Sonadanga
+2024-03-30,PH007,Cetirizine 10mg,13,Sonadanga
+2024-03-30,PH007,Amoxicillin 500mg,10,Sonadanga
+2024-03-30,PH007,Azithromycin 500mg,6,Sonadanga
+2024-03-30,PH007,Zinc 20mg (child),12,Sonadanga
+2024-03-30,PH007,Ciprofloxacin 500mg,5,Sonadanga
+2024-03-30,PH007,Antihistamine Syrup,13,Sonadanga
+2024-03-30,PH007,Vitamin C 500mg,17,Sonadanga
+2024-03-30,PH007,Ranitidine 150mg,12,Sonadanga
+2024-03-30,PH007,Antacid Tablet,15,Sonadanga
+2024-03-30,PH007,Insulin (vial),4,Sonadanga
+2024-03-30,PH007,Atorvastatin 10mg,7,Sonadanga
+2024-03-30,PH007,Losartan 50mg,9,Sonadanga

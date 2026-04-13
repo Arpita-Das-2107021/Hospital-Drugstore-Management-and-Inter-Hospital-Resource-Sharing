@@ -23,4 +23,9 @@ urlpatterns = [
         views.staff,
         name="city_general_staff",
     ),
+    path(
+        "mock-hospitals/city-general/api/sales",
+        views.sales,
+        name="city_general_sales",
+    ),
 ]

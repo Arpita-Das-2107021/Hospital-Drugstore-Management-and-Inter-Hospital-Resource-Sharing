@@ -1,0 +1,2 @@
+hospital_id,hospital_name,source_healthcare_id,source_healthcare_name,source_upazila,sales_zone_upazila,lat,lon,data_start_date,data_end_date,source_sales_rows,source_medicine_count
+HOSP-PH007,Sathi Drug House Hospital,PH007,Sathi Drug House,Akkelpur,Sonadanga,24.95299768875559,89.03889882961207,2024-01-01,2024-03-30,1350,15

@@ -1,0 +1,411 @@
+{
+  "hospital": {
+    "name": "City General Hospital",
+    "slug": "city-general",
+    "healthcare_id": "PH000",
+    "healthcare_name": "Asha Healthcare",
+    "source_upazila": "Joypurhat Sadar",
+    "sales_zone_upazila": "Khulna Sadar",
+    "auth_type": "api_key",
+    "auth_details": "X-API-Key: city-general-api-key"
+  },
+  "resources": [
+    {
+      "code": "MED-001-PARACE",
+      "name": "Paracetamol 500mg",
+      "category": "medicine",
+      "quantity_available": 481,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-002-ORSSAC",
+      "name": "ORS Sachet",
+      "category": "medicine",
+      "quantity_available": 192,
+      "unit": "sachet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-003-METRON",
+      "name": "Metronidazole 400mg",
+      "category": "medicine",
+      "quantity_available": 129,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-004-CETIRI",
+      "name": "Cetirizine 10mg",
+      "category": "medicine",
+      "quantity_available": 181,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-005-AMOXIC",
+      "name": "Amoxicillin 500mg",
+      "category": "medicine",
+      "quantity_available": 107,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-006-AZITHR",
+      "name": "Azithromycin 500mg",
+      "category": "medicine",
+      "quantity_available": 65,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-007-ZINC20",
+      "name": "Zinc 20mg (child)",
+      "category": "medicine",
+      "quantity_available": 108,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-008-CIPROF",
+      "name": "Ciprofloxacin 500mg",
+      "category": "medicine",
+      "quantity_available": 74,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-009-ANTIHI",
+      "name": "Antihistamine Syrup",
+      "category": "medicine",
+      "quantity_available": 119,
+      "unit": "bottle",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-010-VITAMI",
+      "name": "Vitamin C 500mg",
+      "category": "medicine",
+      "quantity_available": 258,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-011-RANITI",
+      "name": "Ranitidine 150mg",
+      "category": "medicine",
+      "quantity_available": 172,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-012-ANTACI",
+      "name": "Antacid Tablet",
+      "category": "medicine",
+      "quantity_available": 213,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-013-INSULI",
+      "name": "Insulin (vial)",
+      "category": "medicine",
+      "quantity_available": 50,
+      "unit": "vial",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-014-ATORVA",
+      "name": "Atorvastatin 10mg",
+      "category": "medicine",
+      "quantity_available": 73,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "code": "MED-015-LOSART",
+      "name": "Losartan 50mg",
+      "category": "medicine",
+      "quantity_available": 81,
+      "unit": "tablet",
+      "last_updated": "2024-03-30T23:59:59Z"
+    }
+  ],
+  "beds": {
+    "bed_total": 350,
+    "bed_available": 73,
+    "icu_total": 56,
+    "icu_available": 9,
+    "last_updated": "2024-03-30T23:59:59Z"
+  },
+  "blood_units": [
+    {
+      "blood_group": "A+",
+      "units_available": 30,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "A-",
+      "units_available": 7,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "B+",
+      "units_available": 27,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "B-",
+      "units_available": 5,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "O+",
+      "units_available": 34,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "O-",
+      "units_available": 8,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "AB+",
+      "units_available": 9,
+      "last_updated": "2024-03-30T23:59:59Z"
+    },
+    {
+      "blood_group": "AB-",
+      "units_available": 1,
+      "last_updated": "2024-03-30T23:59:59Z"
+    }
+  ],
+  "staff": [
+    {
+      "employee_id": "CGH-EMP-1001",
+      "first_name": "Rafi",
+      "last_name": "Rahman",
+      "department": "Emergency",
+      "position": "Emergency Medical Officer",
+      "email": "rafi.rahman.1@city-general.hrsp.local",
+      "phone": "+8801761841",
+      "status": "active"
+    },
+    {
+      "employee_id": "CGH-EMP-1002",
+      "first_name": "Nafisa",
+      "last_name": "Rahman",
+      "department": "Internal Medicine",
+      "position": "Consultant Physician",
+      "email": "nafisa.rahman.2@city-general.hrsp.local",
+      "phone": "+8801756332",
+      "status": "active"
+    },
+    {
+      "employee_id": "CGH-EMP-1003",
+      "first_name": "Nusrat",
+      "last_name": "Morshed",
+      "department": "Healthcare",
+      "position": "Clinical Pharmacist",
+      "email": "nusrat.morshed.3@city-general.hrsp.local",
+      "phone": "+8801774123",
+      "status": "active"
+    },
+    {
+      "employee_id": "CGH-EMP-1004",
+      "first_name": "Munira",
+      "last_name": "Islam",
+      "department": "Logistics",
+      "position": "Supply Chain Coordinator",
+      "email": "munira.islam.4@city-general.hrsp.local",
+      "phone": "+8801777044",
+      "status": "active"
+    },
+    {
+      "employee_id": "CGH-EMP-1005",
+      "first_name": "Mehnaz",
+      "last_name": "Hasan",
+      "department": "Emergency",
+      "position": "Trauma Consultant",
+      "email": "mehnaz.hasan.5@city-general.hrsp.local",
+      "phone": "+8801725155",
+      "status": "active"
+    },
+    {
+      "employee_id": "CGH-EMP-1006",
+      "first_name": "Sharmeen",
+      "last_name": "Mahmud",
+      "department": "Internal Medicine",
+      "position": "Resident Doctor",
+      "email": "sharmeen.mahmud.6@city-general.hrsp.local",
+      "phone": "+8801769346",
+      "status": "active"
+    },
+    {
+      "employee_id": "CGH-EMP-1007",
+      "first_name": "Mehnaz",
+      "last_name": "Rahman",
+      "department": "Healthcare",
+      "position": "Inventory Pharmacist",
+      "email": "mehnaz.rahman.7@city-general.hrsp.local",
+      "phone": "+8801738297",
+      "status": "active"
+    },
+    {
+      "employee_id": "CGH-EMP-1008",
+      "first_name": "Nusrat",
+      "last_name": "Jahan",
+      "department": "Logistics",
+      "position": "Procurement Officer",
+      "email": "nusrat.jahan.8@city-general.hrsp.local",
+      "phone": "+8801724258",
+      "status": "active"
+    },
+    {
+      "employee_id": "CGH-EMP-1009",
+      "first_name": "Rashed",
+      "last_name": "Sarker",
+      "department": "Emergency",
+      "position": "Emergency Medical Officer",
+      "email": "rashed.sarker.9@city-general.hrsp.local",
+      "phone": "+8801790609",
+      "status": "active"
+    },
+    {
+      "employee_id": "CGH-EMP-1010",
+      "first_name": "Jamil",
+      "last_name": "Karim",
+      "department": "Internal Medicine",
+      "position": "Consultant Physician",
+      "email": "jamil.karim.10@city-general.hrsp.local",
+      "phone": "+8801728730",
+      "status": "active"
+    },
+    {
+      "employee_id": "CGH-EMP-1011",
+      "first_name": "Ishraq",
+      "last_name": "Islam",
+      "department": "Healthcare",
+      "position": "Clinical Pharmacist",
+      "email": "ishraq.islam.11@city-general.hrsp.local",
+      "phone": "+8801723811",
+      "status": "active"
+    },
+    {
+      "employee_id": "CGH-EMP-1012",
+      "first_name": "Tanvir",
+      "last_name": "Akter",
+      "department": "Logistics",
+      "position": "Supply Chain Coordinator",
+      "email": "tanvir.akter.12@city-general.hrsp.local",
+      "phone": "+8801752812",
+      "status": "active"
+    },
+    {
+      "employee_id": "CGH-EMP-1013",
+      "first_name": "Munira",
+      "last_name": "Kabir",
+      "department": "Emergency",
+      "position": "Trauma Consultant",
+      "email": "munira.kabir.13@city-general.hrsp.local",
+      "phone": "+8801718313",
+      "status": "active"
+    },
+    {
+      "employee_id": "CGH-EMP-1014",
+      "first_name": "Sharmeen",
+      "last_name": "Sarker",
+      "department": "Internal Medicine",
+      "position": "Resident Doctor",
+      "email": "sharmeen.sarker.14@city-general.hrsp.local",
+      "phone": "+8801742744",
+      "status": "inactive"
+    },
+    {
+      "employee_id": "CGH-EMP-1015",
+      "first_name": "Nafisa",
+      "last_name": "Sarker",
+      "department": "Healthcare",
+      "position": "Inventory Pharmacist",
+      "email": "nafisa.sarker.15@city-general.hrsp.local",
+      "phone": "+8801773875",
+      "status": "active"
+    },
+    {
+      "employee_id": "CGH-EMP-1016",
+      "first_name": "Nusrat",
+      "last_name": "Ahmed",
+      "department": "Logistics",
+      "position": "Procurement Officer",
+      "email": "nusrat.ahmed.16@city-general.hrsp.local",
+      "phone": "+8801784316",
+      "status": "active"
+    },
+    {
+      "employee_id": "CGH-EMP-1017",
+      "first_name": "Rabbi",
+      "last_name": "Noor",
+      "department": "Emergency",
+      "position": "Emergency Medical Officer",
+      "email": "rabbi.noor.17@city-general.hrsp.local",
+      "phone": "+8801774147",
+      "status": "on_leave"
+    },
+    {
+      "employee_id": "CGH-EMP-1018",
+      "first_name": "Tariq",
+      "last_name": "Morshed",
+      "department": "Internal Medicine",
+      "position": "Consultant Physician",
+      "email": "tariq.morshed.18@city-general.hrsp.local",
+      "phone": "+8801742618",
+      "status": "active"
+    },
+    {
+      "employee_id": "CGH-EMP-1019",
+      "first_name": "Samiha",
+      "last_name": "Kabir",
+      "department": "Healthcare",
+      "position": "Clinical Pharmacist",
+      "email": "samiha.kabir.19@city-general.hrsp.local",
+      "phone": "+8801789979",
+      "status": "active"
+    },
+    {
+      "employee_id": "CGH-EMP-1020",
+      "first_name": "Samiha",
+      "last_name": "Chowdhury",
+      "department": "Logistics",
+      "position": "Supply Chain Coordinator",
+      "email": "samiha.chowdhury.20@city-general.hrsp.local",
+      "phone": "+8801722420",
+      "status": "active"
+    },
+    {
+      "employee_id": "CGH-EMP-1021",
+      "first_name": "Tanvir",
+      "last_name": "Siddique",
+      "department": "Emergency",
+      "position": "Trauma Consultant",
+      "email": "tanvir.siddique.21@city-general.hrsp.local",
+      "phone": "+8801736891",
+      "status": "active"
+    },
+    {
+      "employee_id": "CGH-EMP-1022",
+      "first_name": "Tasnia",
+      "last_name": "Khan",
+      "department": "Internal Medicine",
+      "position": "Resident Doctor",
+      "email": "tasnia.khan.22@city-general.hrsp.local",
+      "phone": "+8801795842",
+      "status": "active"
+    }
+  ],
+  "meta": {
+    "generated_at": "2026-03-30T14:18:18Z",
+    "source_sales_rows": 1350,
+    "source_unique_days": 90,
+    "source_medicine_count": 15
+  }
+}
