@@ -1,5 +1,6 @@
 """Authentication views — thin, delegate to services."""
 from rest_framework import status
+from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.throttling import AnonRateThrottle
@@ -16,6 +17,7 @@ from .serializers import (
     ResetPasswordSerializer,
     ResetPasswordValidateQuerySerializer,
     UserProfileSerializer,
+    UserProfilePictureUploadSerializer,
 )
 from .services import (
     PasswordResetFlowError,
@@ -72,8 +74,42 @@ class MeView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        serializer = UserProfileSerializer(request.user)
+        serializer = UserProfileSerializer(request.user, context={"request": request})
         return Response(success_response(data=serializer.data))
+
+
+class UserProfilePictureView(APIView):
+    """POST/DELETE /api/auth/me/profile-picture — upload or remove own profile picture."""
+
+    permission_classes = [IsAuthenticated]
+    parser_classes = [MultiPartParser, FormParser]
+
+    def post(self, request):
+        serializer = UserProfilePictureUploadSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        user = request.user
+        user.profile_picture = serializer.validated_data["profile_picture"]
+        user.save(update_fields=["profile_picture"])
+
+        return Response(
+            success_response(
+                data=UserProfileSerializer(user, context={"request": request}).data
+            )
+        )
+
+    def delete(self, request):
+        user = request.user
+        if user.profile_picture:
+            user.profile_picture.delete(save=False)
+        user.profile_picture = None
+        user.save(update_fields=["profile_picture"])
+
+        return Response(
+            success_response(
+                data=UserProfileSerializer(user, context={"request": request}).data
+            )
+        )
 
 
 class PasswordResetRequestView(APIView):
