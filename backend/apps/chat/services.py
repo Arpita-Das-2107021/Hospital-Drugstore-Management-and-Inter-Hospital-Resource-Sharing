@@ -3,7 +3,8 @@ from uuid import UUID
 
 from django.conf import settings
 from django.db import transaction
-from django.db.models import Q
+from django.db.models import Count, DateTimeField, F, OuterRef, Q, Subquery
+from django.db.models.functions import Coalesce
 from django.utils import timezone
 from rest_framework.exceptions import NotFound, PermissionDenied
 
@@ -182,40 +183,230 @@ def create_message(*, conversation: Conversation, sender, body: str) -> Message:
     return message
 
 
-def mark_read(*, conversation: Conversation, user, message_id: Optional[str] = None):
-    participant = ConversationParticipant.objects.filter(conversation=conversation, user=user).first()
-    if not participant:
-        raise PermissionDenied("You are not a participant in this conversation.")
+def _participant_read_cutoff(participant: ConversationParticipant):
+    if participant.last_read_message_id:
+        if "last_read_message" in participant.__dict__:
+            last_read_message = participant.__dict__.get("last_read_message")
+            if last_read_message is not None and getattr(last_read_message, "created_at", None):
+                return last_read_message.created_at
 
-    if message_id:
-        message = Message.objects.filter(id=message_id, conversation=conversation).first()
-        if not message:
-            raise NotFound("Message not found in conversation.")
-        participant.last_read_at = message.created_at
-    else:
-        participant.last_read_at = timezone.now()
+        last_read_message_created_at = Message.objects.filter(id=participant.last_read_message_id).values_list(
+            "created_at", flat=True
+        ).first()
+        if last_read_message_created_at:
+            return last_read_message_created_at
 
-    participant.save(update_fields=["last_read_at"])
+    return participant.last_read_at
+
+
+def mark_read(
+    *,
+    conversation: Conversation,
+    user,
+    last_read_message_id: Optional[str] = None,
+    message_id: Optional[str] = None,
+):
+    requested_message_id = last_read_message_id or message_id
+
+    with transaction.atomic():
+        participant = (
+            ConversationParticipant.objects.select_for_update()
+            .filter(conversation=conversation, user=user)
+            .first()
+        )
+        if not participant:
+            raise PermissionDenied("You are not a participant in this conversation.")
+
+        target_message = None
+        if requested_message_id:
+            target_message = visible_messages_queryset(conversation=conversation, user=user).filter(id=requested_message_id).first()
+            if not target_message:
+                raise NotFound("Message not found in conversation.")
+        else:
+            target_message = (
+                visible_messages_queryset(conversation=conversation, user=user)
+                .order_by("-created_at", "-id")
+                .first()
+            )
+
+        current_cutoff = _participant_read_cutoff(participant)
+        updated = False
+
+        if target_message is not None:
+            should_advance = current_cutoff is None or target_message.created_at > current_cutoff
+            should_set_pointer = (
+                participant.last_read_message_id is None
+                and current_cutoff is not None
+                and target_message.created_at == current_cutoff
+            )
+            if should_advance or should_set_pointer:
+                participant.last_read_message = target_message
+                participant.last_read_at = target_message.created_at
+                participant.save(update_fields=["last_read_message", "last_read_at"])
+                updated = True
+        elif participant.last_read_message_id is None and participant.last_read_at is None:
+            participant.last_read_at = timezone.now()
+            participant.save(update_fields=["last_read_at"])
+            updated = True
+
+    resolved_message_id = None
+    if participant.last_read_message_id:
+        resolved_message_id = str(participant.last_read_message_id)
 
     write_chat_audit_event(
         user=user,
         event_type=ChatAuditEvent.EventType.MESSAGE_READ,
         conversation=conversation,
-        message=message if message_id else None,
-        metadata={"message_id": str(message.id) if message_id else None},
+        message=target_message,
+        metadata={
+            "requested_last_read_message_id": str(requested_message_id) if requested_message_id else None,
+            "resolved_last_read_message_id": resolved_message_id,
+            "updated": updated,
+        },
     )
     return participant
 
 
 def get_unread_count(*, conversation: Conversation, user) -> int:
-    participant = ConversationParticipant.objects.filter(conversation=conversation, user=user).first()
+    participant = (
+        ConversationParticipant.objects.select_related("last_read_message")
+        .filter(conversation=conversation, user=user)
+        .first()
+    )
     if not participant:
         raise PermissionDenied("You are not a participant in this conversation.")
 
     queryset = visible_messages_queryset(conversation=conversation, user=user).exclude(sender=user)
-    if participant.last_read_at:
-        queryset = queryset.filter(created_at__gt=participant.last_read_at)
+    participant_last_read_at = _participant_read_cutoff(participant)
+    if participant_last_read_at:
+        queryset = queryset.filter(created_at__gt=participant_last_read_at)
     return queryset.count()
+
+
+def get_unread_counts_for_conversations(*, user, conversation_ids) -> dict[str, int]:
+    unique_ids = list({str(conversation_id) for conversation_id in conversation_ids if conversation_id})
+    if not unique_ids:
+        return {}
+
+    participant_last_read_message_subquery = ConversationParticipant.objects.filter(
+        conversation_id=OuterRef("conversation_id"),
+        user=user,
+    ).values("last_read_message__created_at")[:1]
+
+    participant_last_read_at_subquery = ConversationParticipant.objects.filter(
+        conversation_id=OuterRef("conversation_id"),
+        user=user,
+    ).values("last_read_at")[:1]
+
+    unread_queryset = (
+        Message.objects.filter(
+            conversation_id__in=unique_ids,
+        )
+        .exclude(sender=user)
+        .exclude(
+            visibility_states__user=user,
+            visibility_states__is_deleted=True,
+        )
+        .annotate(
+            participant_last_read_message_at=Subquery(
+                participant_last_read_message_subquery,
+                output_field=DateTimeField(),
+            ),
+            participant_last_read_at=Subquery(
+                participant_last_read_at_subquery,
+                output_field=DateTimeField(),
+            ),
+            participant_last_read_effective=Coalesce(
+                "participant_last_read_message_at",
+                "participant_last_read_at",
+            ),
+        )
+        .filter(
+            Q(participant_last_read_effective__isnull=True)
+            | Q(created_at__gt=F("participant_last_read_effective"))
+        )
+    )
+
+    counts = unread_queryset.values("conversation_id").annotate(unread_count=Count("id"))
+    return {str(row["conversation_id"]): int(row["unread_count"]) for row in counts}
+
+
+def get_chat_unread_summary(*, user) -> dict:
+    hidden_conversation_ids = ConversationVisibility.objects.filter(
+        user=user,
+        is_deleted=True,
+    ).values_list("conversation_id", flat=True)
+
+    participant_conversation_ids = list(
+        ConversationParticipant.objects.filter(user=user)
+        .exclude(conversation_id__in=hidden_conversation_ids)
+        .values_list("conversation_id", flat=True)
+    )
+
+    unread_count_map = get_unread_counts_for_conversations(
+        user=user,
+        conversation_ids=participant_conversation_ids,
+    )
+    direct_conversation_ids = {
+        str(conversation_id)
+        for conversation_id in DirectConversation.objects.filter(
+            conversation_id__in=participant_conversation_ids
+        ).values_list("conversation_id", flat=True)
+    }
+
+    total_unread_messages = sum(unread_count_map.values())
+    direct_unread_messages = sum(
+        unread_count
+        for conversation_id, unread_count in unread_count_map.items()
+        if conversation_id in direct_conversation_ids
+    )
+    group_unread_messages = total_unread_messages - direct_unread_messages
+
+    total_unread = len(unread_count_map)
+    direct_unread = sum(
+        1
+        for conversation_id, unread_count in unread_count_map.items()
+        if conversation_id in direct_conversation_ids and unread_count > 0
+    )
+    group_unread = total_unread - direct_unread
+
+    conversation_unread = [
+        {
+            "conversation_id": conversation_id,
+            "conversation_type": "direct" if conversation_id in direct_conversation_ids else "group",
+            "unread_count": unread_count,
+        }
+        for conversation_id, unread_count in sorted(
+            unread_count_map.items(),
+            key=lambda item: item[1],
+            reverse=True,
+        )
+    ]
+
+    return {
+        "total_unread": total_unread,
+        "direct_unread": direct_unread,
+        "group_unread": group_unread,
+        "total_unread_messages": total_unread_messages,
+        "direct_unread_messages": direct_unread_messages,
+        "group_unread_messages": group_unread_messages,
+        "conversation_unread": conversation_unread,
+    }
+
+
+def get_chat_unread_summary_for_user_id(*, user_id) -> dict:
+    user = UserAccount.objects.filter(id=user_id).first()
+    if not user:
+        return {
+            "total_unread": 0,
+            "direct_unread": 0,
+            "group_unread": 0,
+            "total_unread_messages": 0,
+            "direct_unread_messages": 0,
+            "group_unread_messages": 0,
+            "conversation_unread": [],
+        }
+    return get_chat_unread_summary(user=user)
 
 
 def create_attachment(

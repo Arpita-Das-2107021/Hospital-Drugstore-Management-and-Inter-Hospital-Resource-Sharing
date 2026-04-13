@@ -8,6 +8,7 @@ from common.utils.chat_encryption import decrypt_chat_message_best_effort
 
 from .constants import ALLOWED_ATTACHMENT_EXTENSIONS, MAX_ATTACHMENT_SIZE_BYTES, extension_for
 from .models import ChatAuditEvent, DirectConversation, MessageAttachment
+from .services import get_unread_counts_for_conversations
 
 
 class MessageAttachmentSerializer(serializers.ModelSerializer):
@@ -105,13 +106,21 @@ class ChatMessageHistorySerializer(serializers.ModelSerializer):
     def get_body(self, obj):
         return decrypt_chat_message_best_effort(obj.body)
 
+    @staticmethod
+    def _participant_has_read_message(participant, message) -> bool:
+        last_read_message = getattr(participant, "last_read_message", None)
+        if last_read_message is not None and getattr(last_read_message, "created_at", None):
+            return last_read_message.created_at >= message.created_at
+
+        return bool(participant.last_read_at and participant.last_read_at >= message.created_at)
+
     def get_status(self, obj):
         request = self.context.get("request")
         current_user = self.context.get("user")
         if request and getattr(request, "user", None) and request.user.is_authenticated:
             current_user = request.user
 
-        participants = list(obj.conversation.participants.select_related("user"))
+        participants = list(obj.conversation.participants.select_related("user", "last_read_message"))
         if not participants:
             return "sent"
 
@@ -119,19 +128,19 @@ class ChatMessageHistorySerializer(serializers.ModelSerializer):
             recipients = [p for p in participants if p.user_id != current_user.id]
             if not recipients:
                 return "sent"
-            if all(p.last_read_at and p.last_read_at >= obj.created_at for p in recipients):
+            if all(self._participant_has_read_message(p, obj) for p in recipients):
                 return "read"
             return "delivered"
 
         current_participant = next((p for p in participants if current_user and p.user_id == current_user.id), None)
-        if current_participant and current_participant.last_read_at and current_participant.last_read_at >= obj.created_at:
+        if current_participant and self._participant_has_read_message(current_participant, obj):
             return "read"
         return "delivered"
 
     def get_read_by(self, obj):
         participant_ids = []
-        for participant in obj.conversation.participants.all():
-            if participant.last_read_at and participant.last_read_at >= obj.created_at:
+        for participant in obj.conversation.participants.select_related("last_read_message"):
+            if self._participant_has_read_message(participant, obj):
                 participant_ids.append(str(participant.user_id))
         return participant_ids
 
@@ -141,7 +150,19 @@ class ChatSendMessageSerializer(serializers.Serializer):
 
 
 class ChatReadReceiptSerializer(serializers.Serializer):
+    last_read_message_id = serializers.UUIDField(required=False)
     message_id = serializers.UUIDField(required=False)
+
+    def validate(self, attrs):
+        last_read_message_id = attrs.get("last_read_message_id")
+        message_id = attrs.get("message_id")
+        if last_read_message_id and message_id and last_read_message_id != message_id:
+            raise serializers.ValidationError("Provide only one read pointer value.")
+        return attrs
+
+
+class ChatMessageSyncQuerySerializer(serializers.Serializer):
+    after = serializers.UUIDField(required=True)
 
 
 class ChatAttachmentUploadSerializer(serializers.Serializer):
@@ -204,17 +225,16 @@ class DirectConversationSummarySerializer(serializers.ModelSerializer):
         if not request or not request.user or not request.user.is_authenticated:
             return 0
 
-        participant = ConversationParticipant.objects.filter(
-            conversation=obj.conversation,
-            user=request.user,
-        ).first()
-        if not participant:
-            return 0
+        precomputed = self.context.get("unread_count_map") or {}
+        if precomputed:
+            return int(precomputed.get(str(obj.conversation_id), 0))
 
-        unread_queryset = Message.objects.filter(conversation=obj.conversation).exclude(sender=request.user)
-        if participant.last_read_at:
-            unread_queryset = unread_queryset.filter(created_at__gt=participant.last_read_at)
-        return unread_queryset.count()
+        return int(
+            get_unread_counts_for_conversations(
+                user=request.user,
+                conversation_ids=[obj.conversation_id],
+            ).get(str(obj.conversation_id), 0)
+        )
 
 
 class ChatDeleteMessageSerializer(serializers.Serializer):
