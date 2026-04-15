@@ -3,7 +3,7 @@ import { Badge } from '@/components/ui/badge';
 import { Loader2, ChevronUp, Users, MessageCircle } from 'lucide-react';
 import { Message, Conversation, TypingStatus, Employee } from '@/types/healthcare';
 import MessageBubble from './MessageBubble';
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, memo } from 'react';
 import { cn } from '@/lib/utils';
 
 interface MessageListProps {
@@ -327,4 +327,4 @@ const MessageList: React.FC<MessageListProps> = ({
   );
 };
 
-export default MessageList;
+export default memo(MessageList);

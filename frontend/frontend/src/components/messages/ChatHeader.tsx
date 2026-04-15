@@ -5,8 +5,6 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { 
   Users, 
   UserPlus, 
-  Phone, 
-  Video, 
   MoreVertical, 
   Archive, 
   VolumeX, 
@@ -19,17 +17,17 @@ import {
 } from 'lucide-react';
 import { Conversation, OnlineStatus } from '@/types/healthcare';
 import { cn } from '@/lib/utils';
+import { memo } from 'react';
 
 interface ChatHeaderProps {
   conversation: Conversation | null;
   currentUserId: string;
+  currentUserEmail?: string;
   onlineStatus?: Record<string, OnlineStatus>;
   onViewMembers?: () => void;
   onAddMember?: () => void;
   onToggleMute?: () => void;
   onToggleArchive?: () => void;
-  onCall?: () => void;
-  onVideoCall?: () => void;
   onDeleteConversation?: () => void;
   onBack?: () => void; // For mobile
   className?: string;
@@ -38,13 +36,12 @@ interface ChatHeaderProps {
 const ChatHeader: React.FC<ChatHeaderProps> = ({
   conversation,
   currentUserId,
+  currentUserEmail = '',
   onlineStatus,
   onViewMembers,
   onAddMember,
   onToggleMute,
   onToggleArchive,
-  onCall,
-  onVideoCall,
   onDeleteConversation,
   onBack,
   className
@@ -83,14 +80,24 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
     );
   }
 
-  const counterpart = conversation.participants.find((p) => p.id !== currentUserId);
+  const normalizedCurrentEmail = currentUserEmail.trim().toLowerCase();
+  const counterpart =
+    conversation.participants.find(
+      (participant) =>
+        participant.id !== currentUserId &&
+        (!normalizedCurrentEmail || participant.email?.toLowerCase() !== normalizedCurrentEmail),
+    )
+    || conversation.participants.find((participant) => participant.id !== currentUserId)
+    || conversation.participants.find(
+      (participant) => !normalizedCurrentEmail || participant.email?.toLowerCase() !== normalizedCurrentEmail,
+    );
 
   const getConversationDisplayName = () => {
     if (conversation.type === 'group') {
       return conversation.name || 'Unnamed Group';
     }
 
-    return counterpart?.name || 'Direct Message';
+    return conversation.name || counterpart?.name || counterpart?.email || 'Direct Message';
   };
 
   const getConversationSubtitle = () => {
@@ -274,33 +281,6 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
               </Tooltip>
             )}
 
-            {/* Call Actions (Private chats only) */}
-            {conversation.type === 'private' && onCall && (
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="ghost" size="sm" onClick={onCall}>
-                    <Phone className="h-4 w-4" />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Voice Call</p>
-                </TooltipContent>
-              </Tooltip>
-            )}
-
-            {conversation.type === 'private' && onVideoCall && (
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="ghost" size="sm" onClick={onVideoCall}>
-                    <Video className="h-4 w-4" />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Video Call</p>
-                </TooltipContent>
-              </Tooltip>
-            )}
-
             {/* More Options */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -366,4 +346,4 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
   );
 };
 
-export default ChatHeader;
+export default memo(ChatHeader);
