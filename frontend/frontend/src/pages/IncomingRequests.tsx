@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import AppLayout from '@/components/layout/AppLayout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -12,6 +12,7 @@ import { AlertTriangle, Loader2 } from 'lucide-react';
 import { requestsApi } from '@/services/api';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
+import { RESOURCE_SHARES_UPDATED_EVENT } from '@/constants/events';
 
 interface RequestRow {
   id: string;
@@ -19,6 +20,7 @@ interface RequestRow {
   resource: string;
   supplierHospital: string;
   requesterHospital: string;
+  requestedAt: string;
   quantityRequested: number;
   quantityApproved: number | null;
   priceSnapshot: number | null;
@@ -37,17 +39,23 @@ const normalizeNumber = (value: unknown): number | null => {
   return Number.isFinite(parsed) ? parsed : null;
 };
 
+const toEpochMillis = (value: string): number => {
+  const parsed = Date.parse(value);
+  return Number.isFinite(parsed) ? parsed : 0;
+};
+
 const mapRequest = (item: unknown): RequestRow => ({
   id: String(item.id || ''),
   supplyingHospitalId: String(item.supplying_hospital || item.supplying_hospital_id || ''),
   resource: item.catalog_item_name || item.resource_name || 'Unknown resource',
   supplierHospital: item.supplying_hospital_name || '',
   requesterHospital: item.requesting_hospital_name || '',
+  requestedAt: String(item.created_at || item.requested_at || item.requestedAt || item.submitted_at || item.updated_at || ''),
   quantityRequested: Number(item.quantity_requested ?? 0),
   quantityApproved: normalizeNumber(item.quantity_approved),
   priceSnapshot: normalizeNumber(item.price_snapshot),
   totalPrice: normalizeNumber(item.total_price),
-  status: String(item.status || 'pending'),
+  status: String(item.workflow_state || item.status || 'PENDING'),
   paymentStatus: String(item.payment_status || 'unpaid'),
   neededBy: item.needed_by || null,
   priority: String(item.priority || 'normal'),
@@ -79,10 +87,26 @@ const IncomingRequests = () => {
   const incomingRequests = useMemo(() => requestsQuery.data || [], [requestsQuery.data]);
 
   const scopedIncoming = useMemo(() => {
-    return incomingRequests.filter((item) => {
-      return !hospitalId || item.supplyingHospitalId === hospitalId;
-    });
+    return incomingRequests
+      .filter((item) => !hospitalId || item.supplyingHospitalId === hospitalId)
+      .sort((a, b) => {
+        const timestampDiff = toEpochMillis(b.requestedAt) - toEpochMillis(a.requestedAt);
+        if (timestampDiff !== 0) {
+          return timestampDiff;
+        }
+        return b.id.localeCompare(a.id);
+      });
   }, [incomingRequests, hospitalId]);
+
+  const refreshShareDependentViews = useCallback(() => {
+    void Promise.all([
+      queryClient.invalidateQueries({ queryKey: ['incoming-requests'] }),
+      queryClient.invalidateQueries({ queryKey: ['outgoing-requests'] }),
+      queryClient.invalidateQueries({ queryKey: ['shared-resources-list'] }),
+      queryClient.invalidateQueries({ queryKey: ['inventory-list'] }),
+    ]);
+    window.dispatchEvent(new Event(RESOURCE_SHARES_UPDATED_EVENT));
+  }, [queryClient]);
 
   const approveMutation = useMutation({
     mutationFn: async ({ id, quantityApproved }: { id: string; quantityApproved: number }) => {
@@ -91,7 +115,7 @@ const IncomingRequests = () => {
     onSuccess: () => {
       toast({ title: 'Request approved' });
       setConfirmingRequest(null);
-      queryClient.invalidateQueries({ queryKey: ['incoming-requests'] });
+      refreshShareDependentViews();
     },
     onError: (error: unknown) => {
       toast({ title: 'Approval failed', description: error?.message || 'Please try again.', variant: 'destructive' });
@@ -104,7 +128,7 @@ const IncomingRequests = () => {
     },
     onSuccess: () => {
       toast({ title: 'Request rejected' });
-      queryClient.invalidateQueries({ queryKey: ['incoming-requests'] });
+      refreshShareDependentViews();
     },
     onError: (error: unknown) => {
       toast({ title: 'Rejection failed', description: error?.message || 'Please try again.', variant: 'destructive' });
@@ -112,15 +136,19 @@ const IncomingRequests = () => {
   });
 
   const getStatusVariant = (status: string): 'default' | 'destructive' | 'secondary' | 'outline' => {
-    const normalized = status.toLowerCase();
-    if (normalized === 'pending') return 'secondary';
-    if (normalized === 'approved') return 'default';
-    if (normalized === 'rejected' || normalized === 'cancelled') return 'destructive';
+    const normalized = status.toUpperCase();
+    if (normalized === 'PENDING') return 'secondary';
+    if (['APPROVED', 'RESERVED', 'PAYMENT_PENDING', 'PAYMENT_COMPLETED', 'IN_TRANSIT', 'COMPLETED'].includes(normalized)) {
+      return 'default';
+    }
+    if (['FAILED', 'CANCELLED', 'EXPIRED'].includes(normalized)) return 'destructive';
     return 'outline';
   };
 
   return (
-    <AppLayout title="Incoming Requests" subtitle="Review and process requests from other hospitals">
+    <AppLayout title="Incoming Requests"
+      // subtitle="Review and process requests from other hospitals"
+    >
       <div className="space-y-4">
         <Card>
           <CardHeader>
@@ -160,7 +188,7 @@ const IncomingRequests = () => {
                     </TableRow>
                   ) : (
                     scopedIncoming.map((item) => {
-                      const isPending = item.status.toLowerCase() === 'pending';
+                      const isPending = item.status.toUpperCase() === 'PENDING';
                       const qtyValue = approvedQty[item.id] ?? String(item.quantityRequested);
                       return (
                         <TableRow key={item.id}>

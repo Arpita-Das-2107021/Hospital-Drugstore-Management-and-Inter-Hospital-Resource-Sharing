@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import AppLayout from '@/components/layout/AppLayout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -12,12 +12,14 @@ import { AlertTriangle, Loader2 } from 'lucide-react';
 import { requestsApi } from '@/services/api';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/contexts/AuthContext';
+import { RESOURCE_SHARES_UPDATED_EVENT } from '@/constants/events';
 
 interface RequestRow {
   id: string;
   requestingHospitalId: string;
   resource: string;
   supplierHospital: string;
+  requestedAt: string;
   quantityRequested: number;
   priceSnapshot: number | null;
   totalPrice: number | null;
@@ -35,15 +37,21 @@ const normalizeNumber = (value: unknown): number | null => {
   return Number.isFinite(parsed) ? parsed : null;
 };
 
+const toEpochMillis = (value: string): number => {
+  const parsed = Date.parse(value);
+  return Number.isFinite(parsed) ? parsed : 0;
+};
+
 const mapRequest = (item: unknown): RequestRow => ({
   id: String(item.id || ''),
   requestingHospitalId: String(item.requesting_hospital || item.requesting_hospital_id || ''),
   resource: item.catalog_item_name || item.resource_name || 'Unknown resource',
   supplierHospital: item.supplying_hospital_name || '',
+  requestedAt: String(item.created_at || item.requested_at || item.requestedAt || item.submitted_at || item.updated_at || ''),
   quantityRequested: Number(item.quantity_requested ?? 0),
   priceSnapshot: normalizeNumber(item.price_snapshot),
   totalPrice: normalizeNumber(item.total_price),
-  status: String(item.status || 'pending'),
+  status: String(item.workflow_state || item.status || 'PENDING'),
   paymentStatus: String(item.payment_status || 'unpaid'),
   paymentNote: String(item.payment_note || ''),
   neededBy: item.needed_by || null,
@@ -71,29 +79,41 @@ const OutgoingRequests = () => {
 
   const outgoingRequests = useMemo(() => {
     const hospitalId = user?.hospital_id || '';
-    return (requestsQuery.data || []).filter((item) => !hospitalId || item.requestingHospitalId === hospitalId);
+    return (requestsQuery.data || [])
+      .filter((item) => !hospitalId || item.requestingHospitalId === hospitalId)
+      .sort((a, b) => {
+        const timestampDiff = toEpochMillis(b.requestedAt) - toEpochMillis(a.requestedAt);
+        if (timestampDiff !== 0) {
+          return timestampDiff;
+        }
+        return b.id.localeCompare(a.id);
+      });
   }, [requestsQuery.data, user?.hospital_id]);
+
+  const refreshShareDependentViews = useCallback(() => {
+    void Promise.all([
+      queryClient.invalidateQueries({ queryKey: ['outgoing-requests'] }),
+      queryClient.invalidateQueries({ queryKey: ['incoming-requests'] }),
+      queryClient.invalidateQueries({ queryKey: ['shared-resources-list'] }),
+      queryClient.invalidateQueries({ queryKey: ['inventory-list'] }),
+    ]);
+    window.dispatchEvent(new Event(RESOURCE_SHARES_UPDATED_EVENT));
+  }, [queryClient]);
 
   const cancelMutation = useMutation({
     mutationFn: async ({ id, status, reason }: { id: string; status: string; reason: string }) => {
-      const normalized = status.toLowerCase();
+      const normalized = status.toUpperCase();
 
-      if (['dispatched', 'in_transit', 'in-transit'].includes(normalized)) {
-        if (!reason.trim()) {
-          throw new Error('Return reason is required after dispatch.');
-        }
-
-        return requestsApi.verifyReturn(id, {
-          return_reason: reason,
-          return_verified: true,
-        });
+      const trimmedReason = reason.trim();
+      if (['IN_TRANSIT', 'DISPATCHED'].includes(normalized) && !trimmedReason) {
+        throw new Error('Cancellation reason is required once dispatch has started.');
       }
 
-      return requestsApi.cancel(id, reason.trim() ? { reason } : undefined);
+      return requestsApi.cancelRequest(id, trimmedReason ? { reason: trimmedReason } : {});
     },
     onSuccess: () => {
       toast({ title: 'Request cancellation processed' });
-      queryClient.invalidateQueries({ queryKey: ['outgoing-requests'] });
+      refreshShareDependentViews();
     },
     onError: (error: unknown) => {
       toast({ title: 'Cancellation failed', description: error?.message || 'Please try again.', variant: 'destructive' });
@@ -102,9 +122,9 @@ const OutgoingRequests = () => {
 
   const markPaidMutation = useMutation({
     mutationFn: async ({ id, note }: { id: string; note: string }) => {
-      return requestsApi.update(id, {
-        payment_status: 'paid',
-        payment_note: note,
+      return requestsApi.confirmPayment(id, {
+        payment_status: 'PAYMENT_COMPLETED',
+        payment_note: note || undefined,
       });
     },
     onSuccess: () => {
@@ -117,10 +137,12 @@ const OutgoingRequests = () => {
   });
 
   const getStatusVariant = (status: string): 'default' | 'destructive' | 'secondary' | 'outline' => {
-    const normalized = status.toLowerCase();
-    if (normalized === 'pending') return 'secondary';
-    if (normalized === 'approved' || normalized === 'dispatched' || normalized === 'fulfilled') return 'default';
-    if (normalized === 'rejected' || normalized === 'cancelled') return 'destructive';
+    const normalized = status.toUpperCase();
+    if (normalized === 'PENDING') return 'secondary';
+    if (['APPROVED', 'RESERVED', 'PAYMENT_PENDING', 'PAYMENT_COMPLETED', 'IN_TRANSIT', 'COMPLETED'].includes(normalized)) {
+      return 'default';
+    }
+    if (['FAILED', 'CANCELLED', 'EXPIRED'].includes(normalized)) return 'destructive';
     return 'outline';
   };
 
@@ -132,7 +154,9 @@ const OutgoingRequests = () => {
   };
 
   return (
-    <AppLayout title="Outgoing Requests" subtitle="Track requests sent to supplier hospitals">
+    <AppLayout title="Outgoing Requests"
+      // subtitle="Track requests sent to supplier hospitals"
+    >
       <Card>
         <CardHeader>
           <CardTitle>Outgoing Resource Requests</CardTitle>
@@ -171,9 +195,9 @@ const OutgoingRequests = () => {
                   </TableRow>
                 ) : (
                   outgoingRequests.map((item) => {
-                    const terminalStatuses = ['fulfilled', 'delivered', 'closed', 'rejected', 'cancelled', 'canceled'];
-                    const canCancel = !terminalStatuses.includes(item.status.toLowerCase());
-                    const canMarkPaid = item.paymentStatus.toLowerCase() !== 'paid';
+                    const terminalStatuses = ['COMPLETED', 'FAILED', 'CANCELLED', 'EXPIRED'];
+                    const canCancel = !terminalStatuses.includes(item.status.toUpperCase());
+                    const canMarkPaid = item.paymentStatus.toUpperCase() !== 'PAYMENT_COMPLETED';
                     return (
                       <TableRow key={item.id}>
                         <TableCell className="font-medium">{item.resource}</TableCell>
@@ -208,7 +232,7 @@ const OutgoingRequests = () => {
                               <Textarea
                                 id={`cancel-reason-${item.id}`}
                                 rows={2}
-                                placeholder={['dispatched', 'in_transit', 'in-transit'].includes(item.status.toLowerCase())
+                                placeholder={['DISPATCHED', 'IN_TRANSIT'].includes(item.status.toUpperCase())
                                   ? 'Required after dispatch (e.g., damaged package, wrong item)'
                                   : 'Optional reason'}
                                 value={cancelReason[item.id] || ''}

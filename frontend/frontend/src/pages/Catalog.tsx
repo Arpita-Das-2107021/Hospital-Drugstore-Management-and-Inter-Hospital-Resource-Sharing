@@ -191,7 +191,9 @@ export default function Catalog() {
   );
 
   return (
-    <AppLayout title="Resource Catalog" subtitle="Manage the standard catalog of shareable resources">
+    <AppLayout title="Resource Catalog"
+      // subtitle="Manage the standard catalog of shareable resources"
+    >
       <div className="flex-1 space-y-6 p-8 pt-6">
         {/* Summary Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

@@ -40,7 +40,7 @@ const RegistrationSuccess = () => {
             </div>
             <CardTitle className="text-2xl">Registration Submitted!</CardTitle>
             <CardDescription>
-              Your hospital registration request has been received and is pending review
+              Your health facility registration request has been received and is pending review
             </CardDescription>
           </CardHeader>
 
@@ -50,7 +50,7 @@ const RegistrationSuccess = () => {
               <h3 className="font-semibold text-lg mb-3">Registration Details</h3>
               <div className="grid grid-cols-2 gap-3 text-sm">
                 <div>
-                  <p className="text-muted-foreground">Hospital Name</p>
+                  <p className="text-muted-foreground">Facility Name</p>
                   <p className="font-medium">{registration.name}</p>
                 </div>
                 <div>
@@ -60,6 +60,14 @@ const RegistrationSuccess = () => {
                 <div>
                   <p className="text-muted-foreground">Contact Email</p>
                   <p className="font-medium">{registration.email}</p>
+                </div>
+                <div>
+                  <p className="text-muted-foreground">Submission Mode</p>
+                  <p className="font-medium">{registration.data_submission_type || 'N/A'}</p>
+                </div>
+                <div>
+                  <p className="text-muted-foreground">Inventory Source</p>
+                  <p className="font-medium">{registration.inventory_source_type || 'N/A'}</p>
                 </div>
                 <div>
                   <p className="text-muted-foreground">Status</p>
@@ -84,7 +92,7 @@ const RegistrationSuccess = () => {
                   <div>
                     <p className="font-medium">Review by Platform Admin</p>
                     <p className="text-sm text-muted-foreground">
-                      A platform administrator will review your hospital's registration details.
+                      A platform administrator will review your facility registration details.
                       This typically takes 1–2 business days.
                     </p>
                   </div>
@@ -100,7 +108,7 @@ const RegistrationSuccess = () => {
                     </p>
                     <p className="text-sm text-muted-foreground">
                       Once approved, a <strong>password setup email</strong> will be sent to the{' '}
-                      <strong>hospital admin email</strong> <strong>{adminEmail}</strong>. This email contains
+                      <strong>facility admin email</strong> <strong>{adminEmail}</strong>. This email contains
                       a secure link to set up your administrator account and password.
                     </p>
                   </div>
@@ -116,7 +124,7 @@ const RegistrationSuccess = () => {
                     </p>
                     <p className="text-sm text-muted-foreground">
                       Click the invitation link in the email to create your secure password
-                      and activate your hospital admin account.
+                      and activate your facility admin account.
                     </p>
                   </div>
                 </div>
@@ -164,7 +172,7 @@ const RegistrationSuccess = () => {
                 className="flex-1"
                 onClick={() => navigate('/register')}
               >
-                Register Another Hospital
+                Register Another Facility
               </Button>
             </div>
           </CardContent>
