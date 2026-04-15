@@ -1,21 +1,50 @@
 import { cn } from '@/lib/utils';
-import { Check, Clock, Truck, Package, XCircle, AlertTriangle } from 'lucide-react';
+import { Check, CheckCircle, Clock, Truck, Package, XCircle, AlertTriangle, CreditCard } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 interface RequestStatusStepperProps {
-  status: 'requested' | 'reserved' | 'in_transit' | 'received' | 'closed' | 'rejected';
+  status:
+    | 'requested'
+    | 'reserved'
+    | 'in_transit'
+    | 'received'
+    | 'closed'
+    | 'rejected'
+    | 'PENDING'
+    | 'APPROVED'
+    | 'RESERVED'
+    | 'PAYMENT_PENDING'
+    | 'PAYMENT_COMPLETED'
+    | 'IN_TRANSIT'
+    | 'RETURNING'
+    | 'COMPLETED'
+    | 'FAILED'
+    | 'CANCELLED'
+    | 'EXPIRED';
   urgency: 'routine' | 'urgent' | 'critical';
   requestedAt: string;
   reservationExpiry?: string;
   estimatedDelivery?: string;
 }
 
+type VisualStep =
+  | 'pending'
+  | 'approved'
+  | 'reserved'
+  | 'payment_pending'
+  | 'payment_completed'
+  | 'in_transit'
+  | 'completed'
+  | 'rejected';
+
 const steps = [
-  { id: 'requested', label: 'Requested', labelBn: 'অনুরোধ করা হয়েছে', icon: Clock },
-  { id: 'reserved', label: 'Reserved', labelBn: 'সংরক্ষিত', icon: Package },
-  { id: 'in_transit', label: 'In Transit', labelBn: 'পরিবহনে', icon: Truck },
-  { id: 'received', label: 'Received', labelBn: 'গ্রহণ করা হয়েছে', icon: Package },
-  { id: 'closed', label: 'Closed', labelBn: 'বন্ধ', icon: Check },
+  { id: 'pending', label: 'Pending', icon: Clock },
+  { id: 'approved', label: 'Approved', icon: CheckCircle },
+  { id: 'reserved', label: 'Reserved', icon: Package },
+  { id: 'payment_pending', label: 'Payment Pending', icon: CreditCard },
+  { id: 'payment_completed', label: 'Payment Completed', icon: CheckCircle },
+  { id: 'in_transit', label: 'In Transit', icon: Truck },
+  { id: 'completed', label: 'Completed', icon: Check },
 ];
 
 export const RequestStatusStepper = ({
@@ -25,8 +54,29 @@ export const RequestStatusStepper = ({
   reservationExpiry,
   estimatedDelivery,
 }: RequestStatusStepperProps) => {
-  const isRejected = status === 'rejected';
-  const currentStepIndex = steps.findIndex(s => s.id === status);
+  const normalized = String(status || '').toUpperCase();
+  const visualStatus: VisualStep = (() => {
+    if (normalized === 'PENDING' || normalized === 'REQUESTED' || normalized === 'NEW') return 'pending';
+    if (normalized === 'APPROVED') return 'approved';
+    if (normalized === 'RESERVED') return 'reserved';
+    if (normalized === 'PAYMENT_PENDING' || normalized === 'AWAITING_PAYMENT') return 'payment_pending';
+    if (normalized === 'PAYMENT_COMPLETED' || normalized === 'PAID') return 'payment_completed';
+    if (normalized === 'IN_TRANSIT' || normalized === 'DISPATCHED' || normalized === 'SHIPPED') return 'in_transit';
+    if (normalized === 'RETURNING' || normalized === 'RETURN_PENDING' || normalized === 'RETURN_INITIATED') return 'in_transit';
+    if (normalized === 'COMPLETED' || normalized === 'RECEIVED' || normalized === 'DELIVERED' || normalized === 'CLOSED') return 'completed';
+    if (normalized === 'FAILED' || normalized === 'CANCELLED' || normalized === 'EXPIRED' || normalized === 'REJECTED') {
+      return 'rejected';
+    }
+    if (status === 'requested') return 'pending';
+    if (status === 'reserved') return 'reserved';
+    if (status === 'in_transit') return 'in_transit';
+    if (status === 'received' || status === 'closed') return 'completed';
+    if (status === 'rejected') return 'rejected';
+    return 'completed';
+  })();
+
+  const isRejected = visualStatus === 'rejected';
+  const currentStepIndex = steps.findIndex(s => s.id === visualStatus);
 
   const getStepStatus = (stepIndex: number) => {
     if (isRejected) return 'rejected';
@@ -122,7 +172,7 @@ export const RequestStatusStepper = ({
           <p className="text-muted-foreground">Requested</p>
           <p className="font-medium">{new Date(requestedAt).toLocaleString()}</p>
         </div>
-        {reservationExpiry && status === 'reserved' && (
+        {reservationExpiry && ['reserved', 'payment_pending', 'payment_completed'].includes(visualStatus) && (
           <div className="rounded-lg bg-warning/10 border border-warning/20 p-3">
             <p className="text-warning">Reservation Expires</p>
             <p className="font-medium">{new Date(reservationExpiry).toLocaleString()}</p>

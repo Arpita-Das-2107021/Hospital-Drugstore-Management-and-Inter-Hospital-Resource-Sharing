@@ -14,7 +14,10 @@ import {
 } from '@/components/ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
-import { AlertTriangle, Siren, X } from 'lucide-react';
+import BroadcastLocationPicker from '@/components/maps/BroadcastLocationPicker';
+import { type StructuredLocation } from '@/utils/location';
+import { AlertTriangle, Siren, X, Send } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export interface BroadcastTemplate {
   id: string;
@@ -35,6 +38,7 @@ export interface BroadcastComposerPayload {
   scope: 'all' | 'hospitals';
   allow_response: boolean;
   target_hospitals?: string[];
+  location?: StructuredLocation;
   templateId?: string;
 }
 
@@ -55,24 +59,24 @@ export default function EmergencyBroadcast({
   hospitals,
   loadingHospitals = false,
 }: EmergencyBroadcastProps) {
-  const [selectedTemplateId, setSelectedTemplateId] = useState<string>('custom');
+  const [selectedTemplateId, setSelectedTemplateId] = useState('custom');
   const [title, setTitle] = useState('');
   const [message, setMessage] = useState('');
   const [priority, setPriority] = useState<'normal' | 'urgent' | 'emergency'>('urgent');
   const [allowResponse, setAllowResponse] = useState(true);
   const [targetMode, setTargetMode] = useState<'all' | 'selected'>('all');
   const [selectedHospitals, setSelectedHospitals] = useState<string[]>([]);
+  const [location, setLocation] = useState<StructuredLocation | null>(null);
+  const [locationValidationError, setLocationValidationError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
   const selectedTemplate = useMemo(
-    () => templates.find((template) => template.id === selectedTemplateId),
-    [templates, selectedTemplateId]
+    () => templates.find((t) => t.id === selectedTemplateId),
+    [templates, selectedTemplateId],
   );
 
   useEffect(() => {
-    if (!isOpen) {
-      return;
-    }
+    if (!isOpen) return;
     setSelectedTemplateId('custom');
     setTitle('');
     setMessage('');
@@ -80,12 +84,12 @@ export default function EmergencyBroadcast({
     setAllowResponse(true);
     setTargetMode('all');
     setSelectedHospitals([]);
+    setLocation(null);
+    setLocationValidationError(null);
   }, [isOpen]);
 
   useEffect(() => {
-    if (!selectedTemplate || selectedTemplateId === 'custom') {
-      return;
-    }
+    if (!selectedTemplate || selectedTemplateId === 'custom') return;
     setTitle(selectedTemplate.name);
     setMessage(selectedTemplate.message);
     setPriority(selectedTemplate.priority);
@@ -94,21 +98,15 @@ export default function EmergencyBroadcast({
   const recipientCount = targetMode === 'all' ? hospitals.length : selectedHospitals.length;
 
   const toggleHospital = (hospitalId: string) => {
-    setSelectedHospitals((prev) => {
-      if (prev.includes(hospitalId)) {
-        return prev.filter((id) => id !== hospitalId);
-      }
-      return [...prev, hospitalId];
-    });
+    setSelectedHospitals((prev) =>
+      prev.includes(hospitalId) ? prev.filter((id) => id !== hospitalId) : [...prev, hospitalId],
+    );
   };
 
   const handleSubmit = async () => {
-    if (!title.trim() || !message.trim()) {
-      return;
-    }
-    if (targetMode === 'selected' && selectedHospitals.length === 0) {
-      return;
-    }
+    if (!title.trim() || !message.trim()) return;
+    if (targetMode === 'selected' && selectedHospitals.length === 0) return;
+    if (locationValidationError) return;
 
     setSubmitting(true);
     try {
@@ -119,6 +117,7 @@ export default function EmergencyBroadcast({
         scope: targetMode === 'all' ? 'all' : 'hospitals',
         allow_response: allowResponse,
         target_hospitals: targetMode === 'selected' ? selectedHospitals : undefined,
+        location: location || undefined,
         templateId: selectedTemplateId === 'custom' ? undefined : selectedTemplateId,
       });
       onClose();
@@ -129,12 +128,19 @@ export default function EmergencyBroadcast({
 
   if (!isOpen) return null;
 
+  const priorityColor =
+    priority === 'emergency'
+      ? 'text-destructive'
+      : priority === 'urgent'
+        ? 'text-amber-600'
+        : 'text-muted-foreground';
+
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+    <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
+      <DialogContent className="max-w-xl rounded-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-red-700">
-            <Siren className="h-5 w-5" />
+          <DialogTitle className="flex items-center gap-2 text-lg">
+            <Siren className={cn('h-5 w-5', priorityColor)} />
             Emergency Broadcast
           </DialogTitle>
           <DialogDescription>
@@ -142,40 +148,36 @@ export default function EmergencyBroadcast({
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-6">
+        <div className="space-y-5">
+          {/* Template */}
           <div className="space-y-2">
-            <Label>Template</Label>
+            <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Template</Label>
             <Select value={selectedTemplateId} onValueChange={setSelectedTemplateId}>
-              <SelectTrigger>
-                <SelectValue placeholder="Choose a template or custom message" />
-              </SelectTrigger>
+              <SelectTrigger><SelectValue /></SelectTrigger>
               <SelectContent>
                 <SelectItem value="custom">Custom Message</SelectItem>
-                {templates.map((template) => (
-                  <SelectItem key={template.id} value={template.id}>
-                    {template.name}
-                  </SelectItem>
+                {templates.map((t) => (
+                  <SelectItem key={t.id} value={t.id}>{t.name}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2">
+          {/* Title + Priority */}
+          <div className="grid gap-4 sm:grid-cols-[1fr_160px]">
             <div className="space-y-2">
               <Label htmlFor="broadcast-title">Title</Label>
               <Input
                 id="broadcast-title"
                 value={title}
-                onChange={(event) => setTitle(event.target.value)}
+                onChange={(e) => setTitle(e.target.value)}
                 placeholder="Enter broadcast title"
               />
             </div>
             <div className="space-y-2">
               <Label>Priority</Label>
-              <Select value={priority} onValueChange={(value: 'normal' | 'urgent' | 'emergency') => setPriority(value)}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
+              <Select value={priority} onValueChange={(v) => setPriority(v as any)}>
+                <SelectTrigger><SelectValue /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="normal">Normal</SelectItem>
                   <SelectItem value="urgent">Urgent</SelectItem>
@@ -185,18 +187,28 @@ export default function EmergencyBroadcast({
             </div>
           </div>
 
+          {/* Message */}
           <div className="space-y-2">
             <Label htmlFor="broadcast-message">Message</Label>
             <Textarea
               id="broadcast-message"
               value={message}
-              onChange={(event) => setMessage(event.target.value)}
+              onChange={(e) => setMessage(e.target.value)}
               placeholder="Describe the emergency and what support is needed"
               rows={4}
             />
           </div>
 
-          <div className="space-y-2 rounded-md border p-3">
+          {/* Location Picker */}
+          <BroadcastLocationPicker
+            value={location}
+            onChange={setLocation}
+            onValidationErrorChange={setLocationValidationError}
+            disabled={submitting}
+          />
+
+          {/* Allow Response */}
+          <div className="rounded-xl border border-border/60 bg-muted/20 p-4 space-y-1.5">
             <Label className="flex items-center gap-3 text-sm font-medium">
               <Checkbox
                 checked={allowResponse}
@@ -204,19 +216,21 @@ export default function EmergencyBroadcast({
               />
               Allow hospital responses
             </Label>
-            <p className="text-xs text-muted-foreground">
+            <p className="pl-7 text-xs text-muted-foreground">
               If enabled, recipients can submit updates via the broadcast response endpoint.
             </p>
           </div>
 
-          <Card>
+          {/* Recipient Hospitals */}
+          <Card className="rounded-xl border-border/60 shadow-none">
             <CardHeader className="pb-3">
-              <CardTitle className="text-base">Recipient Hospitals</CardTitle>
+              <CardTitle className="text-sm font-semibold">Recipient Hospitals</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex gap-2">
                 <Button
                   type="button"
+                  size="sm"
                   variant={targetMode === 'all' ? 'default' : 'outline'}
                   onClick={() => setTargetMode('all')}
                 >
@@ -224,6 +238,7 @@ export default function EmergencyBroadcast({
                 </Button>
                 <Button
                   type="button"
+                  size="sm"
                   variant={targetMode === 'selected' ? 'default' : 'outline'}
                   onClick={() => setTargetMode('selected')}
                 >
@@ -232,14 +247,14 @@ export default function EmergencyBroadcast({
               </div>
 
               {targetMode === 'selected' && (
-                <div className="max-h-56 overflow-y-auto rounded-md border p-3 space-y-3">
+                <div className="max-h-48 overflow-y-auto rounded-lg border border-border/60 p-3 space-y-2.5">
                   {loadingHospitals ? (
-                    <p className="text-sm text-muted-foreground">Loading hospitals...</p>
+                    <p className="text-sm text-muted-foreground">Loading hospitals…</p>
                   ) : hospitals.length === 0 ? (
                     <p className="text-sm text-muted-foreground">No target hospitals available.</p>
                   ) : (
                     hospitals.map((hospital) => (
-                      <label key={hospital.id} className="flex items-center gap-3 text-sm">
+                      <label key={hospital.id} className="flex items-center gap-3 text-sm cursor-pointer hover:text-foreground transition-colors">
                         <Checkbox
                           checked={selectedHospitals.includes(hospital.id)}
                           onCheckedChange={() => toggleHospital(hospital.id)}
@@ -251,22 +266,26 @@ export default function EmergencyBroadcast({
                 </div>
               )}
 
-              <div className="flex items-center justify-between rounded-md bg-muted/50 px-3 py-2">
-                <span className="text-sm text-muted-foreground">Estimated recipients</span>
-                <Badge variant="secondary">{recipientCount} hospitals</Badge>
+              <div className="flex items-center justify-between rounded-lg border border-border/60 bg-muted/30 px-3 py-2">
+                <span className="text-xs text-muted-foreground">Estimated recipients</span>
+                <Badge variant="secondary" className="text-xs">{recipientCount} hospitals</Badge>
               </div>
             </CardContent>
           </Card>
 
-          <div className="flex items-start gap-2 rounded-md border border-red-200 bg-red-50 p-3 text-red-700">
-            <AlertTriangle className="h-4 w-4 mt-0.5" />
-            <p className="text-sm">Use emergency broadcasts only for genuine urgent coordination needs.</p>
+          {/* Warning */}
+          <div className="flex items-start gap-2.5 rounded-xl border border-destructive/20 bg-destructive/5 p-3.5">
+            <AlertTriangle className="h-4 w-4 mt-0.5 shrink-0 text-destructive" />
+            <p className="text-xs text-destructive leading-relaxed">
+              Use emergency broadcasts only for genuine urgent coordination needs.
+            </p>
           </div>
         </div>
 
-        <div className="flex justify-between pt-3">
-          <Button type="button" variant="outline" onClick={onClose}>
-            <X className="h-4 w-4 mr-2" />
+        {/* Footer */}
+        <div className="flex items-center justify-between pt-2">
+          <Button type="button" variant="ghost" onClick={onClose}>
+            <X className="mr-1.5 h-3.5 w-3.5" />
             Cancel
           </Button>
           <Button
@@ -276,11 +295,17 @@ export default function EmergencyBroadcast({
               submitting ||
               !title.trim() ||
               !message.trim() ||
+              Boolean(locationValidationError) ||
               (targetMode === 'selected' && selectedHospitals.length === 0)
             }
-            className="bg-red-600 hover:bg-red-700"
+            className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
           >
-            {submitting ? 'Sending...' : 'Send Broadcast'}
+            {submitting ? 'Sending…' : (
+              <>
+                <Send className="mr-1.5 h-3.5 w-3.5" />
+                Send Broadcast
+              </>
+            )}
           </Button>
         </div>
       </DialogContent>

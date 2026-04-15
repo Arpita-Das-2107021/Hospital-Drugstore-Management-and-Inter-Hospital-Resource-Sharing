@@ -65,7 +65,12 @@ export const SLATimer = ({ targetTime, urgency, status }: SLATimerProps) => {
 
   if (!timeRemaining) return null;
 
-  const isCompleted = status === 'closed' || status === 'received' || status === 'delivered';
+  const normalizedStatus = String(status || '').toUpperCase();
+  const isCompleted =
+    normalizedStatus === 'CLOSED' ||
+    normalizedStatus === 'RECEIVED' ||
+    normalizedStatus === 'DELIVERED' ||
+    normalizedStatus === 'COMPLETED';
   const isCriticallyLow = timeRemaining.percentageRemaining < 25;
   const isWarning = timeRemaining.percentageRemaining < 50;
 
