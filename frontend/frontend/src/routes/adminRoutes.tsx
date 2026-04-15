@@ -7,26 +7,34 @@
  * Exported as a JSX Fragment so React Router v6 can process it
  * transparently when included inside <Routes> in App.tsx.
  */
-import { Route } from 'react-router-dom';
+import { Navigate, Route } from 'react-router-dom';
 import ProtectedRoute from '@/components/auth/ProtectedRoute';
-import RoleManagement from '@/pages/RoleManagement';
+import RoleManagement from '@/pages/system-admin/RoleManagement';
 import DataIntegration from '@/pages/DataIntegration';
-import HospitalManagement from '@/pages/admin/HospitalManagement';
-import HospitalRegistrations from '@/pages/admin/HospitalRegistrations';
-import HospitalRegistrationDetail from '@/pages/admin/HospitalRegistrationDetail';
-import StaffInvitations from '@/pages/admin/StaffInvitations';
-import StaffManagement from '@/pages/admin/StaffManagement';
-import AdminAnalytics from '@/pages/admin/AdminAnalytics';
-import AuditLogs from '@/pages/admin/AuditLogs';
-import OffboardingRequests from '@/pages/admin/OffboardingRequests';
-import HospitalUpdateRequests from '@/pages/admin/HospitalUpdateRequests';
+import HospitalManagement from '@/pages/system-admin/HospitalManagement';
+import HospitalRegistrations from '@/pages/system-admin/HospitalRegistrations';
+import HospitalRegistrationDetail from '@/pages/system-admin/HospitalRegistrationDetail';
+import StaffInvitations from '@/pages/system-admin/StaffInvitations';
+import StaffManagement from '@/pages/system-admin/StaffManagement';
+import AdminAnalytics from '@/pages/system-admin/AdminAnalytics';
+import OffboardingRequests from '@/pages/system-admin/OffboardingRequests';
+import HospitalUpdateRequests from '@/pages/system-admin/HospitalUpdateRequests';
+import FacilitySourceSetup from '@/pages/system-admin/FacilitySourceSetup';
 
-// ── Platform admin routes (SUPER_ADMIN only) ──────────────────────────────────
+// ── Platform admin routes ─────────────────────────────────────────────────────
 // Exported as a Fragment, NOT a component, so React Router v6 can see
 // the Route elements directly when {AdminRoutes} is placed in <Routes>.
-const SUPER_ADMIN_ONLY = ['SUPER_ADMIN'];
-const ADMIN_AND_HOSPITAL_ADMIN = ['SUPER_ADMIN', 'HOSPITAL_ADMIN'];
-const HOSPITAL_ADMIN_AND_SUPER_ADMIN = ['HOSPITAL_ADMIN', 'SUPER_ADMIN'];
+const PERMISSIONS = {
+  hospitalReview: ['platform:hospital.review'],
+  hospitalDirectory: ['platform:hospital.view', 'platform:hospital.manage'],
+  staff: ['platform:user.view', 'platform:user_role.assign', 'platform:role.assign', 'platform:role.manage'],
+  staffInvitations: ['platform:user.view', 'platform:user_role.assign', 'platform:role.assign', 'platform:role.manage'],
+  roles: ['platform:role.view', 'platform:role.manage', 'platform:role.assign', 'platform:user_role.view', 'platform:user_role.assign'],
+  dataIntegration: ['platform:hospital.manage'],
+  analytics: ['platform:audit.view'],
+  audit: ['platform:audit.view'],
+  facilitySourceSetup: ['platform:hospital.manage'],
+};
 
 const AdminRoutes = (
   <>
@@ -34,7 +42,7 @@ const AdminRoutes = (
     <Route
       path="/admin/hospital-registrations"
       element={
-        <ProtectedRoute allowedRoles={SUPER_ADMIN_ONLY}>
+        <ProtectedRoute requiredContext="PLATFORM" requiredPermissions={PERMISSIONS.hospitalReview}>
           <HospitalRegistrations />
         </ProtectedRoute>
       }
@@ -42,7 +50,7 @@ const AdminRoutes = (
     <Route
       path="/admin/hospital-registrations/:id"
       element={
-        <ProtectedRoute allowedRoles={SUPER_ADMIN_ONLY}>
+        <ProtectedRoute requiredContext="PLATFORM" requiredPermissions={PERMISSIONS.hospitalReview}>
           <HospitalRegistrationDetail />
         </ProtectedRoute>
       }
@@ -52,17 +60,17 @@ const AdminRoutes = (
     <Route
       path="/admin/hospitals"
       element={
-        <ProtectedRoute allowedRoles={SUPER_ADMIN_ONLY}>
+        <ProtectedRoute requiredContext="PLATFORM" requiredPermissions={PERMISSIONS.hospitalDirectory}>
           <HospitalManagement />
         </ProtectedRoute>
       }
     />
 
-    {/* Staff management — SUPER_ADMIN and HOSPITAL_ADMIN */}
+    {/* Staff management — platform scope only */}
     <Route
       path="/admin/staff"
       element={
-        <ProtectedRoute allowedRoles={ADMIN_AND_HOSPITAL_ADMIN}>
+        <ProtectedRoute requiredContext="PLATFORM" requiredPermissions={PERMISSIONS.staff}>
           <StaffManagement />
         </ProtectedRoute>
       }
@@ -70,17 +78,17 @@ const AdminRoutes = (
     <Route
       path="/admin/staff-invitations"
       element={
-        <ProtectedRoute allowedRoles={HOSPITAL_ADMIN_AND_SUPER_ADMIN}>
+        <ProtectedRoute requiredContext="PLATFORM" requiredPermissions={PERMISSIONS.staffInvitations}>
           <StaffInvitations />
         </ProtectedRoute>
       }
     />
 
-    {/* Roles & permissions — SUPER_ADMIN and HOSPITAL_ADMIN */}
+    {/* Roles & permissions — platform scope only */}
     <Route
       path="/admin/roles"
       element={
-        <ProtectedRoute allowedRoles={ADMIN_AND_HOSPITAL_ADMIN}>
+        <ProtectedRoute requiredContext="PLATFORM" requiredPermissions={PERMISSIONS.roles}>
           <RoleManagement />
         </ProtectedRoute>
       }
@@ -90,7 +98,7 @@ const AdminRoutes = (
     <Route
       path="/admin/data"
       element={
-        <ProtectedRoute allowedRoles={SUPER_ADMIN_ONLY}>
+        <ProtectedRoute requiredContext="PLATFORM" requiredPermissions={PERMISSIONS.dataIntegration}>
           <DataIntegration />
         </ProtectedRoute>
       }
@@ -100,18 +108,18 @@ const AdminRoutes = (
     <Route
       path="/admin/analytics"
       element={
-        <ProtectedRoute allowedRoles={SUPER_ADMIN_ONLY}>
+        <ProtectedRoute requiredContext="PLATFORM" requiredPermissions={PERMISSIONS.analytics}>
           <AdminAnalytics />
         </ProtectedRoute>
       }
     />
 
-    {/* Audit logs — SUPER_ADMIN only */}
+    {/* Backward-compatible audit route redirect — reporting now lives under Reports */}
     <Route
       path="/admin/audit-logs"
       element={
-        <ProtectedRoute allowedRoles={SUPER_ADMIN_ONLY}>
-          <AuditLogs />
+        <ProtectedRoute requiredContext="PLATFORM" requiredPermissions={PERMISSIONS.audit}>
+          <Navigate to="/reports" replace />
         </ProtectedRoute>
       }
     />
@@ -119,7 +127,7 @@ const AdminRoutes = (
     <Route
       path="/admin/offboarding-requests"
       element={
-        <ProtectedRoute allowedRoles={SUPER_ADMIN_ONLY}>
+        <ProtectedRoute requiredContext="PLATFORM" requiredPermissions={PERMISSIONS.hospitalReview}>
           <OffboardingRequests />
         </ProtectedRoute>
       }
@@ -128,8 +136,17 @@ const AdminRoutes = (
     <Route
       path="/admin/hospital-update-requests"
       element={
-        <ProtectedRoute allowedRoles={SUPER_ADMIN_ONLY}>
+        <ProtectedRoute requiredContext="PLATFORM" requiredPermissions={PERMISSIONS.hospitalReview}>
           <HospitalUpdateRequests />
+        </ProtectedRoute>
+      }
+    />
+
+    <Route
+      path="/admin/facility-source-setup"
+      element={
+        <ProtectedRoute requiredContext="PLATFORM" requiredPermissions={PERMISSIONS.facilitySourceSetup}>
+          <FacilitySourceSetup />
         </ProtectedRoute>
       }
     />
