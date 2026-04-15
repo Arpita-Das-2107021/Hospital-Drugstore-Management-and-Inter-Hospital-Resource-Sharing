@@ -16,6 +16,7 @@ import { useAuth } from '@/contexts/AuthContext';
 
 interface ShipmentRow {
   id: string;
+  requestId?: string;
   status: string;
   originHospital: string;
   destinationHospital: string;
@@ -24,7 +25,6 @@ interface ShipmentRow {
   vehicleInfo: string;
   trackingNumber: string;
   estimatedDeliveryAt: string;
-  dispatchToken: string;
 }
 
 interface ApprovedRequestRow {
@@ -36,6 +36,7 @@ interface ApprovedRequestRow {
 
 const mapShipment = (item: unknown): ShipmentRow => ({
   id: String(item.id || ''),
+  requestId: String(item.request_id || item.request || item.resource_request_id || item.resource_request || '') || undefined,
   status: String(item.status || 'pending_dispatch'),
   originHospital: item.origin_hospital_name || '-',
   destinationHospital: item.destination_hospital_name || '-',
@@ -44,7 +45,6 @@ const mapShipment = (item: unknown): ShipmentRow => ({
   vehicleInfo: item.vehicle_info || item.vehicle_number || '-',
   trackingNumber: item.tracking_number || '-',
   estimatedDeliveryAt: item.estimated_delivery_at || '',
-  dispatchToken: item.dispatch_token || '',
 });
 
 const ShipmentDashboard = () => {
@@ -52,7 +52,7 @@ const ShipmentDashboard = () => {
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [dispatchForm, setDispatchForm] = useState<Record<string, { rider_name: string; rider_phone: string; vehicle_info: string }>>({});
-  const [lastDispatchToken, setLastDispatchToken] = useState('');
+  const [lastDispatchQrPayload, setLastDispatchQrPayload] = useState('');
 
   const requestsQuery = useQuery({
     queryKey: ['shipment-dashboard-requests'],
@@ -78,7 +78,7 @@ const ShipmentDashboard = () => {
       .filter((item: unknown) => {
         const status = String(item.status || '').toLowerCase();
         const supplyingHospital = String(item.supplying_hospital || item.supplying_hospital_id || '');
-        return status === 'approved' && (!hospitalId || supplyingHospital === hospitalId);
+        return ['approved', 'reserved'].includes(status) && (!hospitalId || supplyingHospital === hospitalId);
       })
       .map((item: unknown) => ({
         id: String(item.id || ''),
@@ -106,14 +106,35 @@ const ShipmentDashboard = () => {
   }, [requestsQuery.data, shipmentsQuery.data, user?.hospital_id]);
 
   const dispatchMutation = useMutation({
-    mutationFn: async ({ requestId, payload }: { requestId: string; payload: { rider_name: string; rider_phone: string; vehicle_info: string } }) => {
-      const response: unknown = await requestsApi.dispatch(requestId, payload);
+    mutationFn: async ({ requestId, quantityApproved, payload }: {
+      requestId: string;
+      quantityApproved: number;
+      payload: { rider_name: string; rider_phone: string; vehicle_info: string };
+    }) => {
+      await requestsApi.reserve(requestId, {
+        requested_quantity: quantityApproved > 0 ? quantityApproved : undefined,
+      }).catch(() => undefined);
+
+      const notes = [
+        `Delivery personnel: ${payload.rider_name}`,
+        payload.rider_phone ? `Phone: ${payload.rider_phone}` : null,
+        `Vehicle: ${payload.vehicle_info}`,
+      ]
+        .filter(Boolean)
+        .join(' | ');
+
+      const response: unknown = await requestsApi.dispatch(requestId, { notes });
       return response?.data || response;
     },
     onSuccess: (data: unknown) => {
-      const token = String(data?.dispatch_token || data?.shipment?.dispatch_token || '');
-      setLastDispatchToken(token);
-      toast({ title: 'Dispatch created', description: token ? 'Dispatch token generated.' : 'Shipment dispatch submitted.' });
+      const record = (data && typeof data === 'object' ? data : {}) as Record<string, unknown>;
+      const deliveryQr = (record.delivery_qr && typeof record.delivery_qr === 'object'
+        ? record.delivery_qr
+        : {}) as Record<string, unknown>;
+      const qrPayload = typeof deliveryQr.qrPayload === 'string' ? deliveryQr.qrPayload : '';
+
+      setLastDispatchQrPayload(qrPayload);
+      toast({ title: 'Dispatch created', description: qrPayload ? 'Dispatch QR payload generated.' : 'Shipment dispatch submitted.' });
       queryClient.invalidateQueries({ queryKey: ['shipment-dashboard-requests'] });
       queryClient.invalidateQueries({ queryKey: ['shipment-dashboard-shipments'] });
     },
@@ -123,7 +144,9 @@ const ShipmentDashboard = () => {
   });
 
   return (
-    <AppLayout title="Shipment Dashboard" subtitle="Dispatch, monitor, and confirm shipment operations">
+    <AppLayout title="Shipment Dashboard"
+      // subtitle="Dispatch, monitor, and confirm shipment operations"
+    >
       <div className="space-y-4">
         <div className="grid gap-4 md:grid-cols-3">
           <Card>
@@ -191,7 +214,11 @@ const ShipmentDashboard = () => {
                       </div>
                     </div>
                     <Button
-                      onClick={() => dispatchMutation.mutate({ requestId: request.requestId, payload: value })}
+                      onClick={() => dispatchMutation.mutate({
+                        requestId: request.requestId,
+                        quantityApproved: request.quantityApproved,
+                        payload: value,
+                      })}
                       disabled={dispatchMutation.isPending || !value.rider_name || !value.rider_phone || !value.vehicle_info}
                     >
                       Dispatch shipment
@@ -201,11 +228,11 @@ const ShipmentDashboard = () => {
               })
             )}
 
-            {lastDispatchToken ? (
+            {lastDispatchQrPayload ? (
               <div className="border rounded-md p-4 space-y-3">
-                <p className="text-sm font-medium">Latest dispatch token</p>
-                <p className="font-mono text-xs break-all">{lastDispatchToken}</p>
-                <QRCodeSVG value={lastDispatchToken} size={180} />
+                <p className="text-sm font-medium">Latest dispatch QR payload</p>
+                <p className="font-mono text-xs break-all">{lastDispatchQrPayload}</p>
+                <QRCodeSVG value={lastDispatchQrPayload} size={180} />
               </div>
             ) : null}
           </CardContent>
@@ -257,7 +284,9 @@ const ShipmentDashboard = () => {
                             <Link to={`/shipments/tracking/${shipment.id}`}>Track</Link>
                           </Button>
                           <Button asChild size="sm">
-                            <Link to="/shipments/delivery-confirmation">Confirm delivery</Link>
+                            <Link to={`/dispatch/scan${shipment.requestId ? `?requestId=${encodeURIComponent(shipment.requestId)}` : ''}`}>
+                              Scan and confirm
+                            </Link>
                           </Button>
                         </TableCell>
                       </TableRow>
