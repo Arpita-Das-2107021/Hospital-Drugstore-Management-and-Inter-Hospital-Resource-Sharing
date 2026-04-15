@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import OffboardingRequest from '@/pages/OffboardingRequest';
+import OffboardingRequest from '@/pages/hospital-admin/OffboardingRequest';
 
 const submitOffboardingRequest = vi.fn();
 const mockToast = vi.fn();
@@ -38,7 +38,7 @@ describe('OffboardingRequest', () => {
     render(<OffboardingRequest />);
 
     await userEvent.type(screen.getByLabelText(/reason/i), 'Hospital merger');
-    await userEvent.click(screen.getByRole('button', { name: /submit offboarding request/i }));
+    await userEvent.click(screen.getByRole('button', { name: /submit request/i }));
 
     expect(submitOffboardingRequest).toHaveBeenCalledWith('hospital-1', 'Hospital merger');
   });

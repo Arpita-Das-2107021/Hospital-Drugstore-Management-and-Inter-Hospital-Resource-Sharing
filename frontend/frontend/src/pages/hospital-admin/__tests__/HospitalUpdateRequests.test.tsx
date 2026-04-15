@@ -65,7 +65,7 @@ describe('hospital-admin/HospitalUpdateRequests', () => {
   it('does not show a pending request when backend history and pending payload are empty', async () => {
     render(<HospitalUpdateRequests />);
 
-    expect(await screen.findByText('No pending healthcare update request is active.')).toBeInTheDocument();
+    expect(await screen.findByText('No pending request')).toBeInTheDocument();
     expect(acknowledgeHealthcareBadges).toHaveBeenCalled();
     expect(screen.queryByText('A request is already pending approval')).not.toBeInTheDocument();
   });

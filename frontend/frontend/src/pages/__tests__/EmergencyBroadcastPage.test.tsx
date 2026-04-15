@@ -1,8 +1,9 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import EmergencyBroadcastPage from '@/pages/EmergencyBroadcastPage';
 import { BROADCASTS_UPDATED_EVENT } from '@/constants/events';
+import { useBroadcastStore } from '@/store/broadcastStore';
 
 const getAll = vi.fn();
 const create = vi.fn();
@@ -14,8 +15,10 @@ const getHospitals = vi.fn();
 const mockToast = vi.fn();
 const mockUser = {
   id: 'user-1',
+  email: 'user1@hospital.test',
   role: 'STAFF',
   hospital_id: 'hospital-1',
+  effective_permissions: ['communication:broadcast.read', 'communication:broadcast.respond'],
 };
 
 vi.mock('@/components/layout/AppLayout', () => ({
@@ -46,12 +49,28 @@ vi.mock('@/services/api', () => ({
   },
 }));
 
+const getStatCard = (label: string): HTMLElement => {
+  const labelElement = screen.getByText(new RegExp(`^${label}$`, 'i'));
+  const card = labelElement.closest('div');
+  if (!card) {
+    throw new Error(`Unable to resolve stat card for label: ${label}`);
+  }
+  return card;
+};
+
+const expectStatValue = (label: string, value: number): void => {
+  expect(within(getStatCard(label)).getByText(String(value))).toBeInTheDocument();
+};
+
 describe('EmergencyBroadcastPage', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    useBroadcastStore.getState().resetBroadcastStore();
     mockUser.id = 'user-1';
+    mockUser.email = 'user1@hospital.test';
     mockUser.role = 'STAFF';
     mockUser.hospital_id = 'hospital-1';
+    mockUser.effective_permissions = ['communication:broadcast.read', 'communication:broadcast.respond'];
     getHospitals.mockResolvedValue({ data: [] });
     create.mockResolvedValue({ success: true, data: {} });
     close.mockResolvedValue({ success: true });
@@ -92,6 +111,11 @@ describe('EmergencyBroadcastPage', () => {
           created_at: '2026-03-15T10:02:00Z',
           responders_count: 0,
           created_by_id: 'other-user',
+          location: {
+            lat: 23.810331,
+            lng: 90.412521,
+            address: 'Dhaka, Bangladesh',
+          },
         },
       ],
     });
@@ -105,22 +129,37 @@ describe('EmergencyBroadcastPage', () => {
     );
 
     expect(await screen.findByText('Urgent oxygen support')).toBeInTheDocument();
-    expect(screen.getByText('Unread: 2')).toBeInTheDocument();
-    expect(screen.getByText('Total: 3')).toBeInTheDocument();
+    expectStatValue('Unread', 2);
+    expectStatValue('Total', 3);
   });
 
-  it('decreases unread count when marking one broadcast as read', async () => {
+  it('shows clickable location metadata when a broadcast includes location', async () => {
     render(
       <MemoryRouter>
         <EmergencyBroadcastPage />
       </MemoryRouter>
     );
 
-    await screen.findByText('Unread: 2');
-    await userEvent.click(screen.getAllByRole('button', { name: /mark read/i })[0]);
+    expect(await screen.findByText('General update')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /dhaka, bangladesh/i })).toBeInTheDocument();
+  });
+
+  it('decreases unread count when opening details for an unread broadcast', async () => {
+    render(
+      <MemoryRouter>
+        <EmergencyBroadcastPage />
+      </MemoryRouter>
+    );
+
+    await screen.findByText('Urgent oxygen support');
+    expectStatValue('Unread', 2);
+    const urgentBroadcastButton = screen.getByRole('button', { name: /urgent oxygen support/i });
+    const urgentBroadcastCard = urgentBroadcastButton.closest('div.rounded-xl');
+    expect(urgentBroadcastCard).toBeTruthy();
+    await userEvent.click(within(urgentBroadcastCard as HTMLElement).getByRole('button', { name: /details/i }));
 
     expect(markRead).toHaveBeenCalledWith('b-1');
-    await waitFor(() => expect(screen.getByText('Unread: 1')).toBeInTheDocument());
+    await waitFor(() => expectStatValue('Unread', 1));
   });
 
   it('marks broadcasts as read in bulk', async () => {
@@ -130,13 +169,14 @@ describe('EmergencyBroadcastPage', () => {
       </MemoryRouter>
     );
 
-    await screen.findByText('Unread: 2');
+    await screen.findByText('Urgent oxygen support');
+    expectStatValue('Unread', 2);
     await userEvent.click(screen.getByRole('button', { name: /mark all read/i }));
 
     await waitFor(() => expect(markRead).toHaveBeenCalledTimes(2));
     expect(markRead).toHaveBeenCalledWith('b-1');
     expect(markRead).toHaveBeenCalledWith('b-2');
-    expect(screen.getByText('Unread: 0')).toBeInTheDocument();
+    expectStatValue('Unread', 0);
   });
 
   it('submits a response and marks the broadcast as read', async () => {
@@ -149,7 +189,10 @@ describe('EmergencyBroadcastPage', () => {
     );
 
     await screen.findByText('Urgent oxygen support');
-    await userEvent.click(screen.getAllByRole('button', { name: /respond/i })[0]);
+    const urgentBroadcastButton = screen.getByRole('button', { name: /urgent oxygen support/i });
+    const urgentBroadcastCard = urgentBroadcastButton.closest('div.rounded-xl');
+    expect(urgentBroadcastCard).toBeTruthy();
+    await userEvent.click(within(urgentBroadcastCard as HTMLElement).getByRole('button', { name: /respond/i }));
     await userEvent.type(screen.getByLabelText(/response message/i), 'We can supply 10 cylinders');
     await userEvent.click(screen.getByRole('button', { name: /submit response/i }));
 
@@ -172,12 +215,117 @@ describe('EmergencyBroadcastPage', () => {
     );
 
     await screen.findByText('Urgent oxygen support');
-    expect(screen.queryByRole('button', { name: /view responses/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /^responses$/i })).not.toBeInTheDocument();
+  });
+
+  it('shows view responses for sender without explicit permission', async () => {
+    mockUser.id = 'other-user';
+
+    render(
+      <MemoryRouter>
+        <EmergencyBroadcastPage />
+      </MemoryRouter>
+    );
+
+    await screen.findByText('Urgent oxygen support');
+    expect(screen.getAllByRole('button', { name: /^responses$/i }).length).toBeGreaterThan(0);
+  });
+
+  it('shows close button only for broadcasts created by the current user', async () => {
+    render(
+      <MemoryRouter>
+        <EmergencyBroadcastPage />
+      </MemoryRouter>
+    );
+
+    await screen.findByText('Urgent oxygen support');
+    expect(screen.queryByRole('button', { name: /close/i })).not.toBeInTheDocument();
+
+    mockUser.id = 'other-user';
+    render(
+      <MemoryRouter>
+        <EmergencyBroadcastPage />
+      </MemoryRouter>
+    );
+
+    expect(await screen.findAllByRole('button', { name: /close/i })).not.toHaveLength(0);
+  });
+
+  it('shows close button when sender ownership is resolved via sender email fields', async () => {
+    mockUser.id = 'different-user';
+    mockUser.email = 'owner@city-hospital.test';
+
+    getAll.mockResolvedValue({
+      data: [
+        {
+          id: 'b-email-owner',
+          title: 'Email owned broadcast',
+          message: 'Ownership should resolve by email',
+          status: 'active',
+          allow_response: true,
+          is_read: false,
+          created_at: '2026-03-15T12:00:00Z',
+          responders_count: 0,
+          sent_by: 'legacy-sender-id',
+          sent_by_email: 'owner@city-hospital.test',
+        },
+      ],
+    });
+
+    render(
+      <MemoryRouter>
+        <EmergencyBroadcastPage />
+      </MemoryRouter>
+    );
+
+    expect(await screen.findByText('Email owned broadcast')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /close/i })).toBeInTheDocument();
+  });
+
+  it('blocks route-state response view access for unauthorized users', async () => {
+    render(
+      <MemoryRouter
+        initialEntries={[
+          {
+            pathname: '/communication/emergency',
+            state: { highlightBroadcastId: 'b-1', openResponses: true },
+          },
+        ]}
+      >
+        <EmergencyBroadcastPage />
+      </MemoryRouter>
+    );
+
+    await screen.findByText('Urgent oxygen support');
+    await waitFor(() => {
+      expect(mockToast).toHaveBeenCalledWith(
+        expect.objectContaining({
+          title: 'Access denied',
+        }),
+      );
+    });
+    expect(getResponses).not.toHaveBeenCalled();
+  });
+
+  it('does not grant response viewing from manage-only permission', async () => {
+    mockUser.role = 'PLATFORM_ADMIN';
+    mockUser.hospital_id = null as unknown;
+    mockUser.effective_permissions = ['communication:broadcast.manage'];
+
+    render(
+      <MemoryRouter>
+        <EmergencyBroadcastPage />
+      </MemoryRouter>
+    );
+
+    await screen.findByText('Urgent oxygen support');
+    expect(screen.queryByRole('button', { name: /^responses$/i })).not.toBeInTheDocument();
   });
 
   it('hydrates response count for authorized users', async () => {
-    mockUser.role = 'SUPER_ADMIN';
+    mockUser.role = 'PLATFORM_ADMIN';
     mockUser.hospital_id = null as unknown;
+    mockUser.effective_permissions = ['communication:broadcast.manage', 'broadcast:view_responses'];
     getAll.mockResolvedValue({
       data: [
         {
@@ -207,6 +355,6 @@ describe('EmergencyBroadcastPage', () => {
     );
 
     await waitFor(() => expect(screen.getByText('1 responses')).toBeInTheDocument());
-    expect(screen.getByRole('button', { name: /view responses/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /^responses$/i })).toBeInTheDocument();
   });
 });
