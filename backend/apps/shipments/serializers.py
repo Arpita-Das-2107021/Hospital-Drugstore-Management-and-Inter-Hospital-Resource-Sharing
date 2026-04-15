@@ -1,12 +1,16 @@
 """Shipments app serializers."""
 from rest_framework import serializers
 
+from common.services.workflow_lock import ensure_shipment_workflow_is_mutable
+from apps.requests.models import ResourceRequest
+
 from .models import Shipment, ShipmentTracking
 
 
 class ShipmentSerializer(serializers.ModelSerializer):
     origin_hospital_name = serializers.ReadOnlyField(source="origin_hospital.name")
     destination_hospital_name = serializers.ReadOnlyField(source="destination_hospital.name")
+    request_ids = serializers.SerializerMethodField()
     status = serializers.ChoiceField(
         choices=list(Shipment.Status.choices) + [("pending", "Pending")],
         required=False,
@@ -20,11 +24,8 @@ class ShipmentSerializer(serializers.ModelSerializer):
             "origin_hospital_name",
             "destination_hospital",
             "destination_hospital_name",
+            "request_ids",
             "status",
-            "dispatch_token",
-            "receive_token",
-            "return_token",
-            "token_expires_at",
             "rider_name",
             "rider_phone",
             "vehicle_info",
@@ -42,10 +43,6 @@ class ShipmentSerializer(serializers.ModelSerializer):
             "id",
             "origin_hospital_name",
             "destination_hospital_name",
-            "dispatch_token",
-            "receive_token",
-            "return_token",
-            "token_expires_at",
             "created_by",
             "created_at",
             "updated_at",
@@ -55,6 +52,34 @@ class ShipmentSerializer(serializers.ModelSerializer):
         if value == "pending":
             return Shipment.Status.PENDING
         return value
+
+    def get_request_ids(self, obj):
+        request_ids = []
+        for dispatch_event in obj.dispatch_events.all():
+            request_ids.append(str(dispatch_event.request_id))
+        return request_ids
+
+    def validate(self, attrs):
+        attrs = super().validate(attrs)
+        if self.instance is not None:
+            ensure_shipment_workflow_is_mutable(self.instance)
+
+            candidate_status = attrs.get("status", self.instance.status)
+            if candidate_status == Shipment.Status.DELIVERED:
+                linked_in_transit = self.instance.dispatch_events.filter(
+                    request__workflow_state=ResourceRequest.WorkflowState.IN_TRANSIT
+                ).values_list("request_id", flat=True)
+                first_request_id = next(iter(linked_in_transit), None)
+                if first_request_id is not None:
+                    raise serializers.ValidationError(
+                        {
+                            "status": (
+                                "Use /api/v1/requests/{id}/transfer-confirm/ to mark delivery for in-transit request workflows."
+                            ),
+                            "request_id": str(first_request_id),
+                        }
+                    )
+        return attrs
 
 
 class ShipmentTrackingSerializer(serializers.ModelSerializer):

@@ -3,18 +3,33 @@ import logging
 
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
+from rest_framework.exceptions import PermissionDenied
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from common.permissions.base import IsLogisticsStaff, IsVerifiedHospital
+from common.permissions.runtime import has_any_permission, is_platform_operator
 from common.utils.pagination import StandardResultsPagination
 from common.utils.response import success_response
 
 from .models import Shipment
 from .serializers import AssignRiderSerializer, AddTrackingEventSerializer, ShipmentSerializer, ShipmentTrackingSerializer
-from .services import add_tracking_event, create_shipment
+from .services import add_tracking_event, assign_rider, create_shipment
 
 logger = logging.getLogger("hrsp.shipments")
+
+SHIPMENT_LEGACY_LOGISTICS_ROLES = ("LOGISTICS_STAFF", "HEALTHCARE_ADMIN", "SUPER_ADMIN", "PLATFORM_ADMIN")
+
+
+def _ensure_shipment_permission(user, permission_codes):
+    if has_any_permission(
+        user,
+        permission_codes,
+        allow_role_fallback=True,
+        legacy_roles=SHIPMENT_LEGACY_LOGISTICS_ROLES,
+    ):
+        return
+    raise PermissionDenied("You do not have permission to perform this action.")
 
 
 class ShipmentViewSet(viewsets.ModelViewSet):
@@ -24,16 +39,31 @@ class ShipmentViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         user = self.request.user
-        if user.roles.filter(name="SUPER_ADMIN").exists():
-            return Shipment.objects.select_related("origin_hospital", "destination_hospital").all()
-        if hasattr(user, "staff") and user.staff:
+        base_qs = Shipment.objects.select_related("origin_hospital", "destination_hospital").prefetch_related(
+            "dispatch_events"
+        )
+        if not has_any_permission(
+            user,
+            ("hospital:transport.view",),
+            allow_role_fallback=True,
+            legacy_roles=SHIPMENT_LEGACY_LOGISTICS_ROLES,
+        ):
+            return Shipment.objects.none()
+        if is_platform_operator(user, allow_role_fallback=True):
+            scoped_qs = base_qs.all()
+        elif hasattr(user, "staff") and user.staff:
             hospital = user.staff.hospital
-            return Shipment.objects.select_related("origin_hospital", "destination_hospital").filter(
-                origin_hospital=hospital
-            ) | Shipment.objects.select_related("origin_hospital", "destination_hospital").filter(
+            scoped_qs = base_qs.filter(origin_hospital=hospital) | base_qs.filter(
                 destination_hospital=hospital
             )
-        return Shipment.objects.none()
+        else:
+            return Shipment.objects.none()
+
+        request_id = str(self.request.query_params.get("request_id", "")).strip()
+        if request_id:
+            scoped_qs = scoped_qs.filter(dispatch_events__request_id=request_id)
+
+        return scoped_qs.distinct()
 
     def list(self, request, *args, **kwargs):
         qs = self.filter_queryset(self.get_queryset())
@@ -46,6 +76,7 @@ class ShipmentViewSet(viewsets.ModelViewSet):
         return Response(success_response(data=self.get_serializer(self.get_object()).data))
 
     def create(self, request, *args, **kwargs):
+        _ensure_shipment_permission(request.user, ("hospital:transport.create",))
         s = self.get_serializer(data=request.data)
         s.is_valid(raise_exception=True)
         d = s.validated_data
@@ -58,6 +89,7 @@ class ShipmentViewSet(viewsets.ModelViewSet):
         return Response(success_response(data=ShipmentSerializer(shipment).data), status=status.HTTP_201_CREATED)
 
     def update(self, request, *args, **kwargs):
+        _ensure_shipment_permission(request.user, ("hospital:transport.update",))
         partial = kwargs.pop("partial", False)
         instance = self.get_object()
         s = self.get_serializer(instance, data=request.data, partial=partial)
@@ -76,6 +108,7 @@ class ShipmentViewSet(viewsets.ModelViewSet):
         permission_classes=[IsAuthenticated, IsLogisticsStaff],
     )
     def add_tracking(self, request, pk=None):
+        _ensure_shipment_permission(request.user, ("hospital:transport.track",))
         shipment = self.get_object()
         s = AddTrackingEventSerializer(data=request.data)
         s.is_valid(raise_exception=True)
@@ -96,18 +129,22 @@ class ShipmentViewSet(viewsets.ModelViewSet):
         permission_classes=[IsAuthenticated, IsLogisticsStaff],
     )
     def assign_rider(self, request, pk=None):
+        _ensure_shipment_permission(request.user, ("hospital:transport.assign",))
         shipment = self.get_object()
         s = AssignRiderSerializer(data=request.data)
         s.is_valid(raise_exception=True)
         d = s.validated_data
-        shipment.rider_name = d["rider_name"]
-        shipment.rider_phone = d["rider_phone"]
-        shipment.vehicle_info = d.get("vehicle_info", "")
-        shipment.save(update_fields=["rider_name", "rider_phone", "vehicle_info", "updated_at"])
+        shipment = assign_rider(
+            shipment=shipment,
+            rider_name=d["rider_name"],
+            rider_phone=d["rider_phone"],
+            vehicle_info=d.get("vehicle_info", ""),
+        )
         return Response(success_response(data=ShipmentSerializer(shipment).data))
 
     @action(detail=True, methods=["get"], url_path="tracking")
     def get_tracking(self, request, pk=None):
+        _ensure_shipment_permission(request.user, ("hospital:transport.track",))
         shipment = self.get_object()
         events = shipment.tracking_events.all()
         return Response(success_response(data=ShipmentTrackingSerializer(events, many=True).data))
