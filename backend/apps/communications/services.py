@@ -8,6 +8,7 @@ from rest_framework.exceptions import PermissionDenied, ValidationError
 from common.utils.chat_encryption import encrypt_chat_message
 
 from apps.chat.models import ChatAuditEvent
+from apps.chat.services import mark_read as mark_chat_read
 
 from .models import Conversation, ConversationParticipant, Message, MessageTemplate
 
@@ -56,16 +57,9 @@ def send_message(conversation: Conversation, body: str, actor) -> Message:
     return message
 
 
-def mark_conversation_read(conversation: Conversation, user) -> ConversationParticipant:
-    participant = ConversationParticipant.objects.filter(conversation=conversation, user=user).first()
-    if not participant:
-        raise PermissionDenied("Not a participant.")
-    participant.last_read_at = timezone.now()
-    participant.save(update_fields=["last_read_at"])
-    ChatAuditEvent.objects.create(
-        user=user,
-        event_type=ChatAuditEvent.EventType.MESSAGE_READ,
+def mark_conversation_read(conversation: Conversation, user, last_read_message_id=None) -> ConversationParticipant:
+    return mark_chat_read(
         conversation=conversation,
-        metadata={"source": "communications.rest"},
+        user=user,
+        last_read_message_id=last_read_message_id,
     )
-    return participant
