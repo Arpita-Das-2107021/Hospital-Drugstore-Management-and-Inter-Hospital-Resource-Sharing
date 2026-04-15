@@ -99,7 +99,9 @@ export default function HospitalTrustProfile() {
 
   if (loading) {
     return (
-      <AppLayout title="Hospital Performance" subtitle="Trust metrics and verification status">
+      <AppLayout title="Hospital Performance"
+        // subtitle="Trust metrics and verification status"
+      >
         <div className="flex items-center justify-center h-64">
           <Loader2 className="h-8 w-8 animate-spin text-primary" />
           <span className="ml-2 text-muted-foreground">Loading profile...</span>
@@ -110,7 +112,9 @@ export default function HospitalTrustProfile() {
 
   if (error || !hospital) {
     return (
-      <AppLayout title="Hospital Performance" subtitle="">
+      <AppLayout title="Hospital Performance"
+        // subtitle=""
+      >
         <Card>
           <CardContent className="pt-6">
             <div className="text-center text-red-600">
@@ -130,7 +134,7 @@ export default function HospitalTrustProfile() {
   return (
     <AppLayout
       title="Hospital Performance Profile"
-      subtitle={`${hospital.name} — Trust metrics and verification`}
+      // subtitle={`${hospital.name} — Trust metrics and verification`}
     >
       <div className="flex-1 space-y-6">
         {/* Header */}
