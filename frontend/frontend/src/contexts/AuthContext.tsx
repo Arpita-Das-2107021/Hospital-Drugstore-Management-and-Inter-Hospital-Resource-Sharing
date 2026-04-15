@@ -1,10 +1,21 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import authService, { User, LoginCredentials } from '@/services/authService';
+import {
+  canManageHospitalRolesUser,
+  canManagePlatformRolesUser,
+  isHospitalAdminUser,
+  isPlatformAdminUser,
+} from '@/lib/rbac';
 
 interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
+  isPlatformAdmin: boolean;
+  isHospitalAdmin: boolean;
+  canManagePlatformRoles: boolean;
+  canManageHospitalRoles: boolean;
   loading: boolean;
+  setAuthUser: (user: User | null) => void;
   login: (credentials: LoginCredentials) => Promise<User>;
   logout: () => Promise<void>;
   error: string | null;
@@ -16,6 +27,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const isPlatformAdmin = isPlatformAdminUser(user);
+  const isHospitalAdmin = isHospitalAdminUser(user);
+  const canManagePlatformRoles = canManagePlatformRolesUser(user);
+  const canManageHospitalRoles = canManageHospitalRolesUser(user);
+
+  const setAuthUser = (nextUser: User | null) => {
+    setUser(nextUser);
+    if (nextUser) {
+      authService.setUser(nextUser);
+    }
+  };
 
   // Check authentication status on mount
   useEffect(() => {
@@ -77,7 +99,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       value={{ 
         user, 
         isAuthenticated: !!user, 
+        isPlatformAdmin,
+        isHospitalAdmin,
+        canManagePlatformRoles,
+        canManageHospitalRoles,
         loading, 
+        setAuthUser,
         login, 
         logout, 
         error 
