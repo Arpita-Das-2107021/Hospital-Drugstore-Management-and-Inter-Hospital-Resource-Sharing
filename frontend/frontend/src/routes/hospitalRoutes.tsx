@@ -39,9 +39,9 @@ import HospitalStaffManagement from '@/pages/hospital-admin/StaffManagement';
 import HospitalStaffProfiles from '@/pages/hospital-admin/StaffProfiles';
 import HospitalStaffProfileDetails from '@/pages/hospital-admin/StaffProfileDetails';
 import HospitalRoleManagement from '@/pages/hospital-admin/RoleManagement';
-import PaymentCheckoutStatus from '@/pages/PaymentCheckoutStatus';
-import PaymentOperationsCenter from '@/pages/PaymentOperationsCenter';
-import PaymentReconciliationConsole from '@/pages/PaymentReconciliationConsole';
+// import PaymentCheckoutStatus from '@/pages/PaymentCheckoutStatus';
+// import PaymentOperationsCenter from '@/pages/PaymentOperationsCenter';
+// import PaymentReconciliationConsole from '@/pages/PaymentReconciliationConsole';
 import MLForecastingPage from '@/pages/MLForecastingPage';
 import MLOutbreakPredictionPage from '@/pages/MLOutbreakPredictionPage';
 import MLOperations from '@/pages/MLOperations';
@@ -378,7 +378,7 @@ const HospitalRoutes = (
         </ProtectedRoute>
       }
     />
-    <Route
+    {/* <Route
       path="/payments/checkout"
       element={
         <ProtectedRoute requiredPermissions={PERMISSIONS.paymentCheckout} requiredContext="HEALTHCARE">
@@ -401,7 +401,7 @@ const HospitalRoutes = (
           <PaymentReconciliationConsole />
         </ProtectedRoute>
       }
-    />
+    /> */}
     <Route
       path="/ml/operations"
       element={
