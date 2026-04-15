@@ -10,6 +10,7 @@
     "resourceSharing": {
       "label": "Resource Sharing",
       "sharedResources": "Shared Resources",
+      "mySharedResources": "My Shared Resources",
       "requestWorkflow": "Request Workflow",
       "visibilityControl": "Visibility Control",
       "requestTemplates": "Request Templates"
@@ -21,8 +22,7 @@
     },
     "trust": {
       "label": "Trust & Reputation",
-      "hospitalProfiles": "Hospital Profiles",
-      "creditLedger": "Credit Ledger",
+      "hospitalProfiles": "Healthcare Profiles",
       "performanceTracking": "Performance Tracking"
     },
     "communication": {
@@ -30,10 +30,10 @@
       "alerts": "Alerts",
       "messages": "Messages"
     },
-    "hospitals": "Hospitals",
+    "hospitals": "Healthcare Facilities",
     "admin": {
       "label": "Administration",
-      "hospitalRegistrations": "Hospital Registrations",
+      "hospitalRegistrations": "Healthcare Registrations",
       "roles": "Role Management",
       "staffInvitations": "Staff Invitations",
       "staff": "Staff Management",
