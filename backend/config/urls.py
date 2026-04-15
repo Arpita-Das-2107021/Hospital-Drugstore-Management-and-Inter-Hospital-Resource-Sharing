@@ -1,7 +1,9 @@
 """
 Root URL configuration for HRSP backend.
 """
+from django.conf import settings
 from django.contrib import admin
+from django.conf.urls.static import static
 from django.urls import include, path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
@@ -22,12 +24,23 @@ urlpatterns = [
     path("api/v1/admin/hospital-offboarding-requests/", include("apps.hospitals.admin_offboarding_urls")),
     path("api/v1/staff/", include("apps.staff.urls")),
     path("api/v1/invitations/", include("apps.staff.invitation_urls")),
+    path("api/v1/permissions/", include("apps.staff.permission_urls")),
     path("api/v1/roles/", include("apps.staff.role_urls")),
+    path("api/v1/rbac/", include("apps.staff.rbac_urls")),
     path("api/v1/catalog/", include("apps.resources.catalog_urls")),
     path("api/v1/inventory/", include("apps.resources.inventory_urls")),
+    path("api/v1/inventory-module/", include("apps.inventory_module.urls")),
+    path("api/v1/pharmacy-csv/", include("apps.pharmacy_csv.urls")),
+    path("api/v1/sales/", include("apps.sales.urls")),
+    path("api/v1/retail-sales/", include("apps.sales.retail_urls")),
+    path("api/csv/", include("apps.inventory_module.chat_urls")),
     path("api/v1/resource-shares/", include("apps.resources.share_urls")),
+    path("api/v1/my-resource-shares/", include("apps.resources.my_share_urls")),
+    path("api/v1/ml/", include("apps.ml.urls")),
     path("api/v1/requests/", include("apps.requests.urls")),
     path("api/v1/shipments/", include("apps.shipments.urls")),
+    path("api/v1/healthcare/", include("apps.badges.healthcare_urls")),
+    path("api/v1/platform/", include("apps.badges.platform_urls")),
     path("api/v1/broadcasts/", include("apps.notifications.broadcast_urls")),
     path("api/v1/emergency-broadcasts/", include("apps.notifications.broadcast_urls")),
     path("api/v1/notifications/", include("apps.notifications.urls")),
@@ -43,3 +56,6 @@ urlpatterns = [
     # Health check
     path("api/health/", include("apps.public.health_urls")),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

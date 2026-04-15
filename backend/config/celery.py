@@ -13,13 +13,8 @@ app = Celery("hrsp")
 # Read config from Django settings, using the CELERY_ namespace
 app.config_from_object("django.conf:settings", namespace="CELERY")
 
-# Periodic sync for hospital external APIs.
-app.conf.beat_schedule = {
-	"sync-all-active-hospitals": {
-		"task": "apps.hospitals.tasks.sync_all_active_hospitals_task",
-		"schedule": settings.HOSPITAL_SYNC_INTERVAL_SECONDS,
-	},
-}
+# Use centralized periodic schedule definitions from Django settings.
+app.conf.beat_schedule = getattr(settings, "CELERY_BEAT_SCHEDULE", {})
 
 # Auto-discover tasks in all installed apps
 app.autodiscover_tasks()
