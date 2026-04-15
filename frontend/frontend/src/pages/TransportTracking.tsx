@@ -127,7 +127,9 @@ export default function TransportTracking() {
   };
 
   return (
-    <AppLayout title="Active Transports" subtitle="Track resource deliveries and manage handovers">
+    <AppLayout title="Active Transports"
+      // subtitle="Track resource deliveries and manage handovers"
+    >
       <div className="flex-1 space-y-6 p-8 pt-6">
         {loading ? (
           <div className="flex items-center justify-center h-64">
