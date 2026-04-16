@@ -6,7 +6,10 @@ from rest_framework import status
 STAFF_URL = "/api/v1/staff/"
 INVITATIONS_URL = "/api/v1/invitations/"
 ACCEPT_URL = "/api/v1/invitations/accept/"
+HOSPITAL_ROLES_URL = "/api/v1/rbac/hospital-roles/"
 ROLES_URL = "/api/v1/roles/"
+PERMISSIONS_URL = "/api/v1/permissions/"
+RBAC_USERS_URL = "/api/v1/rbac/users/"
 NOTIFICATIONS_URL = "/api/v1/notifications/"
 BROADCASTS_URL = "/api/v1/broadcasts/"
 
@@ -17,6 +20,14 @@ def staff_url(pk):
 
 def invitation_url(pk):
     return f"{INVITATIONS_URL}{pk}/"
+
+
+def user_hospital_role_url(user_pk):
+    return f"{RBAC_USERS_URL}{user_pk}/hospital-role/"
+
+
+def user_effective_permissions_url(user_pk):
+    return f"{RBAC_USERS_URL}{user_pk}/permissions/effective/"
 
 
 def notification_url(pk):
@@ -32,19 +43,154 @@ def broadcast_url(pk):
 # ---------------------------------------------------------------------------
 @pytest.mark.django_db
 class TestRoleList:
-    def test_unauthenticated_denied(self, api_client):
-        response = api_client.get(ROLES_URL)
-        assert response.status_code == status.HTTP_401_UNAUTHORIZED
-
-    def test_authenticated_can_list(self, auth_client, hospital_admin_role):
+    def test_legacy_roles_route_is_mounted(self, auth_client):
         response = auth_client.get(ROLES_URL)
         assert response.status_code == status.HTTP_200_OK
 
-    def test_super_admin_can_list(self, super_admin_client, super_admin_role):
-        response = super_admin_client.get(ROLES_URL)
+    def test_unauthenticated_denied(self, api_client):
+        response = api_client.get(HOSPITAL_ROLES_URL)
+        assert response.status_code == status.HTTP_401_UNAUTHORIZED
+
+    def test_authenticated_can_list(self, auth_client, hospital_admin_user):
+        response = auth_client.get(HOSPITAL_ROLES_URL)
         assert response.status_code == status.HTTP_200_OK
-        ids = [r["id"] for r in response.json()["data"]]
-        assert str(super_admin_role.id) in ids
+        returned_names = [item["name"] for item in response.json()["data"]]
+        assert "HEALTHCARE_ADMIN" in returned_names
+
+    def test_super_admin_can_list(self, super_admin_client):
+        response = super_admin_client.get(HOSPITAL_ROLES_URL)
+        assert response.status_code == status.HTTP_200_OK
+        assert isinstance(response.json()["data"], list)
+
+
+@pytest.mark.django_db
+class TestRBACApis:
+    def test_list_permissions_requires_auth(self, api_client):
+        response = api_client.get(PERMISSIONS_URL)
+        assert response.status_code == status.HTTP_401_UNAUTHORIZED
+
+    def test_list_permissions_authenticated(self, auth_client):
+        from apps.staff.models import Permission
+
+        Permission.objects.create(code="PERMISSION_VIEW", name="Permission View")
+        response = auth_client.get(PERMISSIONS_URL)
+        assert response.status_code == status.HTTP_200_OK
+        returned_codes = [item["code"] for item in response.json()["data"]]
+        assert "PERMISSION_VIEW" in returned_codes
+
+    def test_assign_permissions_to_role(self, auth_client, hospital_admin_user):
+        from apps.staff.models import Permission
+        from apps.staff.models import HospitalRole
+
+        Permission.objects.get_or_create(
+            code="hospital:payment.view",
+            defaults={"name": "View Payments"},
+        )
+        Permission.objects.get_or_create(
+            code="hospital:payment.confirm",
+            defaults={"name": "Confirm Payments"},
+        )
+
+        hospital_role, _ = HospitalRole.objects.get_or_create(
+            hospital=hospital_admin_user.staff.hospital,
+            name="HEALTHCARE_ADMIN",
+            defaults={"description": "Healthcare admin"},
+        )
+
+        payload = {"permission_codes": ["hospital:payment.view", "hospital:payment.confirm"]}
+        response = auth_client.post(
+            f"{HOSPITAL_ROLES_URL}{hospital_role.id}/permissions/",
+            payload,
+            format="json",
+        )
+        assert response.status_code == status.HTTP_200_OK
+        returned_codes = sorted(
+            set(response.json()["data"].get("assigned", []))
+            | set(response.json()["data"].get("already_assigned", []))
+        )
+        assert returned_codes == [
+            "hospital:payment.confirm",
+            "hospital:payment.view",
+        ]
+
+    def test_assign_permissions_unknown_code_rejected(self, auth_client, hospital_admin_user):
+        from apps.staff.models import HospitalRole
+
+        hospital_role, _ = HospitalRole.objects.get_or_create(
+            hospital=hospital_admin_user.staff.hospital,
+            name="HEALTHCARE_ADMIN",
+            defaults={"description": "Healthcare admin"},
+        )
+        response = auth_client.post(
+            f"{HOSPITAL_ROLES_URL}{hospital_role.id}/permissions/",
+            {"permission_codes": ["DOES_NOT_EXIST"]},
+            format="json",
+        )
+        assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+    def test_revoke_permissions_from_role(self, auth_client, hospital_admin_user):
+        from apps.staff.models import HospitalRole, HospitalRolePermission, Permission
+
+        permission, _ = Permission.objects.get_or_create(
+            code="hospital:payment.report.view",
+            defaults={"name": "View Payment Reports"},
+        )
+        hospital_role, _ = HospitalRole.objects.get_or_create(
+            hospital=hospital_admin_user.staff.hospital,
+            name="HEALTHCARE_ADMIN",
+            defaults={"description": "Healthcare admin"},
+        )
+        HospitalRolePermission.objects.get_or_create(hospital_role=hospital_role, permission=permission)
+
+        response = auth_client.delete(
+            f"{HOSPITAL_ROLES_URL}{hospital_role.id}/permissions/",
+            {"permission_codes": [permission.code]},
+            format="json",
+        )
+        assert response.status_code == status.HTTP_200_OK
+        assert response.json()["data"]["removed"] == ["hospital:payment.report.view"]
+
+    def test_assign_role_to_user(self, auth_client, pharmacist_user, hospital):
+        from apps.staff.models import HospitalRole
+
+        logistics_role, _ = HospitalRole.objects.get_or_create(
+            hospital=hospital,
+            name="LOGISTICS_STAFF",
+            defaults={"description": "Logistics"},
+        )
+
+        payload = {
+            "hospital_role_id": str(logistics_role.id),
+        }
+        response = auth_client.put(user_hospital_role_url(pharmacist_user.id), payload, format="json")
+        assert response.status_code == status.HTTP_200_OK
+        assert response.json()["data"]["hospital_role_name"] == "LOGISTICS_STAFF"
+
+    def test_fetch_user_effective_permissions(self, auth_client, pharmacist_user):
+        from apps.staff.models import HospitalRole, HospitalRolePermission, Permission, UserHospitalRole
+
+        permission, _ = Permission.objects.get_or_create(
+            code="hospital:request.create",
+            defaults={"name": "Create Request"},
+        )
+        pharmacist_dual_role, _ = HospitalRole.objects.get_or_create(
+            hospital=pharmacist_user.staff.hospital,
+            name="PHARMACIST",
+            defaults={"description": "Pharmacist"},
+        )
+        HospitalRolePermission.objects.get_or_create(hospital_role=pharmacist_dual_role, permission=permission)
+        UserHospitalRole.objects.update_or_create(
+            user=pharmacist_user,
+            defaults={
+                "hospital": pharmacist_user.staff.hospital,
+                "hospital_role": pharmacist_dual_role,
+                "assigned_by": None,
+            },
+        )
+
+        response = auth_client.get(user_effective_permissions_url(pharmacist_user.id))
+        assert response.status_code == status.HTTP_200_OK
+        assert "hospital:request.create" in response.json()["data"]["effective_permissions"]
 
 
 # ---------------------------------------------------------------------------
@@ -63,9 +209,77 @@ class TestStaffList:
         ids = [s["id"] for s in items]
         assert str(staff_member.id) in ids
 
-    def test_super_admin_sees_all(self, super_admin_client, staff_member):
+    def test_system_admin_sees_only_platform_staff_and_healthcare_admins(
+        self,
+        super_admin_client,
+        hospital,
+        hospital_b,
+        hospital_admin_user,
+        hospital_b_admin_user,
+        staff_member,
+    ):
+        from apps.authentication.models import UserAccount
+        from apps.staff.models import PlatformRole, Staff, UserPlatformRole
+
+        platform_staff = Staff.objects.create(
+            hospital=hospital,
+            first_name="Platform",
+            last_name="Operator",
+            employee_id="PLT-001",
+        )
+        platform_user = UserAccount.objects.create_user(
+            email="platform.operator@hrsp.test",
+            password="Platform123!",
+            staff=platform_staff,
+            context_domain=UserAccount.ContextDomain.PLATFORM,
+        )
+        platform_role, _ = PlatformRole.objects.get_or_create(
+            name="PLATFORM_ADMIN",
+            defaults={"description": "Platform administrator"},
+        )
+        UserPlatformRole.objects.get_or_create(user=platform_user, platform_role=platform_role)
+
+        hospital_b_non_admin = Staff.objects.create(
+            hospital=hospital_b,
+            first_name="Ward",
+            last_name="Nurse",
+            employee_id="NRS-001",
+        )
+
         response = super_admin_client.get(STAFF_URL)
         assert response.status_code == status.HTTP_200_OK
+        items = response.json().get("results", response.json().get("data", []))
+        visible_ids = {item["id"] for item in items}
+
+        assert str(platform_staff.id) in visible_ids
+        assert str(hospital_admin_user.staff.id) in visible_ids
+        assert str(hospital_b_admin_user.staff.id) in visible_ids
+
+        assert str(staff_member.id) not in visible_ids
+        assert str(hospital_b_non_admin.id) not in visible_ids
+
+    def test_system_admin_cannot_edit_non_admin_staff(self, super_admin_client, staff_member):
+        response = super_admin_client.patch(staff_url(staff_member.id), {"department": "Restricted"}, format="json")
+        assert response.status_code == status.HTTP_404_NOT_FOUND
+
+    def test_hospital_admin_remains_scoped_to_own_hospital(self, auth_client, staff_member, hospital_b, hospital_b_admin_user):
+        from apps.staff.models import Staff
+
+        other_hospital_staff = Staff.objects.create(
+            hospital=hospital_b,
+            first_name="Other",
+            last_name="Operator",
+            employee_id="OTH-001",
+        )
+
+        response = auth_client.get(STAFF_URL)
+        assert response.status_code == status.HTTP_200_OK
+        items = response.json().get("results", response.json().get("data", []))
+        visible_ids = {item["id"] for item in items}
+
+        assert str(staff_member.id) in visible_ids
+        assert str(hospital_b_admin_user.staff.id) not in visible_ids
+        assert str(other_hospital_staff.id) not in visible_ids
 
 
 @pytest.mark.django_db
@@ -143,6 +357,10 @@ class TestInvitationList:
 
     def test_hospital_admin_can_list(self, auth_client):
         response = auth_client.get(INVITATIONS_URL)
+        assert response.status_code == status.HTTP_200_OK
+
+    def test_super_admin_can_list(self, super_admin_client):
+        response = super_admin_client.get(INVITATIONS_URL)
         assert response.status_code == status.HTTP_200_OK
 
 
@@ -235,6 +453,25 @@ class TestAcceptInvitation:
         response = api_client.post(ACCEPT_URL, payload, format="json")
         assert response.status_code == status.HTTP_201_CREATED
         assert "email" in response.json()["data"]
+
+    def test_accept_invitation_assigns_default_staff_hospital_role(self, api_client, pending_invitation):
+        from apps.authentication.models import UserAccount
+        from apps.staff.models import UserHospitalRole
+
+        payload = {
+            "token": "accept-invite-token-xyz",
+            "password": "NewSecurePass123!",
+            "first_name": "Accepted",
+            "last_name": "User",
+        }
+        response = api_client.post(ACCEPT_URL, payload, format="json")
+        assert response.status_code == status.HTTP_201_CREATED
+
+        user = UserAccount.objects.get(email="accept.me@hospital.com")
+        assignment = UserHospitalRole.objects.select_related("hospital_role", "hospital").filter(user=user).first()
+        assert assignment is not None
+        assert assignment.hospital_id == pending_invitation.hospital_id
+        assert assignment.hospital_role.name == "STAFF"
 
     def test_accept_invalid_token(self, api_client):
         payload = {"token": "bad-token", "password": "Pass123!"}
@@ -398,6 +635,74 @@ class TestBroadcastCreate:
         assert response.status_code == status.HTTP_201_CREATED
         assert mock_task.called
 
+    @patch("apps.notifications.tasks.send_broadcast_task.delay")
+    def test_create_broadcast_persists_location_object(self, mock_task, super_admin_client):
+        payload = {
+            "title": "Localized Broadcast",
+            "message": "Location metadata should be returned.",
+            "scope": "all",
+            "priority": "normal",
+            "allow_response": True,
+            "location": {
+                "facility_id": "FAC-01",
+                "facility_name": "Central Hospital",
+                "ward": "ICU",
+                "room": "204B",
+            },
+        }
+
+        response = super_admin_client.post(BROADCASTS_URL, payload, format="json")
+        assert response.status_code == status.HTTP_201_CREATED
+        assert mock_task.called
+        assert response.json()["data"]["location"] == payload["location"]
+
+    @patch("apps.notifications.tasks.send_broadcast_task.delay")
+    def test_create_broadcast_accepts_string_location(self, mock_task, super_admin_client):
+        payload = {
+            "title": "String Location Broadcast",
+            "message": "String location should be normalized.",
+            "scope": "all",
+            "priority": "normal",
+            "allow_response": True,
+            "location": " Dhaka, Bangladesh ",
+        }
+
+        response = super_admin_client.post(BROADCASTS_URL, payload, format="json")
+        assert response.status_code == status.HTTP_201_CREATED
+        assert mock_task.called
+
+        location = response.json()["data"]["location"]
+        assert location["address"] == "Dhaka, Bangladesh"
+        assert "label" not in location
+
+    @patch("apps.notifications.tasks.send_broadcast_task.delay")
+    def test_create_broadcast_normalizes_coordinate_aliases(self, mock_task, super_admin_client):
+        payload = {
+            "title": "Coordinate Alias Broadcast",
+            "message": "Coordinate alias keys should normalize to lat/lng.",
+            "scope": "all",
+            "priority": "normal",
+            "allow_response": True,
+            "location": {
+                "latitude": "23.810331",
+                "longitude": "90.412521",
+                "address": "  Dhaka, Bangladesh  ",
+                "facility_name": "Central Hospital",
+            },
+        }
+
+        response = super_admin_client.post(BROADCASTS_URL, payload, format="json")
+        assert response.status_code == status.HTTP_201_CREATED
+        assert mock_task.called
+
+        location = response.json()["data"]["location"]
+        assert location["lat"] == 23.810331
+        assert location["lng"] == 90.412521
+        assert location["address"] == "Dhaka, Bangladesh"
+        assert location["facility_name"] == "Central Hospital"
+        assert "latitude" not in location
+        assert "longitude" not in location
+
     def test_non_hospital_admin_cannot_create(self, api_client, staff_user):
         api_client.force_authenticate(user=staff_user)
         payload = {
@@ -408,6 +713,32 @@ class TestBroadcastCreate:
         }
         response = api_client.post(BROADCASTS_URL, payload, format="json")
         assert response.status_code == status.HTTP_403_FORBIDDEN
+
+    @patch("apps.notifications.tasks.send_broadcast_task.delay")
+    def test_hospital_permission_can_delegate_broadcast_create(self, mock_task, api_client, staff_user):
+        from apps.staff.models import HospitalRolePermission, Permission
+
+        permission, _ = Permission.objects.get_or_create(
+            code="hospital:broadcast.manage",
+            defaults={"name": "Manage Hospital Broadcasts"},
+        )
+        staff_role = staff_user.hospital_role_assignment.hospital_role
+        HospitalRolePermission.objects.get_or_create(
+            hospital_role=staff_role,
+            permission=permission,
+        )
+
+        api_client.force_authenticate(user=staff_user)
+        payload = {
+            "title": "Delegated Broadcast",
+            "message": "Allowed by permission code.",
+            "scope": "all",
+            "priority": "normal",
+        }
+        response = api_client.post(BROADCASTS_URL, payload, format="json")
+
+        assert response.status_code == status.HTTP_201_CREATED
+        assert mock_task.called
 
 
 @pytest.mark.django_db
@@ -507,6 +838,83 @@ class TestBroadcastUpdateDeleteRespond:
         )
         response = hospital_b_auth_client.get(f"{BROADCASTS_URL}{broadcast.id}/responses/")
         assert response.status_code == status.HTTP_403_FORBIDDEN
+        assert response.json()["error"]["code"] == "permission_denied"
+
+    def test_non_creator_cannot_view_response_detail_or_export(self, hospital_b_auth_client, auth_client, broadcast):
+        create_response = auth_client.post(
+            f"{BROADCASTS_URL}{broadcast.id}/respond/",
+            {"response": "Stock available"},
+            format="json",
+        )
+        response_id = create_response.json()["data"]["id"]
+
+        detail_response = hospital_b_auth_client.get(
+            f"{BROADCASTS_URL}{broadcast.id}/responses/{response_id}/"
+        )
+        assert detail_response.status_code == status.HTTP_403_FORBIDDEN
+        assert detail_response.json()["error"]["code"] == "permission_denied"
+
+        export_response = hospital_b_auth_client.get(
+            f"{BROADCASTS_URL}{broadcast.id}/responses/export/?export_format=json"
+        )
+        assert export_response.status_code == status.HTTP_403_FORBIDDEN
+        assert export_response.json()["error"]["code"] == "permission_denied"
+
+    def test_creator_can_access_response_detail_and_export(self, api_client, super_admin_user, hospital_admin_user, broadcast):
+        api_client.force_authenticate(user=hospital_admin_user)
+        create_response = api_client.post(
+            f"{BROADCASTS_URL}{broadcast.id}/respond/",
+            {"response": "Can provide 5 units", "can_provide": True, "quantity_available": 5},
+            format="json",
+        )
+        response_id = create_response.json()["data"]["id"]
+
+        api_client.force_authenticate(user=super_admin_user)
+        detail_response = api_client.get(f"{BROADCASTS_URL}{broadcast.id}/responses/{response_id}/")
+        assert detail_response.status_code == status.HTTP_200_OK
+        assert detail_response.json()["data"]["id"] == response_id
+
+        export_response = api_client.get(f"{BROADCASTS_URL}{broadcast.id}/responses/export/?export_format=csv")
+        assert export_response.status_code == status.HTTP_200_OK
+        assert "text/csv" in export_response["Content-Type"]
+
+    def test_authorized_manager_permission_can_view_response_routes(
+        self,
+        api_client,
+        hospital_admin_user,
+        hospital_b_admin_user,
+        broadcast,
+    ):
+        from apps.staff.models import HospitalRolePermission, Permission
+
+        api_client.force_authenticate(user=hospital_admin_user)
+        create_response = api_client.post(
+            f"{BROADCASTS_URL}{broadcast.id}/respond/",
+            {"response": "Can provide 7 units", "can_provide": True, "quantity_available": 7},
+            format="json",
+        )
+        response_id = create_response.json()["data"]["id"]
+
+        permission, _ = Permission.objects.get_or_create(
+            code="communication:broadcast.response.view",
+            defaults={"name": "View Broadcast Responses"},
+        )
+        HospitalRolePermission.objects.get_or_create(
+            hospital_role=hospital_b_admin_user.hospital_role_assignment.hospital_role,
+            permission=permission,
+        )
+
+        api_client.force_authenticate(user=hospital_b_admin_user)
+        list_response = api_client.get(f"{BROADCASTS_URL}{broadcast.id}/responses/")
+        assert list_response.status_code == status.HTTP_200_OK
+
+        detail_response = api_client.get(f"{BROADCASTS_URL}{broadcast.id}/responses/{response_id}/")
+        assert detail_response.status_code == status.HTTP_200_OK
+        assert detail_response.json()["data"]["id"] == response_id
+
+        export_response = api_client.get(f"{BROADCASTS_URL}{broadcast.id}/responses/export/?export_format=json")
+        assert export_response.status_code == status.HTTP_200_OK
+        assert "application/json" in export_response["Content-Type"]
 
 
 @pytest.mark.django_db
@@ -530,6 +938,7 @@ class TestBroadcastReadTracking:
     def test_unread_count_returns_hospital_badge_count(self, auth_client, tracked_broadcast):
         response = auth_client.get(f"{BROADCASTS_URL}unread-count/")
         assert response.status_code == status.HTTP_200_OK
+        assert response.json()["data"]["total_unread"] == 1
         assert response.json()["data"]["unread_count"] == 1
 
     def test_unread_count_denied_for_super_admin(self, super_admin_client):
@@ -579,6 +988,101 @@ class TestBroadcastReadTracking:
 
         hospital_b_recipient = BroadcastRecipient.objects.get(broadcast=tracked_broadcast, hospital=hospital_b)
         assert hospital_b_recipient.is_read is True
+
+    def test_sender_unread_excludes_self_originated_broadcast(
+        self,
+        api_client,
+        hospital_admin_user,
+        hospital_b_admin_user,
+        hospital,
+        hospital_b,
+    ):
+        from apps.notifications.models import BroadcastMessage, BroadcastRecipient
+
+        broadcast = BroadcastMessage.objects.create(
+            title="Sender initiated",
+            message="Sender should not get unread badge",
+            scope="all",
+            priority="urgent",
+            allow_response=True,
+            sent_by=hospital_admin_user,
+        )
+        BroadcastRecipient.objects.create(broadcast=broadcast, hospital=hospital, is_read=False)
+        BroadcastRecipient.objects.create(broadcast=broadcast, hospital=hospital_b, is_read=False)
+
+        api_client.force_authenticate(user=hospital_admin_user)
+        sender_unread = api_client.get(f"{BROADCASTS_URL}unread-count/")
+        assert sender_unread.status_code == status.HTTP_200_OK
+        assert sender_unread.json()["data"]["total_unread"] == 0
+        assert sender_unread.json()["data"]["unread_count"] == 0
+
+        api_client.force_authenticate(user=hospital_b_admin_user)
+        recipient_unread = api_client.get(f"{BROADCASTS_URL}unread-count/")
+        assert recipient_unread.status_code == status.HTTP_200_OK
+        assert recipient_unread.json()["data"]["total_unread"] == 1
+        assert recipient_unread.json()["data"]["unread_count"] == 1
+
+    @patch("apps.notifications.tasks.send_broadcast_task.delay")
+    def test_badge_and_messages_refresh_flow_uses_version_tracking(
+        self,
+        mock_task,
+        api_client,
+        super_admin_user,
+        hospital_admin_user,
+    ):
+        api_client.force_authenticate(user=super_admin_user)
+        create_response = api_client.post(
+            BROADCASTS_URL,
+            {
+                "title": "Polling refresh",
+                "message": "Backend should expose changed/version metadata.",
+                "scope": "all",
+                "priority": "normal",
+                "allow_response": True,
+            },
+            format="json",
+        )
+        assert create_response.status_code == status.HTTP_201_CREATED
+        assert mock_task.called
+
+        api_client.force_authenticate(user=hospital_admin_user)
+        first_badges = api_client.get("/api/v1/healthcare/badges/")
+        assert first_badges.status_code == status.HTTP_200_OK
+        assert first_badges.json()["broadcast_changed"] is True
+        assert first_badges.json()["broadcast_unread_count"] == 1
+        first_version = first_badges.json()["broadcast_version"]
+        assert first_version >= 1
+
+        refresh_response = api_client.post(
+            f"{BROADCASTS_URL}messages/",
+            {
+                "last_known_version": 0,
+                "scope": "healthcare",
+            },
+            format="json",
+        )
+        assert refresh_response.status_code == status.HTTP_200_OK
+        assert refresh_response.json()["data"]["broadcast_version"] == first_version
+        assert len(refresh_response.json()["data"]["messages"]) >= 1
+
+        second_badges = api_client.get("/api/v1/healthcare/badges/")
+        assert second_badges.status_code == status.HTTP_200_OK
+        assert second_badges.json()["broadcast_version"] == first_version
+        assert second_badges.json()["broadcast_changed"] is False
+
+    def test_mark_read_increments_broadcast_version(self, auth_client, tracked_broadcast):
+        first_badges = auth_client.get("/api/v1/healthcare/badges/")
+        assert first_badges.status_code == status.HTTP_200_OK
+        baseline_version = first_badges.json()["broadcast_version"]
+
+        read_response = auth_client.post(f"{BROADCASTS_URL}{tracked_broadcast.id}/read/")
+        assert read_response.status_code == status.HTTP_200_OK
+        assert read_response.json()["data"]["updated"] is True
+
+        second_badges = auth_client.get("/api/v1/healthcare/badges/")
+        assert second_badges.status_code == status.HTTP_200_OK
+        assert second_badges.json()["broadcast_changed"] is True
+        assert second_badges.json()["broadcast_version"] == baseline_version + 1
 
 
 # ---------------------------------------------------------------------------
