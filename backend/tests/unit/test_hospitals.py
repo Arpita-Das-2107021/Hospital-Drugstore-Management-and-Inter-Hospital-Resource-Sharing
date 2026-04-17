@@ -1,5 +1,6 @@
 """Unit tests for Hospital model and services."""
 import pytest
+from django.utils import timezone
 from rest_framework.exceptions import ValidationError
 
 from apps.hospitals.models import (
@@ -24,6 +25,7 @@ from apps.hospitals.services import (
     submit_hospital_update,
     submit_registration_request,
     suspend_hospital,
+    notify_hospital_inventory_update,
     verify_hospital,
 )
 
@@ -178,12 +180,52 @@ class TestRegistrationRequestServices:
         result = approve_registration_request(reg, super_admin_user)
         assert result["registration_request"].status == HospitalRegistrationRequest.Status.ACTIVE
         assert result["hospital"] is not None
+        assert result["hospital"].advanced_integration_eligible is False
+
+    def test_approve_with_passed_schema_contract_marks_hospital_advanced_eligible(self, db, super_admin_user):
+        data = self._make_data("S8C")
+        data["api_base_url"] = "https://api.example.com"
+        data["api_auth_type"] = "none"
+        reg = submit_registration_request(data)
+        reg.schema_contract_status = HospitalRegistrationRequest.SchemaContractStatus.PASSED
+        reg.schema_contract_failed_apis = []
+        reg.schema_contract_checked_at = timezone.now()
+        reg.save(
+            update_fields=[
+                "schema_contract_status",
+                "schema_contract_failed_apis",
+                "schema_contract_checked_at",
+                "updated_at",
+            ]
+        )
+
+        result = approve_registration_request(reg, super_admin_user)
+        assert result["hospital"].advanced_integration_eligible is True
+        assert result["hospital"].schema_contract_status == Hospital.SchemaContractStatus.PASSED
 
     def test_approve_without_api_url_also_succeeds(self, db, super_admin_user):
         data = self._make_data("S9")
         reg = submit_registration_request(data)
         result = approve_registration_request(reg, super_admin_user)
         assert result["registration_request"].status == HospitalRegistrationRequest.Status.ACTIVE
+
+    def test_approve_copies_inventory_source_fields(self, db, super_admin_user):
+        data = self._make_data("S9B")
+        data.update(
+            {
+                "needs_inventory_dashboard": True,
+                "inventory_source_type": HospitalRegistrationRequest.InventorySourceType.CSV,
+                "inventory_last_sync_source": "registration_seed",
+            }
+        )
+        reg = submit_registration_request(data)
+
+        result = approve_registration_request(reg, super_admin_user)
+        hospital = result["hospital"]
+
+        assert hospital.needs_inventory_dashboard is True
+        assert hospital.inventory_source_type == Hospital.InventorySourceType.CSV
+        assert hospital.inventory_last_sync_source == "registration_seed"
 
     def test_approve_sends_hospital_approval_password_setup_email(self, db, super_admin_user, mocker):
         mocker.patch("apps.hospitals.services.transaction.on_commit", side_effect=lambda cb: cb())
@@ -250,12 +292,17 @@ class TestHospitalUpdateWorkflowServices:
         result = submit_hospital_update(
             hospital=hospital,
             actor=hospital_admin_user,
-            validated_data={"city": "Directly Updated", "phone": "+15550001111"},
+            validated_data={
+                "needs_inventory_dashboard": True,
+                "inventory_source_type": Hospital.InventorySourceType.CSV,
+                "inventory_last_sync_source": "manual_ops",
+            },
         )
 
         hospital.refresh_from_db()
-        assert hospital.city == "Directly Updated"
-        assert hospital.phone == "+15550001111"
+        assert hospital.needs_inventory_dashboard is True
+        assert hospital.inventory_source_type == Hospital.InventorySourceType.CSV
+        assert hospital.inventory_last_sync_source == "manual_ops"
         assert result["update_request"] is None
 
     def test_hospital_admin_sensitive_update_creates_pending_request(self, hospital, hospital_admin_user):
@@ -317,6 +364,57 @@ class TestHospitalUpdateWorkflowServices:
         assert update_request.status == HospitalUpdateRequest.Status.REJECTED
         assert update_request.rejection_reason == "Invalid domain ownership"
 
+    def test_duplicate_pending_approval_request_is_blocked(self, hospital, hospital_admin_user):
+        submit_hospital_update(
+            hospital=hospital,
+            actor=hospital_admin_user,
+            validated_data={"email": "first-pending@hospital.com"},
+        )
+
+        with pytest.raises(ValidationError) as exc_info:
+            submit_hospital_update(
+                hospital=hospital,
+                actor=hospital_admin_user,
+                validated_data={"name": "Blocked While Pending"},
+            )
+
+        assert "Existing update request already pending approval" in str(exc_info.value.detail)
+
+    def test_direct_inventory_source_update_mirrors_active_registration(self, hospital, hospital_admin_user):
+        active_registration = HospitalRegistrationRequest.objects.create(
+            name=hospital.name,
+            registration_number=hospital.registration_number,
+            email=hospital.email,
+            admin_name="Mirror Admin",
+            admin_email="mirror-admin@test.com",
+            hospital_type=hospital.hospital_type,
+            status=HospitalRegistrationRequest.Status.ACTIVE,
+            needs_inventory_dashboard=False,
+            inventory_source_type=HospitalRegistrationRequest.InventorySourceType.API,
+            inventory_last_sync_source="bootstrap",
+        )
+
+        submit_hospital_update(
+            hospital=hospital,
+            actor=hospital_admin_user,
+            validated_data={
+                "needs_inventory_dashboard": True,
+                "inventory_source_type": Hospital.InventorySourceType.HYBRID,
+                "inventory_last_sync_source": "manual_update",
+            },
+        )
+
+        hospital.refresh_from_db()
+        active_registration.refresh_from_db()
+
+        assert hospital.needs_inventory_dashboard is True
+        assert hospital.inventory_source_type == Hospital.InventorySourceType.HYBRID
+        assert hospital.inventory_last_sync_source == "manual_update"
+
+        assert active_registration.needs_inventory_dashboard is True
+        assert active_registration.inventory_source_type == HospitalRegistrationRequest.InventorySourceType.HYBRID
+        assert active_registration.inventory_last_sync_source == "manual_update"
+
 
 @pytest.mark.django_db
 class TestSyncRegistrationRequestApi:
@@ -357,6 +455,49 @@ class TestSyncRegistrationRequestApi:
         sync_registration_request_api(hospital_registration_request_with_api)
         hospital_registration_request_with_api.refresh_from_db()
         assert hospital_registration_request_with_api.last_sync_time is not None
+
+
+@pytest.mark.django_db
+class TestOutboundInventoryUpdateNotifier:
+    def test_skips_when_hospital_has_no_active_registration(self, hospital):
+        result = notify_hospital_inventory_update(
+            hospital=hospital,
+            operation="request_approved_inventory",
+            payload={"event_id": "evt-1"},
+        )
+        assert result["status"] == "skipped"
+
+    def test_logs_successful_external_call(self, hospital, mocker):
+        from apps.requests.models import ExternalInventoryAPICallLog
+
+        HospitalRegistrationRequest.objects.create(
+            name=hospital.name,
+            registration_number=hospital.registration_number,
+            email="sync-success@test.com",
+            admin_name="Sync Admin",
+            admin_email="sync-success-admin@test.com",
+            hospital_type="general",
+            status=HospitalRegistrationRequest.Status.ACTIVE,
+            api_base_url="https://client.example.test",
+            api_auth_type=HospitalRegistrationRequest.ApiAuthType.NONE,
+        )
+
+        mock_response = mocker.MagicMock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = {"accepted": True}
+        mocker.patch("requests.post", return_value=mock_response)
+
+        result = notify_hospital_inventory_update(
+            hospital=hospital,
+            operation="request_approved_inventory",
+            payload={"event_id": "evt-2", "event_type": "inventory_updated"},
+        )
+
+        assert result["status"] == ExternalInventoryAPICallLog.CallStatus.SUCCESS
+        log = ExternalInventoryAPICallLog.objects.filter(hospital=hospital).order_by("-created_at").first()
+        assert log is not None
+        assert log.call_status == ExternalInventoryAPICallLog.CallStatus.SUCCESS
+        assert log.http_method == "POST"
 
 
 @pytest.mark.django_db

@@ -31,6 +31,26 @@ def reject_url(pk):
     return f"{ADMIN_REGISTRATIONS_URL}{pk}/reject/"
 
 
+def send_review_email_url(pk):
+    return f"{ADMIN_REGISTRATIONS_URL}{pk}/send-review-email/"
+
+
+def review_email_history_url(pk):
+    return f"{ADMIN_REGISTRATIONS_URL}{pk}/review-email-history/"
+
+
+def check_api_url(pk):
+    return f"{ADMIN_REGISTRATIONS_URL}{pk}/check-api/"
+
+
+def check_single_api_url(pk, api_name):
+    return f"{ADMIN_REGISTRATIONS_URL}{pk}/check-api/{api_name}/"
+
+
+def api_check_results_url(pk):
+    return f"{ADMIN_REGISTRATIONS_URL}{pk}/api-check-results/"
+
+
 VALID_REGISTRATION_PAYLOAD = {
     "name": "Integration Test Hospital",
     "registration_number": "REG-INT-0001",
@@ -163,6 +183,24 @@ class TestHospitalRegistrationSubmission:
         assert data["latitude"] == "23.810331"
         assert data["longitude"] == "90.412521"
 
+    def test_submission_with_location_fields_in_multipart(self, api_client):
+        payload = {
+            **VALID_REGISTRATION_PAYLOAD,
+            "registration_number": "REG-LOC-MP-001",
+            "email": "loc-mp@registration.test",
+            "admin_email": "loc-mp-admin@registration.test",
+            "address": "Dhaka, Bangladesh",
+            "latitude": "23.810331",
+            "longitude": "90.412521",
+        }
+        response = api_client.post(REGISTRATION_URL, payload, format="multipart")
+        assert response.status_code == status.HTTP_201_CREATED
+
+        data = response.json()["data"]
+        assert data["address"] == "Dhaka, Bangladesh"
+        assert data["latitude"] == "23.810331"
+        assert data["longitude"] == "90.412521"
+
     def test_submission_rejects_invalid_latitude(self, api_client):
         payload = {
             **VALID_REGISTRATION_PAYLOAD,
@@ -279,6 +317,7 @@ class TestAdminApproveRegistration:
     def test_approve_creates_hospital_admin_user_with_role(self, super_admin_client, hospital_registration_request):
         from apps.authentication.models import UserAccount
         from apps.hospitals.models import Hospital
+        from apps.staff.models import UserHospitalRole
 
         super_admin_client.post(approve_url(hospital_registration_request.id))
 
@@ -287,7 +326,83 @@ class TestAdminApproveRegistration:
         assert admin_user.staff is not None
         assert admin_user.staff.hospital_id == hospital.id
         assert not admin_user.has_usable_password()
-        assert admin_user.roles.filter(name="HOSPITAL_ADMIN").exists()
+        assignment = UserHospitalRole.objects.filter(user=admin_user).select_related("hospital_role", "hospital").first()
+        assert assignment is not None
+        assert assignment.hospital_id == hospital.id
+        assert assignment.hospital_role.name == "HEALTHCARE_ADMIN"
+
+    def test_approve_does_not_grant_hospital_admin_ml_permissions(self, super_admin_client, hospital_registration_request):
+        from apps.hospitals.models import Hospital
+        from apps.staff.models import HospitalRole
+
+        super_admin_client.post(approve_url(hospital_registration_request.id))
+
+        hospital = Hospital.objects.get(registration_number=hospital_registration_request.registration_number)
+        admin_role = HospitalRole.objects.get(hospital=hospital, name="HEALTHCARE_ADMIN")
+        assigned_codes = set(admin_role.role_permissions.values_list("permission__code", flat=True))
+
+        assert {
+            "ml:forecast.view",
+            "ml:outbreak.view",
+            "ml:schedule.manage",
+            "ml:job.view",
+            "ml:job.manage",
+            "ml:facility.settings.manage",
+            "ml:dataset.review",
+            "ml:training.manage",
+            "ml:model_version.manage",
+            "ml:model_version.activate",
+        }.isdisjoint(assigned_codes)
+
+    def test_approve_grants_hospital_admin_request_and_transport_permissions(
+        self,
+        super_admin_client,
+        hospital_registration_request,
+    ):
+        from apps.hospitals.models import Hospital
+        from apps.staff.models import HospitalRole
+
+        super_admin_client.post(approve_url(hospital_registration_request.id))
+
+        hospital = Hospital.objects.get(registration_number=hospital_registration_request.registration_number)
+        admin_role = HospitalRole.objects.get(hospital=hospital, name="HEALTHCARE_ADMIN")
+        assigned_codes = set(admin_role.role_permissions.values_list("permission__code", flat=True))
+
+        assert {
+            "hospital:request.dispatch",
+            "hospital:request.reserve",
+            "hospital:request.transfer.confirm",
+            "hospital:request.delivery.confirm",
+            "hospital:request.return.verify",
+            "hospital:request.expire",
+            "hospital:transport.view",
+            "hospital:transport.create",
+            "hospital:transport.update",
+            "hospital:transport.assign",
+            "hospital:transport.track",
+            "share.request.create",
+            "share.request.approve",
+            "inventory.batch.view",
+            "inventory.cost.view",
+        }.issubset(assigned_codes)
+
+    def test_approve_creates_default_staff_role_template(self, super_admin_client, hospital_registration_request):
+        from apps.hospitals.models import Hospital
+        from apps.staff.models import HospitalRole
+
+        super_admin_client.post(approve_url(hospital_registration_request.id))
+
+        hospital = Hospital.objects.get(registration_number=hospital_registration_request.registration_number)
+        staff_role = HospitalRole.objects.filter(hospital=hospital, name="STAFF").first()
+        assert staff_role is not None
+
+        assigned_codes = set(staff_role.role_permissions.values_list("permission__code", flat=True))
+        assert assigned_codes == {
+            "hospital:inventory.view",
+            "hospital:resource_share.view",
+            "communication:chat.view",
+            "communication:conversation.view",
+        }
 
     def test_approve_sends_password_setup_email_with_frontend_reset_link(
         self,
@@ -316,6 +431,57 @@ class TestAdminApproveRegistration:
         response = super_admin_client.post(approve_url(hospital_registration_request_with_api.id))
         assert response.status_code == status.HTTP_200_OK
         assert Hospital.objects.filter(registration_number=hospital_registration_request_with_api.registration_number).exists()
+        hospital_payload = response.json()["data"]["hospital"]
+        assert hospital_payload["advanced_integration_eligible"] is False
+        assert hospital_payload["schema_contract_status"] == "unchecked"
+
+    def test_approve_after_successful_contract_check_marks_hospital_advanced_eligible(
+        self,
+        super_admin_client,
+        hospital_registration_request_with_api,
+        mocker,
+    ):
+        class _Response:
+            def __init__(self, payload, status_code=200):
+                self._payload = payload
+                self.status_code = status_code
+
+            def json(self):
+                return self._payload
+
+            def raise_for_status(self):
+                if self.status_code >= 400:
+                    raise Exception("http error")
+
+        payload_by_url = {
+            "https://api.fixture.example.com/healthcheck": {"status": "ok"},
+            "https://api.fixture.example.com/api/resources": {"resources": []},
+            "https://api.fixture.example.com/api/beds": {"bed_total": 40, "bed_available": 8},
+            "https://api.fixture.example.com/api/resources/blood": {"blood_units": []},
+            "https://api.fixture.example.com/api/staff": {"staff": []},
+            "https://api.fixture.example.com/api/sales": {"sales": []},
+        }
+
+        def _fake_get(url, headers=None, timeout=15, auth=None):  # noqa: ARG001
+            if url not in payload_by_url:
+                raise AssertionError(f"Unexpected url: {url}")
+            return _Response(payload_by_url[url])
+
+        mocker.patch("requests.get", side_effect=_fake_get)
+
+        check_response = super_admin_client.post(
+            check_api_url(hospital_registration_request_with_api.id),
+            {},
+            format="json",
+        )
+        assert check_response.status_code == status.HTTP_200_OK
+        assert check_response.json()["data"]["contract_enforcement"]["status"] == "passed"
+
+        approve_response = super_admin_client.post(approve_url(hospital_registration_request_with_api.id))
+        assert approve_response.status_code == status.HTTP_200_OK
+        hospital_payload = approve_response.json()["data"]["hospital"]
+        assert hospital_payload["advanced_integration_eligible"] is True
+        assert hospital_payload["schema_contract_status"] == "passed"
 
     def test_approve_copies_location_fields_to_hospital(self, super_admin_client, hospital_registration_request):
         from apps.hospitals.models import Hospital
@@ -404,6 +570,488 @@ class TestAdminRejectRegistration:
     def test_unauthenticated_cannot_reject(self, api_client, hospital_registration_request):
         response = api_client.post(reject_url(hospital_registration_request.id), {}, format="json")
         assert response.status_code == status.HTTP_401_UNAUTHORIZED
+
+
+# ──────────────────────────────────────────────
+# Step 2: Admin Review - Send Review Email
+# ──────────────────────────────────────────────
+
+@pytest.mark.django_db
+class TestAdminRegistrationReviewEmail:
+    def test_super_admin_can_send_review_email(self, super_admin_client, hospital_registration_request, mocker):
+        mocked_send = mocker.patch("apps.hospitals.services.send_email", return_value=True)
+
+        payload = {
+            "subject": "Registration Review Required",
+            "message": "Your Staff API is not responding correctly. Please update and resubmit.",
+            "issue_type": "API_VALIDATION",
+            "failed_apis": ["staff", "sales"],
+            "mark_changes_requested": True,
+        }
+        response = super_admin_client.post(
+            send_review_email_url(hospital_registration_request.id),
+            payload,
+            format="json",
+        )
+
+        assert response.status_code == status.HTTP_200_OK
+        data = response.json()["data"]
+        assert data["review_email"]["recipient_email"] == hospital_registration_request.admin_email
+        assert data["review_email"]["issue_type"] == "API_VALIDATION"
+        assert data["review_email"]["failed_apis"] == ["staff", "sales"]
+        assert data["review_email"]["changes_requested_marked"] is True
+
+        mocked_send.assert_called_once()
+        assert mocked_send.call_args.kwargs["recipient_list"] == [hospital_registration_request.admin_email]
+
+        hospital_registration_request.refresh_from_db()
+        assert hospital_registration_request.status == "pending_approval"
+        assert hospital_registration_request.rejection_reason == payload["message"]
+        assert hospital_registration_request.reviewed_at is not None
+
+    def test_non_super_admin_cannot_send_review_email(self, auth_client, hospital_registration_request):
+        response = auth_client.post(
+            send_review_email_url(hospital_registration_request.id),
+            {
+                "subject": "Review",
+                "message": "Fix endpoint",
+            },
+            format="json",
+        )
+        assert response.status_code == status.HTTP_403_FORBIDDEN
+
+    def test_cannot_send_review_email_for_active_registration(
+        self,
+        super_admin_client,
+        hospital_registration_request,
+        super_admin_user,
+        mocker,
+    ):
+        from apps.hospitals.services import approve_registration_request
+
+        mocker.patch("apps.authentication.services.send_email", return_value=True)
+        approve_registration_request(hospital_registration_request, super_admin_user)
+
+        response = super_admin_client.post(
+            send_review_email_url(hospital_registration_request.id),
+            {
+                "subject": "Review",
+                "message": "Fix endpoint",
+                "issue_type": "GENERAL",
+            },
+            format="json",
+        )
+        assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+    def test_super_admin_can_get_review_email_history(self, super_admin_client, hospital_registration_request, mocker):
+        mocked_send = mocker.patch("apps.hospitals.services.send_email", return_value=True)
+
+        response = super_admin_client.post(
+            send_review_email_url(hospital_registration_request.id),
+            {
+                "subject": "Registration Review Required",
+                "message": "Resources API is not responding.",
+                "issue_type": "API_VALIDATION",
+                "failed_apis": ["resources"],
+            },
+            format="json",
+        )
+        assert response.status_code == status.HTTP_200_OK
+        assert mocked_send.called
+
+        history_response = super_admin_client.get(review_email_history_url(hospital_registration_request.id))
+        assert history_response.status_code == status.HTTP_200_OK
+        history = history_response.json()["data"]["history"]
+        assert len(history) >= 1
+        assert history[0]["event_type"] == "registration_review_email_sent"
+        assert history[0]["metadata"]["issue_type"] == "API_VALIDATION"
+
+
+@pytest.mark.django_db
+class TestAdminRegistrationApiChecks:
+    def test_super_admin_can_check_all_registration_apis(
+        self,
+        super_admin_client,
+        hospital_registration_request_with_api,
+        mocker,
+    ):
+        class _Response:
+            def __init__(self, payload, status_code=200):
+                self._payload = payload
+                self.status_code = status_code
+
+            def json(self):
+                return self._payload
+
+            def raise_for_status(self):
+                if self.status_code >= 400:
+                    raise Exception("http error")
+
+        payload_by_url = {
+            "https://api.fixture.example.com/healthcheck": {"status": "ok", "build": "2026.04.01"},
+            "https://api.fixture.example.com/api/resources": {"resources": [], "custom_tracking_key": "v1"},
+            "https://api.fixture.example.com/api/beds": {"bed_total": 40, "bed_available": 8},
+            "https://api.fixture.example.com/api/resources/blood": {"blood_units": []},
+            "https://api.fixture.example.com/api/staff": {"staff": []},
+            "https://api.fixture.example.com/api/sales": {"sales": []},
+        }
+
+        def _fake_get(url, headers=None, timeout=15, auth=None):  # noqa: ARG001
+            if url not in payload_by_url:
+                raise AssertionError(f"Unexpected url: {url}")
+            return _Response(payload_by_url[url])
+
+        mocker.patch("requests.get", side_effect=_fake_get)
+
+        response = super_admin_client.post(
+            check_api_url(hospital_registration_request_with_api.id),
+            {},
+            format="json",
+        )
+
+        assert response.status_code == status.HTTP_200_OK
+        data = response.json()["data"]
+        assert data["summary"]["total"] == 6
+        assert data["summary"]["failed"] == 0
+        assert data["summary"]["schema_failed"] == 0
+        assert data["summary"]["connectivity_failed"] == 0
+        assert data["failed_apis"] == []
+        assert data["schema_failed_apis"] == []
+        assert data["connectivity_failed_apis"] == []
+        assert data["contract_enforcement"]["status"] == "passed"
+        assert data["contract_enforcement"]["eligible"] is True
+        assert set(data["results"].keys()) == {"healthcheck", "resources", "bed", "blood", "staff", "sales"}
+        assert data["results"]["resources"]["column_validation"]["columns_ok"] is True
+        assert data["results"]["resources"]["column_validation"]["additional_columns_allowed"] is True
+        assert "custom_tracking_key" in data["results"]["resources"]["column_validation"]["container"]["additional_columns"]
+
+        hospital_registration_request_with_api.refresh_from_db()
+        assert hospital_registration_request_with_api.api_check_last_checked_at is not None
+        assert set(hospital_registration_request_with_api.api_check_results.keys()) == {
+            "healthcheck",
+            "resources",
+            "bed",
+            "blood",
+            "staff",
+            "sales",
+        }
+        assert (
+            hospital_registration_request_with_api.schema_contract_status
+            == hospital_registration_request_with_api.SchemaContractStatus.PASSED
+        )
+        assert hospital_registration_request_with_api.schema_contract_failed_apis == []
+
+    def test_healthcheck_single_api_is_skipped(
+        self,
+        super_admin_client,
+        hospital_registration_request_with_api,
+        mocker,
+    ):
+        requests_get = mocker.patch("requests.get")
+
+        response = super_admin_client.post(
+            check_single_api_url(hospital_registration_request_with_api.id, "healthcheck"),
+            {},
+            format="json",
+        )
+
+        assert response.status_code == status.HTTP_200_OK
+        data = response.json()["data"]
+        assert data["checked_apis"] == []
+        assert data["results"] == {}
+        assert data["skipped_apis"] == ["healthcheck"]
+        assert data["summary"]["total"] == 0
+        requests_get.assert_not_called()
+
+    def test_healthcheck_single_api_skip_uses_existing_contract_state(
+        self,
+        super_admin_client,
+        hospital_registration_request_with_api,
+        mocker,
+    ):
+        class _StaffResponse:
+            status_code = 200
+
+            def json(self):
+                return {"staff": []}
+
+            def raise_for_status(self):
+                return None
+
+        mocker.patch("requests.get", return_value=_StaffResponse())
+
+        staff_response = super_admin_client.post(
+            check_single_api_url(hospital_registration_request_with_api.id, "staff"),
+            {},
+            format="json",
+        )
+        assert staff_response.status_code == status.HTTP_200_OK
+
+        requests_get = mocker.patch("requests.get")
+
+        response = super_admin_client.post(
+            check_single_api_url(hospital_registration_request_with_api.id, "healthcheck"),
+            {},
+            format="json",
+        )
+
+        assert response.status_code == status.HTTP_200_OK
+        data = response.json()["data"]
+        assert data["checked_apis"] == []
+        assert data["skipped_apis"] == ["healthcheck"]
+        assert data["contract_enforcement"]["status"] == "unchecked"
+        assert "healthcheck" in data["contract_enforcement"]["missing_apis"]
+        requests_get.assert_not_called()
+
+    def test_super_admin_can_check_single_api_and_fetch_stored_result(
+        self,
+        super_admin_client,
+        hospital_registration_request_with_api,
+        mocker,
+    ):
+        class _Response:
+            status_code = 200
+
+            def json(self):
+                return {"staff": []}
+
+            def raise_for_status(self):
+                return None
+
+        mocker.patch("requests.get", return_value=_Response())
+
+        response = super_admin_client.post(
+            check_single_api_url(hospital_registration_request_with_api.id, "staff"),
+            {"timeout_seconds": 10},
+            format="json",
+        )
+
+        assert response.status_code == status.HTTP_200_OK
+        data = response.json()["data"]
+        assert data["checked_apis"] == ["staff"]
+        assert list(data["results"].keys()) == ["staff"]
+        assert data["results"]["staff"]["status"] == "success"
+        assert data["results"]["staff"]["column_validation"]["columns_ok"] is True
+        assert data["contract_enforcement"]["status"] == "unchecked"
+        assert "healthcheck" in data["contract_enforcement"]["missing_apis"]
+
+        persisted = super_admin_client.get(api_check_results_url(hospital_registration_request_with_api.id))
+        assert persisted.status_code == status.HTTP_200_OK
+        persisted_data = persisted.json()["data"]
+        assert persisted_data["results"]["staff"]["status"] == "success"
+        assert persisted_data["contract_enforcement"]["status"] == "unchecked"
+
+    def test_check_single_api_without_trailing_slash_returns_json(
+        self,
+        super_admin_client,
+        hospital_registration_request_with_api,
+        mocker,
+    ):
+        class _Response:
+            status_code = 200
+
+            def json(self):
+                return {"staff": []}
+
+            def raise_for_status(self):
+                return None
+
+        mocker.patch("requests.get", return_value=_Response())
+
+        response = super_admin_client.post(
+            check_single_api_url(hospital_registration_request_with_api.id, "staff").rstrip("/"),
+            {"timeout_seconds": 10},
+            format="json",
+        )
+
+        assert response.status_code == status.HTTP_200_OK
+        data = response.json()["data"]
+        assert data["checked_apis"] == ["staff"]
+        assert data["results"]["staff"]["status"] == "success"
+
+    def test_check_single_api_handles_timeout(
+        self,
+        super_admin_client,
+        hospital_registration_request_with_api,
+        mocker,
+    ):
+        import requests
+
+        def _fake_get(url, headers=None, timeout=15, auth=None):  # noqa: ARG001
+            raise requests.Timeout("timed out")
+
+        mocker.patch("requests.get", side_effect=_fake_get)
+
+        response = super_admin_client.post(
+            check_single_api_url(hospital_registration_request_with_api.id, "staff"),
+            {"timeout_seconds": 1},
+            format="json",
+        )
+        assert response.status_code == status.HTTP_200_OK
+        data = response.json()["data"]
+        assert data["results"]["staff"]["status"] == "failed"
+        assert data["results"]["staff"]["error"] == "timeout"
+        assert data["failed_apis"] == ["staff"]
+        assert data["connectivity_failed_apis"] == ["staff"]
+
+    def test_check_single_api_handles_non_2xx_response(
+        self,
+        super_admin_client,
+        hospital_registration_request_with_api,
+        mocker,
+    ):
+        import requests
+
+        class _Response:
+            def __init__(self, status_code=500):
+                self.status_code = status_code
+
+            def raise_for_status(self):
+                raise requests.HTTPError("server error", response=self)
+
+        mocker.patch("requests.get", return_value=_Response(status_code=500))
+
+        response = super_admin_client.post(
+            check_single_api_url(hospital_registration_request_with_api.id, "sales"),
+            {},
+            format="json",
+        )
+        assert response.status_code == status.HTTP_200_OK
+        data = response.json()["data"]
+        assert data["results"]["sales"]["status"] == "failed"
+        assert data["results"]["sales"]["status_code"] == 500
+        assert data["results"]["sales"]["error"] == "http_500"
+        assert data["connectivity_failed_apis"] == ["sales"]
+
+    def test_check_api_marks_missing_required_columns_as_failed(
+        self,
+        super_admin_client,
+        hospital_registration_request_with_api,
+        mocker,
+    ):
+        class _Response:
+            def __init__(self, payload, status_code=200):
+                self._payload = payload
+                self.status_code = status_code
+
+            def json(self):
+                return self._payload
+
+            def raise_for_status(self):
+                if self.status_code >= 400:
+                    raise Exception("http error")
+
+        payload_by_url = {
+            "https://api.fixture.example.com/healthcheck": {"status": "ok"},
+            "https://api.fixture.example.com/api/resources": {"resources": []},
+            # Missing required bed keys (bed_total/bed_available alternatives)
+            "https://api.fixture.example.com/api/beds": {"unknown_capacity_field": 12},
+            "https://api.fixture.example.com/api/resources/blood": {"blood_units": []},
+            "https://api.fixture.example.com/api/staff": {"staff": []},
+            "https://api.fixture.example.com/api/sales": {"sales": []},
+        }
+
+        def _fake_get(url, headers=None, timeout=15, auth=None):  # noqa: ARG001
+            if url not in payload_by_url:
+                raise AssertionError(f"Unexpected url: {url}")
+            return _Response(payload_by_url[url])
+
+        mocker.patch("requests.get", side_effect=_fake_get)
+
+        response = super_admin_client.post(
+            check_api_url(hospital_registration_request_with_api.id),
+            {},
+            format="json",
+        )
+        assert response.status_code == status.HTTP_200_OK
+
+        data = response.json()["data"]
+        assert "bed" in data["failed_apis"]
+        assert "bed" in data["schema_failed_apis"]
+        assert data["results"]["bed"]["status"] == "failed"
+        assert data["results"]["bed"]["error"] == "missing_required_columns"
+        assert data["results"]["bed"]["column_validation"]["container"]["columns_ok"] is False
+        assert data["summary"]["schema_failed"] >= 1
+
+    def test_non_super_admin_cannot_check_registration_apis(
+        self,
+        auth_client,
+        hospital_registration_request_with_api,
+    ):
+        response = auth_client.post(
+            check_api_url(hospital_registration_request_with_api.id),
+            {},
+            format="json",
+        )
+        assert response.status_code == status.HTTP_403_FORBIDDEN
+
+        response = auth_client.get(api_check_results_url(hospital_registration_request_with_api.id))
+        assert response.status_code == status.HTTP_403_FORBIDDEN
+
+    def test_unauthenticated_cannot_check_registration_apis(
+        self,
+        api_client,
+        hospital_registration_request_with_api,
+    ):
+        response = api_client.post(
+            check_api_url(hospital_registration_request_with_api.id),
+            {},
+            format="json",
+        )
+        assert response.status_code == status.HTTP_401_UNAUTHORIZED
+
+        response = api_client.get(api_check_results_url(hospital_registration_request_with_api.id))
+        assert response.status_code == status.HTTP_401_UNAUTHORIZED
+
+    def test_failed_apis_from_check_api_are_compatible_with_review_email(
+        self,
+        super_admin_client,
+        hospital_registration_request_with_api,
+        mocker,
+    ):
+        import requests
+
+        class _Response:
+            status_code = 200
+
+            def raise_for_status(self):
+                return None
+
+            def json(self):
+                return {}
+
+        def _fake_get(url, headers=None, timeout=15, auth=None):  # noqa: ARG001
+            if url.endswith("/api/staff") or url.endswith("/staff"):
+                raise requests.Timeout("staff timeout")
+            return _Response()
+
+        mocker.patch("requests.get", side_effect=_fake_get)
+        mocker.patch("apps.hospitals.services.send_email", return_value=True)
+
+        check_response = super_admin_client.post(
+            check_api_url(hospital_registration_request_with_api.id),
+            {},
+            format="json",
+        )
+        assert check_response.status_code == status.HTTP_200_OK
+        failed_apis = check_response.json()["data"]["failed_apis"]
+        assert "staff" in failed_apis
+        assert "staff" in check_response.json()["data"]["connectivity_failed_apis"]
+
+        review_response = super_admin_client.post(
+            send_review_email_url(hospital_registration_request_with_api.id),
+            {
+                "subject": "Registration Review Required",
+                "message": "Please fix the failing API endpoints and re-submit.",
+                "issue_type": "API_VALIDATION",
+                "failed_apis": failed_apis,
+                "mark_changes_requested": True,
+            },
+            format="json",
+        )
+        assert review_response.status_code == status.HTTP_200_OK
+        review_data = review_response.json()["data"]["review_email"]
+        assert "staff" in review_data["failed_apis"]
 
 
 # ──────────────────────────────────────────────
@@ -718,6 +1366,106 @@ class TestHospitalDataSyncPersistence:
         assert synced_staff.first_name == "Nadia"
         assert not hasattr(synced_staff, "user_account")
         assert not UserAccount.objects.filter(staff=synced_staff).exists()
+
+    def test_sync_hospital_data_persists_sales_signals(self, db):
+        from unittest.mock import patch
+
+        from apps.hospitals.models import Hospital, HospitalCapacity, HospitalRegistrationRequest
+        from apps.hospitals.services import sync_hospital_data
+        from apps.ml.models import MLDispenseLog
+
+        reg = HospitalRegistrationRequest.objects.create(
+            name="Sync Sales Hospital",
+            registration_number="REG-SYNC-SALES-001",
+            email="sales-sync@test.com",
+            hospital_type="general",
+            status=HospitalRegistrationRequest.Status.ACTIVE,
+            api_base_url="https://api.sales.example",
+            api_auth_type=HospitalRegistrationRequest.ApiAuthType.NONE,
+        )
+        hospital = Hospital.objects.create(
+            name=reg.name,
+            registration_number=reg.registration_number,
+            email=reg.email,
+            hospital_type=reg.hospital_type,
+            verified_status=Hospital.VerifiedStatus.VERIFIED,
+        )
+        HospitalCapacity.objects.create(hospital=hospital)
+
+        payloads = {
+            "https://api.sales.example/api/resources": {
+                "resources": [
+                    {
+                        "name": "Paracetamol 500mg",
+                        "category": "Medication",
+                        "quantity_available": 120,
+                        "unit": "tablet",
+                    }
+                ]
+            },
+            "https://api.sales.example/api/beds": {
+                "bed_total": 80,
+                "bed_available": 10,
+                "icu_total": 8,
+                "icu_available": 2,
+            },
+            "https://api.sales.example/api/resources/blood": {"blood_units": []},
+            "https://api.sales.example/api/staff": {"staff": []},
+            "https://api.sales.example/api/sales": {
+                "sales": [
+                    {
+                        "event_id": "sale-001",
+                        "medicine_name": "Paracetamol 500mg",
+                        "quantity_sold": 14,
+                        "date": "2026-03-31",
+                    },
+                    {
+                        "movement_id": "mv-002",
+                        "name": "ORS Sachet",
+                        "quantity_delta": -6,
+                        "movement_type": "stock_out",
+                        "event_time": "2026-03-31T08:00:00Z",
+                    },
+                    {
+                        "movement_id": "mv-skip",
+                        "name": "Paracetamol 500mg",
+                        "quantity_delta": 5,
+                        "movement_type": "stock_in",
+                        "event_time": "2026-03-31T09:00:00Z",
+                    },
+                ]
+            },
+        }
+
+        class _Response:
+            def __init__(self, data, status_code=200):
+                self._data = data
+                self.status_code = status_code
+
+            def json(self):
+                return self._data
+
+            def raise_for_status(self):
+                if self.status_code >= 400:
+                    raise Exception("http error")
+
+        def _fake_get(url, headers=None, timeout=30):  # noqa: ARG001
+            return _Response(payloads[url])
+
+        with patch("requests.get", side_effect=_fake_get):
+            result = sync_hospital_data(str(hospital.id))
+
+        assert result["status"] == "ok"
+        assert result["persisted"]["sales_signals"]["upserted"] == 2
+        assert MLDispenseLog.objects.filter(facility=hospital).count() == 2
+
+        api_sale = MLDispenseLog.objects.get(facility=hospital, external_event_id="sale-001")
+        assert api_sale.quantity_sold == 14
+        assert api_sale.event_date.isoformat() == "2026-03-31"
+
+        movement_sale = MLDispenseLog.objects.get(facility=hospital, external_event_id="mv-002")
+        assert movement_sale.quantity_sold == 6
+        assert movement_sale.resource_catalog.name == "ORS Sachet"
 
     def test_sync_hospital_data_creates_staff_profile_without_user(self, db):
         from unittest.mock import patch
