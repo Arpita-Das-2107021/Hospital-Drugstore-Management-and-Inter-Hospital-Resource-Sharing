@@ -1,0 +1,1351 @@
+date,healthcare_id,medicine_name,quantity_sold,upazila
+2024-01-01,PH019,Paracetamol 500mg,30,Batiaghata
+2024-01-01,PH019,ORS Sachet,18,Batiaghata
+2024-01-01,PH019,Metronidazole 400mg,11,Batiaghata
+2024-01-01,PH019,Cetirizine 10mg,10,Batiaghata
+2024-01-01,PH019,Amoxicillin 500mg,10,Batiaghata
+2024-01-01,PH019,Azithromycin 500mg,6,Batiaghata
+2024-01-01,PH019,Zinc 20mg (child),12,Batiaghata
+2024-01-01,PH019,Ciprofloxacin 500mg,8,Batiaghata
+2024-01-01,PH019,Antihistamine Syrup,8,Batiaghata
+2024-01-01,PH019,Vitamin C 500mg,22,Batiaghata
+2024-01-01,PH019,Ranitidine 150mg,14,Batiaghata
+2024-01-01,PH019,Antacid Tablet,16,Batiaghata
+2024-01-01,PH019,Insulin (vial),6,Batiaghata
+2024-01-01,PH019,Atorvastatin 10mg,5,Batiaghata
+2024-01-01,PH019,Losartan 50mg,8,Batiaghata
+2024-01-02,PH019,Paracetamol 500mg,27,Batiaghata
+2024-01-02,PH019,ORS Sachet,16,Batiaghata
+2024-01-02,PH019,Metronidazole 400mg,14,Batiaghata
+2024-01-02,PH019,Cetirizine 10mg,17,Batiaghata
+2024-01-02,PH019,Amoxicillin 500mg,12,Batiaghata
+2024-01-02,PH019,Azithromycin 500mg,5,Batiaghata
+2024-01-02,PH019,Zinc 20mg (child),11,Batiaghata
+2024-01-02,PH019,Ciprofloxacin 500mg,8,Batiaghata
+2024-01-02,PH019,Antihistamine Syrup,8,Batiaghata
+2024-01-02,PH019,Vitamin C 500mg,25,Batiaghata
+2024-01-02,PH019,Ranitidine 150mg,17,Batiaghata
+2024-01-02,PH019,Antacid Tablet,24,Batiaghata
+2024-01-02,PH019,Insulin (vial),4,Batiaghata
+2024-01-02,PH019,Atorvastatin 10mg,7,Batiaghata
+2024-01-02,PH019,Losartan 50mg,9,Batiaghata
+2024-01-03,PH019,Paracetamol 500mg,29,Batiaghata
+2024-01-03,PH019,ORS Sachet,16,Batiaghata
+2024-01-03,PH019,Metronidazole 400mg,9,Batiaghata
+2024-01-03,PH019,Cetirizine 10mg,11,Batiaghata
+2024-01-03,PH019,Amoxicillin 500mg,8,Batiaghata
+2024-01-03,PH019,Azithromycin 500mg,5,Batiaghata
+2024-01-03,PH019,Zinc 20mg (child),12,Batiaghata
+2024-01-03,PH019,Ciprofloxacin 500mg,6,Batiaghata
+2024-01-03,PH019,Antihistamine Syrup,12,Batiaghata
+2024-01-03,PH019,Vitamin C 500mg,23,Batiaghata
+2024-01-03,PH019,Ranitidine 150mg,14,Batiaghata
+2024-01-03,PH019,Antacid Tablet,15,Batiaghata
+2024-01-03,PH019,Insulin (vial),4,Batiaghata
+2024-01-03,PH019,Atorvastatin 10mg,5,Batiaghata
+2024-01-03,PH019,Losartan 50mg,8,Batiaghata
+2024-01-04,PH019,Paracetamol 500mg,42,Batiaghata
+2024-01-04,PH019,ORS Sachet,21,Batiaghata
+2024-01-04,PH019,Metronidazole 400mg,9,Batiaghata
+2024-01-04,PH019,Cetirizine 10mg,11,Batiaghata
+2024-01-04,PH019,Amoxicillin 500mg,10,Batiaghata
+2024-01-04,PH019,Azithromycin 500mg,5,Batiaghata
+2024-01-04,PH019,Zinc 20mg (child),10,Batiaghata
+2024-01-04,PH019,Ciprofloxacin 500mg,7,Batiaghata
+2024-01-04,PH019,Antihistamine Syrup,10,Batiaghata
+2024-01-04,PH019,Vitamin C 500mg,17,Batiaghata
+2024-01-04,PH019,Ranitidine 150mg,16,Batiaghata
+2024-01-04,PH019,Antacid Tablet,24,Batiaghata
+2024-01-04,PH019,Insulin (vial),4,Batiaghata
+2024-01-04,PH019,Atorvastatin 10mg,5,Batiaghata
+2024-01-04,PH019,Losartan 50mg,6,Batiaghata
+2024-01-05,PH019,Paracetamol 500mg,40,Batiaghata
+2024-01-05,PH019,ORS Sachet,15,Batiaghata
+2024-01-05,PH019,Metronidazole 400mg,11,Batiaghata
+2024-01-05,PH019,Cetirizine 10mg,14,Batiaghata
+2024-01-05,PH019,Amoxicillin 500mg,12,Batiaghata
+2024-01-05,PH019,Azithromycin 500mg,7,Batiaghata
+2024-01-05,PH019,Zinc 20mg (child),9,Batiaghata
+2024-01-05,PH019,Ciprofloxacin 500mg,7,Batiaghata
+2024-01-05,PH019,Antihistamine Syrup,11,Batiaghata
+2024-01-05,PH019,Vitamin C 500mg,19,Batiaghata
+2024-01-05,PH019,Ranitidine 150mg,17,Batiaghata
+2024-01-05,PH019,Antacid Tablet,15,Batiaghata
+2024-01-05,PH019,Insulin (vial),5,Batiaghata
+2024-01-05,PH019,Atorvastatin 10mg,5,Batiaghata
+2024-01-05,PH019,Losartan 50mg,7,Batiaghata
+2024-01-06,PH019,Paracetamol 500mg,35,Batiaghata
+2024-01-06,PH019,ORS Sachet,17,Batiaghata
+2024-01-06,PH019,Metronidazole 400mg,12,Batiaghata
+2024-01-06,PH019,Cetirizine 10mg,17,Batiaghata
+2024-01-06,PH019,Amoxicillin 500mg,8,Batiaghata
+2024-01-06,PH019,Azithromycin 500mg,6,Batiaghata
+2024-01-06,PH019,Zinc 20mg (child),8,Batiaghata
+2024-01-06,PH019,Ciprofloxacin 500mg,7,Batiaghata
+2024-01-06,PH019,Antihistamine Syrup,12,Batiaghata
+2024-01-06,PH019,Vitamin C 500mg,20,Batiaghata
+2024-01-06,PH019,Ranitidine 150mg,14,Batiaghata
+2024-01-06,PH019,Antacid Tablet,18,Batiaghata
+2024-01-06,PH019,Insulin (vial),3,Batiaghata
+2024-01-06,PH019,Atorvastatin 10mg,7,Batiaghata
+2024-01-06,PH019,Losartan 50mg,6,Batiaghata
+2024-01-07,PH019,Paracetamol 500mg,42,Batiaghata
+2024-01-07,PH019,ORS Sachet,16,Batiaghata
+2024-01-07,PH019,Metronidazole 400mg,10,Batiaghata
+2024-01-07,PH019,Cetirizine 10mg,10,Batiaghata
+2024-01-07,PH019,Amoxicillin 500mg,10,Batiaghata
+2024-01-07,PH019,Azithromycin 500mg,6,Batiaghata
+2024-01-07,PH019,Zinc 20mg (child),11,Batiaghata
+2024-01-07,PH019,Ciprofloxacin 500mg,7,Batiaghata
+2024-01-07,PH019,Antihistamine Syrup,9,Batiaghata
+2024-01-07,PH019,Vitamin C 500mg,21,Batiaghata
+2024-01-07,PH019,Ranitidine 150mg,15,Batiaghata
+2024-01-07,PH019,Antacid Tablet,18,Batiaghata
+2024-01-07,PH019,Insulin (vial),5,Batiaghata
+2024-01-07,PH019,Atorvastatin 10mg,5,Batiaghata
+2024-01-07,PH019,Losartan 50mg,9,Batiaghata
+2024-01-08,PH019,Paracetamol 500mg,31,Batiaghata
+2024-01-08,PH019,ORS Sachet,21,Batiaghata
+2024-01-08,PH019,Metronidazole 400mg,9,Batiaghata
+2024-01-08,PH019,Cetirizine 10mg,12,Batiaghata
+2024-01-08,PH019,Amoxicillin 500mg,10,Batiaghata
+2024-01-08,PH019,Azithromycin 500mg,4,Batiaghata
+2024-01-08,PH019,Zinc 20mg (child),11,Batiaghata
+2024-01-08,PH019,Ciprofloxacin 500mg,7,Batiaghata
+2024-01-08,PH019,Antihistamine Syrup,12,Batiaghata
+2024-01-08,PH019,Vitamin C 500mg,25,Batiaghata
+2024-01-08,PH019,Ranitidine 150mg,18,Batiaghata
+2024-01-08,PH019,Antacid Tablet,20,Batiaghata
+2024-01-08,PH019,Insulin (vial),6,Batiaghata
+2024-01-08,PH019,Atorvastatin 10mg,8,Batiaghata
+2024-01-08,PH019,Losartan 50mg,7,Batiaghata
+2024-01-09,PH019,Paracetamol 500mg,43,Batiaghata
+2024-01-09,PH019,ORS Sachet,21,Batiaghata
+2024-01-09,PH019,Metronidazole 400mg,9,Batiaghata
+2024-01-09,PH019,Cetirizine 10mg,15,Batiaghata
+2024-01-09,PH019,Amoxicillin 500mg,8,Batiaghata
+2024-01-09,PH019,Azithromycin 500mg,4,Batiaghata
+2024-01-09,PH019,Zinc 20mg (child),12,Batiaghata
+2024-01-09,PH019,Ciprofloxacin 500mg,6,Batiaghata
+2024-01-09,PH019,Antihistamine Syrup,12,Batiaghata
+2024-01-09,PH019,Vitamin C 500mg,17,Batiaghata
+2024-01-09,PH019,Ranitidine 150mg,18,Batiaghata
+2024-01-09,PH019,Antacid Tablet,19,Batiaghata
+2024-01-09,PH019,Insulin (vial),5,Batiaghata
+2024-01-09,PH019,Atorvastatin 10mg,7,Batiaghata
+2024-01-09,PH019,Losartan 50mg,7,Batiaghata
+2024-01-10,PH019,Paracetamol 500mg,29,Batiaghata
+2024-01-10,PH019,ORS Sachet,19,Batiaghata
+2024-01-10,PH019,Metronidazole 400mg,9,Batiaghata
+2024-01-10,PH019,Cetirizine 10mg,11,Batiaghata
+2024-01-10,PH019,Amoxicillin 500mg,9,Batiaghata
+2024-01-10,PH019,Azithromycin 500mg,5,Batiaghata
+2024-01-10,PH019,Zinc 20mg (child),10,Batiaghata
+2024-01-10,PH019,Ciprofloxacin 500mg,6,Batiaghata
+2024-01-10,PH019,Antihistamine Syrup,10,Batiaghata
+2024-01-10,PH019,Vitamin C 500mg,22,Batiaghata
+2024-01-10,PH019,Ranitidine 150mg,13,Batiaghata
+2024-01-10,PH019,Antacid Tablet,22,Batiaghata
+2024-01-10,PH019,Insulin (vial),5,Batiaghata
+2024-01-10,PH019,Atorvastatin 10mg,7,Batiaghata
+2024-01-10,PH019,Losartan 50mg,8,Batiaghata
+2024-01-11,PH019,Paracetamol 500mg,33,Batiaghata
+2024-01-11,PH019,ORS Sachet,15,Batiaghata
+2024-01-11,PH019,Metronidazole 400mg,11,Batiaghata
+2024-01-11,PH019,Cetirizine 10mg,12,Batiaghata
+2024-01-11,PH019,Amoxicillin 500mg,7,Batiaghata
+2024-01-11,PH019,Azithromycin 500mg,5,Batiaghata
+2024-01-11,PH019,Zinc 20mg (child),7,Batiaghata
+2024-01-11,PH019,Ciprofloxacin 500mg,5,Batiaghata
+2024-01-11,PH019,Antihistamine Syrup,13,Batiaghata
+2024-01-11,PH019,Vitamin C 500mg,20,Batiaghata
+2024-01-11,PH019,Ranitidine 150mg,12,Batiaghata
+2024-01-11,PH019,Antacid Tablet,17,Batiaghata
+2024-01-11,PH019,Insulin (vial),4,Batiaghata
+2024-01-11,PH019,Atorvastatin 10mg,6,Batiaghata
+2024-01-11,PH019,Losartan 50mg,6,Batiaghata
+2024-01-12,PH019,Paracetamol 500mg,39,Batiaghata
+2024-01-12,PH019,ORS Sachet,15,Batiaghata
+2024-01-12,PH019,Metronidazole 400mg,11,Batiaghata
+2024-01-12,PH019,Cetirizine 10mg,14,Batiaghata
+2024-01-12,PH019,Amoxicillin 500mg,11,Batiaghata
+2024-01-12,PH019,Azithromycin 500mg,6,Batiaghata
+2024-01-12,PH019,Zinc 20mg (child),9,Batiaghata
+2024-01-12,PH019,Ciprofloxacin 500mg,7,Batiaghata
+2024-01-12,PH019,Antihistamine Syrup,11,Batiaghata
+2024-01-12,PH019,Vitamin C 500mg,25,Batiaghata
+2024-01-12,PH019,Ranitidine 150mg,13,Batiaghata
+2024-01-12,PH019,Antacid Tablet,18,Batiaghata
+2024-01-12,PH019,Insulin (vial),4,Batiaghata
+2024-01-12,PH019,Atorvastatin 10mg,6,Batiaghata
+2024-01-12,PH019,Losartan 50mg,6,Batiaghata
+2024-01-13,PH019,Paracetamol 500mg,37,Batiaghata
+2024-01-13,PH019,ORS Sachet,15,Batiaghata
+2024-01-13,PH019,Metronidazole 400mg,14,Batiaghata
+2024-01-13,PH019,Cetirizine 10mg,12,Batiaghata
+2024-01-13,PH019,Amoxicillin 500mg,9,Batiaghata
+2024-01-13,PH019,Azithromycin 500mg,7,Batiaghata
+2024-01-13,PH019,Zinc 20mg (child),10,Batiaghata
+2024-01-13,PH019,Ciprofloxacin 500mg,5,Batiaghata
+2024-01-13,PH019,Antihistamine Syrup,11,Batiaghata
+2024-01-13,PH019,Vitamin C 500mg,17,Batiaghata
+2024-01-13,PH019,Ranitidine 150mg,15,Batiaghata
+2024-01-13,PH019,Antacid Tablet,19,Batiaghata
+2024-01-13,PH019,Insulin (vial),4,Batiaghata
+2024-01-13,PH019,Atorvastatin 10mg,5,Batiaghata
+2024-01-13,PH019,Losartan 50mg,7,Batiaghata
+2024-01-14,PH019,Paracetamol 500mg,36,Batiaghata
+2024-01-14,PH019,ORS Sachet,19,Batiaghata
+2024-01-14,PH019,Metronidazole 400mg,12,Batiaghata
+2024-01-14,PH019,Cetirizine 10mg,13,Batiaghata
+2024-01-14,PH019,Amoxicillin 500mg,11,Batiaghata
+2024-01-14,PH019,Azithromycin 500mg,5,Batiaghata
+2024-01-14,PH019,Zinc 20mg (child),11,Batiaghata
+2024-01-14,PH019,Ciprofloxacin 500mg,6,Batiaghata
+2024-01-14,PH019,Antihistamine Syrup,12,Batiaghata
+2024-01-14,PH019,Vitamin C 500mg,26,Batiaghata
+2024-01-14,PH019,Ranitidine 150mg,19,Batiaghata
+2024-01-14,PH019,Antacid Tablet,24,Batiaghata
+2024-01-14,PH019,Insulin (vial),5,Batiaghata
+2024-01-14,PH019,Atorvastatin 10mg,7,Batiaghata
+2024-01-14,PH019,Losartan 50mg,8,Batiaghata
+2024-01-15,PH019,Paracetamol 500mg,39,Batiaghata
+2024-01-15,PH019,ORS Sachet,17,Batiaghata
+2024-01-15,PH019,Metronidazole 400mg,11,Batiaghata
+2024-01-15,PH019,Cetirizine 10mg,14,Batiaghata
+2024-01-15,PH019,Amoxicillin 500mg,9,Batiaghata
+2024-01-15,PH019,Azithromycin 500mg,7,Batiaghata
+2024-01-15,PH019,Zinc 20mg (child),7,Batiaghata
+2024-01-15,PH019,Ciprofloxacin 500mg,5,Batiaghata
+2024-01-15,PH019,Antihistamine Syrup,13,Batiaghata
+2024-01-15,PH019,Vitamin C 500mg,18,Batiaghata
+2024-01-15,PH019,Ranitidine 150mg,17,Batiaghata
+2024-01-15,PH019,Antacid Tablet,21,Batiaghata
+2024-01-15,PH019,Insulin (vial),4,Batiaghata
+2024-01-15,PH019,Atorvastatin 10mg,5,Batiaghata
+2024-01-15,PH019,Losartan 50mg,8,Batiaghata
+2024-01-16,PH019,Paracetamol 500mg,29,Batiaghata
+2024-01-16,PH019,ORS Sachet,17,Batiaghata
+2024-01-16,PH019,Metronidazole 400mg,12,Batiaghata
+2024-01-16,PH019,Cetirizine 10mg,13,Batiaghata
+2024-01-16,PH019,Amoxicillin 500mg,7,Batiaghata
+2024-01-16,PH019,Azithromycin 500mg,6,Batiaghata
+2024-01-16,PH019,Zinc 20mg (child),7,Batiaghata
+2024-01-16,PH019,Ciprofloxacin 500mg,8,Batiaghata
+2024-01-16,PH019,Antihistamine Syrup,8,Batiaghata
+2024-01-16,PH019,Vitamin C 500mg,19,Batiaghata
+2024-01-16,PH019,Ranitidine 150mg,13,Batiaghata
+2024-01-16,PH019,Antacid Tablet,18,Batiaghata
+2024-01-16,PH019,Insulin (vial),5,Batiaghata
+2024-01-16,PH019,Atorvastatin 10mg,7,Batiaghata
+2024-01-16,PH019,Losartan 50mg,7,Batiaghata
+2024-01-17,PH019,Paracetamol 500mg,43,Batiaghata
+2024-01-17,PH019,ORS Sachet,15,Batiaghata
+2024-01-17,PH019,Metronidazole 400mg,14,Batiaghata
+2024-01-17,PH019,Cetirizine 10mg,15,Batiaghata
+2024-01-17,PH019,Amoxicillin 500mg,8,Batiaghata
+2024-01-17,PH019,Azithromycin 500mg,5,Batiaghata
+2024-01-17,PH019,Zinc 20mg (child),11,Batiaghata
+2024-01-17,PH019,Ciprofloxacin 500mg,7,Batiaghata
+2024-01-17,PH019,Antihistamine Syrup,10,Batiaghata
+2024-01-17,PH019,Vitamin C 500mg,19,Batiaghata
+2024-01-17,PH019,Ranitidine 150mg,15,Batiaghata
+2024-01-17,PH019,Antacid Tablet,23,Batiaghata
+2024-01-17,PH019,Insulin (vial),5,Batiaghata
+2024-01-17,PH019,Atorvastatin 10mg,7,Batiaghata
+2024-01-17,PH019,Losartan 50mg,6,Batiaghata
+2024-01-18,PH019,Paracetamol 500mg,36,Batiaghata
+2024-01-18,PH019,ORS Sachet,14,Batiaghata
+2024-01-18,PH019,Metronidazole 400mg,10,Batiaghata
+2024-01-18,PH019,Cetirizine 10mg,15,Batiaghata
+2024-01-18,PH019,Amoxicillin 500mg,9,Batiaghata
+2024-01-18,PH019,Azithromycin 500mg,4,Batiaghata
+2024-01-18,PH019,Zinc 20mg (child),8,Batiaghata
+2024-01-18,PH019,Ciprofloxacin 500mg,6,Batiaghata
+2024-01-18,PH019,Antihistamine Syrup,9,Batiaghata
+2024-01-18,PH019,Vitamin C 500mg,22,Batiaghata
+2024-01-18,PH019,Ranitidine 150mg,13,Batiaghata
+2024-01-18,PH019,Antacid Tablet,19,Batiaghata
+2024-01-18,PH019,Insulin (vial),5,Batiaghata
+2024-01-18,PH019,Atorvastatin 10mg,8,Batiaghata
+2024-01-18,PH019,Losartan 50mg,9,Batiaghata
+2024-01-19,PH019,Paracetamol 500mg,43,Batiaghata
+2024-01-19,PH019,ORS Sachet,21,Batiaghata
+2024-01-19,PH019,Metronidazole 400mg,12,Batiaghata
+2024-01-19,PH019,Cetirizine 10mg,15,Batiaghata
+2024-01-19,PH019,Amoxicillin 500mg,8,Batiaghata
+2024-01-19,PH019,Azithromycin 500mg,6,Batiaghata
+2024-01-19,PH019,Zinc 20mg (child),10,Batiaghata
+2024-01-19,PH019,Ciprofloxacin 500mg,6,Batiaghata
+2024-01-19,PH019,Antihistamine Syrup,11,Batiaghata
+2024-01-19,PH019,Vitamin C 500mg,27,Batiaghata
+2024-01-19,PH019,Ranitidine 150mg,16,Batiaghata
+2024-01-19,PH019,Antacid Tablet,15,Batiaghata
+2024-01-19,PH019,Insulin (vial),5,Batiaghata
+2024-01-19,PH019,Atorvastatin 10mg,5,Batiaghata
+2024-01-19,PH019,Losartan 50mg,9,Batiaghata
+2024-01-20,PH019,Paracetamol 500mg,36,Batiaghata
+2024-01-20,PH019,ORS Sachet,19,Batiaghata
+2024-01-20,PH019,Metronidazole 400mg,11,Batiaghata
+2024-01-20,PH019,Cetirizine 10mg,13,Batiaghata
+2024-01-20,PH019,Amoxicillin 500mg,10,Batiaghata
+2024-01-20,PH019,Azithromycin 500mg,7,Batiaghata
+2024-01-20,PH019,Zinc 20mg (child),8,Batiaghata
+2024-01-20,PH019,Ciprofloxacin 500mg,6,Batiaghata
+2024-01-20,PH019,Antihistamine Syrup,11,Batiaghata
+2024-01-20,PH019,Vitamin C 500mg,18,Batiaghata
+2024-01-20,PH019,Ranitidine 150mg,12,Batiaghata
+2024-01-20,PH019,Antacid Tablet,17,Batiaghata
+2024-01-20,PH019,Insulin (vial),5,Batiaghata
+2024-01-20,PH019,Atorvastatin 10mg,7,Batiaghata
+2024-01-20,PH019,Losartan 50mg,7,Batiaghata
+2024-01-21,PH019,Paracetamol 500mg,39,Batiaghata
+2024-01-21,PH019,ORS Sachet,14,Batiaghata
+2024-01-21,PH019,Metronidazole 400mg,13,Batiaghata
+2024-01-21,PH019,Cetirizine 10mg,16,Batiaghata
+2024-01-21,PH019,Amoxicillin 500mg,8,Batiaghata
+2024-01-21,PH019,Azithromycin 500mg,6,Batiaghata
+2024-01-21,PH019,Zinc 20mg (child),7,Batiaghata
+2024-01-21,PH019,Ciprofloxacin 500mg,5,Batiaghata
+2024-01-21,PH019,Antihistamine Syrup,12,Batiaghata
+2024-01-21,PH019,Vitamin C 500mg,19,Batiaghata
+2024-01-21,PH019,Ranitidine 150mg,17,Batiaghata
+2024-01-21,PH019,Antacid Tablet,24,Batiaghata
+2024-01-21,PH019,Insulin (vial),4,Batiaghata
+2024-01-21,PH019,Atorvastatin 10mg,7,Batiaghata
+2024-01-21,PH019,Losartan 50mg,8,Batiaghata
+2024-01-22,PH019,Paracetamol 500mg,35,Batiaghata
+2024-01-22,PH019,ORS Sachet,19,Batiaghata
+2024-01-22,PH019,Metronidazole 400mg,9,Batiaghata
+2024-01-22,PH019,Cetirizine 10mg,10,Batiaghata
+2024-01-22,PH019,Amoxicillin 500mg,10,Batiaghata
+2024-01-22,PH019,Azithromycin 500mg,6,Batiaghata
+2024-01-22,PH019,Zinc 20mg (child),10,Batiaghata
+2024-01-22,PH019,Ciprofloxacin 500mg,7,Batiaghata
+2024-01-22,PH019,Antihistamine Syrup,8,Batiaghata
+2024-01-22,PH019,Vitamin C 500mg,17,Batiaghata
+2024-01-22,PH019,Ranitidine 150mg,17,Batiaghata
+2024-01-22,PH019,Antacid Tablet,17,Batiaghata
+2024-01-22,PH019,Insulin (vial),4,Batiaghata
+2024-01-22,PH019,Atorvastatin 10mg,5,Batiaghata
+2024-01-22,PH019,Losartan 50mg,8,Batiaghata
+2024-01-23,PH019,Paracetamol 500mg,27,Batiaghata
+2024-01-23,PH019,ORS Sachet,16,Batiaghata
+2024-01-23,PH019,Metronidazole 400mg,11,Batiaghata
+2024-01-23,PH019,Cetirizine 10mg,15,Batiaghata
+2024-01-23,PH019,Amoxicillin 500mg,10,Batiaghata
+2024-01-23,PH019,Azithromycin 500mg,6,Batiaghata
+2024-01-23,PH019,Zinc 20mg (child),11,Batiaghata
+2024-01-23,PH019,Ciprofloxacin 500mg,6,Batiaghata
+2024-01-23,PH019,Antihistamine Syrup,10,Batiaghata
+2024-01-23,PH019,Vitamin C 500mg,18,Batiaghata
+2024-01-23,PH019,Ranitidine 150mg,16,Batiaghata
+2024-01-23,PH019,Antacid Tablet,16,Batiaghata
+2024-01-23,PH019,Insulin (vial),4,Batiaghata
+2024-01-23,PH019,Atorvastatin 10mg,7,Batiaghata
+2024-01-23,PH019,Losartan 50mg,8,Batiaghata
+2024-01-24,PH019,Paracetamol 500mg,42,Batiaghata
+2024-01-24,PH019,ORS Sachet,21,Batiaghata
+2024-01-24,PH019,Metronidazole 400mg,13,Batiaghata
+2024-01-24,PH019,Cetirizine 10mg,14,Batiaghata
+2024-01-24,PH019,Amoxicillin 500mg,9,Batiaghata
+2024-01-24,PH019,Azithromycin 500mg,7,Batiaghata
+2024-01-24,PH019,Zinc 20mg (child),9,Batiaghata
+2024-01-24,PH019,Ciprofloxacin 500mg,5,Batiaghata
+2024-01-24,PH019,Antihistamine Syrup,12,Batiaghata
+2024-01-24,PH019,Vitamin C 500mg,21,Batiaghata
+2024-01-24,PH019,Ranitidine 150mg,12,Batiaghata
+2024-01-24,PH019,Antacid Tablet,21,Batiaghata
+2024-01-24,PH019,Insulin (vial),5,Batiaghata
+2024-01-24,PH019,Atorvastatin 10mg,7,Batiaghata
+2024-01-24,PH019,Losartan 50mg,6,Batiaghata
+2024-01-25,PH019,Paracetamol 500mg,31,Batiaghata
+2024-01-25,PH019,ORS Sachet,19,Batiaghata
+2024-01-25,PH019,Metronidazole 400mg,10,Batiaghata
+2024-01-25,PH019,Cetirizine 10mg,13,Batiaghata
+2024-01-25,PH019,Amoxicillin 500mg,9,Batiaghata
+2024-01-25,PH019,Azithromycin 500mg,5,Batiaghata
+2024-01-25,PH019,Zinc 20mg (child),7,Batiaghata
+2024-01-25,PH019,Ciprofloxacin 500mg,6,Batiaghata
+2024-01-25,PH019,Antihistamine Syrup,9,Batiaghata
+2024-01-25,PH019,Vitamin C 500mg,25,Batiaghata
+2024-01-25,PH019,Ranitidine 150mg,19,Batiaghata
+2024-01-25,PH019,Antacid Tablet,16,Batiaghata
+2024-01-25,PH019,Insulin (vial),5,Batiaghata
+2024-01-25,PH019,Atorvastatin 10mg,7,Batiaghata
+2024-01-25,PH019,Losartan 50mg,6,Batiaghata
+2024-01-26,PH019,Paracetamol 500mg,41,Batiaghata
+2024-01-26,PH019,ORS Sachet,17,Batiaghata
+2024-01-26,PH019,Metronidazole 400mg,14,Batiaghata
+2024-01-26,PH019,Cetirizine 10mg,17,Batiaghata
+2024-01-26,PH019,Amoxicillin 500mg,8,Batiaghata
+2024-01-26,PH019,Azithromycin 500mg,7,Batiaghata
+2024-01-26,PH019,Zinc 20mg (child),10,Batiaghata
+2024-01-26,PH019,Ciprofloxacin 500mg,8,Batiaghata
+2024-01-26,PH019,Antihistamine Syrup,11,Batiaghata
+2024-01-26,PH019,Vitamin C 500mg,22,Batiaghata
+2024-01-26,PH019,Ranitidine 150mg,16,Batiaghata
+2024-01-26,PH019,Antacid Tablet,16,Batiaghata
+2024-01-26,PH019,Insulin (vial),3,Batiaghata
+2024-01-26,PH019,Atorvastatin 10mg,6,Batiaghata
+2024-01-26,PH019,Losartan 50mg,9,Batiaghata
+2024-01-27,PH019,Paracetamol 500mg,33,Batiaghata
+2024-01-27,PH019,ORS Sachet,26,Batiaghata
+2024-01-27,PH019,Metronidazole 400mg,15,Batiaghata
+2024-01-27,PH019,Cetirizine 10mg,11,Batiaghata
+2024-01-27,PH019,Amoxicillin 500mg,9,Batiaghata
+2024-01-27,PH019,Azithromycin 500mg,5,Batiaghata
+2024-01-27,PH019,Zinc 20mg (child),13,Batiaghata
+2024-01-27,PH019,Ciprofloxacin 500mg,8,Batiaghata
+2024-01-27,PH019,Antihistamine Syrup,11,Batiaghata
+2024-01-27,PH019,Vitamin C 500mg,23,Batiaghata
+2024-01-27,PH019,Ranitidine 150mg,14,Batiaghata
+2024-01-27,PH019,Antacid Tablet,20,Batiaghata
+2024-01-27,PH019,Insulin (vial),5,Batiaghata
+2024-01-27,PH019,Atorvastatin 10mg,5,Batiaghata
+2024-01-27,PH019,Losartan 50mg,8,Batiaghata
+2024-01-28,PH019,Paracetamol 500mg,43,Batiaghata
+2024-01-28,PH019,ORS Sachet,31,Batiaghata
+2024-01-28,PH019,Metronidazole 400mg,20,Batiaghata
+2024-01-28,PH019,Cetirizine 10mg,16,Batiaghata
+2024-01-28,PH019,Amoxicillin 500mg,11,Batiaghata
+2024-01-28,PH019,Azithromycin 500mg,7,Batiaghata
+2024-01-28,PH019,Zinc 20mg (child),15,Batiaghata
+2024-01-28,PH019,Ciprofloxacin 500mg,9,Batiaghata
+2024-01-28,PH019,Antihistamine Syrup,12,Batiaghata
+2024-01-28,PH019,Vitamin C 500mg,25,Batiaghata
+2024-01-28,PH019,Ranitidine 150mg,18,Batiaghata
+2024-01-28,PH019,Antacid Tablet,24,Batiaghata
+2024-01-28,PH019,Insulin (vial),5,Batiaghata
+2024-01-28,PH019,Atorvastatin 10mg,7,Batiaghata
+2024-01-28,PH019,Losartan 50mg,8,Batiaghata
+2024-01-29,PH019,Paracetamol 500mg,40,Batiaghata
+2024-01-29,PH019,ORS Sachet,35,Batiaghata
+2024-01-29,PH019,Metronidazole 400mg,22,Batiaghata
+2024-01-29,PH019,Cetirizine 10mg,17,Batiaghata
+2024-01-29,PH019,Amoxicillin 500mg,10,Batiaghata
+2024-01-29,PH019,Azithromycin 500mg,5,Batiaghata
+2024-01-29,PH019,Zinc 20mg (child),17,Batiaghata
+2024-01-29,PH019,Ciprofloxacin 500mg,10,Batiaghata
+2024-01-29,PH019,Antihistamine Syrup,9,Batiaghata
+2024-01-29,PH019,Vitamin C 500mg,24,Batiaghata
+2024-01-29,PH019,Ranitidine 150mg,12,Batiaghata
+2024-01-29,PH019,Antacid Tablet,17,Batiaghata
+2024-01-29,PH019,Insulin (vial),5,Batiaghata
+2024-01-29,PH019,Atorvastatin 10mg,7,Batiaghata
+2024-01-29,PH019,Losartan 50mg,8,Batiaghata
+2024-01-30,PH019,Paracetamol 500mg,43,Batiaghata
+2024-01-30,PH019,ORS Sachet,46,Batiaghata
+2024-01-30,PH019,Metronidazole 400mg,23,Batiaghata
+2024-01-30,PH019,Cetirizine 10mg,11,Batiaghata
+2024-01-30,PH019,Amoxicillin 500mg,12,Batiaghata
+2024-01-30,PH019,Azithromycin 500mg,6,Batiaghata
+2024-01-30,PH019,Zinc 20mg (child),23,Batiaghata
+2024-01-30,PH019,Ciprofloxacin 500mg,8,Batiaghata
+2024-01-30,PH019,Antihistamine Syrup,12,Batiaghata
+2024-01-30,PH019,Vitamin C 500mg,25,Batiaghata
+2024-01-30,PH019,Ranitidine 150mg,14,Batiaghata
+2024-01-30,PH019,Antacid Tablet,20,Batiaghata
+2024-01-30,PH019,Insulin (vial),5,Batiaghata
+2024-01-30,PH019,Atorvastatin 10mg,8,Batiaghata
+2024-01-30,PH019,Losartan 50mg,6,Batiaghata
+2024-01-31,PH019,Paracetamol 500mg,39,Batiaghata
+2024-01-31,PH019,ORS Sachet,38,Batiaghata
+2024-01-31,PH019,Metronidazole 400mg,19,Batiaghata
+2024-01-31,PH019,Cetirizine 10mg,11,Batiaghata
+2024-01-31,PH019,Amoxicillin 500mg,8,Batiaghata
+2024-01-31,PH019,Azithromycin 500mg,4,Batiaghata
+2024-01-31,PH019,Zinc 20mg (child),19,Batiaghata
+2024-01-31,PH019,Ciprofloxacin 500mg,10,Batiaghata
+2024-01-31,PH019,Antihistamine Syrup,12,Batiaghata
+2024-01-31,PH019,Vitamin C 500mg,18,Batiaghata
+2024-01-31,PH019,Ranitidine 150mg,12,Batiaghata
+2024-01-31,PH019,Antacid Tablet,15,Batiaghata
+2024-01-31,PH019,Insulin (vial),3,Batiaghata
+2024-01-31,PH019,Atorvastatin 10mg,7,Batiaghata
+2024-01-31,PH019,Losartan 50mg,6,Batiaghata
+2024-02-01,PH019,Paracetamol 500mg,42,Batiaghata
+2024-02-01,PH019,ORS Sachet,46,Batiaghata
+2024-02-01,PH019,Metronidazole 400mg,28,Batiaghata
+2024-02-01,PH019,Cetirizine 10mg,15,Batiaghata
+2024-02-01,PH019,Amoxicillin 500mg,10,Batiaghata
+2024-02-01,PH019,Azithromycin 500mg,5,Batiaghata
+2024-02-01,PH019,Zinc 20mg (child),27,Batiaghata
+2024-02-01,PH019,Ciprofloxacin 500mg,14,Batiaghata
+2024-02-01,PH019,Antihistamine Syrup,11,Batiaghata
+2024-02-01,PH019,Vitamin C 500mg,26,Batiaghata
+2024-02-01,PH019,Ranitidine 150mg,14,Batiaghata
+2024-02-01,PH019,Antacid Tablet,20,Batiaghata
+2024-02-01,PH019,Insulin (vial),4,Batiaghata
+2024-02-01,PH019,Atorvastatin 10mg,7,Batiaghata
+2024-02-01,PH019,Losartan 50mg,8,Batiaghata
+2024-02-02,PH019,Paracetamol 500mg,42,Batiaghata
+2024-02-02,PH019,ORS Sachet,51,Batiaghata
+2024-02-02,PH019,Metronidazole 400mg,27,Batiaghata
+2024-02-02,PH019,Cetirizine 10mg,11,Batiaghata
+2024-02-02,PH019,Amoxicillin 500mg,10,Batiaghata
+2024-02-02,PH019,Azithromycin 500mg,7,Batiaghata
+2024-02-02,PH019,Zinc 20mg (child),30,Batiaghata
+2024-02-02,PH019,Ciprofloxacin 500mg,14,Batiaghata
+2024-02-02,PH019,Antihistamine Syrup,11,Batiaghata
+2024-02-02,PH019,Vitamin C 500mg,23,Batiaghata
+2024-02-02,PH019,Ranitidine 150mg,19,Batiaghata
+2024-02-02,PH019,Antacid Tablet,23,Batiaghata
+2024-02-02,PH019,Insulin (vial),4,Batiaghata
+2024-02-02,PH019,Atorvastatin 10mg,8,Batiaghata
+2024-02-02,PH019,Losartan 50mg,6,Batiaghata
+2024-02-03,PH019,Paracetamol 500mg,35,Batiaghata
+2024-02-03,PH019,ORS Sachet,55,Batiaghata
+2024-02-03,PH019,Metronidazole 400mg,21,Batiaghata
+2024-02-03,PH019,Cetirizine 10mg,14,Batiaghata
+2024-02-03,PH019,Amoxicillin 500mg,10,Batiaghata
+2024-02-03,PH019,Azithromycin 500mg,6,Batiaghata
+2024-02-03,PH019,Zinc 20mg (child),20,Batiaghata
+2024-02-03,PH019,Ciprofloxacin 500mg,12,Batiaghata
+2024-02-03,PH019,Antihistamine Syrup,13,Batiaghata
+2024-02-03,PH019,Vitamin C 500mg,26,Batiaghata
+2024-02-03,PH019,Ranitidine 150mg,14,Batiaghata
+2024-02-03,PH019,Antacid Tablet,21,Batiaghata
+2024-02-03,PH019,Insulin (vial),5,Batiaghata
+2024-02-03,PH019,Atorvastatin 10mg,7,Batiaghata
+2024-02-03,PH019,Losartan 50mg,8,Batiaghata
+2024-02-04,PH019,Paracetamol 500mg,36,Batiaghata
+2024-02-04,PH019,ORS Sachet,56,Batiaghata
+2024-02-04,PH019,Metronidazole 400mg,29,Batiaghata
+2024-02-04,PH019,Cetirizine 10mg,13,Batiaghata
+2024-02-04,PH019,Amoxicillin 500mg,10,Batiaghata
+2024-02-04,PH019,Azithromycin 500mg,4,Batiaghata
+2024-02-04,PH019,Zinc 20mg (child),23,Batiaghata
+2024-02-04,PH019,Ciprofloxacin 500mg,16,Batiaghata
+2024-02-04,PH019,Antihistamine Syrup,13,Batiaghata
+2024-02-04,PH019,Vitamin C 500mg,26,Batiaghata
+2024-02-04,PH019,Ranitidine 150mg,16,Batiaghata
+2024-02-04,PH019,Antacid Tablet,21,Batiaghata
+2024-02-04,PH019,Insulin (vial),4,Batiaghata
+2024-02-04,PH019,Atorvastatin 10mg,6,Batiaghata
+2024-02-04,PH019,Losartan 50mg,8,Batiaghata
+2024-02-05,PH019,Paracetamol 500mg,41,Batiaghata
+2024-02-05,PH019,ORS Sachet,75,Batiaghata
+2024-02-05,PH019,Metronidazole 400mg,32,Batiaghata
+2024-02-05,PH019,Cetirizine 10mg,15,Batiaghata
+2024-02-05,PH019,Amoxicillin 500mg,10,Batiaghata
+2024-02-05,PH019,Azithromycin 500mg,6,Batiaghata
+2024-02-05,PH019,Zinc 20mg (child),25,Batiaghata
+2024-02-05,PH019,Ciprofloxacin 500mg,12,Batiaghata
+2024-02-05,PH019,Antihistamine Syrup,10,Batiaghata
+2024-02-05,PH019,Vitamin C 500mg,19,Batiaghata
+2024-02-05,PH019,Ranitidine 150mg,16,Batiaghata
+2024-02-05,PH019,Antacid Tablet,15,Batiaghata
+2024-02-05,PH019,Insulin (vial),4,Batiaghata
+2024-02-05,PH019,Atorvastatin 10mg,7,Batiaghata
+2024-02-05,PH019,Losartan 50mg,7,Batiaghata
+2024-02-06,PH019,Paracetamol 500mg,29,Batiaghata
+2024-02-06,PH019,ORS Sachet,68,Batiaghata
+2024-02-06,PH019,Metronidazole 400mg,40,Batiaghata
+2024-02-06,PH019,Cetirizine 10mg,13,Batiaghata
+2024-02-06,PH019,Amoxicillin 500mg,7,Batiaghata
+2024-02-06,PH019,Azithromycin 500mg,7,Batiaghata
+2024-02-06,PH019,Zinc 20mg (child),39,Batiaghata
+2024-02-06,PH019,Ciprofloxacin 500mg,16,Batiaghata
+2024-02-06,PH019,Antihistamine Syrup,13,Batiaghata
+2024-02-06,PH019,Vitamin C 500mg,23,Batiaghata
+2024-02-06,PH019,Ranitidine 150mg,16,Batiaghata
+2024-02-06,PH019,Antacid Tablet,17,Batiaghata
+2024-02-06,PH019,Insulin (vial),3,Batiaghata
+2024-02-06,PH019,Atorvastatin 10mg,6,Batiaghata
+2024-02-06,PH019,Losartan 50mg,7,Batiaghata
+2024-02-07,PH019,Paracetamol 500mg,37,Batiaghata
+2024-02-07,PH019,ORS Sachet,66,Batiaghata
+2024-02-07,PH019,Metronidazole 400mg,41,Batiaghata
+2024-02-07,PH019,Cetirizine 10mg,14,Batiaghata
+2024-02-07,PH019,Amoxicillin 500mg,9,Batiaghata
+2024-02-07,PH019,Azithromycin 500mg,6,Batiaghata
+2024-02-07,PH019,Zinc 20mg (child),32,Batiaghata
+2024-02-07,PH019,Ciprofloxacin 500mg,15,Batiaghata
+2024-02-07,PH019,Antihistamine Syrup,10,Batiaghata
+2024-02-07,PH019,Vitamin C 500mg,23,Batiaghata
+2024-02-07,PH019,Ranitidine 150mg,18,Batiaghata
+2024-02-07,PH019,Antacid Tablet,23,Batiaghata
+2024-02-07,PH019,Insulin (vial),6,Batiaghata
+2024-02-07,PH019,Atorvastatin 10mg,6,Batiaghata
+2024-02-07,PH019,Losartan 50mg,9,Batiaghata
+2024-02-08,PH019,Paracetamol 500mg,35,Batiaghata
+2024-02-08,PH019,ORS Sachet,58,Batiaghata
+2024-02-08,PH019,Metronidazole 400mg,28,Batiaghata
+2024-02-08,PH019,Cetirizine 10mg,15,Batiaghata
+2024-02-08,PH019,Amoxicillin 500mg,12,Batiaghata
+2024-02-08,PH019,Azithromycin 500mg,6,Batiaghata
+2024-02-08,PH019,Zinc 20mg (child),30,Batiaghata
+2024-02-08,PH019,Ciprofloxacin 500mg,19,Batiaghata
+2024-02-08,PH019,Antihistamine Syrup,13,Batiaghata
+2024-02-08,PH019,Vitamin C 500mg,22,Batiaghata
+2024-02-08,PH019,Ranitidine 150mg,15,Batiaghata
+2024-02-08,PH019,Antacid Tablet,21,Batiaghata
+2024-02-08,PH019,Insulin (vial),4,Batiaghata
+2024-02-08,PH019,Atorvastatin 10mg,8,Batiaghata
+2024-02-08,PH019,Losartan 50mg,8,Batiaghata
+2024-02-09,PH019,Paracetamol 500mg,42,Batiaghata
+2024-02-09,PH019,ORS Sachet,57,Batiaghata
+2024-02-09,PH019,Metronidazole 400mg,40,Batiaghata
+2024-02-09,PH019,Cetirizine 10mg,13,Batiaghata
+2024-02-09,PH019,Amoxicillin 500mg,10,Batiaghata
+2024-02-09,PH019,Azithromycin 500mg,5,Batiaghata
+2024-02-09,PH019,Zinc 20mg (child),42,Batiaghata
+2024-02-09,PH019,Ciprofloxacin 500mg,14,Batiaghata
+2024-02-09,PH019,Antihistamine Syrup,9,Batiaghata
+2024-02-09,PH019,Vitamin C 500mg,20,Batiaghata
+2024-02-09,PH019,Ranitidine 150mg,13,Batiaghata
+2024-02-09,PH019,Antacid Tablet,20,Batiaghata
+2024-02-09,PH019,Insulin (vial),4,Batiaghata
+2024-02-09,PH019,Atorvastatin 10mg,8,Batiaghata
+2024-02-09,PH019,Losartan 50mg,7,Batiaghata
+2024-02-10,PH019,Paracetamol 500mg,37,Batiaghata
+2024-02-10,PH019,ORS Sachet,66,Batiaghata
+2024-02-10,PH019,Metronidazole 400mg,36,Batiaghata
+2024-02-10,PH019,Cetirizine 10mg,14,Batiaghata
+2024-02-10,PH019,Amoxicillin 500mg,11,Batiaghata
+2024-02-10,PH019,Azithromycin 500mg,5,Batiaghata
+2024-02-10,PH019,Zinc 20mg (child),24,Batiaghata
+2024-02-10,PH019,Ciprofloxacin 500mg,19,Batiaghata
+2024-02-10,PH019,Antihistamine Syrup,11,Batiaghata
+2024-02-10,PH019,Vitamin C 500mg,16,Batiaghata
+2024-02-10,PH019,Ranitidine 150mg,18,Batiaghata
+2024-02-10,PH019,Antacid Tablet,21,Batiaghata
+2024-02-10,PH019,Insulin (vial),3,Batiaghata
+2024-02-10,PH019,Atorvastatin 10mg,8,Batiaghata
+2024-02-10,PH019,Losartan 50mg,6,Batiaghata
+2024-02-11,PH019,Paracetamol 500mg,41,Batiaghata
+2024-02-11,PH019,ORS Sachet,52,Batiaghata
+2024-02-11,PH019,Metronidazole 400mg,30,Batiaghata
+2024-02-11,PH019,Cetirizine 10mg,17,Batiaghata
+2024-02-11,PH019,Amoxicillin 500mg,9,Batiaghata
+2024-02-11,PH019,Azithromycin 500mg,5,Batiaghata
+2024-02-11,PH019,Zinc 20mg (child),34,Batiaghata
+2024-02-11,PH019,Ciprofloxacin 500mg,17,Batiaghata
+2024-02-11,PH019,Antihistamine Syrup,12,Batiaghata
+2024-02-11,PH019,Vitamin C 500mg,26,Batiaghata
+2024-02-11,PH019,Ranitidine 150mg,18,Batiaghata
+2024-02-11,PH019,Antacid Tablet,21,Batiaghata
+2024-02-11,PH019,Insulin (vial),5,Batiaghata
+2024-02-11,PH019,Atorvastatin 10mg,6,Batiaghata
+2024-02-11,PH019,Losartan 50mg,6,Batiaghata
+2024-02-12,PH019,Paracetamol 500mg,36,Batiaghata
+2024-02-12,PH019,ORS Sachet,66,Batiaghata
+2024-02-12,PH019,Metronidazole 400mg,30,Batiaghata
+2024-02-12,PH019,Cetirizine 10mg,14,Batiaghata
+2024-02-12,PH019,Amoxicillin 500mg,11,Batiaghata
+2024-02-12,PH019,Azithromycin 500mg,6,Batiaghata
+2024-02-12,PH019,Zinc 20mg (child),28,Batiaghata
+2024-02-12,PH019,Ciprofloxacin 500mg,16,Batiaghata
+2024-02-12,PH019,Antihistamine Syrup,9,Batiaghata
+2024-02-12,PH019,Vitamin C 500mg,19,Batiaghata
+2024-02-12,PH019,Ranitidine 150mg,13,Batiaghata
+2024-02-12,PH019,Antacid Tablet,21,Batiaghata
+2024-02-12,PH019,Insulin (vial),4,Batiaghata
+2024-02-12,PH019,Atorvastatin 10mg,5,Batiaghata
+2024-02-12,PH019,Losartan 50mg,7,Batiaghata
+2024-02-13,PH019,Paracetamol 500mg,26,Batiaghata
+2024-02-13,PH019,ORS Sachet,41,Batiaghata
+2024-02-13,PH019,Metronidazole 400mg,30,Batiaghata
+2024-02-13,PH019,Cetirizine 10mg,12,Batiaghata
+2024-02-13,PH019,Amoxicillin 500mg,7,Batiaghata
+2024-02-13,PH019,Azithromycin 500mg,7,Batiaghata
+2024-02-13,PH019,Zinc 20mg (child),29,Batiaghata
+2024-02-13,PH019,Ciprofloxacin 500mg,14,Batiaghata
+2024-02-13,PH019,Antihistamine Syrup,11,Batiaghata
+2024-02-13,PH019,Vitamin C 500mg,27,Batiaghata
+2024-02-13,PH019,Ranitidine 150mg,16,Batiaghata
+2024-02-13,PH019,Antacid Tablet,22,Batiaghata
+2024-02-13,PH019,Insulin (vial),3,Batiaghata
+2024-02-13,PH019,Atorvastatin 10mg,6,Batiaghata
+2024-02-13,PH019,Losartan 50mg,9,Batiaghata
+2024-02-14,PH019,Paracetamol 500mg,36,Batiaghata
+2024-02-14,PH019,ORS Sachet,52,Batiaghata
+2024-02-14,PH019,Metronidazole 400mg,27,Batiaghata
+2024-02-14,PH019,Cetirizine 10mg,15,Batiaghata
+2024-02-14,PH019,Amoxicillin 500mg,11,Batiaghata
+2024-02-14,PH019,Azithromycin 500mg,7,Batiaghata
+2024-02-14,PH019,Zinc 20mg (child),20,Batiaghata
+2024-02-14,PH019,Ciprofloxacin 500mg,14,Batiaghata
+2024-02-14,PH019,Antihistamine Syrup,8,Batiaghata
+2024-02-14,PH019,Vitamin C 500mg,16,Batiaghata
+2024-02-14,PH019,Ranitidine 150mg,18,Batiaghata
+2024-02-14,PH019,Antacid Tablet,16,Batiaghata
+2024-02-14,PH019,Insulin (vial),5,Batiaghata
+2024-02-14,PH019,Atorvastatin 10mg,6,Batiaghata
+2024-02-14,PH019,Losartan 50mg,6,Batiaghata
+2024-02-15,PH019,Paracetamol 500mg,26,Batiaghata
+2024-02-15,PH019,ORS Sachet,55,Batiaghata
+2024-02-15,PH019,Metronidazole 400mg,22,Batiaghata
+2024-02-15,PH019,Cetirizine 10mg,15,Batiaghata
+2024-02-15,PH019,Amoxicillin 500mg,10,Batiaghata
+2024-02-15,PH019,Azithromycin 500mg,7,Batiaghata
+2024-02-15,PH019,Zinc 20mg (child),23,Batiaghata
+2024-02-15,PH019,Ciprofloxacin 500mg,11,Batiaghata
+2024-02-15,PH019,Antihistamine Syrup,12,Batiaghata
+2024-02-15,PH019,Vitamin C 500mg,23,Batiaghata
+2024-02-15,PH019,Ranitidine 150mg,14,Batiaghata
+2024-02-15,PH019,Antacid Tablet,19,Batiaghata
+2024-02-15,PH019,Insulin (vial),4,Batiaghata
+2024-02-15,PH019,Atorvastatin 10mg,7,Batiaghata
+2024-02-15,PH019,Losartan 50mg,8,Batiaghata
+2024-02-16,PH019,Paracetamol 500mg,35,Batiaghata
+2024-02-16,PH019,ORS Sachet,42,Batiaghata
+2024-02-16,PH019,Metronidazole 400mg,20,Batiaghata
+2024-02-16,PH019,Cetirizine 10mg,11,Batiaghata
+2024-02-16,PH019,Amoxicillin 500mg,10,Batiaghata
+2024-02-16,PH019,Azithromycin 500mg,5,Batiaghata
+2024-02-16,PH019,Zinc 20mg (child),24,Batiaghata
+2024-02-16,PH019,Ciprofloxacin 500mg,13,Batiaghata
+2024-02-16,PH019,Antihistamine Syrup,11,Batiaghata
+2024-02-16,PH019,Vitamin C 500mg,23,Batiaghata
+2024-02-16,PH019,Ranitidine 150mg,13,Batiaghata
+2024-02-16,PH019,Antacid Tablet,21,Batiaghata
+2024-02-16,PH019,Insulin (vial),4,Batiaghata
+2024-02-16,PH019,Atorvastatin 10mg,5,Batiaghata
+2024-02-16,PH019,Losartan 50mg,6,Batiaghata
+2024-02-17,PH019,Paracetamol 500mg,34,Batiaghata
+2024-02-17,PH019,ORS Sachet,29,Batiaghata
+2024-02-17,PH019,Metronidazole 400mg,18,Batiaghata
+2024-02-17,PH019,Cetirizine 10mg,11,Batiaghata
+2024-02-17,PH019,Amoxicillin 500mg,10,Batiaghata
+2024-02-17,PH019,Azithromycin 500mg,7,Batiaghata
+2024-02-17,PH019,Zinc 20mg (child),19,Batiaghata
+2024-02-17,PH019,Ciprofloxacin 500mg,11,Batiaghata
+2024-02-17,PH019,Antihistamine Syrup,8,Batiaghata
+2024-02-17,PH019,Vitamin C 500mg,27,Batiaghata
+2024-02-17,PH019,Ranitidine 150mg,18,Batiaghata
+2024-02-17,PH019,Antacid Tablet,23,Batiaghata
+2024-02-17,PH019,Insulin (vial),5,Batiaghata
+2024-02-17,PH019,Atorvastatin 10mg,8,Batiaghata
+2024-02-17,PH019,Losartan 50mg,6,Batiaghata
+2024-02-18,PH019,Paracetamol 500mg,29,Batiaghata
+2024-02-18,PH019,ORS Sachet,28,Batiaghata
+2024-02-18,PH019,Metronidazole 400mg,19,Batiaghata
+2024-02-18,PH019,Cetirizine 10mg,16,Batiaghata
+2024-02-18,PH019,Amoxicillin 500mg,8,Batiaghata
+2024-02-18,PH019,Azithromycin 500mg,6,Batiaghata
+2024-02-18,PH019,Zinc 20mg (child),17,Batiaghata
+2024-02-18,PH019,Ciprofloxacin 500mg,10,Batiaghata
+2024-02-18,PH019,Antihistamine Syrup,12,Batiaghata
+2024-02-18,PH019,Vitamin C 500mg,16,Batiaghata
+2024-02-18,PH019,Ranitidine 150mg,16,Batiaghata
+2024-02-18,PH019,Antacid Tablet,24,Batiaghata
+2024-02-18,PH019,Insulin (vial),4,Batiaghata
+2024-02-18,PH019,Atorvastatin 10mg,6,Batiaghata
+2024-02-18,PH019,Losartan 50mg,6,Batiaghata
+2024-02-19,PH019,Paracetamol 500mg,36,Batiaghata
+2024-02-19,PH019,ORS Sachet,24,Batiaghata
+2024-02-19,PH019,Metronidazole 400mg,12,Batiaghata
+2024-02-19,PH019,Cetirizine 10mg,17,Batiaghata
+2024-02-19,PH019,Amoxicillin 500mg,10,Batiaghata
+2024-02-19,PH019,Azithromycin 500mg,7,Batiaghata
+2024-02-19,PH019,Zinc 20mg (child),14,Batiaghata
+2024-02-19,PH019,Ciprofloxacin 500mg,9,Batiaghata
+2024-02-19,PH019,Antihistamine Syrup,9,Batiaghata
+2024-02-19,PH019,Vitamin C 500mg,27,Batiaghata
+2024-02-19,PH019,Ranitidine 150mg,18,Batiaghata
+2024-02-19,PH019,Antacid Tablet,20,Batiaghata
+2024-02-19,PH019,Insulin (vial),6,Batiaghata
+2024-02-19,PH019,Atorvastatin 10mg,6,Batiaghata
+2024-02-19,PH019,Losartan 50mg,8,Batiaghata
+2024-02-20,PH019,Paracetamol 500mg,40,Batiaghata
+2024-02-20,PH019,ORS Sachet,24,Batiaghata
+2024-02-20,PH019,Metronidazole 400mg,16,Batiaghata
+2024-02-20,PH019,Cetirizine 10mg,13,Batiaghata
+2024-02-20,PH019,Amoxicillin 500mg,8,Batiaghata
+2024-02-20,PH019,Azithromycin 500mg,7,Batiaghata
+2024-02-20,PH019,Zinc 20mg (child),9,Batiaghata
+2024-02-20,PH019,Ciprofloxacin 500mg,7,Batiaghata
+2024-02-20,PH019,Antihistamine Syrup,11,Batiaghata
+2024-02-20,PH019,Vitamin C 500mg,22,Batiaghata
+2024-02-20,PH019,Ranitidine 150mg,19,Batiaghata
+2024-02-20,PH019,Antacid Tablet,24,Batiaghata
+2024-02-20,PH019,Insulin (vial),4,Batiaghata
+2024-02-20,PH019,Atorvastatin 10mg,6,Batiaghata
+2024-02-20,PH019,Losartan 50mg,7,Batiaghata
+2024-02-21,PH019,Paracetamol 500mg,27,Batiaghata
+2024-02-21,PH019,ORS Sachet,23,Batiaghata
+2024-02-21,PH019,Metronidazole 400mg,12,Batiaghata
+2024-02-21,PH019,Cetirizine 10mg,12,Batiaghata
+2024-02-21,PH019,Amoxicillin 500mg,12,Batiaghata
+2024-02-21,PH019,Azithromycin 500mg,6,Batiaghata
+2024-02-21,PH019,Zinc 20mg (child),13,Batiaghata
+2024-02-21,PH019,Ciprofloxacin 500mg,8,Batiaghata
+2024-02-21,PH019,Antihistamine Syrup,9,Batiaghata
+2024-02-21,PH019,Vitamin C 500mg,26,Batiaghata
+2024-02-21,PH019,Ranitidine 150mg,15,Batiaghata
+2024-02-21,PH019,Antacid Tablet,19,Batiaghata
+2024-02-21,PH019,Insulin (vial),6,Batiaghata
+2024-02-21,PH019,Atorvastatin 10mg,5,Batiaghata
+2024-02-21,PH019,Losartan 50mg,7,Batiaghata
+2024-02-22,PH019,Paracetamol 500mg,38,Batiaghata
+2024-02-22,PH019,ORS Sachet,15,Batiaghata
+2024-02-22,PH019,Metronidazole 400mg,11,Batiaghata
+2024-02-22,PH019,Cetirizine 10mg,15,Batiaghata
+2024-02-22,PH019,Amoxicillin 500mg,8,Batiaghata
+2024-02-22,PH019,Azithromycin 500mg,7,Batiaghata
+2024-02-22,PH019,Zinc 20mg (child),10,Batiaghata
+2024-02-22,PH019,Ciprofloxacin 500mg,8,Batiaghata
+2024-02-22,PH019,Antihistamine Syrup,13,Batiaghata
+2024-02-22,PH019,Vitamin C 500mg,17,Batiaghata
+2024-02-22,PH019,Ranitidine 150mg,14,Batiaghata
+2024-02-22,PH019,Antacid Tablet,18,Batiaghata
+2024-02-22,PH019,Insulin (vial),5,Batiaghata
+2024-02-22,PH019,Atorvastatin 10mg,6,Batiaghata
+2024-02-22,PH019,Losartan 50mg,9,Batiaghata
+2024-02-23,PH019,Paracetamol 500mg,38,Batiaghata
+2024-02-23,PH019,ORS Sachet,13,Batiaghata
+2024-02-23,PH019,Metronidazole 400mg,14,Batiaghata
+2024-02-23,PH019,Cetirizine 10mg,13,Batiaghata
+2024-02-23,PH019,Amoxicillin 500mg,10,Batiaghata
+2024-02-23,PH019,Azithromycin 500mg,5,Batiaghata
+2024-02-23,PH019,Zinc 20mg (child),10,Batiaghata
+2024-02-23,PH019,Ciprofloxacin 500mg,6,Batiaghata
+2024-02-23,PH019,Antihistamine Syrup,12,Batiaghata
+2024-02-23,PH019,Vitamin C 500mg,19,Batiaghata
+2024-02-23,PH019,Ranitidine 150mg,16,Batiaghata
+2024-02-23,PH019,Antacid Tablet,19,Batiaghata
+2024-02-23,PH019,Insulin (vial),5,Batiaghata
+2024-02-23,PH019,Atorvastatin 10mg,5,Batiaghata
+2024-02-23,PH019,Losartan 50mg,9,Batiaghata
+2024-02-24,PH019,Paracetamol 500mg,36,Batiaghata
+2024-02-24,PH019,ORS Sachet,15,Batiaghata
+2024-02-24,PH019,Metronidazole 400mg,13,Batiaghata
+2024-02-24,PH019,Cetirizine 10mg,12,Batiaghata
+2024-02-24,PH019,Amoxicillin 500mg,7,Batiaghata
+2024-02-24,PH019,Azithromycin 500mg,6,Batiaghata
+2024-02-24,PH019,Zinc 20mg (child),8,Batiaghata
+2024-02-24,PH019,Ciprofloxacin 500mg,6,Batiaghata
+2024-02-24,PH019,Antihistamine Syrup,13,Batiaghata
+2024-02-24,PH019,Vitamin C 500mg,17,Batiaghata
+2024-02-24,PH019,Ranitidine 150mg,16,Batiaghata
+2024-02-24,PH019,Antacid Tablet,17,Batiaghata
+2024-02-24,PH019,Insulin (vial),3,Batiaghata
+2024-02-24,PH019,Atorvastatin 10mg,5,Batiaghata
+2024-02-24,PH019,Losartan 50mg,9,Batiaghata
+2024-02-25,PH019,Paracetamol 500mg,37,Batiaghata
+2024-02-25,PH019,ORS Sachet,20,Batiaghata
+2024-02-25,PH019,Metronidazole 400mg,11,Batiaghata
+2024-02-25,PH019,Cetirizine 10mg,12,Batiaghata
+2024-02-25,PH019,Amoxicillin 500mg,10,Batiaghata
+2024-02-25,PH019,Azithromycin 500mg,7,Batiaghata
+2024-02-25,PH019,Zinc 20mg (child),10,Batiaghata
+2024-02-25,PH019,Ciprofloxacin 500mg,8,Batiaghata
+2024-02-25,PH019,Antihistamine Syrup,12,Batiaghata
+2024-02-25,PH019,Vitamin C 500mg,22,Batiaghata
+2024-02-25,PH019,Ranitidine 150mg,15,Batiaghata
+2024-02-25,PH019,Antacid Tablet,23,Batiaghata
+2024-02-25,PH019,Insulin (vial),3,Batiaghata
+2024-02-25,PH019,Atorvastatin 10mg,5,Batiaghata
+2024-02-25,PH019,Losartan 50mg,6,Batiaghata
+2024-02-26,PH019,Paracetamol 500mg,38,Batiaghata
+2024-02-26,PH019,ORS Sachet,16,Batiaghata
+2024-02-26,PH019,Metronidazole 400mg,10,Batiaghata
+2024-02-26,PH019,Cetirizine 10mg,12,Batiaghata
+2024-02-26,PH019,Amoxicillin 500mg,9,Batiaghata
+2024-02-26,PH019,Azithromycin 500mg,5,Batiaghata
+2024-02-26,PH019,Zinc 20mg (child),10,Batiaghata
+2024-02-26,PH019,Ciprofloxacin 500mg,7,Batiaghata
+2024-02-26,PH019,Antihistamine Syrup,12,Batiaghata
+2024-02-26,PH019,Vitamin C 500mg,26,Batiaghata
+2024-02-26,PH019,Ranitidine 150mg,16,Batiaghata
+2024-02-26,PH019,Antacid Tablet,20,Batiaghata
+2024-02-26,PH019,Insulin (vial),4,Batiaghata
+2024-02-26,PH019,Atorvastatin 10mg,5,Batiaghata
+2024-02-26,PH019,Losartan 50mg,9,Batiaghata
+2024-02-27,PH019,Paracetamol 500mg,35,Batiaghata
+2024-02-27,PH019,ORS Sachet,18,Batiaghata
+2024-02-27,PH019,Metronidazole 400mg,10,Batiaghata
+2024-02-27,PH019,Cetirizine 10mg,14,Batiaghata
+2024-02-27,PH019,Amoxicillin 500mg,8,Batiaghata
+2024-02-27,PH019,Azithromycin 500mg,7,Batiaghata
+2024-02-27,PH019,Zinc 20mg (child),8,Batiaghata
+2024-02-27,PH019,Ciprofloxacin 500mg,5,Batiaghata
+2024-02-27,PH019,Antihistamine Syrup,12,Batiaghata
+2024-02-27,PH019,Vitamin C 500mg,26,Batiaghata
+2024-02-27,PH019,Ranitidine 150mg,13,Batiaghata
+2024-02-27,PH019,Antacid Tablet,15,Batiaghata
+2024-02-27,PH019,Insulin (vial),5,Batiaghata
+2024-02-27,PH019,Atorvastatin 10mg,6,Batiaghata
+2024-02-27,PH019,Losartan 50mg,8,Batiaghata
+2024-02-28,PH019,Paracetamol 500mg,33,Batiaghata
+2024-02-28,PH019,ORS Sachet,19,Batiaghata
+2024-02-28,PH019,Metronidazole 400mg,10,Batiaghata
+2024-02-28,PH019,Cetirizine 10mg,13,Batiaghata
+2024-02-28,PH019,Amoxicillin 500mg,9,Batiaghata
+2024-02-28,PH019,Azithromycin 500mg,4,Batiaghata
+2024-02-28,PH019,Zinc 20mg (child),9,Batiaghata
+2024-02-28,PH019,Ciprofloxacin 500mg,6,Batiaghata
+2024-02-28,PH019,Antihistamine Syrup,9,Batiaghata
+2024-02-28,PH019,Vitamin C 500mg,17,Batiaghata
+2024-02-28,PH019,Ranitidine 150mg,18,Batiaghata
+2024-02-28,PH019,Antacid Tablet,22,Batiaghata
+2024-02-28,PH019,Insulin (vial),4,Batiaghata
+2024-02-28,PH019,Atorvastatin 10mg,8,Batiaghata
+2024-02-28,PH019,Losartan 50mg,6,Batiaghata
+2024-02-29,PH019,Paracetamol 500mg,28,Batiaghata
+2024-02-29,PH019,ORS Sachet,15,Batiaghata
+2024-02-29,PH019,Metronidazole 400mg,12,Batiaghata
+2024-02-29,PH019,Cetirizine 10mg,11,Batiaghata
+2024-02-29,PH019,Amoxicillin 500mg,11,Batiaghata
+2024-02-29,PH019,Azithromycin 500mg,5,Batiaghata
+2024-02-29,PH019,Zinc 20mg (child),8,Batiaghata
+2024-02-29,PH019,Ciprofloxacin 500mg,5,Batiaghata
+2024-02-29,PH019,Antihistamine Syrup,10,Batiaghata
+2024-02-29,PH019,Vitamin C 500mg,25,Batiaghata
+2024-02-29,PH019,Ranitidine 150mg,12,Batiaghata
+2024-02-29,PH019,Antacid Tablet,21,Batiaghata
+2024-02-29,PH019,Insulin (vial),4,Batiaghata
+2024-02-29,PH019,Atorvastatin 10mg,8,Batiaghata
+2024-02-29,PH019,Losartan 50mg,6,Batiaghata
+2024-03-01,PH019,Paracetamol 500mg,34,Batiaghata
+2024-03-01,PH019,ORS Sachet,20,Batiaghata
+2024-03-01,PH019,Metronidazole 400mg,12,Batiaghata
+2024-03-01,PH019,Cetirizine 10mg,12,Batiaghata
+2024-03-01,PH019,Amoxicillin 500mg,10,Batiaghata
+2024-03-01,PH019,Azithromycin 500mg,5,Batiaghata
+2024-03-01,PH019,Zinc 20mg (child),9,Batiaghata
+2024-03-01,PH019,Ciprofloxacin 500mg,6,Batiaghata
+2024-03-01,PH019,Antihistamine Syrup,8,Batiaghata
+2024-03-01,PH019,Vitamin C 500mg,26,Batiaghata
+2024-03-01,PH019,Ranitidine 150mg,19,Batiaghata
+2024-03-01,PH019,Antacid Tablet,21,Batiaghata
+2024-03-01,PH019,Insulin (vial),4,Batiaghata
+2024-03-01,PH019,Atorvastatin 10mg,6,Batiaghata
+2024-03-01,PH019,Losartan 50mg,6,Batiaghata
+2024-03-02,PH019,Paracetamol 500mg,30,Batiaghata
+2024-03-02,PH019,ORS Sachet,20,Batiaghata
+2024-03-02,PH019,Metronidazole 400mg,14,Batiaghata
+2024-03-02,PH019,Cetirizine 10mg,14,Batiaghata
+2024-03-02,PH019,Amoxicillin 500mg,12,Batiaghata
+2024-03-02,PH019,Azithromycin 500mg,7,Batiaghata
+2024-03-02,PH019,Zinc 20mg (child),8,Batiaghata
+2024-03-02,PH019,Ciprofloxacin 500mg,5,Batiaghata
+2024-03-02,PH019,Antihistamine Syrup,11,Batiaghata
+2024-03-02,PH019,Vitamin C 500mg,17,Batiaghata
+2024-03-02,PH019,Ranitidine 150mg,17,Batiaghata
+2024-03-02,PH019,Antacid Tablet,21,Batiaghata
+2024-03-02,PH019,Insulin (vial),5,Batiaghata
+2024-03-02,PH019,Atorvastatin 10mg,5,Batiaghata
+2024-03-02,PH019,Losartan 50mg,7,Batiaghata
+2024-03-03,PH019,Paracetamol 500mg,34,Batiaghata
+2024-03-03,PH019,ORS Sachet,18,Batiaghata
+2024-03-03,PH019,Metronidazole 400mg,10,Batiaghata
+2024-03-03,PH019,Cetirizine 10mg,14,Batiaghata
+2024-03-03,PH019,Amoxicillin 500mg,9,Batiaghata
+2024-03-03,PH019,Azithromycin 500mg,5,Batiaghata
+2024-03-03,PH019,Zinc 20mg (child),11,Batiaghata
+2024-03-03,PH019,Ciprofloxacin 500mg,6,Batiaghata
+2024-03-03,PH019,Antihistamine Syrup,11,Batiaghata
+2024-03-03,PH019,Vitamin C 500mg,26,Batiaghata
+2024-03-03,PH019,Ranitidine 150mg,17,Batiaghata
+2024-03-03,PH019,Antacid Tablet,18,Batiaghata
+2024-03-03,PH019,Insulin (vial),4,Batiaghata
+2024-03-03,PH019,Atorvastatin 10mg,7,Batiaghata
+2024-03-03,PH019,Losartan 50mg,6,Batiaghata
+2024-03-04,PH019,Paracetamol 500mg,30,Batiaghata
+2024-03-04,PH019,ORS Sachet,17,Batiaghata
+2024-03-04,PH019,Metronidazole 400mg,11,Batiaghata
+2024-03-04,PH019,Cetirizine 10mg,10,Batiaghata
+2024-03-04,PH019,Amoxicillin 500mg,10,Batiaghata
+2024-03-04,PH019,Azithromycin 500mg,4,Batiaghata
+2024-03-04,PH019,Zinc 20mg (child),10,Batiaghata
+2024-03-04,PH019,Ciprofloxacin 500mg,7,Batiaghata
+2024-03-04,PH019,Antihistamine Syrup,12,Batiaghata
+2024-03-04,PH019,Vitamin C 500mg,21,Batiaghata
+2024-03-04,PH019,Ranitidine 150mg,12,Batiaghata
+2024-03-04,PH019,Antacid Tablet,17,Batiaghata
+2024-03-04,PH019,Insulin (vial),6,Batiaghata
+2024-03-04,PH019,Atorvastatin 10mg,7,Batiaghata
+2024-03-04,PH019,Losartan 50mg,7,Batiaghata
+2024-03-05,PH019,Paracetamol 500mg,38,Batiaghata
+2024-03-05,PH019,ORS Sachet,15,Batiaghata
+2024-03-05,PH019,Metronidazole 400mg,13,Batiaghata
+2024-03-05,PH019,Cetirizine 10mg,12,Batiaghata
+2024-03-05,PH019,Amoxicillin 500mg,8,Batiaghata
+2024-03-05,PH019,Azithromycin 500mg,7,Batiaghata
+2024-03-05,PH019,Zinc 20mg (child),12,Batiaghata
+2024-03-05,PH019,Ciprofloxacin 500mg,7,Batiaghata
+2024-03-05,PH019,Antihistamine Syrup,9,Batiaghata
+2024-03-05,PH019,Vitamin C 500mg,23,Batiaghata
+2024-03-05,PH019,Ranitidine 150mg,14,Batiaghata
+2024-03-05,PH019,Antacid Tablet,22,Batiaghata
+2024-03-05,PH019,Insulin (vial),5,Batiaghata
+2024-03-05,PH019,Atorvastatin 10mg,6,Batiaghata
+2024-03-05,PH019,Losartan 50mg,6,Batiaghata
+2024-03-06,PH019,Paracetamol 500mg,41,Batiaghata
+2024-03-06,PH019,ORS Sachet,17,Batiaghata
+2024-03-06,PH019,Metronidazole 400mg,12,Batiaghata
+2024-03-06,PH019,Cetirizine 10mg,10,Batiaghata
+2024-03-06,PH019,Amoxicillin 500mg,12,Batiaghata
+2024-03-06,PH019,Azithromycin 500mg,5,Batiaghata
+2024-03-06,PH019,Zinc 20mg (child),10,Batiaghata
+2024-03-06,PH019,Ciprofloxacin 500mg,5,Batiaghata
+2024-03-06,PH019,Antihistamine Syrup,8,Batiaghata
+2024-03-06,PH019,Vitamin C 500mg,23,Batiaghata
+2024-03-06,PH019,Ranitidine 150mg,17,Batiaghata
+2024-03-06,PH019,Antacid Tablet,17,Batiaghata
+2024-03-06,PH019,Insulin (vial),4,Batiaghata
+2024-03-06,PH019,Atorvastatin 10mg,6,Batiaghata
+2024-03-06,PH019,Losartan 50mg,9,Batiaghata
+2024-03-07,PH019,Paracetamol 500mg,36,Batiaghata
+2024-03-07,PH019,ORS Sachet,15,Batiaghata
+2024-03-07,PH019,Metronidazole 400mg,14,Batiaghata
+2024-03-07,PH019,Cetirizine 10mg,13,Batiaghata
+2024-03-07,PH019,Amoxicillin 500mg,12,Batiaghata
+2024-03-07,PH019,Azithromycin 500mg,7,Batiaghata
+2024-03-07,PH019,Zinc 20mg (child),10,Batiaghata
+2024-03-07,PH019,Ciprofloxacin 500mg,8,Batiaghata
+2024-03-07,PH019,Antihistamine Syrup,13,Batiaghata
+2024-03-07,PH019,Vitamin C 500mg,24,Batiaghata
+2024-03-07,PH019,Ranitidine 150mg,15,Batiaghata
+2024-03-07,PH019,Antacid Tablet,15,Batiaghata
+2024-03-07,PH019,Insulin (vial),4,Batiaghata
+2024-03-07,PH019,Atorvastatin 10mg,7,Batiaghata
+2024-03-07,PH019,Losartan 50mg,9,Batiaghata
+2024-03-08,PH019,Paracetamol 500mg,29,Batiaghata
+2024-03-08,PH019,ORS Sachet,20,Batiaghata
+2024-03-08,PH019,Metronidazole 400mg,11,Batiaghata
+2024-03-08,PH019,Cetirizine 10mg,16,Batiaghata
+2024-03-08,PH019,Amoxicillin 500mg,10,Batiaghata
+2024-03-08,PH019,Azithromycin 500mg,7,Batiaghata
+2024-03-08,PH019,Zinc 20mg (child),10,Batiaghata
+2024-03-08,PH019,Ciprofloxacin 500mg,7,Batiaghata
+2024-03-08,PH019,Antihistamine Syrup,10,Batiaghata
+2024-03-08,PH019,Vitamin C 500mg,27,Batiaghata
+2024-03-08,PH019,Ranitidine 150mg,15,Batiaghata
+2024-03-08,PH019,Antacid Tablet,24,Batiaghata
+2024-03-08,PH019,Insulin (vial),5,Batiaghata
+2024-03-08,PH019,Atorvastatin 10mg,8,Batiaghata
+2024-03-08,PH019,Losartan 50mg,7,Batiaghata
+2024-03-09,PH019,Paracetamol 500mg,35,Batiaghata
+2024-03-09,PH019,ORS Sachet,17,Batiaghata
+2024-03-09,PH019,Metronidazole 400mg,11,Batiaghata
+2024-03-09,PH019,Cetirizine 10mg,15,Batiaghata
+2024-03-09,PH019,Amoxicillin 500mg,7,Batiaghata
+2024-03-09,PH019,Azithromycin 500mg,6,Batiaghata
+2024-03-09,PH019,Zinc 20mg (child),7,Batiaghata
+2024-03-09,PH019,Ciprofloxacin 500mg,6,Batiaghata
+2024-03-09,PH019,Antihistamine Syrup,12,Batiaghata
+2024-03-09,PH019,Vitamin C 500mg,19,Batiaghata
+2024-03-09,PH019,Ranitidine 150mg,18,Batiaghata
+2024-03-09,PH019,Antacid Tablet,15,Batiaghata
+2024-03-09,PH019,Insulin (vial),4,Batiaghata
+2024-03-09,PH019,Atorvastatin 10mg,5,Batiaghata
+2024-03-09,PH019,Losartan 50mg,6,Batiaghata
+2024-03-10,PH019,Paracetamol 500mg,28,Batiaghata
+2024-03-10,PH019,ORS Sachet,20,Batiaghata
+2024-03-10,PH019,Metronidazole 400mg,13,Batiaghata
+2024-03-10,PH019,Cetirizine 10mg,15,Batiaghata
+2024-03-10,PH019,Amoxicillin 500mg,10,Batiaghata
+2024-03-10,PH019,Azithromycin 500mg,7,Batiaghata
+2024-03-10,PH019,Zinc 20mg (child),10,Batiaghata
+2024-03-10,PH019,Ciprofloxacin 500mg,5,Batiaghata
+2024-03-10,PH019,Antihistamine Syrup,9,Batiaghata
+2024-03-10,PH019,Vitamin C 500mg,20,Batiaghata
+2024-03-10,PH019,Ranitidine 150mg,13,Batiaghata
+2024-03-10,PH019,Antacid Tablet,16,Batiaghata
+2024-03-10,PH019,Insulin (vial),5,Batiaghata
+2024-03-10,PH019,Atorvastatin 10mg,6,Batiaghata
+2024-03-10,PH019,Losartan 50mg,9,Batiaghata
+2024-03-11,PH019,Paracetamol 500mg,32,Batiaghata
+2024-03-11,PH019,ORS Sachet,19,Batiaghata
+2024-03-11,PH019,Metronidazole 400mg,11,Batiaghata
+2024-03-11,PH019,Cetirizine 10mg,17,Batiaghata
+2024-03-11,PH019,Amoxicillin 500mg,10,Batiaghata
+2024-03-11,PH019,Azithromycin 500mg,5,Batiaghata
+2024-03-11,PH019,Zinc 20mg (child),8,Batiaghata
+2024-03-11,PH019,Ciprofloxacin 500mg,7,Batiaghata
+2024-03-11,PH019,Antihistamine Syrup,8,Batiaghata
+2024-03-11,PH019,Vitamin C 500mg,21,Batiaghata
+2024-03-11,PH019,Ranitidine 150mg,13,Batiaghata
+2024-03-11,PH019,Antacid Tablet,18,Batiaghata
+2024-03-11,PH019,Insulin (vial),4,Batiaghata
+2024-03-11,PH019,Atorvastatin 10mg,7,Batiaghata
+2024-03-11,PH019,Losartan 50mg,6,Batiaghata
+2024-03-12,PH019,Paracetamol 500mg,34,Batiaghata
+2024-03-12,PH019,ORS Sachet,14,Batiaghata
+2024-03-12,PH019,Metronidazole 400mg,11,Batiaghata
+2024-03-12,PH019,Cetirizine 10mg,15,Batiaghata
+2024-03-12,PH019,Amoxicillin 500mg,9,Batiaghata
+2024-03-12,PH019,Azithromycin 500mg,5,Batiaghata
+2024-03-12,PH019,Zinc 20mg (child),8,Batiaghata
+2024-03-12,PH019,Ciprofloxacin 500mg,6,Batiaghata
+2024-03-12,PH019,Antihistamine Syrup,11,Batiaghata
+2024-03-12,PH019,Vitamin C 500mg,25,Batiaghata
+2024-03-12,PH019,Ranitidine 150mg,14,Batiaghata
+2024-03-12,PH019,Antacid Tablet,24,Batiaghata
+2024-03-12,PH019,Insulin (vial),3,Batiaghata
+2024-03-12,PH019,Atorvastatin 10mg,6,Batiaghata
+2024-03-12,PH019,Losartan 50mg,9,Batiaghata
+2024-03-13,PH019,Paracetamol 500mg,41,Batiaghata
+2024-03-13,PH019,ORS Sachet,19,Batiaghata
+2024-03-13,PH019,Metronidazole 400mg,10,Batiaghata
+2024-03-13,PH019,Cetirizine 10mg,16,Batiaghata
+2024-03-13,PH019,Amoxicillin 500mg,12,Batiaghata
+2024-03-13,PH019,Azithromycin 500mg,7,Batiaghata
+2024-03-13,PH019,Zinc 20mg (child),12,Batiaghata
+2024-03-13,PH019,Ciprofloxacin 500mg,7,Batiaghata
+2024-03-13,PH019,Antihistamine Syrup,10,Batiaghata
+2024-03-13,PH019,Vitamin C 500mg,23,Batiaghata
+2024-03-13,PH019,Ranitidine 150mg,13,Batiaghata
+2024-03-13,PH019,Antacid Tablet,20,Batiaghata
+2024-03-13,PH019,Insulin (vial),5,Batiaghata
+2024-03-13,PH019,Atorvastatin 10mg,8,Batiaghata
+2024-03-13,PH019,Losartan 50mg,7,Batiaghata
+2024-03-14,PH019,Paracetamol 500mg,29,Batiaghata
+2024-03-14,PH019,ORS Sachet,16,Batiaghata
+2024-03-14,PH019,Metronidazole 400mg,9,Batiaghata
+2024-03-14,PH019,Cetirizine 10mg,16,Batiaghata
+2024-03-14,PH019,Amoxicillin 500mg,10,Batiaghata
+2024-03-14,PH019,Azithromycin 500mg,7,Batiaghata
+2024-03-14,PH019,Zinc 20mg (child),8,Batiaghata
+2024-03-14,PH019,Ciprofloxacin 500mg,5,Batiaghata
+2024-03-14,PH019,Antihistamine Syrup,12,Batiaghata
+2024-03-14,PH019,Vitamin C 500mg,18,Batiaghata
+2024-03-14,PH019,Ranitidine 150mg,15,Batiaghata
+2024-03-14,PH019,Antacid Tablet,15,Batiaghata
+2024-03-14,PH019,Insulin (vial),5,Batiaghata
+2024-03-14,PH019,Atorvastatin 10mg,7,Batiaghata
+2024-03-14,PH019,Losartan 50mg,8,Batiaghata
+2024-03-15,PH019,Paracetamol 500mg,29,Batiaghata
+2024-03-15,PH019,ORS Sachet,13,Batiaghata
+2024-03-15,PH019,Metronidazole 400mg,10,Batiaghata
+2024-03-15,PH019,Cetirizine 10mg,13,Batiaghata
+2024-03-15,PH019,Amoxicillin 500mg,8,Batiaghata
+2024-03-15,PH019,Azithromycin 500mg,4,Batiaghata
+2024-03-15,PH019,Zinc 20mg (child),10,Batiaghata
+2024-03-15,PH019,Ciprofloxacin 500mg,6,Batiaghata
+2024-03-15,PH019,Antihistamine Syrup,10,Batiaghata
+2024-03-15,PH019,Vitamin C 500mg,27,Batiaghata
+2024-03-15,PH019,Ranitidine 150mg,13,Batiaghata
+2024-03-15,PH019,Antacid Tablet,22,Batiaghata
+2024-03-15,PH019,Insulin (vial),3,Batiaghata
+2024-03-15,PH019,Atorvastatin 10mg,6,Batiaghata
+2024-03-15,PH019,Losartan 50mg,6,Batiaghata
+2024-03-16,PH019,Paracetamol 500mg,36,Batiaghata
+2024-03-16,PH019,ORS Sachet,18,Batiaghata
+2024-03-16,PH019,Metronidazole 400mg,13,Batiaghata
+2024-03-16,PH019,Cetirizine 10mg,13,Batiaghata
+2024-03-16,PH019,Amoxicillin 500mg,8,Batiaghata
+2024-03-16,PH019,Azithromycin 500mg,5,Batiaghata
+2024-03-16,PH019,Zinc 20mg (child),9,Batiaghata
+2024-03-16,PH019,Ciprofloxacin 500mg,6,Batiaghata
+2024-03-16,PH019,Antihistamine Syrup,8,Batiaghata
+2024-03-16,PH019,Vitamin C 500mg,24,Batiaghata
+2024-03-16,PH019,Ranitidine 150mg,17,Batiaghata
+2024-03-16,PH019,Antacid Tablet,15,Batiaghata
+2024-03-16,PH019,Insulin (vial),5,Batiaghata
+2024-03-16,PH019,Atorvastatin 10mg,6,Batiaghata
+2024-03-16,PH019,Losartan 50mg,8,Batiaghata
+2024-03-17,PH019,Paracetamol 500mg,36,Batiaghata
+2024-03-17,PH019,ORS Sachet,18,Batiaghata
+2024-03-17,PH019,Metronidazole 400mg,10,Batiaghata
+2024-03-17,PH019,Cetirizine 10mg,13,Batiaghata
+2024-03-17,PH019,Amoxicillin 500mg,9,Batiaghata
+2024-03-17,PH019,Azithromycin 500mg,6,Batiaghata
+2024-03-17,PH019,Zinc 20mg (child),11,Batiaghata
+2024-03-17,PH019,Ciprofloxacin 500mg,5,Batiaghata
+2024-03-17,PH019,Antihistamine Syrup,12,Batiaghata
+2024-03-17,PH019,Vitamin C 500mg,26,Batiaghata
+2024-03-17,PH019,Ranitidine 150mg,16,Batiaghata
+2024-03-17,PH019,Antacid Tablet,23,Batiaghata
+2024-03-17,PH019,Insulin (vial),4,Batiaghata
+2024-03-17,PH019,Atorvastatin 10mg,6,Batiaghata
+2024-03-17,PH019,Losartan 50mg,8,Batiaghata
+2024-03-18,PH019,Paracetamol 500mg,38,Batiaghata
+2024-03-18,PH019,ORS Sachet,15,Batiaghata
+2024-03-18,PH019,Metronidazole 400mg,11,Batiaghata
+2024-03-18,PH019,Cetirizine 10mg,12,Batiaghata
+2024-03-18,PH019,Amoxicillin 500mg,9,Batiaghata
+2024-03-18,PH019,Azithromycin 500mg,5,Batiaghata
+2024-03-18,PH019,Zinc 20mg (child),12,Batiaghata
+2024-03-18,PH019,Ciprofloxacin 500mg,7,Batiaghata
+2024-03-18,PH019,Antihistamine Syrup,10,Batiaghata
+2024-03-18,PH019,Vitamin C 500mg,21,Batiaghata
+2024-03-18,PH019,Ranitidine 150mg,14,Batiaghata
+2024-03-18,PH019,Antacid Tablet,17,Batiaghata
+2024-03-18,PH019,Insulin (vial),4,Batiaghata
+2024-03-18,PH019,Atorvastatin 10mg,6,Batiaghata
+2024-03-18,PH019,Losartan 50mg,6,Batiaghata
+2024-03-19,PH019,Paracetamol 500mg,39,Batiaghata
+2024-03-19,PH019,ORS Sachet,21,Batiaghata
+2024-03-19,PH019,Metronidazole 400mg,9,Batiaghata
+2024-03-19,PH019,Cetirizine 10mg,13,Batiaghata
+2024-03-19,PH019,Amoxicillin 500mg,9,Batiaghata
+2024-03-19,PH019,Azithromycin 500mg,5,Batiaghata
+2024-03-19,PH019,Zinc 20mg (child),10,Batiaghata
+2024-03-19,PH019,Ciprofloxacin 500mg,8,Batiaghata
+2024-03-19,PH019,Antihistamine Syrup,9,Batiaghata
+2024-03-19,PH019,Vitamin C 500mg,21,Batiaghata
+2024-03-19,PH019,Ranitidine 150mg,18,Batiaghata
+2024-03-19,PH019,Antacid Tablet,16,Batiaghata
+2024-03-19,PH019,Insulin (vial),6,Batiaghata
+2024-03-19,PH019,Atorvastatin 10mg,8,Batiaghata
+2024-03-19,PH019,Losartan 50mg,7,Batiaghata
+2024-03-20,PH019,Paracetamol 500mg,37,Batiaghata
+2024-03-20,PH019,ORS Sachet,18,Batiaghata
+2024-03-20,PH019,Metronidazole 400mg,14,Batiaghata
+2024-03-20,PH019,Cetirizine 10mg,11,Batiaghata
+2024-03-20,PH019,Amoxicillin 500mg,8,Batiaghata
+2024-03-20,PH019,Azithromycin 500mg,7,Batiaghata
+2024-03-20,PH019,Zinc 20mg (child),11,Batiaghata
+2024-03-20,PH019,Ciprofloxacin 500mg,6,Batiaghata
+2024-03-20,PH019,Antihistamine Syrup,12,Batiaghata
+2024-03-20,PH019,Vitamin C 500mg,18,Batiaghata
+2024-03-20,PH019,Ranitidine 150mg,14,Batiaghata
+2024-03-20,PH019,Antacid Tablet,23,Batiaghata
+2024-03-20,PH019,Insulin (vial),5,Batiaghata
+2024-03-20,PH019,Atorvastatin 10mg,8,Batiaghata
+2024-03-20,PH019,Losartan 50mg,7,Batiaghata
+2024-03-21,PH019,Paracetamol 500mg,26,Batiaghata
+2024-03-21,PH019,ORS Sachet,17,Batiaghata
+2024-03-21,PH019,Metronidazole 400mg,9,Batiaghata
+2024-03-21,PH019,Cetirizine 10mg,11,Batiaghata
+2024-03-21,PH019,Amoxicillin 500mg,12,Batiaghata
+2024-03-21,PH019,Azithromycin 500mg,5,Batiaghata
+2024-03-21,PH019,Zinc 20mg (child),12,Batiaghata
+2024-03-21,PH019,Ciprofloxacin 500mg,5,Batiaghata
+2024-03-21,PH019,Antihistamine Syrup,10,Batiaghata
+2024-03-21,PH019,Vitamin C 500mg,26,Batiaghata
+2024-03-21,PH019,Ranitidine 150mg,13,Batiaghata
+2024-03-21,PH019,Antacid Tablet,19,Batiaghata
+2024-03-21,PH019,Insulin (vial),5,Batiaghata
+2024-03-21,PH019,Atorvastatin 10mg,5,Batiaghata
+2024-03-21,PH019,Losartan 50mg,7,Batiaghata
+2024-03-22,PH019,Paracetamol 500mg,41,Batiaghata
+2024-03-22,PH019,ORS Sachet,16,Batiaghata
+2024-03-22,PH019,Metronidazole 400mg,14,Batiaghata
+2024-03-22,PH019,Cetirizine 10mg,13,Batiaghata
+2024-03-22,PH019,Amoxicillin 500mg,12,Batiaghata
+2024-03-22,PH019,Azithromycin 500mg,7,Batiaghata
+2024-03-22,PH019,Zinc 20mg (child),9,Batiaghata
+2024-03-22,PH019,Ciprofloxacin 500mg,7,Batiaghata
+2024-03-22,PH019,Antihistamine Syrup,11,Batiaghata
+2024-03-22,PH019,Vitamin C 500mg,16,Batiaghata
+2024-03-22,PH019,Ranitidine 150mg,18,Batiaghata
+2024-03-22,PH019,Antacid Tablet,22,Batiaghata
+2024-03-22,PH019,Insulin (vial),5,Batiaghata
+2024-03-22,PH019,Atorvastatin 10mg,6,Batiaghata
+2024-03-22,PH019,Losartan 50mg,6,Batiaghata
+2024-03-23,PH019,Paracetamol 500mg,28,Batiaghata
+2024-03-23,PH019,ORS Sachet,15,Batiaghata
+2024-03-23,PH019,Metronidazole 400mg,10,Batiaghata
+2024-03-23,PH019,Cetirizine 10mg,12,Batiaghata
+2024-03-23,PH019,Amoxicillin 500mg,9,Batiaghata
+2024-03-23,PH019,Azithromycin 500mg,6,Batiaghata
+2024-03-23,PH019,Zinc 20mg (child),8,Batiaghata
+2024-03-23,PH019,Ciprofloxacin 500mg,6,Batiaghata
+2024-03-23,PH019,Antihistamine Syrup,11,Batiaghata
+2024-03-23,PH019,Vitamin C 500mg,25,Batiaghata
+2024-03-23,PH019,Ranitidine 150mg,13,Batiaghata
+2024-03-23,PH019,Antacid Tablet,20,Batiaghata
+2024-03-23,PH019,Insulin (vial),5,Batiaghata
+2024-03-23,PH019,Atorvastatin 10mg,7,Batiaghata
+2024-03-23,PH019,Losartan 50mg,9,Batiaghata
+2024-03-24,PH019,Paracetamol 500mg,32,Batiaghata
+2024-03-24,PH019,ORS Sachet,16,Batiaghata
+2024-03-24,PH019,Metronidazole 400mg,14,Batiaghata
+2024-03-24,PH019,Cetirizine 10mg,15,Batiaghata
+2024-03-24,PH019,Amoxicillin 500mg,9,Batiaghata
+2024-03-24,PH019,Azithromycin 500mg,7,Batiaghata
+2024-03-24,PH019,Zinc 20mg (child),11,Batiaghata
+2024-03-24,PH019,Ciprofloxacin 500mg,8,Batiaghata
+2024-03-24,PH019,Antihistamine Syrup,11,Batiaghata
+2024-03-24,PH019,Vitamin C 500mg,20,Batiaghata
+2024-03-24,PH019,Ranitidine 150mg,19,Batiaghata
+2024-03-24,PH019,Antacid Tablet,16,Batiaghata
+2024-03-24,PH019,Insulin (vial),3,Batiaghata
+2024-03-24,PH019,Atorvastatin 10mg,8,Batiaghata
+2024-03-24,PH019,Losartan 50mg,7,Batiaghata
+2024-03-25,PH019,Paracetamol 500mg,37,Batiaghata
+2024-03-25,PH019,ORS Sachet,22,Batiaghata
+2024-03-25,PH019,Metronidazole 400mg,13,Batiaghata
+2024-03-25,PH019,Cetirizine 10mg,13,Batiaghata
+2024-03-25,PH019,Amoxicillin 500mg,11,Batiaghata
+2024-03-25,PH019,Azithromycin 500mg,6,Batiaghata
+2024-03-25,PH019,Zinc 20mg (child),8,Batiaghata
+2024-03-25,PH019,Ciprofloxacin 500mg,5,Batiaghata
+2024-03-25,PH019,Antihistamine Syrup,10,Batiaghata
+2024-03-25,PH019,Vitamin C 500mg,21,Batiaghata
+2024-03-25,PH019,Ranitidine 150mg,17,Batiaghata
+2024-03-25,PH019,Antacid Tablet,15,Batiaghata
+2024-03-25,PH019,Insulin (vial),4,Batiaghata
+2024-03-25,PH019,Atorvastatin 10mg,7,Batiaghata
+2024-03-25,PH019,Losartan 50mg,6,Batiaghata
+2024-03-26,PH019,Paracetamol 500mg,41,Batiaghata
+2024-03-26,PH019,ORS Sachet,13,Batiaghata
+2024-03-26,PH019,Metronidazole 400mg,10,Batiaghata
+2024-03-26,PH019,Cetirizine 10mg,10,Batiaghata
+2024-03-26,PH019,Amoxicillin 500mg,8,Batiaghata
+2024-03-26,PH019,Azithromycin 500mg,5,Batiaghata
+2024-03-26,PH019,Zinc 20mg (child),10,Batiaghata
+2024-03-26,PH019,Ciprofloxacin 500mg,5,Batiaghata
+2024-03-26,PH019,Antihistamine Syrup,11,Batiaghata
+2024-03-26,PH019,Vitamin C 500mg,23,Batiaghata
+2024-03-26,PH019,Ranitidine 150mg,12,Batiaghata
+2024-03-26,PH019,Antacid Tablet,15,Batiaghata
+2024-03-26,PH019,Insulin (vial),4,Batiaghata
+2024-03-26,PH019,Atorvastatin 10mg,5,Batiaghata
+2024-03-26,PH019,Losartan 50mg,9,Batiaghata
+2024-03-27,PH019,Paracetamol 500mg,37,Batiaghata
+2024-03-27,PH019,ORS Sachet,21,Batiaghata
+2024-03-27,PH019,Metronidazole 400mg,12,Batiaghata
+2024-03-27,PH019,Cetirizine 10mg,12,Batiaghata
+2024-03-27,PH019,Amoxicillin 500mg,7,Batiaghata
+2024-03-27,PH019,Azithromycin 500mg,5,Batiaghata
+2024-03-27,PH019,Zinc 20mg (child),7,Batiaghata
+2024-03-27,PH019,Ciprofloxacin 500mg,7,Batiaghata
+2024-03-27,PH019,Antihistamine Syrup,13,Batiaghata
+2024-03-27,PH019,Vitamin C 500mg,18,Batiaghata
+2024-03-27,PH019,Ranitidine 150mg,12,Batiaghata
+2024-03-27,PH019,Antacid Tablet,23,Batiaghata
+2024-03-27,PH019,Insulin (vial),6,Batiaghata
+2024-03-27,PH019,Atorvastatin 10mg,5,Batiaghata
+2024-03-27,PH019,Losartan 50mg,8,Batiaghata
+2024-03-28,PH019,Paracetamol 500mg,36,Batiaghata
+2024-03-28,PH019,ORS Sachet,18,Batiaghata
+2024-03-28,PH019,Metronidazole 400mg,9,Batiaghata
+2024-03-28,PH019,Cetirizine 10mg,17,Batiaghata
+2024-03-28,PH019,Amoxicillin 500mg,11,Batiaghata
+2024-03-28,PH019,Azithromycin 500mg,5,Batiaghata
+2024-03-28,PH019,Zinc 20mg (child),7,Batiaghata
+2024-03-28,PH019,Ciprofloxacin 500mg,8,Batiaghata
+2024-03-28,PH019,Antihistamine Syrup,10,Batiaghata
+2024-03-28,PH019,Vitamin C 500mg,24,Batiaghata
+2024-03-28,PH019,Ranitidine 150mg,18,Batiaghata
+2024-03-28,PH019,Antacid Tablet,24,Batiaghata
+2024-03-28,PH019,Insulin (vial),5,Batiaghata
+2024-03-28,PH019,Atorvastatin 10mg,5,Batiaghata
+2024-03-28,PH019,Losartan 50mg,6,Batiaghata
+2024-03-29,PH019,Paracetamol 500mg,35,Batiaghata
+2024-03-29,PH019,ORS Sachet,14,Batiaghata
+2024-03-29,PH019,Metronidazole 400mg,11,Batiaghata
+2024-03-29,PH019,Cetirizine 10mg,11,Batiaghata
+2024-03-29,PH019,Amoxicillin 500mg,8,Batiaghata
+2024-03-29,PH019,Azithromycin 500mg,5,Batiaghata
+2024-03-29,PH019,Zinc 20mg (child),10,Batiaghata
+2024-03-29,PH019,Ciprofloxacin 500mg,5,Batiaghata
+2024-03-29,PH019,Antihistamine Syrup,8,Batiaghata
+2024-03-29,PH019,Vitamin C 500mg,22,Batiaghata
+2024-03-29,PH019,Ranitidine 150mg,13,Batiaghata
+2024-03-29,PH019,Antacid Tablet,15,Batiaghata
+2024-03-29,PH019,Insulin (vial),4,Batiaghata
+2024-03-29,PH019,Atorvastatin 10mg,8,Batiaghata
+2024-03-29,PH019,Losartan 50mg,9,Batiaghata
+2024-03-30,PH019,Paracetamol 500mg,37,Batiaghata
+2024-03-30,PH019,ORS Sachet,16,Batiaghata
+2024-03-30,PH019,Metronidazole 400mg,13,Batiaghata
+2024-03-30,PH019,Cetirizine 10mg,11,Batiaghata
+2024-03-30,PH019,Amoxicillin 500mg,7,Batiaghata
+2024-03-30,PH019,Azithromycin 500mg,6,Batiaghata
+2024-03-30,PH019,Zinc 20mg (child),9,Batiaghata
+2024-03-30,PH019,Ciprofloxacin 500mg,6,Batiaghata
+2024-03-30,PH019,Antihistamine Syrup,11,Batiaghata
+2024-03-30,PH019,Vitamin C 500mg,23,Batiaghata
+2024-03-30,PH019,Ranitidine 150mg,16,Batiaghata
+2024-03-30,PH019,Antacid Tablet,17,Batiaghata
+2024-03-30,PH019,Insulin (vial),4,Batiaghata
+2024-03-30,PH019,Atorvastatin 10mg,8,Batiaghata
+2024-03-30,PH019,Losartan 50mg,6,Batiaghata

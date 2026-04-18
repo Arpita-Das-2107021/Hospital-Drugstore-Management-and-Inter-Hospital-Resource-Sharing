@@ -10,6 +10,7 @@
     "resourceSharing": {
       "label": "রিসোর্স শেয়ারিং",
       "sharedResources": "শেয়ার করা রিসোর্স",
+      "mySharedResources": "আমার শেয়ার করা রিসোর্স",
       "requestWorkflow": "রিকুয়েস্ট ওয়ার্কফ্লো",
       "visibilityControl": "দৃশ্যমানতা নিয়ন্ত্রণ",
       "requestTemplates": "রিকুয়েস্ট টেমপ্লেট"
@@ -21,8 +22,7 @@
     },
     "trust": {
       "label": "বিশ্বাস ও সুনাম",
-      "hospitalProfiles": "হাসপাতালের প্রোফাইল",
-      "creditLedger": "ক্রেডিট লেজার",
+      "hospitalProfiles": "হেলথকেয়ার প্রোফাইল",
       "performanceTracking": "পারফরম্যান্স ট্র্যাকিং"
     },
     "communication": {
@@ -30,10 +30,10 @@
       "alerts": "সতর্কতা",
       "messages": "বার্তা"
     },
-    "hospitals": "হাসপাতাল",
+    "hospitals": "হেলথকেয়ার সুবিধাসমূহ",
     "admin": {
       "label": "প্রশাসন",
-      "hospitalRegistrations": "হাসপাতাল নিবন্ধন অনুরোধ",
+      "hospitalRegistrations": "হেলথকেয়ার নিবন্ধন অনুরোধ",
       "roles": "ভূমিকা ব্যবস্থাপনা",
       "staffInvitations": "কর্মী আমন্ত্রণ",
       "staff": "কর্মী ব্যবস্থাপনা",

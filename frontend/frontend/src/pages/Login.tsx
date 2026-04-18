@@ -10,6 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { Activity, Shield, Lock, Mail, AlertCircle, Eye, EyeOff } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { resolveDefaultAuthenticatedPath } from '@/lib/accessResolver';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -41,12 +42,7 @@ const Login = () => {
         description: `Welcome back!`,
       });
 
-      // Redirect based on role
-      if (loggedInUser?.role?.toUpperCase() === 'SUPER_ADMIN') {
-        navigate('/admin/hospital-registrations');
-      } else {
-        navigate('/dashboard');
-      }
+      navigate(resolveDefaultAuthenticatedPath(loggedInUser));
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Login failed';
       setError(errorMessage);

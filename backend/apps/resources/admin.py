@@ -1,7 +1,7 @@
 """Resources app admin registrations."""
 from django.contrib import admin
 
-from .models import ResourceCatalog, ResourceInventory, ResourceShare, ResourceTransaction, ResourceType
+from .models import DiscountPolicy, ResourceCatalog, ResourceInventory, ResourceShare, ResourceTransaction, ResourceType
 
 
 @admin.register(ResourceType)
@@ -21,7 +21,15 @@ class ResourceCatalogAdmin(admin.ModelAdmin):
 
 @admin.register(ResourceInventory)
 class ResourceInventoryAdmin(admin.ModelAdmin):
-    list_display = ("catalog_item", "quantity_available", "quantity_reserved", "expiry_date")
+    list_display = ("catalog_item", "quantity_available", "quantity_reserved", "active_discount_policy", "expiry_date")
+    readonly_fields = ("id", "created_at", "updated_at")
+
+
+@admin.register(DiscountPolicy)
+class DiscountPolicyAdmin(admin.ModelAdmin):
+    list_display = ("name", "discount_type", "discount_value", "applies_to_scope", "is_active", "start_at", "end_at")
+    list_filter = ("discount_type", "applies_to_scope", "is_active")
+    search_fields = ("name",)
     readonly_fields = ("id", "created_at", "updated_at")
 
 

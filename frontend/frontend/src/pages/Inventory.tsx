@@ -9,7 +9,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { AlertTriangle, Loader2 } from 'lucide-react';
-import { catalogApi, inventoryApi } from '@/services/api';
+import { catalogApi, hospitalsApi, inventoryApi } from '@/services/api';
 import { useToast } from '@/hooks/use-toast';
 
 interface InventoryRow {
@@ -24,6 +24,35 @@ interface InventoryRow {
   lastUpdated: string;
 }
 
+interface InventoryProfile {
+  inventorySourceType: string;
+  dataSubmissionType: string;
+  needsInventoryDashboard: boolean;
+}
+
+const mapInventoryProfile = (payload: unknown): InventoryProfile | null => {
+  if (!payload || typeof payload !== 'object') {
+    return null;
+  }
+
+  const root = payload as Record<string, unknown>;
+  const data = root.data && typeof root.data === 'object' && !Array.isArray(root.data)
+    ? (root.data as Record<string, unknown>)
+    : root;
+
+  return {
+    inventorySourceType: String(data.inventory_source_type ?? '').toUpperCase(),
+    dataSubmissionType: String(data.data_submission_type ?? '').toLowerCase(),
+    needsInventoryDashboard: Boolean(data.needs_inventory_dashboard),
+  };
+};
+
+const canManageInventoryInApp = (profile: InventoryProfile | null): boolean => {
+  if (!profile) return true;
+  if (profile.dataSubmissionType === 'api' || profile.inventorySourceType === 'API') return false;
+  return profile.needsInventoryDashboard || profile.inventorySourceType === 'DASHBOARD';
+};
+
 const mapInventory = (item: unknown): InventoryRow => {
   const quantityAvailable = Number(item.quantity_available ?? 0);
   const reservedQuantity = Number(item.quantity_reserved ?? 0);
@@ -35,7 +64,7 @@ const mapInventory = (item: unknown): InventoryRow => {
     quantityAvailable,
     reservedQuantity,
     availableStock: quantityAvailable - reservedQuantity,
-    unitPrice: Number.isFinite(Number(item.unit_price)) ? Number(item.unit_price) : null,
+    unitPrice: Number.isFinite(Number(item.price_per_unit)) ? Number(item.price_per_unit) : null,
     lastUpdated: String(item.updated_at || item.last_updated || ''),
   };
 };
@@ -47,6 +76,21 @@ const Inventory = () => {
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
   const [restockById, setRestockById] = useState<Record<string, string>>({});
   const [priceById, setPriceById] = useState<Record<string, string>>({});
+
+  const inventoryProfileQuery = useQuery({
+    queryKey: ['inventory-mode-profile'],
+    queryFn: async () => {
+      try {
+        const response: unknown = await hospitalsApi.getMyHospital();
+        return mapInventoryProfile(response);
+      } catch {
+        return null;
+      }
+    },
+    staleTime: 60_000,
+  });
+
+  const allowInAppInventoryManagement = canManageInventoryInApp(inventoryProfileQuery.data || null);
 
   const inventoryQuery = useQuery({
     queryKey: ['inventory-list'],
@@ -119,13 +163,25 @@ const Inventory = () => {
   }, [inventoryQuery.data]);
 
   return (
-    <AppLayout title="Inventory" subtitle="Manage available, reserved, price, and restock actions">
+    <AppLayout
+      title="Inventory"
+      // subtitle={allowInAppInventoryManagement
+      // ? 'Manage inventory as your primary inventory platform'
+      // : 'Review API-synced inventory data for your facility'} 
+    >
       <div className="space-y-4">
         <Card>
           <CardHeader>
             <CardTitle>Inventory Management</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
+            {!allowInAppInventoryManagement && (
+              <div className="rounded-md border border-blue-300/60 bg-blue-50 p-3 text-sm text-blue-900">
+                API Integration mode is active. Direct in-app restock and price updates are disabled on this page.
+                Inventory remains visible here for operational monitoring.
+              </div>
+            )}
+
             <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-end">
               <div className="flex-1">
                 <Input
@@ -201,10 +257,15 @@ const Inventory = () => {
                                 placeholder="Unit price"
                                 value={priceById[item.id] ?? ''}
                                 onChange={(event) => setPriceById((prev) => ({ ...prev, [item.id]: event.target.value }))}
+                                disabled={!allowInAppInventoryManagement || priceMutation.isPending}
                               />
                               <Button
                                 size="sm"
                                 onClick={() => {
+                                  if (!allowInAppInventoryManagement) {
+                                    toast({ title: 'Action unavailable', description: 'Switch to Inventory Management System mode to edit prices.', variant: 'destructive' });
+                                    return;
+                                  }
                                   if (!item.catalogItemId) {
                                     toast({ title: 'Catalog item missing', variant: 'destructive' });
                                     return;
@@ -216,7 +277,7 @@ const Inventory = () => {
                                   }
                                   priceMutation.mutate({ catalogItemId: item.catalogItemId, price: parsedPrice });
                                 }}
-                                disabled={priceMutation.isPending}
+                                disabled={!allowInAppInventoryManagement || priceMutation.isPending}
                               >
                                 Update
                               </Button>
@@ -233,10 +294,15 @@ const Inventory = () => {
                                 placeholder="Quantity to add"
                                 value={restockById[item.id] ?? ''}
                                 onChange={(event) => setRestockById((prev) => ({ ...prev, [item.id]: event.target.value }))}
+                                disabled={!allowInAppInventoryManagement || restockMutation.isPending}
                               />
                               <Button
                                 size="sm"
                                 onClick={() => {
+                                  if (!allowInAppInventoryManagement) {
+                                    toast({ title: 'Action unavailable', description: 'Switch to Inventory Management System mode to restock in-app.', variant: 'destructive' });
+                                    return;
+                                  }
                                   const parsedQty = Number(restockById[item.id]);
                                   if (!Number.isFinite(parsedQty) || parsedQty <= 0) {
                                     toast({ title: 'Enter a valid restock quantity', variant: 'destructive' });
@@ -244,7 +310,7 @@ const Inventory = () => {
                                   }
                                   restockMutation.mutate({ id: item.id, quantityDelta: parsedQty });
                                 }}
-                                disabled={restockMutation.isPending}
+                                disabled={!allowInAppInventoryManagement || restockMutation.isPending}
                               >
                                 Restock
                               </Button>

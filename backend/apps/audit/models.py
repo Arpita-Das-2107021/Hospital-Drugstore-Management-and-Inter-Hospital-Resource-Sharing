@@ -81,3 +81,43 @@ class AuditLog(models.Model):
         if not self._state.adding:
             raise ValueError("AuditLog entries are immutable.")
         super().save(*args, **kwargs)
+
+
+class AuthorizationAuditLog(models.Model):
+    """Normalized authorization audit trail for RBAC mutations."""
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(
+        "authentication.UserAccount",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="authorization_audit_logs",
+    )
+    action = models.CharField(max_length=100)
+    resource = models.CharField(max_length=150)
+    hospital = models.ForeignKey(
+        "hospitals.Hospital",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="authorization_audit_logs",
+    )
+    metadata = models.JSONField(default=dict, blank=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = "audit_log"
+        indexes = [
+            models.Index(fields=["action", "-timestamp"]),
+            models.Index(fields=["user", "-timestamp"]),
+            models.Index(fields=["hospital", "-timestamp"]),
+        ]
+
+    def __str__(self) -> str:
+        return f"AuthorizationAuditLog({self.action}, user={self.user_id})"
+
+    def save(self, *args, **kwargs):
+        if not self._state.adding:
+            raise ValueError("AuthorizationAuditLog entries are immutable.")
+        super().save(*args, **kwargs)

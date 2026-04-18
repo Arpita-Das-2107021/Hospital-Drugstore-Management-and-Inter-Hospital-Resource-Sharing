@@ -1,21 +1,31 @@
 """Staff app views — thin, delegate to services."""
 import logging
 
+from django.db import models
+from django.shortcuts import get_object_or_404
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny, BasePermission, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from common.permissions.base import IsHospitalAdmin, IsSameHospital, IsSuperAdmin
+from common.permissions.base import (
+    CanManageRolePermissions,
+    CanManageUserRoles,
+    CanViewUserEffectivePermissions,
+    IsHospitalAdmin,
+)
+from common.permissions.runtime import is_platform_operator
 from common.utils.pagination import StandardResultsPagination
 from common.utils.response import error_response, success_response
 
-from .models import Invitation, Role, Staff, UserRole
+from .models import Invitation, Permission, Role, Staff, UserRole
 from .serializers import (
     AcceptInvitationSerializer,
+    AssignRolePermissionsSerializer,
     AssignRoleSerializer,
     InvitationSerializer,
+    PermissionSerializer,
     RoleSerializer,
     SendInvitationSerializer,
     StaffSerializer,
@@ -24,8 +34,11 @@ from .serializers import (
 from .services import (
     accept_invitation,
     assign_role,
+    assign_permissions_to_role,
     create_staff_with_invitation,
+    get_effective_permissions_for_user,
     revoke_invitation,
+    revoke_permissions_from_role,
     revoke_role,
     send_invitation,
     sync_staff_email_with_user_account,
@@ -33,6 +46,39 @@ from .services import (
 )
 
 logger = logging.getLogger("hrsp.staff")
+
+HEALTHCARE_ADMIN_ROLE_NAMES = ("HEALTHCARE_ADMIN", "HOSPITAL_ADMIN")
+SYSTEM_ADMIN_ROLE_NAMES = ("SUPER_ADMIN", "PLATFORM_ADMIN", "SYSTEM_ADMIN")
+
+
+class CanManageInvitations(BasePermission):
+    """Allow invitation access for platform operators and hospital admins."""
+
+    def has_permission(self, request, view):
+        user = request.user
+        if not user or not user.is_authenticated:
+            return False
+
+        # Platform operators can view/manage invitations across hospitals.
+        if is_platform_operator(user, allow_role_fallback=True):
+            return True
+
+        # Healthcare users remain guarded by hospital-admin checks.
+        return IsHospitalAdmin().has_permission(request, view)
+
+
+class CanManageStaffDirectory(BasePermission):
+    """Allow staff directory access for platform operators and hospital admins."""
+
+    def has_permission(self, request, view):
+        user = request.user
+        if not user or not user.is_authenticated:
+            return False
+
+        if is_platform_operator(user, allow_role_fallback=True):
+            return True
+
+        return IsHospitalAdmin().has_permission(request, view)
 
 
 class RoleViewSet(viewsets.ReadOnlyModelViewSet):
@@ -42,18 +88,77 @@ class RoleViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = RoleSerializer
     permission_classes = [IsAuthenticated]
 
+    @action(
+        detail=True,
+        methods=["get", "post", "delete"],
+        url_path="permissions",
+        permission_classes=[IsAuthenticated, CanManageRolePermissions],
+    )
+    def permissions(self, request, pk=None):
+        role = self.get_object()
+
+        if request.method == "GET":
+            permissions_qs = role.permissions.filter(is_active=True).order_by("code")
+            return Response(success_response(data=PermissionSerializer(permissions_qs, many=True).data))
+
+        serializer = AssignRolePermissionsSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        permission_codes = serializer.validated_data["permission_codes"]
+
+        if request.method == "POST":
+            payload = assign_permissions_to_role(
+                role=role,
+                permission_codes=permission_codes,
+                actor=request.user,
+            )
+            return Response(success_response(data=payload), status=status.HTTP_200_OK)
+
+        payload = revoke_permissions_from_role(role=role, permission_codes=permission_codes)
+        return Response(success_response(data=payload), status=status.HTTP_200_OK)
+
+
+class PermissionViewSet(viewsets.ReadOnlyModelViewSet):
+    """List and retrieve available permissions."""
+
+    queryset = Permission.objects.filter(is_active=True).order_by("code")
+    serializer_class = PermissionSerializer
+    permission_classes = [IsAuthenticated]
+
 
 class StaffViewSet(viewsets.ModelViewSet):
     """CRUD for staff profiles within a hospital."""
 
     serializer_class = StaffSerializer
-    permission_classes = [IsAuthenticated, IsHospitalAdmin]
+    permission_classes = [IsAuthenticated, CanManageStaffDirectory]
     pagination_class = StandardResultsPagination
+
+    def _platform_staff_and_healthcare_admin_queryset(self):
+        # Platform scope: staff linked to platform users plus healthcare-admin staff.
+        platform_staff_filter = (
+            models.Q(user_account__platform_role_assignments__platform_role__is_active=True)
+            | models.Q(user_account__context_domain="PLATFORM")
+            | models.Q(user_account__user_roles__role__name__in=SYSTEM_ADMIN_ROLE_NAMES)
+            | models.Q(role__name__in=SYSTEM_ADMIN_ROLE_NAMES)
+        )
+        healthcare_admin_filter = (
+            models.Q(
+                user_account__hospital_role_assignment__hospital_role__name__in=HEALTHCARE_ADMIN_ROLE_NAMES,
+                user_account__hospital_role_assignment__hospital_role__is_active=True,
+            )
+            | models.Q(user_account__user_roles__role__name__in=HEALTHCARE_ADMIN_ROLE_NAMES)
+            | models.Q(role__name__in=HEALTHCARE_ADMIN_ROLE_NAMES)
+        )
+
+        return (
+            Staff.objects.select_related("hospital", "user_account")
+            .filter(platform_staff_filter | healthcare_admin_filter)
+            .distinct()
+        )
 
     def get_queryset(self):
         user = self.request.user
-        if user.roles.filter(name="SUPER_ADMIN").exists():
-            return Staff.objects.select_related("hospital").all()
+        if is_platform_operator(user, allow_role_fallback=True):
+            return self._platform_staff_and_healthcare_admin_queryset()
         if hasattr(user, "staff") and user.staff:
             return Staff.objects.select_related("hospital").filter(hospital=user.staff.hospital)
         return Staff.objects.none()
@@ -134,12 +239,17 @@ class UserRoleViewSet(viewsets.ModelViewSet):
     """Assign/revoke roles for a specific user."""
 
     serializer_class = UserRoleSerializer
-    permission_classes = [IsAuthenticated, IsHospitalAdmin]
+    permission_classes = [IsAuthenticated, CanManageUserRoles]
 
     def get_queryset(self):
         return UserRole.objects.filter(user_id=self.kwargs.get("user_pk")).select_related(
             "role", "hospital"
         )
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset().order_by("-assigned_at")
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(success_response(data=serializer.data))
 
     def create(self, request, *args, **kwargs):
         from django.contrib.auth import get_user_model
@@ -147,7 +257,7 @@ class UserRoleViewSet(viewsets.ModelViewSet):
         UserAccount = get_user_model()
         s = AssignRoleSerializer(data=request.data)
         s.is_valid(raise_exception=True)
-        user = UserAccount.objects.get(pk=self.kwargs["user_pk"])
+        user = get_object_or_404(UserAccount, pk=self.kwargs["user_pk"])
         user_role = assign_role(
             user=user,
             role_id=s.validated_data["role_id"],
@@ -169,16 +279,30 @@ class UserRoleViewSet(viewsets.ModelViewSet):
         return Response(success_response(data={"detail": "Role revoked."}), status=status.HTTP_200_OK)
 
 
+class UserEffectivePermissionsView(APIView):
+    """Return effective permissions for a user based on role assignments."""
+
+    permission_classes = [IsAuthenticated, CanViewUserEffectivePermissions]
+
+    def get(self, request, user_pk):
+        from django.contrib.auth import get_user_model
+
+        UserAccount = get_user_model()
+        user = get_object_or_404(UserAccount, pk=user_pk)
+        payload = get_effective_permissions_for_user(user)
+        return Response(success_response(data=payload), status=status.HTTP_200_OK)
+
+
 class InvitationViewSet(viewsets.ModelViewSet):
     """Manage staff invitations for a hospital."""
 
     serializer_class = InvitationSerializer
-    permission_classes = [IsAuthenticated, IsHospitalAdmin]
+    permission_classes = [IsAuthenticated, CanManageInvitations]
     pagination_class = StandardResultsPagination
 
     def get_queryset(self):
         user = self.request.user
-        if user.roles.filter(name="SUPER_ADMIN").exists():
+        if is_platform_operator(user, allow_role_fallback=True):
             return Invitation.objects.select_related("hospital", "role", "staff").all()
         if hasattr(user, "staff") and user.staff:
             return Invitation.objects.select_related("hospital", "role", "staff").filter(

@@ -1,7 +1,14 @@
 """Notifications app admin."""
 from django.contrib import admin
 
-from .models import BroadcastMessage, BroadcastRecipient, EmergencyBroadcastResponse, Notification
+from .models import (
+    BroadcastChangeVersion,
+    BroadcastClientCursor,
+    BroadcastMessage,
+    BroadcastRecipient,
+    EmergencyBroadcastResponse,
+    Notification,
+)
 
 
 @admin.register(Notification)
@@ -30,3 +37,16 @@ class BroadcastRecipientAdmin(admin.ModelAdmin):
 class EmergencyBroadcastResponseAdmin(admin.ModelAdmin):
     list_display = ("broadcast", "hospital", "can_provide", "quantity_available", "responded_at")
     readonly_fields = ("id", "responded_at")
+
+
+@admin.register(BroadcastChangeVersion)
+class BroadcastChangeVersionAdmin(admin.ModelAdmin):
+    list_display = ("singleton_key", "version", "updated_at")
+    readonly_fields = ("singleton_key", "updated_at")
+
+
+@admin.register(BroadcastClientCursor)
+class BroadcastClientCursorAdmin(admin.ModelAdmin):
+    list_display = ("user", "last_seen_version", "updated_at")
+    search_fields = ("user__email",)
+    readonly_fields = ("updated_at",)

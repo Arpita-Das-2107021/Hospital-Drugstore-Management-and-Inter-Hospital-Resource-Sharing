@@ -2,14 +2,27 @@ import { ReactNode } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Loader2 } from 'lucide-react';
+import { type AccessContext, evaluateAccess } from '@/lib/accessResolver';
+import { hasAnyPlatformRole } from '@/lib/rbac';
 
 interface ProtectedRouteProps {
   children: ReactNode;
-  /** If set, only users whose role matches one of these strings can access the route. */
-  allowedRoles?: string[];
+  requiredPermissions?: string[];
+  requireAllPermissions?: boolean;
+  requiredContext?: AccessContext | AccessContext[];
+  requireHospitalContext?: boolean;
+  requiredPlatformRoles?: string[];
+  fallbackPath?: string;
 }
 
-const ProtectedRoute = ({ children, allowedRoles }: ProtectedRouteProps) => {
+const ProtectedRoute = ({
+  children,
+  requiredPermissions,
+  requireAllPermissions = false,
+  requiredContext,
+  requireHospitalContext = false,
+  requiredPlatformRoles,
+}: ProtectedRouteProps) => {
   const { isAuthenticated, loading, user } = useAuth();
   const location = useLocation();
 
@@ -30,19 +43,53 @@ const ProtectedRoute = ({ children, allowedRoles }: ProtectedRouteProps) => {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
-  // Role-based guard: redirect to appropriate area if role is not allowed
-  if (allowedRoles && allowedRoles.length > 0 && user) {
-    const userRole = user.role?.toUpperCase();
-    const normalised = allowedRoles.map(r => r.toUpperCase());
-    if (!normalised.includes(userRole)) {
-      // SUPER_ADMIN accidentally hitting a hospital route → admin home
-      // Hospital user hitting an admin route → hospital dashboard
-      const fallback = userRole === 'SUPER_ADMIN' ? '/admin/hospital-registrations' : '/dashboard';
-      return <Navigate to={fallback} replace />;
-    }
+  const requiredContextRule = requiredContext || (requireHospitalContext ? 'HEALTHCARE' : undefined);
+
+  const access = evaluateAccess(user, {
+    requiredContext: requiredContextRule,
+    requiredPermissions,
+    requireAllPermissions,
+  });
+
+  const hasRequiredPlatformRole = requiredPlatformRoles?.length
+    ? hasAnyPlatformRole(user, requiredPlatformRoles)
+    : true;
+
+  if (!access.allowed || !hasRequiredPlatformRole) {
+    const expectedContext = access.requiredContexts.length > 0
+      ? access.requiredContexts.join(' or ')
+      : '';
+
+    const contextMessage = !hasRequiredPlatformRole
+      ? 'Your account role is not allowed to access this platform page.'
+      : access.denialReason === 'missing_context' || access.denialReason === 'forbidden_context'
+      ? expectedContext
+        ? `This page requires ${expectedContext} workspace context.`
+        : 'This page is restricted by workspace context.'
+      : 'Your account does not have the required permissions for this page.';
+
+    const contextDetail = !hasRequiredPlatformRole
+      ? `Allowed platform roles: ${(requiredPlatformRoles || []).join(', ')}`
+      : access.denialReason === 'missing_context'
+      ? 'Your account context is not available yet. Sign out and sign in again to refresh your session context.'
+      : access.denialReason === 'forbidden_context'
+        ? `Current context: ${access.context || 'UNKNOWN'}.`
+        : null;
+
+    return (
+      <div className="min-h-screen flex items-center justify-center px-4">
+        <div className="text-center max-w-md space-y-2">
+          <h1 className="text-xl font-semibold">Access denied (403)</h1>
+          <p className="text-sm text-muted-foreground">
+            {contextMessage}
+          </p>
+          {contextDetail ? <p className="text-xs text-muted-foreground">{contextDetail}</p> : null}
+        </div>
+      </div>
+    );
   }
 
-  // User is authenticated (and has the correct role), render the route
+  // User is authenticated and passes configured access constraints.
   return <>{children}</>;
 };
 

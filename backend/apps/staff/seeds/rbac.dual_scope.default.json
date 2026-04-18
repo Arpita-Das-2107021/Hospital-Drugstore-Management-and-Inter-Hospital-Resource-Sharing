@@ -1,0 +1,501 @@
+{
+  "permissions": [
+    {
+      "code": "platform:role.manage",
+      "name": "Manage Platform Roles",
+      "description": "Create and manage platform role definitions."
+    },
+    {
+      "code": "platform:role.assign",
+      "name": "Assign Platform Roles",
+      "description": "Assign and revoke platform roles for users."
+    },
+    {
+      "code": "platform:user.view",
+      "name": "View Platform Users",
+      "description": "View users across hospitals and inspect role mappings."
+    },
+    {
+      "code": "platform:hospital.update.review",
+      "name": "Review Hospital Update Requests",
+      "description": "Review, approve, and reject hospital profile and integration update requests."
+    },
+    {
+      "code": "platform:hospital.offboarding.review",
+      "name": "Review Hospital Offboarding Requests",
+      "description": "Review, approve, and reject hospital offboarding requests."
+    },
+    {
+      "code": "hospital:role.manage",
+      "name": "Manage Hospital Roles",
+      "description": "Create and manage hospital-scoped role definitions."
+    },
+    {
+      "code": "hospital:user_role.assign",
+      "name": "Assign Hospital Roles",
+      "description": "Assign and revoke a user's hospital role."
+    },
+    {
+      "code": "hospital:update_request.submit",
+      "name": "Submit Hospital Update Requests",
+      "description": "Submit hospital identity and integration update requests for administrative review."
+    },
+    {
+      "code": "hospital:update_request.view",
+      "name": "View Hospital Update Requests",
+      "description": "View update request status and review history for your hospital."
+    },
+    {
+      "code": "hospital:offboarding.request",
+      "name": "Request Hospital Offboarding",
+      "description": "Submit hospital offboarding requests for administrative review."
+    },
+    {
+      "code": "hospital:staff.view",
+      "name": "View Hospital Staff",
+      "description": "View staff profiles for the hospital."
+    },
+    {
+      "code": "hospital:staff.manage",
+      "name": "Manage Hospital Staff",
+      "description": "Create and manage hospital staff records and invitations."
+    },
+    {
+      "code": "hospital:staff.supervise",
+      "name": "Supervise Hospital Staff",
+      "description": "Suspend staff, revoke invites, and perform supervisory staff operations."
+    },
+    {
+      "code": "hospital:catalog.view",
+      "name": "View Resource Catalog",
+      "description": "View resource catalog entries for a hospital."
+    },
+    {
+      "code": "hospital:catalog.manage",
+      "name": "Manage Resource Catalog",
+      "description": "Create, update, and delete resource catalog entries."
+    },
+    {
+      "code": "hospital:inventory.view",
+      "name": "View Hospital Inventory",
+      "description": "View hospital inventory and catalog data."
+    },
+    {
+      "code": "hospital:inventory.edit",
+      "name": "Edit Hospital Inventory",
+      "description": "Edit hospital inventory quantities and item metadata."
+    },
+    {
+      "code": "hospital:inventory.manage",
+      "name": "Manage Hospital Inventory",
+      "description": "Manage hospital inventory lifecycle operations."
+    },
+    {
+      "code": "hospital:inventory.supervise",
+      "name": "Supervise Hospital Inventory",
+      "description": "Perform supervisory inventory controls and policy updates."
+    },
+    {
+      "code": "hospital:inventory.import",
+      "name": "Import Inventory Data",
+      "description": "Validate and commit inventory imports from CSV and integration pipelines."
+    },
+    {
+      "code": "hospital:sales.view",
+      "name": "View Sales Records",
+      "description": "View operational sales resources and sale records."
+    },
+    {
+      "code": "hospital:sales.manage",
+      "name": "Manage Sales Records",
+      "description": "Create and manage operational sales records."
+    },
+    {
+      "code": "hospital:resource_share.view",
+      "name": "View Resource Shares",
+      "description": "View resource sharing offers across hospitals."
+    },
+    {
+      "code": "hospital:resource_share.manage",
+      "name": "Manage Resource Shares",
+      "description": "Create and update resource sharing offers."
+    },
+    {
+      "code": "hospital:resource_share.supervise",
+      "name": "Supervise Resource Shares",
+      "description": "Close or force-update resource sharing offers."
+    },
+    {
+      "code": "hospital:request.view",
+      "name": "View Hospital Requests",
+      "description": "View hospital resource requests."
+    },
+    {
+      "code": "hospital:request.create",
+      "name": "Create Hospital Requests",
+      "description": "Create hospital resource requests."
+    },
+    {
+      "code": "hospital:request.approve",
+      "name": "Approve Hospital Requests",
+      "description": "Approve hospital resource requests."
+    },
+    {
+      "code": "hospital:request.supervise",
+      "name": "Supervise Hospital Requests",
+      "description": "Perform privileged request actions including cancellation and override transitions."
+    },
+    {
+      "code": "hospital:request.dispatch",
+      "name": "Dispatch Requests",
+      "description": "Dispatch approved resource requests for transport workflows."
+    },
+    {
+      "code": "hospital:request.reserve",
+      "name": "Reserve Request Inventory",
+      "description": "Reserve supplier inventory for approved requests."
+    },
+    {
+      "code": "hospital:request.transfer.confirm",
+      "name": "Confirm Transfers",
+      "description": "Confirm transfer completion and receiving quantities."
+    },
+    {
+      "code": "hospital:request.delivery.confirm",
+      "name": "Confirm Deliveries",
+      "description": "Confirm request deliveries via token-based handover workflows."
+    },
+    {
+      "code": "hospital:request.return.verify",
+      "name": "Verify Request Returns",
+      "description": "Verify request return flows and return tokens."
+    },
+    {
+      "code": "hospital:request.expire",
+      "name": "Expire Requests",
+      "description": "Run request expiration workflows for overdue requests."
+    },
+    {
+      "code": "share.request.create",
+      "name": "Create Share Requests (Legacy)",
+      "description": "Legacy compatibility permission for creating resource share requests."
+    },
+    {
+      "code": "share.request.approve",
+      "name": "Approve Share Requests (Legacy)",
+      "description": "Legacy compatibility permission for approving resource share requests."
+    },
+    {
+      "code": "inventory.batch.view",
+      "name": "View Inventory Batches (Legacy)",
+      "description": "Legacy compatibility permission for viewing inventory batch details."
+    },
+    {
+      "code": "inventory.cost.view",
+      "name": "View Inventory Costs (Legacy)",
+      "description": "Legacy compatibility permission for viewing inventory costs."
+    },
+    {
+      "code": "hospital:transport.view",
+      "name": "View Transport Operations",
+      "description": "View shipment, dispatch, and transport tracking operations."
+    },
+    {
+      "code": "hospital:transport.create",
+      "name": "Create Transport Operations",
+      "description": "Create shipment and transport records."
+    },
+    {
+      "code": "hospital:transport.update",
+      "name": "Update Transport Operations",
+      "description": "Update shipment status and transport operation metadata."
+    },
+    {
+      "code": "hospital:transport.assign",
+      "name": "Assign Transport Resources",
+      "description": "Assign riders and related transport resources."
+    },
+    {
+      "code": "hospital:transport.track",
+      "name": "Track Transport Operations",
+      "description": "Add and view shipment tracking events."
+    },
+    {
+      "code": "hospital:communication.view",
+      "name": "View Hospital Communications",
+      "description": "View direct and group hospital communication threads."
+    },
+    {
+      "code": "hospital:communication.manage",
+      "name": "Manage Hospital Communications",
+      "description": "Create conversations, send messages, and manage communication templates."
+    },
+    {
+      "code": "hospital:communication.supervise",
+      "name": "Supervise Hospital Communications",
+      "description": "Perform supervisory communication actions including participant and template governance."
+    },
+    {
+      "code": "communication:chat.view",
+      "name": "View Chat Conversations",
+      "description": "View chat conversations, message history, and unread counters."
+    },
+    {
+      "code": "communication:conversation.view",
+      "name": "View Conversation Module",
+      "description": "View communication conversations, participants, and messages."
+    },
+    {
+      "code": "communication:notification.view",
+      "name": "View Notifications",
+      "description": "View user notifications."
+    },
+    {
+      "code": "hospital:payment.view",
+      "name": "View Payment Transactions",
+      "description": "View payment transaction history and states for hospital requests."
+    },
+    {
+      "code": "hospital:payment.initiate",
+      "name": "Initiate Payments",
+      "description": "Initiate payment transactions for payable requests."
+    },
+    {
+      "code": "hospital:payment.confirm",
+      "name": "Confirm Payments",
+      "description": "Confirm pending payment transactions."
+    },
+    {
+      "code": "hospital:payment.refund.initiate",
+      "name": "Initiate Refunds",
+      "description": "Initiate refunds for completed payment transactions."
+    },
+    {
+      "code": "hospital:payment.refund.confirm",
+      "name": "Confirm Refunds",
+      "description": "Confirm initiated refunds."
+    },
+    {
+      "code": "hospital:payment.report.view",
+      "name": "View Payment Reports",
+      "description": "Access payment reporting summaries for reconciliation and audits."
+    },
+    {
+      "code": "hospital:payment.reconcile.manage",
+      "name": "Manage Payment Reconciliation",
+      "description": "Run and manage payment reconciliation workflows."
+    },
+    {
+      "code": "hospital:analytics.view",
+      "name": "View Hospital Analytics",
+      "description": "View analytics and credit ledger data for the hospital."
+    },
+    {
+      "code": "hospital:broadcast.manage",
+      "name": "Manage Hospital Broadcasts",
+      "description": "Create and manage emergency broadcasts and responses."
+    },
+    {
+      "code": "reports:analytics.view",
+      "name": "View Analytics Reports",
+      "description": "View platform analytics reports and aggregate trend insights."
+    },
+    {
+      "code": "reports:payment.view",
+      "name": "View Payment Reports",
+      "description": "View payment reporting dashboards and settlement summaries."
+    },
+    {
+      "code": "ml:forecast.view",
+      "name": "View Forecast Results",
+      "description": "View model forecast outputs for authorized facilities."
+    },
+    {
+      "code": "ml:outbreak.view",
+      "name": "View Outbreak Results",
+      "description": "View model outbreak outputs for authorized facilities."
+    },
+    {
+      "code": "ml:suggestion.view",
+      "name": "View ML Suggestions",
+      "description": "View ML-generated request and transfer suggestions."
+    },
+    {
+      "code": "ml:job.view",
+      "name": "View ML Jobs",
+      "description": "View ML job status, events, and result metadata."
+    },
+    {
+      "code": "ml:job.manage",
+      "name": "Manage ML Jobs",
+      "description": "Create, retry, and cancel ML orchestration jobs."
+    },
+    {
+      "code": "ml:schedule.manage",
+      "name": "Manage ML Schedules",
+      "description": "Create, update, activate, and deactivate ML schedules."
+    },
+    {
+      "code": "ml:facility.settings.manage",
+      "name": "Manage ML Facility Settings",
+      "description": "Manage facility-level ML thresholds and tuning settings."
+    },
+    {
+      "code": "ml:dataset.review",
+      "name": "Review ML Training Datasets",
+      "description": "Review, approve, and reject generated ML training datasets."
+    },
+    {
+      "code": "ml:training.manage",
+      "name": "Manage ML Training Jobs",
+      "description": "Create and monitor ML training jobs for model lifecycle workflows."
+    },
+    {
+      "code": "ml:model_version.manage",
+      "name": "Manage ML Model Versions",
+      "description": "Review and approve ML model versions before activation."
+    },
+    {
+      "code": "ml:model_version.activate",
+      "name": "Activate ML Model Versions",
+      "description": "Activate, deactivate, and rollback active prediction model versions."
+    },
+    {
+      "code": "ml:model_version.rollback",
+      "name": "Rollback ML Model Versions",
+      "description": "Rollback to a previously approved ML model version."
+    },
+    {
+      "code": "auth:permission.effective.view",
+      "name": "View Effective Permissions",
+      "description": "Inspect a user's effective permission union across all scopes."
+    }
+  ],
+  "platform_roles": [
+    {
+      "name": "PLATFORM_ADMIN",
+      "description": "Platform-level administration rights.",
+      "permissions": [
+        "platform:role.manage",
+        "platform:role.assign",
+        "platform:user.view",
+        "platform:hospital.update.review",
+        "platform:hospital.offboarding.review",
+        "reports:analytics.view",
+        "reports:payment.view",
+        "auth:permission.effective.view"
+      ]
+    },
+    {
+      "name": "ML_ENGINEER",
+      "description": "ML engineer role for dataset review and training operations.",
+      "permissions": [
+        "ml:forecast.view",
+        "ml:outbreak.view",
+        "ml:suggestion.view",
+        "ml:job.view",
+        "ml:job.manage",
+        "ml:schedule.manage",
+        "ml:facility.settings.manage",
+        "ml:dataset.review",
+        "ml:training.manage",
+        "ml:model_version.manage"
+      ]
+    },
+    {
+      "name": "ML_ADMIN",
+      "description": "ML admin role for model governance and activation.",
+      "permissions": [
+        "ml:forecast.view",
+        "ml:outbreak.view",
+        "ml:suggestion.view",
+        "ml:job.view",
+        "ml:job.manage",
+        "ml:schedule.manage",
+        "ml:facility.settings.manage",
+        "ml:dataset.review",
+        "ml:training.manage",
+        "ml:model_version.manage",
+        "ml:model_version.activate",
+        "ml:model_version.rollback"
+      ]
+    },
+    {
+      "name": "SUPER_ADMIN",
+      "description": "Full platform access.",
+      "permissions": [
+        "*"
+      ]
+    }
+  ],
+  "hospital_role_templates": [
+    {
+      "name": "HEALTHCARE_ADMIN",
+      "description": "Administrative control within a single hospital.",
+      "permissions": [
+        "hospital:role.manage",
+        "hospital:user_role.assign",
+        "hospital:update_request.submit",
+        "hospital:update_request.view",
+        "hospital:offboarding.request",
+        "hospital:staff.view",
+        "hospital:staff.manage",
+        "hospital:staff.supervise",
+        "hospital:catalog.view",
+        "hospital:catalog.manage",
+        "hospital:inventory.view",
+        "hospital:inventory.edit",
+        "hospital:inventory.manage",
+        "hospital:inventory.supervise",
+        "hospital:inventory.import",
+        "hospital:sales.view",
+        "hospital:sales.manage",
+        "hospital:resource_share.view",
+        "hospital:resource_share.manage",
+        "hospital:resource_share.supervise",
+        "hospital:request.view",
+        "hospital:request.create",
+        "hospital:request.approve",
+        "hospital:request.supervise",
+        "hospital:request.dispatch",
+        "hospital:request.reserve",
+        "hospital:request.transfer.confirm",
+        "hospital:request.delivery.confirm",
+        "hospital:request.return.verify",
+        "hospital:request.expire",
+        "share.request.create",
+        "share.request.approve",
+        "inventory.batch.view",
+        "inventory.cost.view",
+        "hospital:transport.view",
+        "hospital:transport.create",
+        "hospital:transport.update",
+        "hospital:transport.assign",
+        "hospital:transport.track",
+        "hospital:communication.view",
+        "hospital:communication.manage",
+        "hospital:communication.supervise",
+        "hospital:payment.view",
+        "hospital:payment.initiate",
+        "hospital:payment.confirm",
+        "hospital:payment.refund.initiate",
+        "hospital:payment.refund.confirm",
+        "hospital:payment.report.view",
+        "hospital:payment.reconcile.manage",
+        "hospital:analytics.view",
+        "hospital:broadcast.manage",
+        "auth:permission.effective.view"
+      ]
+    },
+    {
+      "name": "STAFF",
+      "description": "Baseline non-admin hospital staff access limited to read-only inventory, share visibility, and chat.",
+      "permissions": [
+        "hospital:inventory.view",
+        "hospital:resource_share.view",
+        "communication:chat.view",
+        "communication:conversation.view"
+      ]
+    }
+  ]
+}

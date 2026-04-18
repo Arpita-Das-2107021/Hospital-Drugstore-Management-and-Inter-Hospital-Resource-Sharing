@@ -193,7 +193,7 @@ export const PermissionMatrix = ({ permissions: rolePermissions }: { permissions
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
         {roles.map(role => {
           const Icon = role.icon;
-          const totalPermissions = permissions
+          const totalPermissions = localPermissions
             .filter(p => p.role === role.id)
             .reduce((acc, p) => acc + p.actions.length, 0);
           
@@ -244,13 +244,13 @@ export const PermissionMatrix = ({ permissions: rolePermissions }: { permissions
                 </div>
               </CollapsibleTrigger>
               <CollapsibleContent>
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto md:overflow-visible">
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="border-b bg-muted/30">
                         <th className="p-3 text-left font-medium">Action</th>
                         {roles.map(role => (
-                          <th key={role.id} className="p-3 text-center font-medium min-w-[100px]">
+                          <th key={role.id} className="p-3 text-center font-medium">
                             {role.label.split(' ')[0]}
                           </th>
                         ))}
@@ -295,7 +295,7 @@ export const PermissionMatrix = ({ permissions: rolePermissions }: { permissions
       <div className="flex flex-wrap gap-2">
         <Badge variant="outline" className="gap-1">
           <Lock className="h-3 w-3" />
-          Admin permissions locked
+          Supervise permissions locked
         </Badge>
         <Badge variant="outline" className="gap-1">
           <Unlock className="h-3 w-3" />

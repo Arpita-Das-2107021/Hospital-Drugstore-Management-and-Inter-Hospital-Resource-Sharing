@@ -1,0 +1,5 @@
+hospital_slug,hospital_name,healthcare_id,healthcare_name,source_upazila,sales_zone_upazila,auth_type,auth_details
+city-general,City General Hospital,PH000,Asha Healthcare,Joypurhat Sadar,Khulna Sadar,api_key,X-API-Key: city-general-api-key
+metro-medical,Metro Medical Center,PH005,Akbar Medicine,Akkelpur,Sonadanga,bearer,Authorization: Bearer metro-medical-bearer-token
+sunrise-health,Sunrise Health Hospital,PH011,New Life Healthcare,Khetlal,Daulatpur,basic,"username=sunrise, password=password123"
+green-valley,Green Valley Clinic,PH014,Al-Shifa Medicine,Panchbibi,Khalishpur,none,No authentication

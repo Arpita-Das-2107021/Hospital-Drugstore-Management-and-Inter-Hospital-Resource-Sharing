@@ -75,7 +75,9 @@ const ShipmentTrackingView = () => {
   }, [trackingQuery.data]);
 
   return (
-    <AppLayout title="Shipment Tracking View" subtitle="Track shipment status and add logistics timeline events">
+    <AppLayout title="Shipment Tracking View"
+      // subtitle="Track shipment status and add logistics timeline events"
+    >
       {!shipmentId ? (
         <Card>
           <CardContent className="py-8 text-muted-foreground">No shipment selected.</CardContent>

@@ -2,7 +2,17 @@
 from django.utils import timezone
 from rest_framework import serializers
 
-from .models import Invitation, Role, Staff, UserRole
+from .models import (
+    HospitalRole,
+    Invitation,
+    Permission,
+    PlatformRole,
+    Role,
+    Staff,
+    UserHospitalRole,
+    UserPlatformRole,
+    UserRole,
+)
 
 
 class RoleSerializer(serializers.ModelSerializer):
@@ -10,6 +20,70 @@ class RoleSerializer(serializers.ModelSerializer):
         model = Role
         fields = ("id", "name", "description", "created_at")
         read_only_fields = ("id", "created_at")
+
+
+class PermissionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Permission
+        fields = ("id", "code", "name", "description", "is_active", "created_at", "updated_at")
+        read_only_fields = ("id", "created_at", "updated_at")
+
+
+class PlatformRoleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PlatformRole
+        fields = ("id", "name", "description", "is_active", "created_at", "updated_at")
+        read_only_fields = ("id", "created_at", "updated_at")
+
+
+class HospitalRoleSerializer(serializers.ModelSerializer):
+    hospital_name = serializers.ReadOnlyField(source="hospital.name")
+
+    class Meta:
+        model = HospitalRole
+        fields = (
+            "id",
+            "hospital",
+            "hospital_name",
+            "name",
+            "description",
+            "is_active",
+            "created_at",
+            "updated_at",
+        )
+        read_only_fields = ("id", "hospital_name", "created_at", "updated_at")
+
+
+class UserPlatformRoleSerializer(serializers.ModelSerializer):
+    platform_role_name = serializers.ReadOnlyField(source="platform_role.name")
+
+    class Meta:
+        model = UserPlatformRole
+        fields = ("id", "user", "platform_role", "platform_role_name", "assigned_at")
+        read_only_fields = ("id", "platform_role_name", "assigned_at")
+
+
+class UserHospitalRoleSerializer(serializers.ModelSerializer):
+    hospital_role_name = serializers.ReadOnlyField(source="hospital_role.name")
+    hospital_name = serializers.ReadOnlyField(source="hospital.name")
+
+    class Meta:
+        model = UserHospitalRole
+        fields = (
+            "id",
+            "user",
+            "hospital_role",
+            "hospital_role_name",
+            "hospital",
+            "hospital_name",
+            "assigned_at",
+        )
+        read_only_fields = (
+            "id",
+            "hospital_role_name",
+            "hospital_name",
+            "assigned_at",
+        )
 
 
 class StaffSerializer(serializers.ModelSerializer):
@@ -72,6 +146,23 @@ class UserRoleSerializer(serializers.ModelSerializer):
 class AssignRoleSerializer(serializers.Serializer):
     role_id = serializers.UUIDField()
     hospital_id = serializers.UUIDField(required=False)
+
+
+class AssignRolePermissionsSerializer(serializers.Serializer):
+    permission_codes = serializers.ListField(
+        child=serializers.RegexField(
+            r"^(?:[A-Z][A-Z0-9_]*|[a-z][a-z0-9]*(?::[a-z][a-z0-9]*)?(?:\.[a-z][a-z0-9]*)*)$"
+        ),
+        allow_empty=False,
+    )
+
+
+class AssignPlatformRoleSerializer(serializers.Serializer):
+    platform_role_id = serializers.UUIDField()
+
+
+class SetUserHospitalRoleSerializer(serializers.Serializer):
+    hospital_role_id = serializers.UUIDField()
 
 
 class InvitationSerializer(serializers.ModelSerializer):

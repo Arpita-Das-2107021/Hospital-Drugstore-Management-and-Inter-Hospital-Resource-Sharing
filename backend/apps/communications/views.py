@@ -3,14 +3,16 @@ import logging
 
 from django.contrib.auth import get_user_model
 from django.db.models import Count
-from rest_framework import status, viewsets
+from rest_framework import serializers, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
+from common.permissions.base import CanManageHospitalCommunication
 from common.utils.pagination import StandardResultsPagination
 from common.utils.response import success_response
+from apps.chat.services import get_unread_count, get_unread_counts_for_conversations
 
 from .models import Conversation, MessageTemplate
 from .serializers import (
@@ -25,9 +27,21 @@ from .services import create_conversation, mark_conversation_read, send_message
 logger = logging.getLogger("hrsp.communications")
 
 
+class ConversationReadPointerSerializer(serializers.Serializer):
+    last_read_message_id = serializers.UUIDField(required=False)
+    message_id = serializers.UUIDField(required=False)
+
+    def validate(self, attrs):
+        last_read_message_id = attrs.get("last_read_message_id")
+        message_id = attrs.get("message_id")
+        if last_read_message_id and message_id and last_read_message_id != message_id:
+            raise serializers.ValidationError("Provide only one read pointer value.")
+        return attrs
+
+
 class ConversationViewSet(viewsets.ModelViewSet):
     serializer_class = ConversationSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, CanManageHospitalCommunication]
     pagination_class = StandardResultsPagination
 
     def get_queryset(self):
@@ -43,12 +57,29 @@ class ConversationViewSet(viewsets.ModelViewSet):
     def list(self, request, *args, **kwargs):
         qs = self.filter_queryset(self.get_queryset())
         page = self.paginate_queryset(qs)
+        target_items = list(page) if page is not None else list(qs)
+
+        unread_count_map = get_unread_counts_for_conversations(
+            user=request.user,
+            conversation_ids=[item.id for item in target_items],
+        )
+        serializer_context = self.get_serializer_context()
+        serializer_context["unread_count_map"] = unread_count_map
+        serializer = self.get_serializer(target_items, many=True, context=serializer_context)
+
         if page is not None:
-            return self.get_paginated_response(self.get_serializer(page, many=True).data)
-        return Response(success_response(data=self.get_serializer(qs, many=True).data))
+            return self.get_paginated_response(serializer.data)
+        return Response(success_response(data=serializer.data))
 
     def retrieve(self, request, *args, **kwargs):
-        return Response(success_response(data=self.get_serializer(self.get_object()).data))
+        conversation = self.get_object()
+        unread_count_map = get_unread_counts_for_conversations(
+            user=request.user,
+            conversation_ids=[conversation.id],
+        )
+        serializer_context = self.get_serializer_context()
+        serializer_context["unread_count_map"] = unread_count_map
+        return Response(success_response(data=self.get_serializer(conversation, context=serializer_context).data))
 
     def create(self, request, *args, **kwargs):
         from apps.staff.models import Staff
@@ -137,20 +168,39 @@ class ConversationViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=["post"], url_path="read")
     def mark_read(self, request, pk=None):
         conversation = self.get_object()
-        mark_conversation_read(conversation, request.user)
-        return Response(success_response(data={"detail": "Marked as read."}))
+        serializer = ConversationReadPointerSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        last_read_message_id = serializer.validated_data.get("last_read_message_id")
+        if not last_read_message_id:
+            last_read_message_id = serializer.validated_data.get("message_id")
+
+        participant = mark_conversation_read(
+            conversation,
+            request.user,
+            last_read_message_id=last_read_message_id,
+        )
+        unread_count = get_unread_count(conversation=conversation, user=request.user)
+
+        return Response(
+            success_response(
+                data={
+                    "detail": "Marked as read.",
+                    "conversation_id": str(conversation.id),
+                    "last_read_message_id": (
+                        str(participant.last_read_message_id) if participant.last_read_message_id else None
+                    ),
+                    "last_read_at": participant.last_read_at.isoformat() if participant.last_read_at else None,
+                    "unread_count": unread_count,
+                }
+            )
+        )
 
     @action(detail=True, methods=["get"], url_path="unread-count")
     def unread_count(self, request, pk=None):
         conversation = self.get_object()
-        participant = conversation.participants.filter(user=request.user).first()
-        if not participant:
-            raise ValidationError({"detail": "Not a participant."})
-
-        unread_messages = conversation.messages.exclude(sender=request.user)
-        if participant.last_read_at:
-            unread_messages = unread_messages.filter(created_at__gt=participant.last_read_at)
-        return Response(success_response(data={"conversation_id": str(conversation.id), "unread_count": unread_messages.count()}))
+        unread_count = get_unread_count(conversation=conversation, user=request.user)
+        return Response(success_response(data={"conversation_id": str(conversation.id), "unread_count": unread_count}))
 
     @action(detail=True, methods=["post"], url_path="participants/add")
     def add_participants(self, request, pk=None):
@@ -214,7 +264,7 @@ class ConversationViewSet(viewsets.ModelViewSet):
 
 class MessageTemplateViewSet(viewsets.ModelViewSet):
     serializer_class = MessageTemplateSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, CanManageHospitalCommunication]
     pagination_class = StandardResultsPagination
 
     def get_queryset(self):

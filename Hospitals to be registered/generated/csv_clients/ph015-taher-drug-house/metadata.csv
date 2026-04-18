@@ -1,0 +1,2 @@
+hospital_id,hospital_name,source_healthcare_id,source_healthcare_name,source_upazila,sales_zone_upazila,lat,lon,data_start_date,data_end_date,source_sales_rows,source_medicine_count
+HOSP-PH015,Taher Drug House Hospital,PH015,Taher Drug House,Panchbibi,Khalishpur,25.061142565465488,89.14759463573388,2024-01-01,2024-03-30,1350,15

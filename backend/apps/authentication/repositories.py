@@ -7,7 +7,7 @@ from .models import PasswordResetToken, UserAccount
 class PasswordResetTokenRepository:
     @staticmethod
     def get_active_user_by_email(email: str) -> UserAccount | None:
-        return UserAccount.objects.filter(email=email, is_active=True).first()
+        return UserAccount.objects.filter(email__iexact=email, is_active=True).first()
 
     @staticmethod
     def invalidate_user_tokens(user: UserAccount) -> int:

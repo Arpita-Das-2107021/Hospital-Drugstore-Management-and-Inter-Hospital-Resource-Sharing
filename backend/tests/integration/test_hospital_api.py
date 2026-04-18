@@ -111,11 +111,17 @@ class TestHospitalUpdate:
     def test_hospital_admin_can_update(self, auth_client, hospital):
         response = auth_client.patch(hospital_url(hospital.id), {"city": "UpdatedCity"}, format="json")
         assert response.status_code == status.HTTP_200_OK
-        assert response.json()["data"]["city"] == "UpdatedCity"
+        payload = response.json()["data"]
+        assert payload["requiresApproval"] is True
+        assert payload["status"] == "Pending"
+        assert "pending_update_request" in payload
+
+        hospital.refresh_from_db()
+        assert hospital.city != "UpdatedCity"
 
     def test_super_admin_can_update(self, super_admin_client, hospital):
         response = super_admin_client.patch(hospital_url(hospital.id), {"city": "SACityUpdate"}, format="json")
-        assert response.status_code == status.HTTP_200_OK
+        assert response.status_code == status.HTTP_403_FORBIDDEN
 
 
 @pytest.mark.django_db

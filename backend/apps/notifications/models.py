@@ -61,6 +61,7 @@ class BroadcastMessage(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=300)
     message = models.TextField()
+    location = models.JSONField(default=dict, blank=True)
     scope = models.CharField(max_length=20, choices=Scope.choices, default=Scope.ALL)
     priority = models.CharField(max_length=20, choices=Priority.choices, default=Priority.NORMAL)
     allow_response = models.BooleanField(default=False)
@@ -124,6 +125,38 @@ class BroadcastRecipient(models.Model):
 
     def __str__(self) -> str:
         return f"BroadcastRecipient({self.broadcast_id}, {self.hospital_id}, read={self.is_read})"
+
+
+class BroadcastChangeVersion(models.Model):
+    """Singleton tracker for global broadcast state version."""
+
+    singleton_key = models.CharField(max_length=32, unique=True, default="global")
+    version = models.BigIntegerField(default=0)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "notifications_broadcast_change_version"
+
+    def __str__(self) -> str:
+        return f"BroadcastChangeVersion(key={self.singleton_key}, version={self.version})"
+
+
+class BroadcastClientCursor(models.Model):
+    """Per-user checkpoint of the latest broadcast version acknowledged by client fetch."""
+
+    user = models.OneToOneField(
+        "authentication.UserAccount",
+        on_delete=models.CASCADE,
+        related_name="broadcast_client_cursor",
+    )
+    last_seen_version = models.BigIntegerField(default=0)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "notifications_broadcast_client_cursor"
+
+    def __str__(self) -> str:
+        return f"BroadcastClientCursor(user={self.user_id}, last_seen={self.last_seen_version})"
 
 
 class EmergencyBroadcastResponse(models.Model):

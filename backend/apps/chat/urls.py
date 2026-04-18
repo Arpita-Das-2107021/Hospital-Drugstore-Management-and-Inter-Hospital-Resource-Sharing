@@ -5,14 +5,22 @@ from .views import (
     ChatConversationAuditEventsAPIView,
     ChatConversationExportAPIView,
     ChatConversationMessageHistoryAPIView,
+    ChatConversationMessageSyncAPIView,
+    ChatConversationReadAPIView,
     ChatConversationUnreadCountAPIView,
     ChatDeleteConversationAPIView,
     ChatDeleteMessageAPIView,
+    ChatGlobalUnreadCountAPIView,
     DirectConversationListAPIView,
     DirectConversationOpenAPIView,
 )
 
 urlpatterns = [
+    path(
+        "unread-count/",
+        ChatGlobalUnreadCountAPIView.as_view(),
+        name="chat-global-unread-count",
+    ),
     path(
         "direct-conversations/",
         DirectConversationListAPIView.as_view(),
@@ -29,9 +37,19 @@ urlpatterns = [
         name="chat-conversation-message-history",
     ),
     path(
+        "conversations/<uuid:conversation_id>/messages/sync/",
+        ChatConversationMessageSyncAPIView.as_view(),
+        name="chat-conversation-message-sync",
+    ),
+    path(
         "conversations/<uuid:conversation_id>/unread-count/",
         ChatConversationUnreadCountAPIView.as_view(),
         name="chat-conversation-unread-count",
+    ),
+    path(
+        "conversations/<uuid:conversation_id>/read/",
+        ChatConversationReadAPIView.as_view(),
+        name="chat-conversation-read",
     ),
     path(
         "conversations/<uuid:conversation_id>/messages/delete/",

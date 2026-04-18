@@ -95,13 +95,15 @@ def send_broadcast_task(broadcast_id: str, send_email: bool = False) -> dict:
                 users_qs = UserAccount.objects.filter(
                     is_active=True,
                     staff__isnull=False,
-                    roles__name="HOSPITAL_ADMIN",
+                    hospital_role_assignment__hospital_role__name="HEALTHCARE_ADMIN",
+                    hospital_role_assignment__hospital_role__is_active=True,
                 )
             else:
                 users_qs = UserAccount.objects.filter(
                     staff__hospital__in=broadcast.target_hospitals.all(),
                     is_active=True,
-                    roles__name="HOSPITAL_ADMIN",
+                    hospital_role_assignment__hospital_role__name="HEALTHCARE_ADMIN",
+                    hospital_role_assignment__hospital_role__is_active=True,
                 )
 
             emails = list(users_qs.exclude(email__isnull=True).exclude(email="").values_list("email", flat=True).distinct())

@@ -24,8 +24,8 @@ urlpatterns = [
         name="metro_medical_staff",
     ),
     path(
-        "mock-hospitals/metro-medical/api/token",
-        views.token,
-        name="metro_medical_token",
+        "mock-hospitals/metro-medical/api/sales",
+        views.sales,
+        name="metro_medical_sales",
     ),
 ]

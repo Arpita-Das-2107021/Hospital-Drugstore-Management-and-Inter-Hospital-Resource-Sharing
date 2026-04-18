@@ -1,110 +1,66 @@
+import csv
+import json
+from functools import lru_cache
+from pathlib import Path
+
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET
 
 API_KEY = "city-general-api-key"
-
-RESOURCES = [
-    {
-        "code": "MED-PCM-500",
-        "name": "Paracetamol 500mg",
-        "category": "medicine",
-        "quantity_available": 1600,
-        "unit": "tablet",
-        "last_updated": "2026-03-15T11:50:00Z",
-    },
-    {
-        "code": "MED-CTR-1G",
-        "name": "Ceftriaxone 1g Injection",
-        "category": "medicine",
-        "quantity_available": 420,
-        "unit": "vial",
-        "last_updated": "2026-03-15T11:50:00Z",
-    },
-    {
-        "code": "EQP-VNT-ICU",
-        "name": "ICU Ventilator - Servo Air",
-        "category": "equipment",
-        "quantity_available": 14,
-        "unit": "unit",
-        "last_updated": "2026-03-15T11:50:00Z",
-    },
-    {
-        "code": "EQP-INF-500",
-        "name": "Infusion Pump",
-        "category": "equipment",
-        "quantity_available": 37,
-        "unit": "unit",
-        "last_updated": "2026-03-15T11:50:00Z",
-    },
-    {
-        "code": "CON-N95-REG",
-        "name": "N95 Respirator Mask",
-        "category": "consumable",
-        "quantity_available": 2800,
-        "unit": "piece",
-        "last_updated": "2026-03-15T11:50:00Z",
-    },
-    {
-        "code": "DEV-USG-POC",
-        "name": "Portable Ultrasound Scanner",
-        "category": "device",
-        "quantity_available": 6,
-        "unit": "unit",
-        "last_updated": "2026-03-15T11:50:00Z",
-    },
+PROFILE_PATH = Path(__file__).resolve().parent / "data" / "hospital_profile.json"
+SALES_PATH_CANDIDATES = [
+    Path(__file__).resolve().parent.parent / "sales.csv",
+    Path(__file__).resolve().parents[2] / "sales.csv",
 ]
 
-BEDS = {
-    "bed_total": 320,
-    "bed_available": 46,
-    "icu_total": 48,
-    "icu_available": 9,
-    "last_updated": "2026-03-15T11:50:00Z",
-}
 
-BLOOD_UNITS = [
-    {"blood_group": "A+", "units_available": 19, "last_updated": "2026-03-15T11:50:00Z"},
-    {"blood_group": "A-", "units_available": 4, "last_updated": "2026-03-15T11:50:00Z"},
-    {"blood_group": "B+", "units_available": 26, "last_updated": "2026-03-15T11:50:00Z"},
-    {"blood_group": "B-", "units_available": 6, "last_updated": "2026-03-15T11:50:00Z"},
-    {"blood_group": "O+", "units_available": 38, "last_updated": "2026-03-15T11:50:00Z"},
-    {"blood_group": "O-", "units_available": 8, "last_updated": "2026-03-15T11:50:00Z"},
-    {"blood_group": "AB+", "units_available": 7, "last_updated": "2026-03-15T11:50:00Z"},
-    {"blood_group": "AB-", "units_available": 2, "last_updated": "2026-03-15T11:50:00Z"},
-]
+@lru_cache(maxsize=1)
+def _load_profile():
+    with PROFILE_PATH.open("r", encoding="utf-8") as profile_file:
+        return json.load(profile_file)
 
-STAFF = [
-    {
-        "employee_id": "CGH-EMP-1101",
-        "first_name": "Nadia",
-        "last_name": "Rahman",
-        "department": "Pharmacy",
-        "position": "Inventory Manager",
-        "email": "nadia.rahman@citygeneral.example",
-        "phone": "+8801700001101",
-        "status": "active",
-    },
-    {
-        "employee_id": "CGH-EMP-1102",
-        "first_name": "Fahim",
-        "last_name": "Sarker",
-        "department": "Critical Care",
-        "position": "ICU Charge Nurse",
-        "email": "fahim.sarker@citygeneral.example",
-        "phone": "+8801700001102",
-        "status": "active",
-    },
-    {
-        "employee_id": "CGH-EMP-1103",
-        "first_name": "Tasnia",
-        "last_name": "Anwar",
-        "department": "Logistics",
-        "position": "Supply Chain Coordinator",
-        "email": "tasnia.anwar@citygeneral.example",
-        "phone": "+8801700001103",
-        "status": "on_leave",
-    },
-]
+
+def _get_profile_or_error():
+    try:
+        return _load_profile(), None
+    except FileNotFoundError:
+        return None, JsonResponse({"detail": "Hospital profile data not found"}, status=500)
+    except json.JSONDecodeError:
+        return None, JsonResponse({"detail": "Hospital profile data is invalid"}, status=500)
+
+
+def _get_sales_or_error(healthcare_id):
+    sales_path = next((path for path in SALES_PATH_CANDIDATES if path.exists()), None)
+    if sales_path is None:
+        return None, JsonResponse({"detail": "Sales data not found"}, status=500)
+
+    sales_rows = []
+    try:
+        with sales_path.open("r", encoding="utf-8", newline="") as sales_file:
+            reader = csv.DictReader(sales_file)
+            for row in reader:
+                if row.get("healthcare_id", "").strip() != healthcare_id:
+                    continue
+                quantity_sold = int(row.get("quantity_sold", ""))
+                if quantity_sold < 0:
+                    raise ValueError
+                sales_rows.append(
+                    {
+                        "date": row.get("date", "").strip(),
+                        "healthcare_id": healthcare_id,
+                        "medicine_name": row.get("medicine_name", "").strip(),
+                        "quantity_sold": quantity_sold,
+                        "upazila": row.get("upazila", "").strip(),
+                    }
+                )
+    except (OSError, csv.Error):
+        return None, JsonResponse({"detail": "Sales data is unreadable"}, status=500)
+    except ValueError:
+        return None, JsonResponse(
+            {"detail": "Sales data contains invalid quantity_sold values"}, status=500
+        )
+
+    return sales_rows, None
 
 
 def _is_authorized(request):
@@ -119,25 +75,53 @@ def _unauthorized_response():
 def inventory_resources(request):
     if not _is_authorized(request):
         return _unauthorized_response()
-    return JsonResponse({"resources": RESOURCES})
+    profile, error = _get_profile_or_error()
+    if error:
+        return error
+    return JsonResponse({"resources": profile.get("resources", [])})
 
 
 @require_GET
 def beds(request):
     if not _is_authorized(request):
         return _unauthorized_response()
-    return JsonResponse(BEDS)
+    profile, error = _get_profile_or_error()
+    if error:
+        return error
+    return JsonResponse(profile.get("beds", {}))
 
 
 @require_GET
 def blood(request):
     if not _is_authorized(request):
         return _unauthorized_response()
-    return JsonResponse({"blood_units": BLOOD_UNITS})
+    profile, error = _get_profile_or_error()
+    if error:
+        return error
+    return JsonResponse({"blood_units": profile.get("blood_units", [])})
 
 
 @require_GET
 def staff(request):
     if not _is_authorized(request):
         return _unauthorized_response()
-    return JsonResponse({"staff": STAFF})
+    profile, error = _get_profile_or_error()
+    if error:
+        return error
+    return JsonResponse({"staff": profile.get("staff", [])})
+
+
+@require_GET
+def sales(request):
+    if not _is_authorized(request):
+        return _unauthorized_response()
+    profile, error = _get_profile_or_error()
+    if error:
+        return error
+    healthcare_id = str(profile.get("hospital", {}).get("healthcare_id", "")).strip()
+    if not healthcare_id:
+        return JsonResponse({"detail": "Hospital healthcare_id is missing"}, status=500)
+    sales_rows, error = _get_sales_or_error(healthcare_id)
+    if error:
+        return error
+    return JsonResponse({"sales": sales_rows})

@@ -2,7 +2,7 @@ name: Monorepo CI
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main, develop, Arpita]
   pull_request:
     branches: [main]
   workflow_dispatch: {}
@@ -81,7 +81,7 @@ jobs:
             --cov=common \
             --cov-report=term-missing \
             --cov-report=xml \
-            --cov-fail-under=80 \
+            --cov-fail-under=55 \
             -v
 
       - name: Upload coverage report

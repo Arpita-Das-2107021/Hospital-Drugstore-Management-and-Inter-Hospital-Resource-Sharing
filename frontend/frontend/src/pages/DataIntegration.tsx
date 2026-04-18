@@ -13,9 +13,10 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Upload, FileSpreadsheet, Check, AlertCircle, Loader2 } from 'lucide-react';
-import { hospitalsApi, integrationsApi } from '@/services/api';
+import { catalogApi, hospitalsApi, integrationsApi } from '@/services/api';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
+import { hasAnyPermission } from '@/lib/rbac';
 
 interface Integration {
   id: string;
@@ -33,30 +34,37 @@ interface HospitalOption {
   name: string;
 }
 
+interface ResourceTypeOption {
+  id: string;
+  name: string;
+}
+
 const DataIntegration = () => {
   const { user } = useAuth();
   const { toast } = useToast();
-  const isSuperAdmin = user?.role?.toUpperCase() === 'SUPER_ADMIN';
+  const canManageAcrossHospitals = hasAnyPermission(user, ['platform:hospital.view', 'platform:hospital.manage']);
 
   const [integrations, setIntegrations] = useState<Integration[]>([]);
   const [hospitals, setHospitals] = useState<HospitalOption[]>([]);
+  const [resourceTypes, setResourceTypes] = useState<ResourceTypeOption[]>([]);
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
   const [selectedHospital, setSelectedHospital] = useState('');
-  const [resourceType, setResourceType] = useState('inventory');
+  const [resourceType, setResourceType] = useState('');
   const [file, setFile] = useState<File | null>(null);
 
   const effectiveHospitalId = useMemo(() => {
-    if (isSuperAdmin) return selectedHospital;
+    if (canManageAcrossHospitals) return selectedHospital;
     return user?.hospital_id ?? '';
-  }, [isSuperAdmin, selectedHospital, user?.hospital_id]);
+  }, [canManageAcrossHospitals, selectedHospital, user?.hospital_id]);
 
   const loadData = async () => {
     try {
       setLoading(true);
-      const [integrationsRes, hospitalsRes] = await Promise.all([
+      const [integrationsRes, hospitalsRes, resourceTypesRes] = await Promise.all([
         integrationsApi.getAll(),
-        isSuperAdmin ? hospitalsApi.getAll() : Promise.resolve(null),
+        canManageAcrossHospitals ? hospitalsApi.getAll() : Promise.resolve(null),
+        catalogApi.getTypes().catch(() => null),
       ]);
 
       const integrationsRaw = (integrationsRes as unknown)?.data ?? integrationsRes;
@@ -65,13 +73,29 @@ const DataIntegration = () => {
         : (integrationsRaw?.results ?? []);
       setIntegrations(integrationList);
 
-      if (isSuperAdmin && hospitalsRes) {
+      if (canManageAcrossHospitals && hospitalsRes) {
         const hospitalsRaw = (hospitalsRes as unknown)?.data ?? hospitalsRes;
         const hospitalList: unknown[] = Array.isArray(hospitalsRaw)
           ? hospitalsRaw
           : (hospitalsRaw?.results ?? []);
         const mapped = hospitalList.map((h: unknown) => ({ id: String(h.id), name: h.name || h.hospital_name || String(h.id) }));
         setHospitals(mapped);
+      }
+
+      const rawResourceTypes = resourceTypesRes
+        ? ((resourceTypesRes as unknown)?.data?.results ?? (resourceTypesRes as unknown)?.data ?? (resourceTypesRes as unknown)?.results ?? (Array.isArray(resourceTypesRes) ? resourceTypesRes : []))
+        : [];
+
+      const mappedTypes = (Array.isArray(rawResourceTypes) ? rawResourceTypes : [])
+        .map((type: unknown) => ({
+          id: String(type.id ?? type.value ?? ''),
+          name: String(type.name ?? type.label ?? type.value ?? ''),
+        }))
+        .filter((type: ResourceTypeOption) => !!type.id && !!type.name);
+
+      setResourceTypes(mappedTypes);
+      if (!resourceType && mappedTypes.length > 0) {
+        setResourceType(mappedTypes[0].id);
       }
     } catch (err: unknown) {
       toast({ title: 'Failed to load integrations', description: err?.message, variant: 'destructive' });
@@ -82,7 +106,7 @@ const DataIntegration = () => {
 
   useEffect(() => {
     loadData();
-  }, [isSuperAdmin]);
+  }, [canManageAcrossHospitals]);
 
   const handleUpload = async () => {
     if (!file) {
@@ -91,6 +115,10 @@ const DataIntegration = () => {
     }
     if (!effectiveHospitalId) {
       toast({ title: 'Select hospital first', variant: 'destructive' });
+      return;
+    }
+    if (!resourceType) {
+      toast({ title: 'Resource type required', variant: 'destructive' });
       return;
     }
 
@@ -123,14 +151,16 @@ const DataIntegration = () => {
   };
 
   return (
-    <AppLayout title="Data Integration" subtitle="Upload datasets and manage integration status">
+    <AppLayout title="Data Integration"
+      // subtitle="Upload datasets and manage integration status"
+    >
       <div className="grid gap-6 lg:grid-cols-2">
         <Card>
           <CardHeader>
             <CardTitle className="text-base">CSV Upload</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            {isSuperAdmin ? (
+            {canManageAcrossHospitals ? (
               <div className="space-y-2">
                 <Label>Target Hospital</Label>
                 <Select value={selectedHospital} onValueChange={setSelectedHospital}>
@@ -158,9 +188,13 @@ const DataIntegration = () => {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="inventory">Inventory</SelectItem>
-                  <SelectItem value="blood">Blood</SelectItem>
-                  <SelectItem value="beds">Beds</SelectItem>
+                  {resourceTypes.length === 0 ? (
+                    <SelectItem value="__none" disabled>No resource types available</SelectItem>
+                  ) : (
+                    resourceTypes.map((type) => (
+                      <SelectItem key={type.id} value={type.id}>{type.name}</SelectItem>
+                    ))
+                  )}
                 </SelectContent>
               </Select>
             </div>

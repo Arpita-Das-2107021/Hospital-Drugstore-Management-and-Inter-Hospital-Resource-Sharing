@@ -95,18 +95,23 @@ export const invitationService = {
 
   /**
    * Revoke an invitation
-   * POST /api/v1/invitations/{id}/revoke/
+   * DELETE /api/v1/invitations/{id}/
    */
   async cancelInvitation(id: string) {
     const token = getStoredAccessToken();
-    const response = await fetch(`${API_BASE_URL}/api/v1/invitations/${id}/revoke/`, {
-      method: 'POST',
+    const response = await fetch(`${API_BASE_URL}/api/v1/invitations/${id}/`, {
+      method: 'DELETE',
       headers: { 'Authorization': `Bearer ${token}` },
     });
     if (!response.ok) {
       const err = await response.json().catch(() => ({}));
       throw new Error(err?.error?.message || 'Failed to revoke invitation');
     }
+
+    if (response.status === 204) {
+      return { detail: 'Revoked' };
+    }
+
     const result = await response.json().catch(() => ({ data: { detail: 'Revoked' } }));
     return result.data || result;
   },

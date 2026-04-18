@@ -6,25 +6,26 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import viewsets
 
-from common.permissions.base import IsSuperAdmin
+from common.permissions.base import CanViewHospitalAnalytics, RequirePlatformContext
+from common.permissions.runtime import is_platform_operator
 from common.utils.pagination import StandardResultsPagination
 from common.utils.response import success_response
 
 from .models import CreditLedger
 from .serializers import CreditLedgerSerializer
-from .services import get_hospital_balance
+from .services import get_hospital_balance, get_platform_analytics_summary
 
 logger = logging.getLogger("hrsp.analytics")
 
 
 class CreditLedgerViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = CreditLedgerSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, CanViewHospitalAnalytics]
     pagination_class = StandardResultsPagination
 
     def get_queryset(self):
         user = self.request.user
-        if user.roles.filter(name="SUPER_ADMIN").exists():
+        if is_platform_operator(user, allow_role_fallback=True):
             return CreditLedger.objects.select_related("hospital").all()
         if hasattr(user, "staff") and user.staff:
             return CreditLedger.objects.filter(hospital=user.staff.hospital).order_by("-created_at")
@@ -42,7 +43,7 @@ class CreditLedgerViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class HospitalBalanceView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, CanViewHospitalAnalytics]
 
     def get(self, request):
         hospital = request.user.staff.hospital if hasattr(request.user, "staff") and request.user.staff else None
@@ -50,3 +51,10 @@ class HospitalBalanceView(APIView):
             return Response(success_response(data={"balance": 0, "hospital": None}))
         balance = get_hospital_balance(hospital)
         return Response(success_response(data={"balance": balance, "hospital_id": str(hospital.id)}))
+
+
+class PlatformAnalyticsSummaryView(APIView):
+    permission_classes = [IsAuthenticated, RequirePlatformContext, CanViewHospitalAnalytics]
+
+    def get(self, request):
+        return Response(success_response(data=get_platform_analytics_summary()))

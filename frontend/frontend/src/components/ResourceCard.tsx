@@ -6,7 +6,11 @@ import { type ResourceWithVisibility } from '@/types/healthcare';
 import { MapPin, Clock, AlertTriangle, ShoppingCart, Eye, EyeOff } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
+const MEDICINE_IMAGE_PRIMARY = '/public/medicine.png';
+const MEDICINE_IMAGE_FALLBACK = '/medicine.png';
+const RESOURCE_IMAGE_FALLBACK = '/placeholder.svg';
 
 interface ResourceCardProps {
   resource: ResourceWithVisibility;
@@ -14,6 +18,7 @@ interface ResourceCardProps {
   showVisibilityToggle?: boolean;
   onToggleVisibility?: (resourceId: string, visible: boolean) => void;
   onClick?: (resource: ResourceWithVisibility) => void;
+  resourceRouteState?: unknown;
 }
 
 export const ResourceCard = ({ 
@@ -21,11 +26,22 @@ export const ResourceCard = ({
   onRequest,
   showVisibilityToggle = false,
   onToggleVisibility,
-  onClick
+  onClick,
+  resourceRouteState
 }: ResourceCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
   const { user } = useAuth();
+  const resourceDetailsPath = resource.id ? `/resource/${encodeURIComponent(resource.id)}` : '';
+
+  const resolveStaticImage = (type: string): string => {
+    const normalizedType = String(type || '').toLowerCase();
+    if (['medicine', 'medication', 'drug', 'drugs'].includes(normalizedType)) {
+      return MEDICINE_IMAGE_PRIMARY;
+    }
+
+    return RESOURCE_IMAGE_FALLBACK;
+  };
 
   const getAvailabilityStyles = (availability: string) => {
     switch (availability) {
@@ -72,7 +88,12 @@ export const ResourceCard = ({
     if (onClick) {
       onClick(resource);
     } else {
-      navigate(`/resource/${resource.id}`);
+      if (!resourceDetailsPath) return;
+      if (resourceRouteState !== undefined) {
+        navigate(resourceDetailsPath, { state: resourceRouteState });
+        return;
+      }
+      navigate(resourceDetailsPath);
     }
   };
 
@@ -102,9 +123,20 @@ export const ResourceCard = ({
       {/* Image Section */}
       <div className="relative h-36 overflow-hidden">
         <img 
-          src={resource.image} 
+          src={resolveStaticImage(resource.type)} 
           alt={resource.name}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+          onError={(event) => {
+            const target = event.currentTarget;
+            if (target.src.includes('/public/medicine.png')) {
+              target.src = MEDICINE_IMAGE_FALLBACK;
+              return;
+            }
+
+            if (!target.src.includes('/placeholder.svg')) {
+              target.src = RESOURCE_IMAGE_FALLBACK;
+            }
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
         
@@ -153,7 +185,18 @@ export const ResourceCard = ({
       <CardContent className="p-4">
         {/* Title & Description */}
         <h3 className="font-semibold text-lg truncate group-hover:text-primary transition-colors">
-          {resource.name}
+          {resourceDetailsPath ? (
+            <Link
+              to={resourceDetailsPath}
+              state={resourceRouteState}
+              className="text-primary transition-colors hover:text-primary/90 hover:underline"
+              onClick={(event) => event.stopPropagation()}
+            >
+              {resource.name}
+            </Link>
+          ) : (
+            resource.name
+          )}
         </h3>
         <p className="text-sm text-muted-foreground line-clamp-2 mt-1 min-h-[2.5rem]">
           {resource.description}

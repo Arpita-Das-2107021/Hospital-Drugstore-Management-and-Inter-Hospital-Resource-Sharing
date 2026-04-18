@@ -17,9 +17,11 @@ cryptography==42.0.8
 Pillow==10.4.0
 gunicorn==21.2.0
 uvicorn==0.30.6
+websockets==13.1
 whitenoise==6.7.0
 django-db-geventpool==4.0.1
 requests==2.32.3
+pydantic==2.11.3
 bcrypt==4.2.0
 django-storages==1.14.4
 boto3==1.35.42

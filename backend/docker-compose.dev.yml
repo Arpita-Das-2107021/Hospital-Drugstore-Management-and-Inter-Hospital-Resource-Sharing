@@ -21,7 +21,33 @@ services:
       - MINIO_ACCESS_KEY=minioadmin
       - MINIO_SECRET_KEY=minioadmin
       - MINIO_BUCKET_NAME=hrsp-chat-attachments
+      - ML_DATASET_PIPELINE_ENABLED=true
+      - ML_AUTO_DISPATCH_ON_JOB_CREATE=true
+      - ML_SCHEDULE_DEFAULT_EXECUTION_MODE=json_inference
+      - ML_DATASET_BUCKET_NAME=ml-input
+      - ML_TRAINING_MIRROR_ENABLED=true
+      - ML_TRAINING_MIRROR_MAX_RETRIES=3
+      - ML_TRAINING_MIRROR_BACKOFF_SECONDS=1
+      - ML_TRAINING_MIRROR_DEAD_LETTER_LOG_PATH=/app/logs/ml_training_mirror_dead_letter.jsonl
+      - ML_SERVER_B_MINIO_ENDPOINT_URL=http://host.docker.internal:9200
+      - ML_SERVER_B_MINIO_ACCESS_KEY=minioadmin
+      - ML_SERVER_B_MINIO_SECRET_KEY=minioadmin
+      - ML_SERVER_B_MINIO_REGION_NAME=us-east-1
+      - ML_SERVER_B_MINIO_BUCKET_NAME_OVERRIDE=ml-input
+      - ML_SERVER_B_MINIO_KEY_PREFIX=
+      - ML_SERVER_B_BASE_URL=http://host.docker.internal:8100
+      - ML_SERVER_B_MODEL_VERSIONS_PATH_TEMPLATE=/api/v1/models/{model_type}/versions
+      - ML_SERVER_B_MODEL2_DEFAULT_VERSION=outbreak-default-v1
+      - ML_SERVER_A_CALLBACK_URL=http://host.docker.internal:8000/api/v1/ml/callbacks/server-b/
+      - ML_SERVER_A_TRAINING_CALLBACK_URL=http://host.docker.internal:8000/api/v1/ml/training/callbacks/server-b/
+      - ML_SERVER_B_HMAC_SECRET=dev-secret
+      - ML_SERVER_B_HMAC_SECRET_FALLBACKS=dev-server-b-secret
+      - ML_CALLBACK_ACCEPT_SERVER_B_SHA256=true
+      - ML_CALLBACK_ACCEPT_LEGACY_HMAC=true
+      - ML_CALLBACK_REPLAY_TTL_SECONDS=300
+      - ML_INCLUDE_TRANSFER_OUT_IN_SALES=false
       - HOSPITAL_API_LOCALHOST_HOST=host.docker.internal
+      - NGROK_API_URL=http://ngrok:4040/api/tunnels
     extra_hosts:
       - "host.docker.internal:host-gateway"
     depends_on:
@@ -30,6 +56,22 @@ services:
       redis:
         condition: service_healthy
       minio:
+        condition: service_started
+      # server_b_mock:
+      #   condition: service_started
+    restart: unless-stopped
+
+  ngrok:
+    image: ngrok/ngrok:latest
+    command: http backend:8080 --log=stdout
+    env_file:
+      - .env
+    environment:
+      - NGROK_AUTHTOKEN=${NGROK_AUTH_TOKEN:-}
+    ports:
+      - "4040:4040"
+    depends_on:
+      backend:
         condition: service_started
     restart: unless-stopped
 
@@ -53,6 +95,31 @@ services:
       - MINIO_ACCESS_KEY=minioadmin
       - MINIO_SECRET_KEY=minioadmin
       - MINIO_BUCKET_NAME=hrsp-chat-attachments
+      - ML_DATASET_PIPELINE_ENABLED=true
+      - ML_AUTO_DISPATCH_ON_JOB_CREATE=true
+      - ML_SCHEDULE_DEFAULT_EXECUTION_MODE=json_inference
+      - ML_DATASET_BUCKET_NAME=ml-input
+      - ML_TRAINING_MIRROR_ENABLED=true
+      - ML_TRAINING_MIRROR_MAX_RETRIES=3
+      - ML_TRAINING_MIRROR_BACKOFF_SECONDS=1
+      - ML_TRAINING_MIRROR_DEAD_LETTER_LOG_PATH=/app/logs/ml_training_mirror_dead_letter.jsonl
+      - ML_SERVER_B_MINIO_ENDPOINT_URL=http://host.docker.internal:9200
+      - ML_SERVER_B_MINIO_ACCESS_KEY=minioadmin
+      - ML_SERVER_B_MINIO_SECRET_KEY=minioadmin
+      - ML_SERVER_B_MINIO_REGION_NAME=us-east-1
+      - ML_SERVER_B_MINIO_BUCKET_NAME_OVERRIDE=ml-input
+      - ML_SERVER_B_MINIO_KEY_PREFIX=
+      - ML_SERVER_B_BASE_URL=http://host.docker.internal:8100
+      - ML_SERVER_B_MODEL_VERSIONS_PATH_TEMPLATE=/api/v1/models/{model_type}/versions
+      - ML_SERVER_B_MODEL2_DEFAULT_VERSION=outbreak-default-v1
+      - ML_SERVER_A_CALLBACK_URL=http://host.docker.internal:8000/api/v1/ml/callbacks/server-b/
+      - ML_SERVER_A_TRAINING_CALLBACK_URL=http://host.docker.internal:8000/api/v1/ml/training/callbacks/server-b/
+      - ML_SERVER_B_HMAC_SECRET=dev-secret
+      - ML_SERVER_B_HMAC_SECRET_FALLBACKS=dev-server-b-secret
+      - ML_CALLBACK_ACCEPT_SERVER_B_SHA256=true
+      - ML_CALLBACK_ACCEPT_LEGACY_HMAC=true
+      - ML_CALLBACK_REPLAY_TTL_SECONDS=300
+      - ML_INCLUDE_TRANSFER_OUT_IN_SALES=false
       - HOSPITAL_API_LOCALHOST_HOST=host.docker.internal
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -60,6 +127,7 @@ services:
       - db
       - redis
       - minio
+      # - server_b_mock
     restart: unless-stopped
 
   celery_beat:
@@ -81,6 +149,31 @@ services:
       - MINIO_ACCESS_KEY=minioadmin
       - MINIO_SECRET_KEY=minioadmin
       - MINIO_BUCKET_NAME=hrsp-chat-attachments
+      - ML_DATASET_PIPELINE_ENABLED=true
+      - ML_AUTO_DISPATCH_ON_JOB_CREATE=true
+      - ML_SCHEDULE_DEFAULT_EXECUTION_MODE=json_inference
+      - ML_DATASET_BUCKET_NAME=ml-input
+      - ML_TRAINING_MIRROR_ENABLED=true
+      - ML_TRAINING_MIRROR_MAX_RETRIES=3
+      - ML_TRAINING_MIRROR_BACKOFF_SECONDS=1
+      - ML_TRAINING_MIRROR_DEAD_LETTER_LOG_PATH=/app/logs/ml_training_mirror_dead_letter.jsonl
+      - ML_SERVER_B_MINIO_ENDPOINT_URL=http://host.docker.internal:9200
+      - ML_SERVER_B_MINIO_ACCESS_KEY=minioadmin
+      - ML_SERVER_B_MINIO_SECRET_KEY=minioadmin
+      - ML_SERVER_B_MINIO_REGION_NAME=us-east-1
+      - ML_SERVER_B_MINIO_BUCKET_NAME_OVERRIDE=ml-input
+      - ML_SERVER_B_MINIO_KEY_PREFIX=
+      - ML_SERVER_B_BASE_URL=http://host.docker.internal:8100
+      - ML_SERVER_B_MODEL_VERSIONS_PATH_TEMPLATE=/api/v1/models/{model_type}/versions
+      - ML_SERVER_B_MODEL2_DEFAULT_VERSION=outbreak-default-v1
+      - ML_SERVER_A_CALLBACK_URL=http://host.docker.internal:8000/api/v1/ml/callbacks/server-b/
+      - ML_SERVER_A_TRAINING_CALLBACK_URL=http://host.docker.internal:8000/api/v1/ml/training/callbacks/server-b/
+      - ML_SERVER_B_HMAC_SECRET=dev-secret
+      - ML_SERVER_B_HMAC_SECRET_FALLBACKS=dev-server-b-secret
+      - ML_CALLBACK_ACCEPT_SERVER_B_SHA256=true
+      - ML_CALLBACK_ACCEPT_LEGACY_HMAC=true
+      - ML_CALLBACK_REPLAY_TTL_SECONDS=300
+      - ML_INCLUDE_TRANSFER_OUT_IN_SALES=false
       - HOSPITAL_API_LOCALHOST_HOST=host.docker.internal
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -88,6 +181,7 @@ services:
       - db
       - redis
       - minio
+      # - server_b_mock
     restart: unless-stopped
 
   db:
@@ -133,6 +227,27 @@ services:
       - "9101:9001"
     restart: unless-stopped
 
+  # server_b_mock:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.dev
+  #   command: python scripts/server_b_mock.py
+  #   volumes:
+  #     - .:/app
+  #   environment:
+  #     - MINIO_ENDPOINT_URL=http://minio:9000
+  #     - MINIO_ACCESS_KEY=minioadmin
+  #     - MINIO_SECRET_KEY=minioadmin
+  #     - MINIO_REGION_NAME=us-east-1
+  #     - ML_SERVER_B_HMAC_SECRET=dev-server-b-secret
+  #     - SERVER_A_CALLBACK_TIMEOUT=20
+  #     - PORT=8081
+  #   ports:
+  #     - "8081:8081"
+  #   depends_on:
+  #     - minio
+  #   restart: unless-stopped
+
   adminer:
     image: adminer:latest
     restart: unless-stopped
@@ -140,6 +255,59 @@ services:
       - "8096:8080"
     depends_on:
       - db
+
+  e2e-ml-workflow:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: python scripts/run_real_ml_e2e_workflow.py
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings.dev
+      - DATABASE_URL=postgresql://hrsp_user:hrsp_password@db:5432/hrsp_db
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+      - MINIO_ENDPOINT_URL=http://minio:9000
+      - MINIO_ACCESS_KEY=minioadmin
+      - MINIO_SECRET_KEY=minioadmin
+      - MINIO_REGION_NAME=us-east-1
+      - ML_DATASET_BUCKET_NAME=ml-input
+      - ML_SERVER_B_BASE_URL=http://host.docker.internal:8100
+      - ML_SERVER_B_MODEL_VERSIONS_PATH_TEMPLATE=/api/v1/models/{model_type}/versions
+      - ML_SERVER_B_MODEL2_DEFAULT_VERSION=outbreak-default-v1
+      - ML_SERVER_A_CALLBACK_URL=http://host.docker.internal:8000/api/v1/ml/callbacks/server-b/
+      - ML_SERVER_A_TRAINING_CALLBACK_URL=http://host.docker.internal:8000/api/v1/ml/training/callbacks/server-b/
+      - ML_SERVER_B_HMAC_SECRET=dev-secret
+      - ML_SERVER_B_HMAC_SECRET_FALLBACKS=dev-server-b-secret
+      - ML_CALLBACK_ACCEPT_SERVER_B_SHA256=true
+      - ML_CALLBACK_ACCEPT_LEGACY_HMAC=true
+      - ML_TRAINING_MIRROR_ENABLED=true
+      - ML_SERVER_B_MINIO_ENDPOINT_URL=http://host.docker.internal:9200
+      - ML_SERVER_B_MINIO_ACCESS_KEY=minioadmin
+      - ML_SERVER_B_MINIO_SECRET_KEY=minioadmin
+      - ML_SERVER_B_MINIO_REGION_NAME=us-east-1
+      - ML_SERVER_B_MINIO_BUCKET_NAME_OVERRIDE=ml-input
+      - REAL_API_BASE_URL=http://backend:8080
+      - ML_E2E_REPORT_PATH=/app/logs/real_ml_e2e_report.json
+      - HOSPITAL_API_LOCALHOST_HOST=host.docker.internal
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      backend:
+        condition: service_started
+      celery_worker:
+        condition: service_started
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      minio:
+        condition: service_started
+    restart: "no"
 
 volumes:
   postgres_dev_data:

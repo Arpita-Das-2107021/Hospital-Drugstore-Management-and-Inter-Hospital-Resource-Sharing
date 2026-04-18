@@ -3,6 +3,8 @@
  * Handles access tokens, refresh tokens, and automatic token refresh
  */
 
+import { extractEffectivePermissionPayload } from '@/lib/rbac';
+
 // Base URL without /api suffix — all paths include the full /api prefix
 const API_BASE_URL = import.meta.env.VITE_API_URL
   ? import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '')
@@ -51,10 +53,23 @@ export interface User {
   id: string;
   email: string;
   full_name: string;
+  context: 'PLATFORM' | 'HEALTHCARE' | null;
+  access_mode: 'UI' | 'API' | null;
+  healthcare_id: string | null;
   role: string;
-  hospital_id: string;
+  roles: string[];
+  platform_roles: string[];
+  hospital_role: string | null;
+  hospital_id: string | null;
   hospital_name?: string;
+  profile_picture?: string | null;
+  profile_picture_url?: string | null;
   department?: string;
+  effective_permissions?: string[];
+  permissions_by_scope?: {
+    platform_roles: string[];
+    hospital_role: string[];
+  };
 }
 
 export interface AuthTokens {
@@ -109,19 +124,214 @@ class AuthService {
     return Object.keys(result).length > 0 ? result : undefined;
   }
 
+  private toStringArray(raw: unknown): string[] {
+    if (!Array.isArray(raw)) {
+      return [];
+    }
+    return raw
+      .map((item) => {
+        if (typeof item === 'string') {
+          return item;
+        }
+
+        if (item && typeof item === 'object') {
+          const itemObj = item as Record<string, unknown>;
+          if (typeof itemObj.code === 'string') {
+            return itemObj.code;
+          }
+          if (typeof itemObj.name === 'string') {
+            return itemObj.name;
+          }
+        }
+
+        return '';
+      })
+      .map((item) => item.trim())
+      .filter(Boolean);
+  }
+
+  private toNullableString(value: unknown): string | null {
+    if (typeof value !== 'string') return null;
+    const normalized = value.trim();
+    return normalized ? normalized : null;
+  }
+
+  private parsePermissionsByScope(value: unknown): { platform_roles: string[]; hospital_role: string[] } | undefined {
+    if (!value || typeof value !== 'object') {
+      return undefined;
+    }
+
+    const scope = value as Record<string, unknown>;
+    const platformSet = new Set<string>();
+    const hospitalSet = new Set<string>();
+
+    const pushMany = (target: Set<string>, rawCodes: unknown) => {
+      this.toStringArray(rawCodes).forEach((code) => target.add(code));
+    };
+
+    // Canonical keys.
+    pushMany(platformSet, scope.platform_roles);
+    pushMany(hospitalSet, scope.hospital_role);
+
+    // Compatibility keys seen in backend payload variants.
+    pushMany(platformSet, scope.platform_role);
+    pushMany(platformSet, scope.platform);
+    pushMany(platformSet, scope.platform_permissions);
+
+    pushMany(hospitalSet, scope.hospital_roles);
+    pushMany(hospitalSet, scope.hospital);
+    pushMany(hospitalSet, scope.hospital_permissions);
+    pushMany(hospitalSet, scope.healthcare);
+    pushMany(hospitalSet, scope.healthcare_role);
+    pushMany(hospitalSet, scope.healthcare_roles);
+
+    // Generic fallback for unexpected scope bucket names.
+    Object.entries(scope).forEach(([key, bucket]) => {
+      const parsed = this.toStringArray(bucket);
+      if (parsed.length === 0) return;
+
+      const keyLower = key.toLowerCase();
+      if (keyLower.includes('platform')) {
+        parsed.forEach((code) => platformSet.add(code));
+      }
+      if (keyLower.includes('hospital') || keyLower.includes('healthcare')) {
+        parsed.forEach((code) => hospitalSet.add(code));
+      }
+    });
+
+    if (platformSet.size === 0 && hospitalSet.size === 0) {
+      return undefined;
+    }
+
+    return {
+      platform_roles: Array.from(platformSet),
+      hospital_role: Array.from(hospitalSet),
+    };
+  }
+
+  private mapUserFromApi(rawUser: unknown, fallbackEmail = ''): User {
+    const userObj = rawUser && typeof rawUser === 'object' ? rawUser as Record<string, unknown> : {};
+
+    const roleList = this.toStringArray(userObj.roles);
+    const platformRoles = this.toStringArray(userObj.platform_roles);
+    const hospitalRole = this.toNullableString(userObj.hospital_role);
+    const legacyRole = this.toNullableString(userObj.role);
+
+    const mergedRoleSet = new Set<string>();
+    roleList.forEach((role) => mergedRoleSet.add(role));
+    platformRoles.forEach((role) => mergedRoleSet.add(role));
+    if (hospitalRole) mergedRoleSet.add(hospitalRole);
+    if (legacyRole) mergedRoleSet.add(legacyRole);
+
+    const mergedRoles = Array.from(mergedRoleSet);
+    const primaryRole = legacyRole || hospitalRole || mergedRoles[0] || 'STAFF';
+
+    const rawContext = this.toNullableString(userObj.context)?.toUpperCase() || null;
+    const context = rawContext === 'PLATFORM' || rawContext === 'HEALTHCARE'
+      ? rawContext
+      : null;
+
+    const rawAccessMode = this.toNullableString(userObj.access_mode)?.toUpperCase() || null;
+    const accessMode = rawAccessMode === 'UI' || rawAccessMode === 'API'
+      ? rawAccessMode
+      : null;
+
+    const effectivePermissions = Array.from(new Set([
+      ...this.toStringArray(userObj.effective_permissions),
+      ...this.toStringArray(userObj.permissions),
+      ...this.toStringArray(userObj.permission_codes),
+    ]));
+    const permissionsByScope = this.parsePermissionsByScope(
+      userObj.permissions_by_scope ?? userObj.scoped_permissions ?? userObj.permissions_scope,
+    );
+
+    const healthcareId = this.toNullableString(userObj.healthcare_id) || this.toNullableString(userObj.hospital_id);
+    const hospitalId = this.toNullableString(userObj.hospital_id) || healthcareId;
+    const profilePicture =
+      this.toNullableString(userObj.profile_picture) ||
+      this.toNullableString(userObj.avatar);
+    const profilePictureUrl =
+      this.toNullableString(userObj.profile_picture_url) ||
+      this.toNullableString(userObj.avatar_url);
+
+    return {
+      id: this.toNullableString(userObj.id) || '',
+      email: this.toNullableString(userObj.email) || fallbackEmail,
+      full_name:
+        this.toNullableString(userObj.full_name) ||
+        this.toNullableString(userObj.name) ||
+        '',
+      context,
+      access_mode: accessMode,
+      healthcare_id: healthcareId,
+      role: primaryRole,
+      roles: mergedRoles.length > 0 ? mergedRoles : [primaryRole],
+      platform_roles: platformRoles,
+      hospital_role: hospitalRole,
+      hospital_id: hospitalId,
+      hospital_name: this.toNullableString(userObj.hospital_name) || undefined,
+      profile_picture: profilePicture,
+      profile_picture_url: profilePictureUrl,
+      department: this.toNullableString(userObj.department) || undefined,
+      effective_permissions: effectivePermissions,
+      permissions_by_scope: permissionsByScope,
+    };
+  }
+
+  private async fetchEffectivePermissions(userId: string, token: string): Promise<{
+    platform_roles: string[];
+    hospital_role: string | null;
+    effective_permissions: string[];
+    permissions_by_scope: { platform_roles: string[]; hospital_role: string[] };
+  } | null> {
+    if (!userId || !token) return null;
+
+    const candidates = [
+      `/api/v1/rbac/users/${userId}/permissions/effective/`,
+      `/api/v1/users/${userId}/permissions/effective/`,
+    ];
+
+    for (const path of candidates) {
+      try {
+        const response = await fetchWithTimeout(`${API_BASE_URL}${path}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) continue;
+        const payload = await response.json().catch(() => ({}));
+        return extractEffectivePermissionPayload(payload);
+      } catch {
+        // Continue to fallback endpoint.
+      }
+    }
+
+    return null;
+  }
+
   private parseAuthApiError(payload: unknown, fallbackMessage: string): { message: string; errors?: ValidationError } {
-    const nestedDetails = payload?.error?.details;
-    const directDetails = payload?.details;
-    const directErrors = payload?.errors;
+    const payloadRecord =
+      payload && typeof payload === 'object'
+        ? payload as Record<string, unknown>
+        : {};
+    const payloadErrorRecord =
+      payloadRecord.error && typeof payloadRecord.error === 'object'
+        ? payloadRecord.error as Record<string, unknown>
+        : {};
+
+    const nestedDetails = payloadErrorRecord.details;
+    const directDetails = payloadRecord.details;
+    const directErrors = payloadRecord.errors;
     const normalizedErrors =
       this.normalizeValidationErrors(nestedDetails) ||
       this.normalizeValidationErrors(directDetails) ||
       this.normalizeValidationErrors(directErrors);
 
     const message =
-      payload?.error?.message ||
-      payload?.message ||
-      payload?.detail ||
+      this.toNullableString(payloadErrorRecord.message) ||
+      this.toNullableString(payloadRecord.message) ||
+      this.toNullableString(payloadRecord.detail) ||
       fallbackMessage;
 
     return {
@@ -148,18 +358,9 @@ class AuthService {
       return null;
     }
 
-    // If we have stored user data, return it immediately for faster UI
+    // If we have stored user data, validate and refresh permissions before returning.
     if (storedUser) {
-      // Validate tokens in background and setup refresh
-      this.validateAndSetupAuth().catch(error => {
-        console.error('Background auth validation failed:', error);
-        this.clearAuth();
-        // Optionally redirect to login
-        if (window.location.pathname !== '/login') {
-          window.location.href = '/login';
-        }
-      });
-      return storedUser;
+      return this.validateAndSetupAuth();
     }
 
     // No stored user, validate tokens
@@ -193,39 +394,8 @@ class AuthService {
   /**
    * Register a new user
    */
-  async register(data: RegisterData): Promise<AuthResponse> {
-    try {
-      const response = await fetch(`${API_BASE_URL}/auth/register/`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      const responseData = await response.json();
-
-      if (!response.ok) {
-        throw new AuthError(
-          responseData.error || 'Registration failed',
-          responseData.errors
-        );
-      }
-
-      const authResponse: AuthResponse = responseData;
-      
-      // Store tokens and user data
-      this.setTokens(authResponse.tokens);
-      this.setUser(authResponse.user);
-      this.setupTokenRefresh();
-
-      return authResponse;
-    } catch (error) {
-      if (error instanceof AuthError) {
-        throw error;
-      }
-      throw new AuthError('Network error during registration');
-    }
+  async register(_data: RegisterData): Promise<AuthResponse> {
+    throw new AuthError('Self-registration is not supported by the current API contract. Use invitation acceptance or hospital registration flows.');
   }
 
   /**
@@ -248,29 +418,56 @@ class AuthService {
         }),
       });
 
-      const responseData = await response.json();
+      const rawBody = await response.text();
+      let responseData: Record<string, unknown> = {};
+      if (rawBody) {
+        try {
+          responseData = JSON.parse(rawBody) as Record<string, unknown>;
+        } catch {
+          responseData = {};
+        }
+      }
 
       if (!response.ok) {
-        throw new AuthError(
-          responseData?.error?.message || responseData.error || 'Login failed',
-          responseData.errors
-        );
+        const fallbackMessage =
+          response.status === 401
+            ? 'Invalid email or password'
+            : `Login failed (${response.status})`;
+        const parsed = this.parseAuthApiError(responseData, fallbackMessage);
+        throw new AuthError(parsed.message, parsed.errors);
       }
 
       // API returns { success: true, data: { access, refresh, user } }
-      const apiData = responseData.data || responseData;
-      const user: User = {
-        id: apiData.user?.id || '',
-        email: apiData.user?.email || credentials.email,
-        full_name: apiData.user?.full_name || apiData.user?.name || '',
-        role: Array.isArray(apiData.user?.roles) ? apiData.user.roles[0] : (apiData.user?.role || 'STAFF'),
-        hospital_id: apiData.user?.hospital_id || '',
-        hospital_name: apiData.user?.hospital_name,
-        department: apiData.user?.department,
-      };
+      const apiData =
+        responseData.data && typeof responseData.data === 'object'
+          ? responseData.data as Record<string, unknown>
+          : responseData;
+      const user = this.mapUserFromApi(apiData.user, credentials.email);
+
+      const accessToken = this.toNullableString(apiData.access) || '';
+      const refreshToken = this.toNullableString(apiData.refresh) || '';
+
+      const effective = await this.fetchEffectivePermissions(user.id, accessToken);
+      if (effective) {
+        user.effective_permissions = effective.effective_permissions;
+        user.permissions_by_scope = effective.permissions_by_scope;
+        if (effective.platform_roles.length > 0) {
+          user.platform_roles = effective.platform_roles;
+        }
+        if (effective.hospital_role && !user.hospital_role) {
+          user.hospital_role = effective.hospital_role;
+        }
+
+        const mergedRoleSet = new Set<string>(user.roles || []);
+        user.platform_roles.forEach((role) => mergedRoleSet.add(role));
+        if (user.hospital_role) mergedRoleSet.add(user.hospital_role);
+        if (user.role) mergedRoleSet.add(user.role);
+        user.roles = Array.from(mergedRoleSet);
+      }
+
       const authResponse: AuthResponse = {
         message: 'Login successful',
-        tokens: { access: apiData.access, refresh: apiData.refresh },
+        tokens: { access: accessToken, refresh: refreshToken },
         user,
       };
       
@@ -341,15 +538,26 @@ class AuthService {
       const responseData = await response.json();
       // API returns { success: true, data: { id, email, full_name, ... } }
       const apiUser = responseData.data || responseData;
-      const user: User = {
-        id: apiUser.id || '',
-        email: apiUser.email || '',
-        full_name: apiUser.full_name || '',
-        role: Array.isArray(apiUser.roles) ? apiUser.roles[0] : (apiUser.role || 'STAFF'),
-        hospital_id: apiUser.hospital_id || '',
-        hospital_name: apiUser.hospital_name,
-        department: apiUser.department,
-      };
+      const user = this.mapUserFromApi(apiUser);
+
+      const effective = await this.fetchEffectivePermissions(user.id, accessToken);
+      if (effective) {
+        user.effective_permissions = effective.effective_permissions;
+        user.permissions_by_scope = effective.permissions_by_scope;
+        if (effective.platform_roles.length > 0) {
+          user.platform_roles = effective.platform_roles;
+        }
+        if (effective.hospital_role && !user.hospital_role) {
+          user.hospital_role = effective.hospital_role;
+        }
+
+        const mergedRoleSet = new Set<string>(user.roles || []);
+        user.platform_roles.forEach((role) => mergedRoleSet.add(role));
+        if (user.hospital_role) mergedRoleSet.add(user.hospital_role);
+        if (user.role) mergedRoleSet.add(user.role);
+        user.roles = Array.from(mergedRoleSet);
+      }
+
       this.setUser(user);
       return user;
     } catch (error) {
@@ -561,20 +769,28 @@ class AuthService {
     endpoint: string,
     options: RequestInit = {}
   ): Promise<T> {
-    let accessToken = this.getAccessToken();
+    const accessToken = this.getAccessToken();
     
     if (!accessToken) {
       throw new AuthError('Not authenticated');
     }
 
+    const buildHeaders = (token: string): Headers => {
+      const headers = new Headers(options.headers || {});
+      const isMultipartBody = typeof FormData !== 'undefined' && options.body instanceof FormData;
+
+      headers.set('Authorization', `Bearer ${token}`);
+      if (!headers.has('Content-Type') && !isMultipartBody) {
+        headers.set('Content-Type', 'application/json');
+      }
+
+      return headers;
+    };
+
     const makeRequest = async (token: string) => {
       const response = await fetchWithTimeout(`${API_BASE_URL}${endpoint}`, {
         ...options,
-        headers: {
-          ...options.headers,
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
+        headers: buildHeaders(token),
       });
 
       if (response.status === 401) {
@@ -584,11 +800,7 @@ class AuthService {
         // Retry the request with new token
         const retryResponse = await fetchWithTimeout(`${API_BASE_URL}${endpoint}`, {
           ...options,
-          headers: {
-            ...options.headers,
-            'Authorization': `Bearer ${newToken}`,
-            'Content-Type': 'application/json',
-          },
+          headers: buildHeaders(newToken),
         });
 
         if (!retryResponse.ok) {
@@ -653,7 +865,8 @@ class AuthService {
                    sessionStorage.getItem(this.userKey);
     if (!userStr) return null;
     try {
-      return JSON.parse(userStr);
+      const parsed = JSON.parse(userStr);
+      return this.mapUserFromApi(parsed);
     } catch {
       return null;
     }

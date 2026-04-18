@@ -4,14 +4,14 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { type ResourceWithVisibility } from '@/types/healthcare';
-import { creditsApi, requestsApi, resourceSharesApi, templatesApi } from '@/services/api';
-import { CreditCard, ArrowLeftRight, Coins, AlertTriangle, CheckCircle, Package, Loader2 } from 'lucide-react';
+import { requestsApi, resourceSharesApi, templatesApi } from '@/services/api';
+import { CreditCard, AlertTriangle, Package, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface ResourceRequestFormProps {
   resource: ResourceWithVisibility | null;
@@ -27,22 +27,16 @@ interface MessageTemplate {
   body?: string;
 }
 
-type ExchangeMethod = 'payment' | 'barter' | 'credit';
-
 export const ResourceRequestForm = ({ resource, isOpen, onClose, onSubmitted }: ResourceRequestFormProps) => {
+  const { user } = useAuth();
   const [quantity, setQuantity] = useState(1);
   const [urgency, setUrgency] = useState<'routine' | 'urgent' | 'critical'>('routine');
-  const [exchangeMethod, setExchangeMethod] = useState<ExchangeMethod>('payment');
   const [justification, setJustification] = useState('');
-  const [barterResource, setBarterResource] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [templates, setTemplates] = useState<MessageTemplate[]>([]);
   const [selectedTemplateId, setSelectedTemplateId] = useState('none');
   const [loadingTemplates, setLoadingTemplates] = useState(false);
-
-  const [creditBalance, setCreditBalance] = useState<number | null>(null);
-  const [loadingCreditBalance, setLoadingCreditBalance] = useState(false);
 
   const { toast } = useToast();
 
@@ -78,38 +72,6 @@ export const ResourceRequestForm = ({ resource, isOpen, onClose, onSubmitted }: 
       mounted = false;
     };
   }, [isOpen]);
-
-  useEffect(() => {
-    if (!isOpen || exchangeMethod !== 'credit') return;
-
-    let mounted = true;
-    setLoadingCreditBalance(true);
-
-    creditsApi
-      .getBalance()
-      .then((res: unknown) => {
-        if (!mounted) return;
-        const value =
-          res?.data?.balance ??
-          res?.balance ??
-          res?.data?.current_balance ??
-          res?.current_balance ??
-          null;
-        const normalized = typeof value === 'number' ? value : Number(value);
-        setCreditBalance(Number.isFinite(normalized) ? normalized : null);
-      })
-      .catch(() => {
-        if (!mounted) return;
-        setCreditBalance(null);
-      })
-      .finally(() => {
-        if (mounted) setLoadingCreditBalance(false);
-      });
-
-    return () => {
-      mounted = false;
-    };
-  }, [exchangeMethod, isOpen]);
 
   useEffect(() => {
     if (selectedTemplateId === 'none') return;
@@ -157,6 +119,7 @@ export const ResourceRequestForm = ({ resource, isOpen, onClose, onSubmitted }: 
       }
 
       await requestsApi.create({
+        requesting_hospital: user?.hospital_id || undefined,
         supplying_hospital: supplyingHospital,
         catalog_item: catalogItem,
         quantity_requested: quantity,
@@ -173,9 +136,7 @@ export const ResourceRequestForm = ({ resource, isOpen, onClose, onSubmitted }: 
       onClose();
       setQuantity(1);
       setUrgency('routine');
-      setExchangeMethod('payment');
       setJustification('');
-      setBarterResource('');
       setSelectedTemplateId('none');
     } catch (err: unknown) {
       toast({
@@ -281,95 +242,19 @@ export const ResourceRequestForm = ({ resource, isOpen, onClose, onSubmitted }: 
             </div>
           </div>
 
-          <div className="space-y-3">
-            <Label>Exchange Method</Label>
-            <RadioGroup
-              value={exchangeMethod}
-              onValueChange={(value: ExchangeMethod) => setExchangeMethod(value)}
-              className="grid gap-3 sm:grid-cols-3"
-            >
-              <Label
-                htmlFor="payment"
-                className={`flex flex-col items-center gap-2 rounded-lg border-2 p-4 cursor-pointer transition-all hover:bg-muted/50 ${
-                  exchangeMethod === 'payment' ? 'border-primary bg-primary/5' : 'border-border'
-                }`}
-              >
-                <RadioGroupItem value="payment" id="payment" className="sr-only" />
-                <CreditCard className={`h-8 w-8 ${exchangeMethod === 'payment' ? 'text-primary' : 'text-muted-foreground'}`} />
-                <span className="font-medium">Payment</span>
-              </Label>
-
-              <Label
-                htmlFor="barter"
-                className={`flex flex-col items-center gap-2 rounded-lg border-2 p-4 cursor-pointer transition-all hover:bg-muted/50 ${
-                  exchangeMethod === 'barter' ? 'border-primary bg-primary/5' : 'border-border'
-                }`}
-              >
-                <RadioGroupItem value="barter" id="barter" className="sr-only" />
-                <ArrowLeftRight className={`h-8 w-8 ${exchangeMethod === 'barter' ? 'text-primary' : 'text-muted-foreground'}`} />
-                <span className="font-medium">Barter</span>
-              </Label>
-
-              <Label
-                htmlFor="credit"
-                className={`flex flex-col items-center gap-2 rounded-lg border-2 p-4 cursor-pointer transition-all hover:bg-muted/50 ${
-                  exchangeMethod === 'credit' ? 'border-primary bg-primary/5' : 'border-border'
-                }`}
-              >
-                <RadioGroupItem value="credit" id="credit" className="sr-only" />
-                <Coins className={`h-8 w-8 ${exchangeMethod === 'credit' ? 'text-primary' : 'text-muted-foreground'}`} />
-                <span className="font-medium">Credit</span>
-              </Label>
-            </RadioGroup>
-          </div>
-
-          {exchangeMethod === 'payment' && (
-            <Card className="border-primary/20 bg-primary/5">
-              <CardContent className="p-4">
-                <div className="flex items-center gap-3">
-                  <CheckCircle className="h-6 w-6 text-success" />
-                  <div>
-                    <p className="font-medium">Payment method selected</p>
-                    <p className="text-sm text-muted-foreground">
-                      Final pricing is provided by the supplying hospital during request review.
-                    </p>
-                  </div>
+          <Card className="border-primary/20 bg-primary/5">
+            <CardContent className="p-4">
+              <div className="flex items-center gap-3">
+                <CreditCard className="h-6 w-6 text-primary" />
+                <div>
+                  <p className="font-medium">Payment workflow enabled</p>
+                  <p className="text-sm text-muted-foreground">
+                    Resource requests are submitted as payment-based transactions. Final pricing is provided during provider review.
+                  </p>
                 </div>
-              </CardContent>
-            </Card>
-          )}
-
-          {exchangeMethod === 'barter' && (
-            <div className="space-y-2">
-              <Label>Select Resource to Offer</Label>
-              <Input
-                placeholder="Enter resource ID or description to exchange..."
-                value={barterResource}
-                onChange={(event) => setBarterResource(event.target.value)}
-              />
-            </div>
-          )}
-
-          {exchangeMethod === 'credit' && (
-            <Card className="border-warning/20 bg-warning/5">
-              <CardContent className="p-4">
-                <div className="flex items-center gap-3">
-                  <Coins className="h-8 w-8 text-warning" />
-                  <div>
-                    <p className="font-medium">
-                      Credit Balance:{' '}
-                      {loadingCreditBalance
-                        ? 'Loading...'
-                        : creditBalance !== null
-                        ? `${creditBalance}`
-                        : 'Unavailable'}
-                    </p>
-                    <p className="text-sm text-muted-foreground">Credits are settled after provider approval and dispatch.</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          )}
+              </div>
+            </CardContent>
+          </Card>
 
           <div className="space-y-2">
             <Label htmlFor="justification">

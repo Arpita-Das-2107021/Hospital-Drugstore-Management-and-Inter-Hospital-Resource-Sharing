@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { LanguageProvider } from "@/components/layout/LanguageToggle";
+import { resolveDefaultAuthenticatedPath } from '@/lib/accessResolver';
 
 // Public / auth pages
 import Login from "./pages/Login";
@@ -13,6 +14,8 @@ import HospitalRegistration from "./pages/HospitalRegistration";
 import AcceptInvitation from "./pages/AcceptInvitation";
 import SetPassword from "./pages/SetPassword";
 import ResetPassword from "./pages/ResetPassword";
+import Index from "./pages/Index";
+import Guidelines from "./pages/Guidelines";
 import NotFound from "./pages/NotFound";
 
 // Route groups — each is a JSX Fragment, not a component, so React Router v6
@@ -28,20 +31,14 @@ const LoginRoute = () => {
 
   if (loading) return <div>Loading...</div>;
   if (isAuthenticated) {
-    const isSuperAdmin = user?.role?.toUpperCase() === 'SUPER_ADMIN';
-    return <Navigate to={isSuperAdmin ? '/admin/hospital-registrations' : '/dashboard'} replace />;
+    const redirectPath = resolveDefaultAuthenticatedPath(user);
+    return <Navigate to={redirectPath} replace />;
   }
   return <Login />;
 };
 
-// Role-aware root redirect
-const RootRedirect = () => {
-  const { isAuthenticated, loading, user } = useAuth();
-  if (loading) return <div>Loading...</div>;
-  if (!isAuthenticated) return <Navigate to="/login" replace />;
-  const isSuperAdmin = user?.role?.toUpperCase() === 'SUPER_ADMIN';
-  return <Navigate to={isSuperAdmin ? '/admin/hospital-registrations' : '/dashboard'} replace />;
-};
+// Public landing route: always show the new homepage at root.
+const RootRoute = () => <Index />;
 
 const AppRoutes = () => (
   <BrowserRouter>
@@ -54,7 +51,9 @@ const AppRoutes = () => (
       <Route path="/set-password" element={<SetPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/forgot-password" element={<ResetPassword />} />
-      <Route path="/" element={<RootRedirect />} />
+      <Route path="/guidelines" element={<Guidelines />} />
+      <Route path="/docs" element={<Guidelines />} />
+      <Route path="/" element={<RootRoute />} />
 
       {/* ── Hospital application (hospital users) ──────────────────────── */}
       {HospitalRoutes}

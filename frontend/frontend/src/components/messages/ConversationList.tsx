@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Input } from '@/components/ui/input';
 import { MessageCircle, Users, Search, Archive, Circle } from 'lucide-react';
 import { Conversation, ConversationType, MessageFilter, MessageSort } from '@/types/healthcare';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, memo } from 'react';
 import { cn } from '@/lib/utils';
 
 interface ConversationListProps {
@@ -137,7 +137,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
     });
 
     return filtered;
-  }, [conversations, activeTab, filter, searchQuery, sort, currentUserId]);
+  }, [conversations, activeTab, filter, searchQuery, sort, currentUserId, currentUserEmail]);
 
   // Finds the other participant in a private/case conversation.
   // Checks by ID first, then by email, so it works even if ID formats differ.
@@ -160,16 +160,11 @@ const ConversationList: React.FC<ConversationListProps> = ({
     }
     
     const otherParticipant = getOtherParticipant(conversation);
-    return otherParticipant?.name || otherParticipant?.email || conversation.name || 'Direct Message';
+    return conversation.name || otherParticipant?.name || otherParticipant?.email || 'Direct Message';
   };
 
   const getConversationAvatar = (conversation: Conversation) => {
-    if (conversation.type === 'group') {
-      return conversation.name?.split(' ').map(n => n[0]).join('').slice(0, 2) || 'G';
-    }
-    
-    const otherParticipant = getOtherParticipant(conversation);
-    return otherParticipant?.name?.split(' ').map(n => n[0]).join('') || 'DM';
+    return getInitials(getConversationDisplayName(conversation));
   };
 
   const getConversationSubtitle = (conversation: Conversation) => {
@@ -400,4 +395,4 @@ const ConversationList: React.FC<ConversationListProps> = ({
   );
 };
 
-export default ConversationList;
+export default memo(ConversationList);

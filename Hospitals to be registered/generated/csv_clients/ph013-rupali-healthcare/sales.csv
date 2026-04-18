@@ -1,0 +1,1351 @@
+date,healthcare_id,medicine_name,quantity_sold,upazila
+2024-01-01,PH013,Paracetamol 500mg,32,Khalishpur
+2024-01-01,PH013,ORS Sachet,18,Khalishpur
+2024-01-01,PH013,Metronidazole 400mg,10,Khalishpur
+2024-01-01,PH013,Cetirizine 10mg,14,Khalishpur
+2024-01-01,PH013,Amoxicillin 500mg,11,Khalishpur
+2024-01-01,PH013,Azithromycin 500mg,6,Khalishpur
+2024-01-01,PH013,Zinc 20mg (child),11,Khalishpur
+2024-01-01,PH013,Ciprofloxacin 500mg,5,Khalishpur
+2024-01-01,PH013,Antihistamine Syrup,11,Khalishpur
+2024-01-01,PH013,Vitamin C 500mg,24,Khalishpur
+2024-01-01,PH013,Ranitidine 150mg,18,Khalishpur
+2024-01-01,PH013,Antacid Tablet,16,Khalishpur
+2024-01-01,PH013,Insulin (vial),3,Khalishpur
+2024-01-01,PH013,Atorvastatin 10mg,7,Khalishpur
+2024-01-01,PH013,Losartan 50mg,8,Khalishpur
+2024-01-02,PH013,Paracetamol 500mg,37,Khalishpur
+2024-01-02,PH013,ORS Sachet,15,Khalishpur
+2024-01-02,PH013,Metronidazole 400mg,12,Khalishpur
+2024-01-02,PH013,Cetirizine 10mg,12,Khalishpur
+2024-01-02,PH013,Amoxicillin 500mg,9,Khalishpur
+2024-01-02,PH013,Azithromycin 500mg,4,Khalishpur
+2024-01-02,PH013,Zinc 20mg (child),9,Khalishpur
+2024-01-02,PH013,Ciprofloxacin 500mg,8,Khalishpur
+2024-01-02,PH013,Antihistamine Syrup,13,Khalishpur
+2024-01-02,PH013,Vitamin C 500mg,26,Khalishpur
+2024-01-02,PH013,Ranitidine 150mg,18,Khalishpur
+2024-01-02,PH013,Antacid Tablet,23,Khalishpur
+2024-01-02,PH013,Insulin (vial),5,Khalishpur
+2024-01-02,PH013,Atorvastatin 10mg,7,Khalishpur
+2024-01-02,PH013,Losartan 50mg,8,Khalishpur
+2024-01-03,PH013,Paracetamol 500mg,31,Khalishpur
+2024-01-03,PH013,ORS Sachet,20,Khalishpur
+2024-01-03,PH013,Metronidazole 400mg,14,Khalishpur
+2024-01-03,PH013,Cetirizine 10mg,16,Khalishpur
+2024-01-03,PH013,Amoxicillin 500mg,9,Khalishpur
+2024-01-03,PH013,Azithromycin 500mg,6,Khalishpur
+2024-01-03,PH013,Zinc 20mg (child),8,Khalishpur
+2024-01-03,PH013,Ciprofloxacin 500mg,6,Khalishpur
+2024-01-03,PH013,Antihistamine Syrup,13,Khalishpur
+2024-01-03,PH013,Vitamin C 500mg,22,Khalishpur
+2024-01-03,PH013,Ranitidine 150mg,12,Khalishpur
+2024-01-03,PH013,Antacid Tablet,19,Khalishpur
+2024-01-03,PH013,Insulin (vial),5,Khalishpur
+2024-01-03,PH013,Atorvastatin 10mg,7,Khalishpur
+2024-01-03,PH013,Losartan 50mg,6,Khalishpur
+2024-01-04,PH013,Paracetamol 500mg,26,Khalishpur
+2024-01-04,PH013,ORS Sachet,16,Khalishpur
+2024-01-04,PH013,Metronidazole 400mg,10,Khalishpur
+2024-01-04,PH013,Cetirizine 10mg,12,Khalishpur
+2024-01-04,PH013,Amoxicillin 500mg,8,Khalishpur
+2024-01-04,PH013,Azithromycin 500mg,5,Khalishpur
+2024-01-04,PH013,Zinc 20mg (child),9,Khalishpur
+2024-01-04,PH013,Ciprofloxacin 500mg,7,Khalishpur
+2024-01-04,PH013,Antihistamine Syrup,10,Khalishpur
+2024-01-04,PH013,Vitamin C 500mg,25,Khalishpur
+2024-01-04,PH013,Ranitidine 150mg,17,Khalishpur
+2024-01-04,PH013,Antacid Tablet,24,Khalishpur
+2024-01-04,PH013,Insulin (vial),3,Khalishpur
+2024-01-04,PH013,Atorvastatin 10mg,8,Khalishpur
+2024-01-04,PH013,Losartan 50mg,9,Khalishpur
+2024-01-05,PH013,Paracetamol 500mg,28,Khalishpur
+2024-01-05,PH013,ORS Sachet,19,Khalishpur
+2024-01-05,PH013,Metronidazole 400mg,11,Khalishpur
+2024-01-05,PH013,Cetirizine 10mg,11,Khalishpur
+2024-01-05,PH013,Amoxicillin 500mg,9,Khalishpur
+2024-01-05,PH013,Azithromycin 500mg,7,Khalishpur
+2024-01-05,PH013,Zinc 20mg (child),10,Khalishpur
+2024-01-05,PH013,Ciprofloxacin 500mg,8,Khalishpur
+2024-01-05,PH013,Antihistamine Syrup,8,Khalishpur
+2024-01-05,PH013,Vitamin C 500mg,19,Khalishpur
+2024-01-05,PH013,Ranitidine 150mg,19,Khalishpur
+2024-01-05,PH013,Antacid Tablet,15,Khalishpur
+2024-01-05,PH013,Insulin (vial),4,Khalishpur
+2024-01-05,PH013,Atorvastatin 10mg,6,Khalishpur
+2024-01-05,PH013,Losartan 50mg,6,Khalishpur
+2024-01-06,PH013,Paracetamol 500mg,30,Khalishpur
+2024-01-06,PH013,ORS Sachet,15,Khalishpur
+2024-01-06,PH013,Metronidazole 400mg,13,Khalishpur
+2024-01-06,PH013,Cetirizine 10mg,14,Khalishpur
+2024-01-06,PH013,Amoxicillin 500mg,12,Khalishpur
+2024-01-06,PH013,Azithromycin 500mg,7,Khalishpur
+2024-01-06,PH013,Zinc 20mg (child),9,Khalishpur
+2024-01-06,PH013,Ciprofloxacin 500mg,7,Khalishpur
+2024-01-06,PH013,Antihistamine Syrup,8,Khalishpur
+2024-01-06,PH013,Vitamin C 500mg,25,Khalishpur
+2024-01-06,PH013,Ranitidine 150mg,12,Khalishpur
+2024-01-06,PH013,Antacid Tablet,23,Khalishpur
+2024-01-06,PH013,Insulin (vial),5,Khalishpur
+2024-01-06,PH013,Atorvastatin 10mg,8,Khalishpur
+2024-01-06,PH013,Losartan 50mg,9,Khalishpur
+2024-01-07,PH013,Paracetamol 500mg,35,Khalishpur
+2024-01-07,PH013,ORS Sachet,16,Khalishpur
+2024-01-07,PH013,Metronidazole 400mg,11,Khalishpur
+2024-01-07,PH013,Cetirizine 10mg,15,Khalishpur
+2024-01-07,PH013,Amoxicillin 500mg,11,Khalishpur
+2024-01-07,PH013,Azithromycin 500mg,5,Khalishpur
+2024-01-07,PH013,Zinc 20mg (child),8,Khalishpur
+2024-01-07,PH013,Ciprofloxacin 500mg,8,Khalishpur
+2024-01-07,PH013,Antihistamine Syrup,9,Khalishpur
+2024-01-07,PH013,Vitamin C 500mg,23,Khalishpur
+2024-01-07,PH013,Ranitidine 150mg,13,Khalishpur
+2024-01-07,PH013,Antacid Tablet,19,Khalishpur
+2024-01-07,PH013,Insulin (vial),6,Khalishpur
+2024-01-07,PH013,Atorvastatin 10mg,7,Khalishpur
+2024-01-07,PH013,Losartan 50mg,9,Khalishpur
+2024-01-08,PH013,Paracetamol 500mg,42,Khalishpur
+2024-01-08,PH013,ORS Sachet,15,Khalishpur
+2024-01-08,PH013,Metronidazole 400mg,13,Khalishpur
+2024-01-08,PH013,Cetirizine 10mg,13,Khalishpur
+2024-01-08,PH013,Amoxicillin 500mg,11,Khalishpur
+2024-01-08,PH013,Azithromycin 500mg,5,Khalishpur
+2024-01-08,PH013,Zinc 20mg (child),8,Khalishpur
+2024-01-08,PH013,Ciprofloxacin 500mg,6,Khalishpur
+2024-01-08,PH013,Antihistamine Syrup,8,Khalishpur
+2024-01-08,PH013,Vitamin C 500mg,27,Khalishpur
+2024-01-08,PH013,Ranitidine 150mg,12,Khalishpur
+2024-01-08,PH013,Antacid Tablet,21,Khalishpur
+2024-01-08,PH013,Insulin (vial),5,Khalishpur
+2024-01-08,PH013,Atorvastatin 10mg,6,Khalishpur
+2024-01-08,PH013,Losartan 50mg,9,Khalishpur
+2024-01-09,PH013,Paracetamol 500mg,42,Khalishpur
+2024-01-09,PH013,ORS Sachet,22,Khalishpur
+2024-01-09,PH013,Metronidazole 400mg,11,Khalishpur
+2024-01-09,PH013,Cetirizine 10mg,13,Khalishpur
+2024-01-09,PH013,Amoxicillin 500mg,12,Khalishpur
+2024-01-09,PH013,Azithromycin 500mg,5,Khalishpur
+2024-01-09,PH013,Zinc 20mg (child),8,Khalishpur
+2024-01-09,PH013,Ciprofloxacin 500mg,6,Khalishpur
+2024-01-09,PH013,Antihistamine Syrup,11,Khalishpur
+2024-01-09,PH013,Vitamin C 500mg,19,Khalishpur
+2024-01-09,PH013,Ranitidine 150mg,13,Khalishpur
+2024-01-09,PH013,Antacid Tablet,17,Khalishpur
+2024-01-09,PH013,Insulin (vial),5,Khalishpur
+2024-01-09,PH013,Atorvastatin 10mg,8,Khalishpur
+2024-01-09,PH013,Losartan 50mg,6,Khalishpur
+2024-01-10,PH013,Paracetamol 500mg,41,Khalishpur
+2024-01-10,PH013,ORS Sachet,19,Khalishpur
+2024-01-10,PH013,Metronidazole 400mg,12,Khalishpur
+2024-01-10,PH013,Cetirizine 10mg,11,Khalishpur
+2024-01-10,PH013,Amoxicillin 500mg,9,Khalishpur
+2024-01-10,PH013,Azithromycin 500mg,5,Khalishpur
+2024-01-10,PH013,Zinc 20mg (child),10,Khalishpur
+2024-01-10,PH013,Ciprofloxacin 500mg,7,Khalishpur
+2024-01-10,PH013,Antihistamine Syrup,13,Khalishpur
+2024-01-10,PH013,Vitamin C 500mg,21,Khalishpur
+2024-01-10,PH013,Ranitidine 150mg,13,Khalishpur
+2024-01-10,PH013,Antacid Tablet,22,Khalishpur
+2024-01-10,PH013,Insulin (vial),6,Khalishpur
+2024-01-10,PH013,Atorvastatin 10mg,8,Khalishpur
+2024-01-10,PH013,Losartan 50mg,8,Khalishpur
+2024-01-11,PH013,Paracetamol 500mg,38,Khalishpur
+2024-01-11,PH013,ORS Sachet,19,Khalishpur
+2024-01-11,PH013,Metronidazole 400mg,10,Khalishpur
+2024-01-11,PH013,Cetirizine 10mg,12,Khalishpur
+2024-01-11,PH013,Amoxicillin 500mg,8,Khalishpur
+2024-01-11,PH013,Azithromycin 500mg,7,Khalishpur
+2024-01-11,PH013,Zinc 20mg (child),10,Khalishpur
+2024-01-11,PH013,Ciprofloxacin 500mg,6,Khalishpur
+2024-01-11,PH013,Antihistamine Syrup,11,Khalishpur
+2024-01-11,PH013,Vitamin C 500mg,26,Khalishpur
+2024-01-11,PH013,Ranitidine 150mg,17,Khalishpur
+2024-01-11,PH013,Antacid Tablet,17,Khalishpur
+2024-01-11,PH013,Insulin (vial),4,Khalishpur
+2024-01-11,PH013,Atorvastatin 10mg,6,Khalishpur
+2024-01-11,PH013,Losartan 50mg,7,Khalishpur
+2024-01-12,PH013,Paracetamol 500mg,43,Khalishpur
+2024-01-12,PH013,ORS Sachet,15,Khalishpur
+2024-01-12,PH013,Metronidazole 400mg,14,Khalishpur
+2024-01-12,PH013,Cetirizine 10mg,15,Khalishpur
+2024-01-12,PH013,Amoxicillin 500mg,12,Khalishpur
+2024-01-12,PH013,Azithromycin 500mg,6,Khalishpur
+2024-01-12,PH013,Zinc 20mg (child),9,Khalishpur
+2024-01-12,PH013,Ciprofloxacin 500mg,8,Khalishpur
+2024-01-12,PH013,Antihistamine Syrup,8,Khalishpur
+2024-01-12,PH013,Vitamin C 500mg,22,Khalishpur
+2024-01-12,PH013,Ranitidine 150mg,17,Khalishpur
+2024-01-12,PH013,Antacid Tablet,15,Khalishpur
+2024-01-12,PH013,Insulin (vial),4,Khalishpur
+2024-01-12,PH013,Atorvastatin 10mg,6,Khalishpur
+2024-01-12,PH013,Losartan 50mg,9,Khalishpur
+2024-01-13,PH013,Paracetamol 500mg,38,Khalishpur
+2024-01-13,PH013,ORS Sachet,19,Khalishpur
+2024-01-13,PH013,Metronidazole 400mg,13,Khalishpur
+2024-01-13,PH013,Cetirizine 10mg,11,Khalishpur
+2024-01-13,PH013,Amoxicillin 500mg,10,Khalishpur
+2024-01-13,PH013,Azithromycin 500mg,6,Khalishpur
+2024-01-13,PH013,Zinc 20mg (child),12,Khalishpur
+2024-01-13,PH013,Ciprofloxacin 500mg,6,Khalishpur
+2024-01-13,PH013,Antihistamine Syrup,11,Khalishpur
+2024-01-13,PH013,Vitamin C 500mg,25,Khalishpur
+2024-01-13,PH013,Ranitidine 150mg,18,Khalishpur
+2024-01-13,PH013,Antacid Tablet,15,Khalishpur
+2024-01-13,PH013,Insulin (vial),4,Khalishpur
+2024-01-13,PH013,Atorvastatin 10mg,5,Khalishpur
+2024-01-13,PH013,Losartan 50mg,8,Khalishpur
+2024-01-14,PH013,Paracetamol 500mg,26,Khalishpur
+2024-01-14,PH013,ORS Sachet,21,Khalishpur
+2024-01-14,PH013,Metronidazole 400mg,12,Khalishpur
+2024-01-14,PH013,Cetirizine 10mg,13,Khalishpur
+2024-01-14,PH013,Amoxicillin 500mg,8,Khalishpur
+2024-01-14,PH013,Azithromycin 500mg,7,Khalishpur
+2024-01-14,PH013,Zinc 20mg (child),10,Khalishpur
+2024-01-14,PH013,Ciprofloxacin 500mg,7,Khalishpur
+2024-01-14,PH013,Antihistamine Syrup,13,Khalishpur
+2024-01-14,PH013,Vitamin C 500mg,23,Khalishpur
+2024-01-14,PH013,Ranitidine 150mg,13,Khalishpur
+2024-01-14,PH013,Antacid Tablet,24,Khalishpur
+2024-01-14,PH013,Insulin (vial),5,Khalishpur
+2024-01-14,PH013,Atorvastatin 10mg,5,Khalishpur
+2024-01-14,PH013,Losartan 50mg,9,Khalishpur
+2024-01-15,PH013,Paracetamol 500mg,39,Khalishpur
+2024-01-15,PH013,ORS Sachet,17,Khalishpur
+2024-01-15,PH013,Metronidazole 400mg,10,Khalishpur
+2024-01-15,PH013,Cetirizine 10mg,14,Khalishpur
+2024-01-15,PH013,Amoxicillin 500mg,10,Khalishpur
+2024-01-15,PH013,Azithromycin 500mg,7,Khalishpur
+2024-01-15,PH013,Zinc 20mg (child),9,Khalishpur
+2024-01-15,PH013,Ciprofloxacin 500mg,7,Khalishpur
+2024-01-15,PH013,Antihistamine Syrup,11,Khalishpur
+2024-01-15,PH013,Vitamin C 500mg,25,Khalishpur
+2024-01-15,PH013,Ranitidine 150mg,14,Khalishpur
+2024-01-15,PH013,Antacid Tablet,22,Khalishpur
+2024-01-15,PH013,Insulin (vial),5,Khalishpur
+2024-01-15,PH013,Atorvastatin 10mg,7,Khalishpur
+2024-01-15,PH013,Losartan 50mg,6,Khalishpur
+2024-01-16,PH013,Paracetamol 500mg,32,Khalishpur
+2024-01-16,PH013,ORS Sachet,16,Khalishpur
+2024-01-16,PH013,Metronidazole 400mg,11,Khalishpur
+2024-01-16,PH013,Cetirizine 10mg,12,Khalishpur
+2024-01-16,PH013,Amoxicillin 500mg,7,Khalishpur
+2024-01-16,PH013,Azithromycin 500mg,5,Khalishpur
+2024-01-16,PH013,Zinc 20mg (child),9,Khalishpur
+2024-01-16,PH013,Ciprofloxacin 500mg,8,Khalishpur
+2024-01-16,PH013,Antihistamine Syrup,10,Khalishpur
+2024-01-16,PH013,Vitamin C 500mg,20,Khalishpur
+2024-01-16,PH013,Ranitidine 150mg,17,Khalishpur
+2024-01-16,PH013,Antacid Tablet,17,Khalishpur
+2024-01-16,PH013,Insulin (vial),5,Khalishpur
+2024-01-16,PH013,Atorvastatin 10mg,6,Khalishpur
+2024-01-16,PH013,Losartan 50mg,6,Khalishpur
+2024-01-17,PH013,Paracetamol 500mg,33,Khalishpur
+2024-01-17,PH013,ORS Sachet,20,Khalishpur
+2024-01-17,PH013,Metronidazole 400mg,11,Khalishpur
+2024-01-17,PH013,Cetirizine 10mg,15,Khalishpur
+2024-01-17,PH013,Amoxicillin 500mg,12,Khalishpur
+2024-01-17,PH013,Azithromycin 500mg,5,Khalishpur
+2024-01-17,PH013,Zinc 20mg (child),9,Khalishpur
+2024-01-17,PH013,Ciprofloxacin 500mg,5,Khalishpur
+2024-01-17,PH013,Antihistamine Syrup,10,Khalishpur
+2024-01-17,PH013,Vitamin C 500mg,21,Khalishpur
+2024-01-17,PH013,Ranitidine 150mg,15,Khalishpur
+2024-01-17,PH013,Antacid Tablet,15,Khalishpur
+2024-01-17,PH013,Insulin (vial),4,Khalishpur
+2024-01-17,PH013,Atorvastatin 10mg,8,Khalishpur
+2024-01-17,PH013,Losartan 50mg,7,Khalishpur
+2024-01-18,PH013,Paracetamol 500mg,27,Khalishpur
+2024-01-18,PH013,ORS Sachet,16,Khalishpur
+2024-01-18,PH013,Metronidazole 400mg,12,Khalishpur
+2024-01-18,PH013,Cetirizine 10mg,11,Khalishpur
+2024-01-18,PH013,Amoxicillin 500mg,8,Khalishpur
+2024-01-18,PH013,Azithromycin 500mg,5,Khalishpur
+2024-01-18,PH013,Zinc 20mg (child),8,Khalishpur
+2024-01-18,PH013,Ciprofloxacin 500mg,7,Khalishpur
+2024-01-18,PH013,Antihistamine Syrup,8,Khalishpur
+2024-01-18,PH013,Vitamin C 500mg,20,Khalishpur
+2024-01-18,PH013,Ranitidine 150mg,14,Khalishpur
+2024-01-18,PH013,Antacid Tablet,18,Khalishpur
+2024-01-18,PH013,Insulin (vial),5,Khalishpur
+2024-01-18,PH013,Atorvastatin 10mg,8,Khalishpur
+2024-01-18,PH013,Losartan 50mg,7,Khalishpur
+2024-01-19,PH013,Paracetamol 500mg,33,Khalishpur
+2024-01-19,PH013,ORS Sachet,21,Khalishpur
+2024-01-19,PH013,Metronidazole 400mg,14,Khalishpur
+2024-01-19,PH013,Cetirizine 10mg,14,Khalishpur
+2024-01-19,PH013,Amoxicillin 500mg,9,Khalishpur
+2024-01-19,PH013,Azithromycin 500mg,6,Khalishpur
+2024-01-19,PH013,Zinc 20mg (child),10,Khalishpur
+2024-01-19,PH013,Ciprofloxacin 500mg,6,Khalishpur
+2024-01-19,PH013,Antihistamine Syrup,10,Khalishpur
+2024-01-19,PH013,Vitamin C 500mg,23,Khalishpur
+2024-01-19,PH013,Ranitidine 150mg,13,Khalishpur
+2024-01-19,PH013,Antacid Tablet,16,Khalishpur
+2024-01-19,PH013,Insulin (vial),5,Khalishpur
+2024-01-19,PH013,Atorvastatin 10mg,8,Khalishpur
+2024-01-19,PH013,Losartan 50mg,7,Khalishpur
+2024-01-20,PH013,Paracetamol 500mg,30,Khalishpur
+2024-01-20,PH013,ORS Sachet,19,Khalishpur
+2024-01-20,PH013,Metronidazole 400mg,14,Khalishpur
+2024-01-20,PH013,Cetirizine 10mg,16,Khalishpur
+2024-01-20,PH013,Amoxicillin 500mg,9,Khalishpur
+2024-01-20,PH013,Azithromycin 500mg,6,Khalishpur
+2024-01-20,PH013,Zinc 20mg (child),11,Khalishpur
+2024-01-20,PH013,Ciprofloxacin 500mg,8,Khalishpur
+2024-01-20,PH013,Antihistamine Syrup,9,Khalishpur
+2024-01-20,PH013,Vitamin C 500mg,19,Khalishpur
+2024-01-20,PH013,Ranitidine 150mg,13,Khalishpur
+2024-01-20,PH013,Antacid Tablet,24,Khalishpur
+2024-01-20,PH013,Insulin (vial),6,Khalishpur
+2024-01-20,PH013,Atorvastatin 10mg,6,Khalishpur
+2024-01-20,PH013,Losartan 50mg,6,Khalishpur
+2024-01-21,PH013,Paracetamol 500mg,36,Khalishpur
+2024-01-21,PH013,ORS Sachet,15,Khalishpur
+2024-01-21,PH013,Metronidazole 400mg,14,Khalishpur
+2024-01-21,PH013,Cetirizine 10mg,15,Khalishpur
+2024-01-21,PH013,Amoxicillin 500mg,8,Khalishpur
+2024-01-21,PH013,Azithromycin 500mg,6,Khalishpur
+2024-01-21,PH013,Zinc 20mg (child),11,Khalishpur
+2024-01-21,PH013,Ciprofloxacin 500mg,7,Khalishpur
+2024-01-21,PH013,Antihistamine Syrup,11,Khalishpur
+2024-01-21,PH013,Vitamin C 500mg,27,Khalishpur
+2024-01-21,PH013,Ranitidine 150mg,15,Khalishpur
+2024-01-21,PH013,Antacid Tablet,23,Khalishpur
+2024-01-21,PH013,Insulin (vial),5,Khalishpur
+2024-01-21,PH013,Atorvastatin 10mg,5,Khalishpur
+2024-01-21,PH013,Losartan 50mg,9,Khalishpur
+2024-01-22,PH013,Paracetamol 500mg,35,Khalishpur
+2024-01-22,PH013,ORS Sachet,14,Khalishpur
+2024-01-22,PH013,Metronidazole 400mg,10,Khalishpur
+2024-01-22,PH013,Cetirizine 10mg,13,Khalishpur
+2024-01-22,PH013,Amoxicillin 500mg,8,Khalishpur
+2024-01-22,PH013,Azithromycin 500mg,5,Khalishpur
+2024-01-22,PH013,Zinc 20mg (child),8,Khalishpur
+2024-01-22,PH013,Ciprofloxacin 500mg,7,Khalishpur
+2024-01-22,PH013,Antihistamine Syrup,8,Khalishpur
+2024-01-22,PH013,Vitamin C 500mg,19,Khalishpur
+2024-01-22,PH013,Ranitidine 150mg,19,Khalishpur
+2024-01-22,PH013,Antacid Tablet,22,Khalishpur
+2024-01-22,PH013,Insulin (vial),3,Khalishpur
+2024-01-22,PH013,Atorvastatin 10mg,5,Khalishpur
+2024-01-22,PH013,Losartan 50mg,8,Khalishpur
+2024-01-23,PH013,Paracetamol 500mg,26,Khalishpur
+2024-01-23,PH013,ORS Sachet,20,Khalishpur
+2024-01-23,PH013,Metronidazole 400mg,10,Khalishpur
+2024-01-23,PH013,Cetirizine 10mg,12,Khalishpur
+2024-01-23,PH013,Amoxicillin 500mg,11,Khalishpur
+2024-01-23,PH013,Azithromycin 500mg,7,Khalishpur
+2024-01-23,PH013,Zinc 20mg (child),12,Khalishpur
+2024-01-23,PH013,Ciprofloxacin 500mg,7,Khalishpur
+2024-01-23,PH013,Antihistamine Syrup,11,Khalishpur
+2024-01-23,PH013,Vitamin C 500mg,17,Khalishpur
+2024-01-23,PH013,Ranitidine 150mg,12,Khalishpur
+2024-01-23,PH013,Antacid Tablet,15,Khalishpur
+2024-01-23,PH013,Insulin (vial),4,Khalishpur
+2024-01-23,PH013,Atorvastatin 10mg,5,Khalishpur
+2024-01-23,PH013,Losartan 50mg,7,Khalishpur
+2024-01-24,PH013,Paracetamol 500mg,27,Khalishpur
+2024-01-24,PH013,ORS Sachet,18,Khalishpur
+2024-01-24,PH013,Metronidazole 400mg,13,Khalishpur
+2024-01-24,PH013,Cetirizine 10mg,10,Khalishpur
+2024-01-24,PH013,Amoxicillin 500mg,9,Khalishpur
+2024-01-24,PH013,Azithromycin 500mg,5,Khalishpur
+2024-01-24,PH013,Zinc 20mg (child),9,Khalishpur
+2024-01-24,PH013,Ciprofloxacin 500mg,8,Khalishpur
+2024-01-24,PH013,Antihistamine Syrup,9,Khalishpur
+2024-01-24,PH013,Vitamin C 500mg,20,Khalishpur
+2024-01-24,PH013,Ranitidine 150mg,13,Khalishpur
+2024-01-24,PH013,Antacid Tablet,17,Khalishpur
+2024-01-24,PH013,Insulin (vial),4,Khalishpur
+2024-01-24,PH013,Atorvastatin 10mg,7,Khalishpur
+2024-01-24,PH013,Losartan 50mg,8,Khalishpur
+2024-01-25,PH013,Paracetamol 500mg,29,Khalishpur
+2024-01-25,PH013,ORS Sachet,17,Khalishpur
+2024-01-25,PH013,Metronidazole 400mg,10,Khalishpur
+2024-01-25,PH013,Cetirizine 10mg,11,Khalishpur
+2024-01-25,PH013,Amoxicillin 500mg,10,Khalishpur
+2024-01-25,PH013,Azithromycin 500mg,4,Khalishpur
+2024-01-25,PH013,Zinc 20mg (child),12,Khalishpur
+2024-01-25,PH013,Ciprofloxacin 500mg,5,Khalishpur
+2024-01-25,PH013,Antihistamine Syrup,11,Khalishpur
+2024-01-25,PH013,Vitamin C 500mg,21,Khalishpur
+2024-01-25,PH013,Ranitidine 150mg,19,Khalishpur
+2024-01-25,PH013,Antacid Tablet,23,Khalishpur
+2024-01-25,PH013,Insulin (vial),6,Khalishpur
+2024-01-25,PH013,Atorvastatin 10mg,6,Khalishpur
+2024-01-25,PH013,Losartan 50mg,7,Khalishpur
+2024-01-26,PH013,Paracetamol 500mg,40,Khalishpur
+2024-01-26,PH013,ORS Sachet,19,Khalishpur
+2024-01-26,PH013,Metronidazole 400mg,11,Khalishpur
+2024-01-26,PH013,Cetirizine 10mg,14,Khalishpur
+2024-01-26,PH013,Amoxicillin 500mg,11,Khalishpur
+2024-01-26,PH013,Azithromycin 500mg,5,Khalishpur
+2024-01-26,PH013,Zinc 20mg (child),12,Khalishpur
+2024-01-26,PH013,Ciprofloxacin 500mg,7,Khalishpur
+2024-01-26,PH013,Antihistamine Syrup,9,Khalishpur
+2024-01-26,PH013,Vitamin C 500mg,25,Khalishpur
+2024-01-26,PH013,Ranitidine 150mg,18,Khalishpur
+2024-01-26,PH013,Antacid Tablet,20,Khalishpur
+2024-01-26,PH013,Insulin (vial),4,Khalishpur
+2024-01-26,PH013,Atorvastatin 10mg,5,Khalishpur
+2024-01-26,PH013,Losartan 50mg,7,Khalishpur
+2024-01-27,PH013,Paracetamol 500mg,31,Khalishpur
+2024-01-27,PH013,ORS Sachet,22,Khalishpur
+2024-01-27,PH013,Metronidazole 400mg,16,Khalishpur
+2024-01-27,PH013,Cetirizine 10mg,16,Khalishpur
+2024-01-27,PH013,Amoxicillin 500mg,11,Khalishpur
+2024-01-27,PH013,Azithromycin 500mg,6,Khalishpur
+2024-01-27,PH013,Zinc 20mg (child),14,Khalishpur
+2024-01-27,PH013,Ciprofloxacin 500mg,7,Khalishpur
+2024-01-27,PH013,Antihistamine Syrup,10,Khalishpur
+2024-01-27,PH013,Vitamin C 500mg,23,Khalishpur
+2024-01-27,PH013,Ranitidine 150mg,14,Khalishpur
+2024-01-27,PH013,Antacid Tablet,16,Khalishpur
+2024-01-27,PH013,Insulin (vial),4,Khalishpur
+2024-01-27,PH013,Atorvastatin 10mg,5,Khalishpur
+2024-01-27,PH013,Losartan 50mg,7,Khalishpur
+2024-01-28,PH013,Paracetamol 500mg,43,Khalishpur
+2024-01-28,PH013,ORS Sachet,31,Khalishpur
+2024-01-28,PH013,Metronidazole 400mg,14,Khalishpur
+2024-01-28,PH013,Cetirizine 10mg,11,Khalishpur
+2024-01-28,PH013,Amoxicillin 500mg,12,Khalishpur
+2024-01-28,PH013,Azithromycin 500mg,5,Khalishpur
+2024-01-28,PH013,Zinc 20mg (child),12,Khalishpur
+2024-01-28,PH013,Ciprofloxacin 500mg,6,Khalishpur
+2024-01-28,PH013,Antihistamine Syrup,11,Khalishpur
+2024-01-28,PH013,Vitamin C 500mg,23,Khalishpur
+2024-01-28,PH013,Ranitidine 150mg,19,Khalishpur
+2024-01-28,PH013,Antacid Tablet,23,Khalishpur
+2024-01-28,PH013,Insulin (vial),6,Khalishpur
+2024-01-28,PH013,Atorvastatin 10mg,5,Khalishpur
+2024-01-28,PH013,Losartan 50mg,7,Khalishpur
+2024-01-29,PH013,Paracetamol 500mg,36,Khalishpur
+2024-01-29,PH013,ORS Sachet,35,Khalishpur
+2024-01-29,PH013,Metronidazole 400mg,17,Khalishpur
+2024-01-29,PH013,Cetirizine 10mg,14,Khalishpur
+2024-01-29,PH013,Amoxicillin 500mg,10,Khalishpur
+2024-01-29,PH013,Azithromycin 500mg,5,Khalishpur
+2024-01-29,PH013,Zinc 20mg (child),12,Khalishpur
+2024-01-29,PH013,Ciprofloxacin 500mg,8,Khalishpur
+2024-01-29,PH013,Antihistamine Syrup,12,Khalishpur
+2024-01-29,PH013,Vitamin C 500mg,24,Khalishpur
+2024-01-29,PH013,Ranitidine 150mg,14,Khalishpur
+2024-01-29,PH013,Antacid Tablet,20,Khalishpur
+2024-01-29,PH013,Insulin (vial),6,Khalishpur
+2024-01-29,PH013,Atorvastatin 10mg,6,Khalishpur
+2024-01-29,PH013,Losartan 50mg,6,Khalishpur
+2024-01-30,PH013,Paracetamol 500mg,30,Khalishpur
+2024-01-30,PH013,ORS Sachet,38,Khalishpur
+2024-01-30,PH013,Metronidazole 400mg,23,Khalishpur
+2024-01-30,PH013,Cetirizine 10mg,14,Khalishpur
+2024-01-30,PH013,Amoxicillin 500mg,8,Khalishpur
+2024-01-30,PH013,Azithromycin 500mg,6,Khalishpur
+2024-01-30,PH013,Zinc 20mg (child),17,Khalishpur
+2024-01-30,PH013,Ciprofloxacin 500mg,10,Khalishpur
+2024-01-30,PH013,Antihistamine Syrup,8,Khalishpur
+2024-01-30,PH013,Vitamin C 500mg,22,Khalishpur
+2024-01-30,PH013,Ranitidine 150mg,19,Khalishpur
+2024-01-30,PH013,Antacid Tablet,23,Khalishpur
+2024-01-30,PH013,Insulin (vial),5,Khalishpur
+2024-01-30,PH013,Atorvastatin 10mg,7,Khalishpur
+2024-01-30,PH013,Losartan 50mg,9,Khalishpur
+2024-01-31,PH013,Paracetamol 500mg,29,Khalishpur
+2024-01-31,PH013,ORS Sachet,45,Khalishpur
+2024-01-31,PH013,Metronidazole 400mg,26,Khalishpur
+2024-01-31,PH013,Cetirizine 10mg,12,Khalishpur
+2024-01-31,PH013,Amoxicillin 500mg,8,Khalishpur
+2024-01-31,PH013,Azithromycin 500mg,6,Khalishpur
+2024-01-31,PH013,Zinc 20mg (child),25,Khalishpur
+2024-01-31,PH013,Ciprofloxacin 500mg,9,Khalishpur
+2024-01-31,PH013,Antihistamine Syrup,9,Khalishpur
+2024-01-31,PH013,Vitamin C 500mg,24,Khalishpur
+2024-01-31,PH013,Ranitidine 150mg,12,Khalishpur
+2024-01-31,PH013,Antacid Tablet,22,Khalishpur
+2024-01-31,PH013,Insulin (vial),4,Khalishpur
+2024-01-31,PH013,Atorvastatin 10mg,7,Khalishpur
+2024-01-31,PH013,Losartan 50mg,9,Khalishpur
+2024-02-01,PH013,Paracetamol 500mg,37,Khalishpur
+2024-02-01,PH013,ORS Sachet,54,Khalishpur
+2024-02-01,PH013,Metronidazole 400mg,22,Khalishpur
+2024-02-01,PH013,Cetirizine 10mg,10,Khalishpur
+2024-02-01,PH013,Amoxicillin 500mg,7,Khalishpur
+2024-02-01,PH013,Azithromycin 500mg,4,Khalishpur
+2024-02-01,PH013,Zinc 20mg (child),19,Khalishpur
+2024-02-01,PH013,Ciprofloxacin 500mg,10,Khalishpur
+2024-02-01,PH013,Antihistamine Syrup,10,Khalishpur
+2024-02-01,PH013,Vitamin C 500mg,26,Khalishpur
+2024-02-01,PH013,Ranitidine 150mg,19,Khalishpur
+2024-02-01,PH013,Antacid Tablet,17,Khalishpur
+2024-02-01,PH013,Insulin (vial),4,Khalishpur
+2024-02-01,PH013,Atorvastatin 10mg,8,Khalishpur
+2024-02-01,PH013,Losartan 50mg,8,Khalishpur
+2024-02-02,PH013,Paracetamol 500mg,27,Khalishpur
+2024-02-02,PH013,ORS Sachet,55,Khalishpur
+2024-02-02,PH013,Metronidazole 400mg,25,Khalishpur
+2024-02-02,PH013,Cetirizine 10mg,16,Khalishpur
+2024-02-02,PH013,Amoxicillin 500mg,10,Khalishpur
+2024-02-02,PH013,Azithromycin 500mg,5,Khalishpur
+2024-02-02,PH013,Zinc 20mg (child),22,Khalishpur
+2024-02-02,PH013,Ciprofloxacin 500mg,15,Khalishpur
+2024-02-02,PH013,Antihistamine Syrup,10,Khalishpur
+2024-02-02,PH013,Vitamin C 500mg,16,Khalishpur
+2024-02-02,PH013,Ranitidine 150mg,12,Khalishpur
+2024-02-02,PH013,Antacid Tablet,22,Khalishpur
+2024-02-02,PH013,Insulin (vial),3,Khalishpur
+2024-02-02,PH013,Atorvastatin 10mg,8,Khalishpur
+2024-02-02,PH013,Losartan 50mg,6,Khalishpur
+2024-02-03,PH013,Paracetamol 500mg,28,Khalishpur
+2024-02-03,PH013,ORS Sachet,42,Khalishpur
+2024-02-03,PH013,Metronidazole 400mg,25,Khalishpur
+2024-02-03,PH013,Cetirizine 10mg,16,Khalishpur
+2024-02-03,PH013,Amoxicillin 500mg,10,Khalishpur
+2024-02-03,PH013,Azithromycin 500mg,5,Khalishpur
+2024-02-03,PH013,Zinc 20mg (child),24,Khalishpur
+2024-02-03,PH013,Ciprofloxacin 500mg,15,Khalishpur
+2024-02-03,PH013,Antihistamine Syrup,9,Khalishpur
+2024-02-03,PH013,Vitamin C 500mg,18,Khalishpur
+2024-02-03,PH013,Ranitidine 150mg,15,Khalishpur
+2024-02-03,PH013,Antacid Tablet,23,Khalishpur
+2024-02-03,PH013,Insulin (vial),5,Khalishpur
+2024-02-03,PH013,Atorvastatin 10mg,6,Khalishpur
+2024-02-03,PH013,Losartan 50mg,8,Khalishpur
+2024-02-04,PH013,Paracetamol 500mg,37,Khalishpur
+2024-02-04,PH013,ORS Sachet,63,Khalishpur
+2024-02-04,PH013,Metronidazole 400mg,27,Khalishpur
+2024-02-04,PH013,Cetirizine 10mg,12,Khalishpur
+2024-02-04,PH013,Amoxicillin 500mg,10,Khalishpur
+2024-02-04,PH013,Azithromycin 500mg,7,Khalishpur
+2024-02-04,PH013,Zinc 20mg (child),28,Khalishpur
+2024-02-04,PH013,Ciprofloxacin 500mg,17,Khalishpur
+2024-02-04,PH013,Antihistamine Syrup,8,Khalishpur
+2024-02-04,PH013,Vitamin C 500mg,23,Khalishpur
+2024-02-04,PH013,Ranitidine 150mg,16,Khalishpur
+2024-02-04,PH013,Antacid Tablet,18,Khalishpur
+2024-02-04,PH013,Insulin (vial),5,Khalishpur
+2024-02-04,PH013,Atorvastatin 10mg,8,Khalishpur
+2024-02-04,PH013,Losartan 50mg,8,Khalishpur
+2024-02-05,PH013,Paracetamol 500mg,37,Khalishpur
+2024-02-05,PH013,ORS Sachet,51,Khalishpur
+2024-02-05,PH013,Metronidazole 400mg,24,Khalishpur
+2024-02-05,PH013,Cetirizine 10mg,17,Khalishpur
+2024-02-05,PH013,Amoxicillin 500mg,12,Khalishpur
+2024-02-05,PH013,Azithromycin 500mg,5,Khalishpur
+2024-02-05,PH013,Zinc 20mg (child),26,Khalishpur
+2024-02-05,PH013,Ciprofloxacin 500mg,11,Khalishpur
+2024-02-05,PH013,Antihistamine Syrup,8,Khalishpur
+2024-02-05,PH013,Vitamin C 500mg,20,Khalishpur
+2024-02-05,PH013,Ranitidine 150mg,17,Khalishpur
+2024-02-05,PH013,Antacid Tablet,23,Khalishpur
+2024-02-05,PH013,Insulin (vial),5,Khalishpur
+2024-02-05,PH013,Atorvastatin 10mg,6,Khalishpur
+2024-02-05,PH013,Losartan 50mg,9,Khalishpur
+2024-02-06,PH013,Paracetamol 500mg,29,Khalishpur
+2024-02-06,PH013,ORS Sachet,59,Khalishpur
+2024-02-06,PH013,Metronidazole 400mg,41,Khalishpur
+2024-02-06,PH013,Cetirizine 10mg,11,Khalishpur
+2024-02-06,PH013,Amoxicillin 500mg,10,Khalishpur
+2024-02-06,PH013,Azithromycin 500mg,4,Khalishpur
+2024-02-06,PH013,Zinc 20mg (child),31,Khalishpur
+2024-02-06,PH013,Ciprofloxacin 500mg,14,Khalishpur
+2024-02-06,PH013,Antihistamine Syrup,9,Khalishpur
+2024-02-06,PH013,Vitamin C 500mg,22,Khalishpur
+2024-02-06,PH013,Ranitidine 150mg,18,Khalishpur
+2024-02-06,PH013,Antacid Tablet,15,Khalishpur
+2024-02-06,PH013,Insulin (vial),4,Khalishpur
+2024-02-06,PH013,Atorvastatin 10mg,8,Khalishpur
+2024-02-06,PH013,Losartan 50mg,6,Khalishpur
+2024-02-07,PH013,Paracetamol 500mg,35,Khalishpur
+2024-02-07,PH013,ORS Sachet,79,Khalishpur
+2024-02-07,PH013,Metronidazole 400mg,43,Khalishpur
+2024-02-07,PH013,Cetirizine 10mg,13,Khalishpur
+2024-02-07,PH013,Amoxicillin 500mg,10,Khalishpur
+2024-02-07,PH013,Azithromycin 500mg,5,Khalishpur
+2024-02-07,PH013,Zinc 20mg (child),37,Khalishpur
+2024-02-07,PH013,Ciprofloxacin 500mg,13,Khalishpur
+2024-02-07,PH013,Antihistamine Syrup,12,Khalishpur
+2024-02-07,PH013,Vitamin C 500mg,22,Khalishpur
+2024-02-07,PH013,Ranitidine 150mg,17,Khalishpur
+2024-02-07,PH013,Antacid Tablet,18,Khalishpur
+2024-02-07,PH013,Insulin (vial),6,Khalishpur
+2024-02-07,PH013,Atorvastatin 10mg,5,Khalishpur
+2024-02-07,PH013,Losartan 50mg,7,Khalishpur
+2024-02-08,PH013,Paracetamol 500mg,27,Khalishpur
+2024-02-08,PH013,ORS Sachet,77,Khalishpur
+2024-02-08,PH013,Metronidazole 400mg,40,Khalishpur
+2024-02-08,PH013,Cetirizine 10mg,17,Khalishpur
+2024-02-08,PH013,Amoxicillin 500mg,11,Khalishpur
+2024-02-08,PH013,Azithromycin 500mg,7,Khalishpur
+2024-02-08,PH013,Zinc 20mg (child),31,Khalishpur
+2024-02-08,PH013,Ciprofloxacin 500mg,16,Khalishpur
+2024-02-08,PH013,Antihistamine Syrup,10,Khalishpur
+2024-02-08,PH013,Vitamin C 500mg,23,Khalishpur
+2024-02-08,PH013,Ranitidine 150mg,14,Khalishpur
+2024-02-08,PH013,Antacid Tablet,24,Khalishpur
+2024-02-08,PH013,Insulin (vial),6,Khalishpur
+2024-02-08,PH013,Atorvastatin 10mg,7,Khalishpur
+2024-02-08,PH013,Losartan 50mg,9,Khalishpur
+2024-02-09,PH013,Paracetamol 500mg,43,Khalishpur
+2024-02-09,PH013,ORS Sachet,55,Khalishpur
+2024-02-09,PH013,Metronidazole 400mg,36,Khalishpur
+2024-02-09,PH013,Cetirizine 10mg,17,Khalishpur
+2024-02-09,PH013,Amoxicillin 500mg,9,Khalishpur
+2024-02-09,PH013,Azithromycin 500mg,7,Khalishpur
+2024-02-09,PH013,Zinc 20mg (child),28,Khalishpur
+2024-02-09,PH013,Ciprofloxacin 500mg,16,Khalishpur
+2024-02-09,PH013,Antihistamine Syrup,8,Khalishpur
+2024-02-09,PH013,Vitamin C 500mg,24,Khalishpur
+2024-02-09,PH013,Ranitidine 150mg,16,Khalishpur
+2024-02-09,PH013,Antacid Tablet,24,Khalishpur
+2024-02-09,PH013,Insulin (vial),4,Khalishpur
+2024-02-09,PH013,Atorvastatin 10mg,7,Khalishpur
+2024-02-09,PH013,Losartan 50mg,8,Khalishpur
+2024-02-10,PH013,Paracetamol 500mg,40,Khalishpur
+2024-02-10,PH013,ORS Sachet,78,Khalishpur
+2024-02-10,PH013,Metronidazole 400mg,33,Khalishpur
+2024-02-10,PH013,Cetirizine 10mg,10,Khalishpur
+2024-02-10,PH013,Amoxicillin 500mg,11,Khalishpur
+2024-02-10,PH013,Azithromycin 500mg,4,Khalishpur
+2024-02-10,PH013,Zinc 20mg (child),28,Khalishpur
+2024-02-10,PH013,Ciprofloxacin 500mg,13,Khalishpur
+2024-02-10,PH013,Antihistamine Syrup,9,Khalishpur
+2024-02-10,PH013,Vitamin C 500mg,16,Khalishpur
+2024-02-10,PH013,Ranitidine 150mg,12,Khalishpur
+2024-02-10,PH013,Antacid Tablet,22,Khalishpur
+2024-02-10,PH013,Insulin (vial),5,Khalishpur
+2024-02-10,PH013,Atorvastatin 10mg,7,Khalishpur
+2024-02-10,PH013,Losartan 50mg,8,Khalishpur
+2024-02-11,PH013,Paracetamol 500mg,41,Khalishpur
+2024-02-11,PH013,ORS Sachet,47,Khalishpur
+2024-02-11,PH013,Metronidazole 400mg,33,Khalishpur
+2024-02-11,PH013,Cetirizine 10mg,15,Khalishpur
+2024-02-11,PH013,Amoxicillin 500mg,9,Khalishpur
+2024-02-11,PH013,Azithromycin 500mg,6,Khalishpur
+2024-02-11,PH013,Zinc 20mg (child),30,Khalishpur
+2024-02-11,PH013,Ciprofloxacin 500mg,15,Khalishpur
+2024-02-11,PH013,Antihistamine Syrup,10,Khalishpur
+2024-02-11,PH013,Vitamin C 500mg,17,Khalishpur
+2024-02-11,PH013,Ranitidine 150mg,15,Khalishpur
+2024-02-11,PH013,Antacid Tablet,16,Khalishpur
+2024-02-11,PH013,Insulin (vial),4,Khalishpur
+2024-02-11,PH013,Atorvastatin 10mg,5,Khalishpur
+2024-02-11,PH013,Losartan 50mg,6,Khalishpur
+2024-02-12,PH013,Paracetamol 500mg,39,Khalishpur
+2024-02-12,PH013,ORS Sachet,73,Khalishpur
+2024-02-12,PH013,Metronidazole 400mg,24,Khalishpur
+2024-02-12,PH013,Cetirizine 10mg,11,Khalishpur
+2024-02-12,PH013,Amoxicillin 500mg,11,Khalishpur
+2024-02-12,PH013,Azithromycin 500mg,5,Khalishpur
+2024-02-12,PH013,Zinc 20mg (child),29,Khalishpur
+2024-02-12,PH013,Ciprofloxacin 500mg,12,Khalishpur
+2024-02-12,PH013,Antihistamine Syrup,10,Khalishpur
+2024-02-12,PH013,Vitamin C 500mg,18,Khalishpur
+2024-02-12,PH013,Ranitidine 150mg,14,Khalishpur
+2024-02-12,PH013,Antacid Tablet,17,Khalishpur
+2024-02-12,PH013,Insulin (vial),4,Khalishpur
+2024-02-12,PH013,Atorvastatin 10mg,8,Khalishpur
+2024-02-12,PH013,Losartan 50mg,9,Khalishpur
+2024-02-13,PH013,Paracetamol 500mg,29,Khalishpur
+2024-02-13,PH013,ORS Sachet,62,Khalishpur
+2024-02-13,PH013,Metronidazole 400mg,27,Khalishpur
+2024-02-13,PH013,Cetirizine 10mg,13,Khalishpur
+2024-02-13,PH013,Amoxicillin 500mg,11,Khalishpur
+2024-02-13,PH013,Azithromycin 500mg,5,Khalishpur
+2024-02-13,PH013,Zinc 20mg (child),20,Khalishpur
+2024-02-13,PH013,Ciprofloxacin 500mg,16,Khalishpur
+2024-02-13,PH013,Antihistamine Syrup,13,Khalishpur
+2024-02-13,PH013,Vitamin C 500mg,23,Khalishpur
+2024-02-13,PH013,Ranitidine 150mg,19,Khalishpur
+2024-02-13,PH013,Antacid Tablet,20,Khalishpur
+2024-02-13,PH013,Insulin (vial),4,Khalishpur
+2024-02-13,PH013,Atorvastatin 10mg,6,Khalishpur
+2024-02-13,PH013,Losartan 50mg,6,Khalishpur
+2024-02-14,PH013,Paracetamol 500mg,34,Khalishpur
+2024-02-14,PH013,ORS Sachet,61,Khalishpur
+2024-02-14,PH013,Metronidazole 400mg,24,Khalishpur
+2024-02-14,PH013,Cetirizine 10mg,12,Khalishpur
+2024-02-14,PH013,Amoxicillin 500mg,9,Khalishpur
+2024-02-14,PH013,Azithromycin 500mg,4,Khalishpur
+2024-02-14,PH013,Zinc 20mg (child),26,Khalishpur
+2024-02-14,PH013,Ciprofloxacin 500mg,15,Khalishpur
+2024-02-14,PH013,Antihistamine Syrup,8,Khalishpur
+2024-02-14,PH013,Vitamin C 500mg,19,Khalishpur
+2024-02-14,PH013,Ranitidine 150mg,19,Khalishpur
+2024-02-14,PH013,Antacid Tablet,16,Khalishpur
+2024-02-14,PH013,Insulin (vial),4,Khalishpur
+2024-02-14,PH013,Atorvastatin 10mg,6,Khalishpur
+2024-02-14,PH013,Losartan 50mg,6,Khalishpur
+2024-02-15,PH013,Paracetamol 500mg,32,Khalishpur
+2024-02-15,PH013,ORS Sachet,53,Khalishpur
+2024-02-15,PH013,Metronidazole 400mg,29,Khalishpur
+2024-02-15,PH013,Cetirizine 10mg,11,Khalishpur
+2024-02-15,PH013,Amoxicillin 500mg,9,Khalishpur
+2024-02-15,PH013,Azithromycin 500mg,5,Khalishpur
+2024-02-15,PH013,Zinc 20mg (child),17,Khalishpur
+2024-02-15,PH013,Ciprofloxacin 500mg,14,Khalishpur
+2024-02-15,PH013,Antihistamine Syrup,9,Khalishpur
+2024-02-15,PH013,Vitamin C 500mg,18,Khalishpur
+2024-02-15,PH013,Ranitidine 150mg,12,Khalishpur
+2024-02-15,PH013,Antacid Tablet,20,Khalishpur
+2024-02-15,PH013,Insulin (vial),3,Khalishpur
+2024-02-15,PH013,Atorvastatin 10mg,7,Khalishpur
+2024-02-15,PH013,Losartan 50mg,7,Khalishpur
+2024-02-16,PH013,Paracetamol 500mg,29,Khalishpur
+2024-02-16,PH013,ORS Sachet,38,Khalishpur
+2024-02-16,PH013,Metronidazole 400mg,18,Khalishpur
+2024-02-16,PH013,Cetirizine 10mg,17,Khalishpur
+2024-02-16,PH013,Amoxicillin 500mg,10,Khalishpur
+2024-02-16,PH013,Azithromycin 500mg,5,Khalishpur
+2024-02-16,PH013,Zinc 20mg (child),19,Khalishpur
+2024-02-16,PH013,Ciprofloxacin 500mg,11,Khalishpur
+2024-02-16,PH013,Antihistamine Syrup,9,Khalishpur
+2024-02-16,PH013,Vitamin C 500mg,17,Khalishpur
+2024-02-16,PH013,Ranitidine 150mg,18,Khalishpur
+2024-02-16,PH013,Antacid Tablet,16,Khalishpur
+2024-02-16,PH013,Insulin (vial),4,Khalishpur
+2024-02-16,PH013,Atorvastatin 10mg,8,Khalishpur
+2024-02-16,PH013,Losartan 50mg,9,Khalishpur
+2024-02-17,PH013,Paracetamol 500mg,30,Khalishpur
+2024-02-17,PH013,ORS Sachet,39,Khalishpur
+2024-02-17,PH013,Metronidazole 400mg,24,Khalishpur
+2024-02-17,PH013,Cetirizine 10mg,14,Khalishpur
+2024-02-17,PH013,Amoxicillin 500mg,10,Khalishpur
+2024-02-17,PH013,Azithromycin 500mg,4,Khalishpur
+2024-02-17,PH013,Zinc 20mg (child),16,Khalishpur
+2024-02-17,PH013,Ciprofloxacin 500mg,11,Khalishpur
+2024-02-17,PH013,Antihistamine Syrup,10,Khalishpur
+2024-02-17,PH013,Vitamin C 500mg,21,Khalishpur
+2024-02-17,PH013,Ranitidine 150mg,12,Khalishpur
+2024-02-17,PH013,Antacid Tablet,18,Khalishpur
+2024-02-17,PH013,Insulin (vial),4,Khalishpur
+2024-02-17,PH013,Atorvastatin 10mg,6,Khalishpur
+2024-02-17,PH013,Losartan 50mg,6,Khalishpur
+2024-02-18,PH013,Paracetamol 500mg,36,Khalishpur
+2024-02-18,PH013,ORS Sachet,25,Khalishpur
+2024-02-18,PH013,Metronidazole 400mg,18,Khalishpur
+2024-02-18,PH013,Cetirizine 10mg,13,Khalishpur
+2024-02-18,PH013,Amoxicillin 500mg,11,Khalishpur
+2024-02-18,PH013,Azithromycin 500mg,5,Khalishpur
+2024-02-18,PH013,Zinc 20mg (child),16,Khalishpur
+2024-02-18,PH013,Ciprofloxacin 500mg,9,Khalishpur
+2024-02-18,PH013,Antihistamine Syrup,10,Khalishpur
+2024-02-18,PH013,Vitamin C 500mg,17,Khalishpur
+2024-02-18,PH013,Ranitidine 150mg,15,Khalishpur
+2024-02-18,PH013,Antacid Tablet,18,Khalishpur
+2024-02-18,PH013,Insulin (vial),5,Khalishpur
+2024-02-18,PH013,Atorvastatin 10mg,5,Khalishpur
+2024-02-18,PH013,Losartan 50mg,9,Khalishpur
+2024-02-19,PH013,Paracetamol 500mg,38,Khalishpur
+2024-02-19,PH013,ORS Sachet,29,Khalishpur
+2024-02-19,PH013,Metronidazole 400mg,20,Khalishpur
+2024-02-19,PH013,Cetirizine 10mg,16,Khalishpur
+2024-02-19,PH013,Amoxicillin 500mg,10,Khalishpur
+2024-02-19,PH013,Azithromycin 500mg,6,Khalishpur
+2024-02-19,PH013,Zinc 20mg (child),14,Khalishpur
+2024-02-19,PH013,Ciprofloxacin 500mg,7,Khalishpur
+2024-02-19,PH013,Antihistamine Syrup,10,Khalishpur
+2024-02-19,PH013,Vitamin C 500mg,18,Khalishpur
+2024-02-19,PH013,Ranitidine 150mg,19,Khalishpur
+2024-02-19,PH013,Antacid Tablet,22,Khalishpur
+2024-02-19,PH013,Insulin (vial),4,Khalishpur
+2024-02-19,PH013,Atorvastatin 10mg,7,Khalishpur
+2024-02-19,PH013,Losartan 50mg,6,Khalishpur
+2024-02-20,PH013,Paracetamol 500mg,26,Khalishpur
+2024-02-20,PH013,ORS Sachet,23,Khalishpur
+2024-02-20,PH013,Metronidazole 400mg,16,Khalishpur
+2024-02-20,PH013,Cetirizine 10mg,12,Khalishpur
+2024-02-20,PH013,Amoxicillin 500mg,12,Khalishpur
+2024-02-20,PH013,Azithromycin 500mg,7,Khalishpur
+2024-02-20,PH013,Zinc 20mg (child),14,Khalishpur
+2024-02-20,PH013,Ciprofloxacin 500mg,9,Khalishpur
+2024-02-20,PH013,Antihistamine Syrup,9,Khalishpur
+2024-02-20,PH013,Vitamin C 500mg,16,Khalishpur
+2024-02-20,PH013,Ranitidine 150mg,12,Khalishpur
+2024-02-20,PH013,Antacid Tablet,22,Khalishpur
+2024-02-20,PH013,Insulin (vial),3,Khalishpur
+2024-02-20,PH013,Atorvastatin 10mg,8,Khalishpur
+2024-02-20,PH013,Losartan 50mg,7,Khalishpur
+2024-02-21,PH013,Paracetamol 500mg,28,Khalishpur
+2024-02-21,PH013,ORS Sachet,21,Khalishpur
+2024-02-21,PH013,Metronidazole 400mg,14,Khalishpur
+2024-02-21,PH013,Cetirizine 10mg,16,Khalishpur
+2024-02-21,PH013,Amoxicillin 500mg,12,Khalishpur
+2024-02-21,PH013,Azithromycin 500mg,5,Khalishpur
+2024-02-21,PH013,Zinc 20mg (child),8,Khalishpur
+2024-02-21,PH013,Ciprofloxacin 500mg,7,Khalishpur
+2024-02-21,PH013,Antihistamine Syrup,11,Khalishpur
+2024-02-21,PH013,Vitamin C 500mg,26,Khalishpur
+2024-02-21,PH013,Ranitidine 150mg,18,Khalishpur
+2024-02-21,PH013,Antacid Tablet,21,Khalishpur
+2024-02-21,PH013,Insulin (vial),5,Khalishpur
+2024-02-21,PH013,Atorvastatin 10mg,7,Khalishpur
+2024-02-21,PH013,Losartan 50mg,8,Khalishpur
+2024-02-22,PH013,Paracetamol 500mg,41,Khalishpur
+2024-02-22,PH013,ORS Sachet,17,Khalishpur
+2024-02-22,PH013,Metronidazole 400mg,12,Khalishpur
+2024-02-22,PH013,Cetirizine 10mg,15,Khalishpur
+2024-02-22,PH013,Amoxicillin 500mg,10,Khalishpur
+2024-02-22,PH013,Azithromycin 500mg,4,Khalishpur
+2024-02-22,PH013,Zinc 20mg (child),9,Khalishpur
+2024-02-22,PH013,Ciprofloxacin 500mg,8,Khalishpur
+2024-02-22,PH013,Antihistamine Syrup,11,Khalishpur
+2024-02-22,PH013,Vitamin C 500mg,18,Khalishpur
+2024-02-22,PH013,Ranitidine 150mg,16,Khalishpur
+2024-02-22,PH013,Antacid Tablet,17,Khalishpur
+2024-02-22,PH013,Insulin (vial),4,Khalishpur
+2024-02-22,PH013,Atorvastatin 10mg,7,Khalishpur
+2024-02-22,PH013,Losartan 50mg,9,Khalishpur
+2024-02-23,PH013,Paracetamol 500mg,37,Khalishpur
+2024-02-23,PH013,ORS Sachet,21,Khalishpur
+2024-02-23,PH013,Metronidazole 400mg,13,Khalishpur
+2024-02-23,PH013,Cetirizine 10mg,12,Khalishpur
+2024-02-23,PH013,Amoxicillin 500mg,8,Khalishpur
+2024-02-23,PH013,Azithromycin 500mg,6,Khalishpur
+2024-02-23,PH013,Zinc 20mg (child),10,Khalishpur
+2024-02-23,PH013,Ciprofloxacin 500mg,8,Khalishpur
+2024-02-23,PH013,Antihistamine Syrup,8,Khalishpur
+2024-02-23,PH013,Vitamin C 500mg,18,Khalishpur
+2024-02-23,PH013,Ranitidine 150mg,15,Khalishpur
+2024-02-23,PH013,Antacid Tablet,23,Khalishpur
+2024-02-23,PH013,Insulin (vial),5,Khalishpur
+2024-02-23,PH013,Atorvastatin 10mg,5,Khalishpur
+2024-02-23,PH013,Losartan 50mg,8,Khalishpur
+2024-02-24,PH013,Paracetamol 500mg,33,Khalishpur
+2024-02-24,PH013,ORS Sachet,18,Khalishpur
+2024-02-24,PH013,Metronidazole 400mg,9,Khalishpur
+2024-02-24,PH013,Cetirizine 10mg,14,Khalishpur
+2024-02-24,PH013,Amoxicillin 500mg,12,Khalishpur
+2024-02-24,PH013,Azithromycin 500mg,6,Khalishpur
+2024-02-24,PH013,Zinc 20mg (child),11,Khalishpur
+2024-02-24,PH013,Ciprofloxacin 500mg,7,Khalishpur
+2024-02-24,PH013,Antihistamine Syrup,10,Khalishpur
+2024-02-24,PH013,Vitamin C 500mg,23,Khalishpur
+2024-02-24,PH013,Ranitidine 150mg,17,Khalishpur
+2024-02-24,PH013,Antacid Tablet,19,Khalishpur
+2024-02-24,PH013,Insulin (vial),4,Khalishpur
+2024-02-24,PH013,Atorvastatin 10mg,5,Khalishpur
+2024-02-24,PH013,Losartan 50mg,7,Khalishpur
+2024-02-25,PH013,Paracetamol 500mg,36,Khalishpur
+2024-02-25,PH013,ORS Sachet,21,Khalishpur
+2024-02-25,PH013,Metronidazole 400mg,14,Khalishpur
+2024-02-25,PH013,Cetirizine 10mg,14,Khalishpur
+2024-02-25,PH013,Amoxicillin 500mg,10,Khalishpur
+2024-02-25,PH013,Azithromycin 500mg,4,Khalishpur
+2024-02-25,PH013,Zinc 20mg (child),7,Khalishpur
+2024-02-25,PH013,Ciprofloxacin 500mg,7,Khalishpur
+2024-02-25,PH013,Antihistamine Syrup,12,Khalishpur
+2024-02-25,PH013,Vitamin C 500mg,23,Khalishpur
+2024-02-25,PH013,Ranitidine 150mg,14,Khalishpur
+2024-02-25,PH013,Antacid Tablet,24,Khalishpur
+2024-02-25,PH013,Insulin (vial),3,Khalishpur
+2024-02-25,PH013,Atorvastatin 10mg,7,Khalishpur
+2024-02-25,PH013,Losartan 50mg,7,Khalishpur
+2024-02-26,PH013,Paracetamol 500mg,40,Khalishpur
+2024-02-26,PH013,ORS Sachet,15,Khalishpur
+2024-02-26,PH013,Metronidazole 400mg,13,Khalishpur
+2024-02-26,PH013,Cetirizine 10mg,11,Khalishpur
+2024-02-26,PH013,Amoxicillin 500mg,10,Khalishpur
+2024-02-26,PH013,Azithromycin 500mg,4,Khalishpur
+2024-02-26,PH013,Zinc 20mg (child),12,Khalishpur
+2024-02-26,PH013,Ciprofloxacin 500mg,7,Khalishpur
+2024-02-26,PH013,Antihistamine Syrup,12,Khalishpur
+2024-02-26,PH013,Vitamin C 500mg,25,Khalishpur
+2024-02-26,PH013,Ranitidine 150mg,19,Khalishpur
+2024-02-26,PH013,Antacid Tablet,17,Khalishpur
+2024-02-26,PH013,Insulin (vial),4,Khalishpur
+2024-02-26,PH013,Atorvastatin 10mg,5,Khalishpur
+2024-02-26,PH013,Losartan 50mg,9,Khalishpur
+2024-02-27,PH013,Paracetamol 500mg,30,Khalishpur
+2024-02-27,PH013,ORS Sachet,17,Khalishpur
+2024-02-27,PH013,Metronidazole 400mg,13,Khalishpur
+2024-02-27,PH013,Cetirizine 10mg,13,Khalishpur
+2024-02-27,PH013,Amoxicillin 500mg,8,Khalishpur
+2024-02-27,PH013,Azithromycin 500mg,4,Khalishpur
+2024-02-27,PH013,Zinc 20mg (child),11,Khalishpur
+2024-02-27,PH013,Ciprofloxacin 500mg,7,Khalishpur
+2024-02-27,PH013,Antihistamine Syrup,13,Khalishpur
+2024-02-27,PH013,Vitamin C 500mg,17,Khalishpur
+2024-02-27,PH013,Ranitidine 150mg,15,Khalishpur
+2024-02-27,PH013,Antacid Tablet,16,Khalishpur
+2024-02-27,PH013,Insulin (vial),4,Khalishpur
+2024-02-27,PH013,Atorvastatin 10mg,6,Khalishpur
+2024-02-27,PH013,Losartan 50mg,7,Khalishpur
+2024-02-28,PH013,Paracetamol 500mg,40,Khalishpur
+2024-02-28,PH013,ORS Sachet,16,Khalishpur
+2024-02-28,PH013,Metronidazole 400mg,12,Khalishpur
+2024-02-28,PH013,Cetirizine 10mg,17,Khalishpur
+2024-02-28,PH013,Amoxicillin 500mg,8,Khalishpur
+2024-02-28,PH013,Azithromycin 500mg,6,Khalishpur
+2024-02-28,PH013,Zinc 20mg (child),11,Khalishpur
+2024-02-28,PH013,Ciprofloxacin 500mg,7,Khalishpur
+2024-02-28,PH013,Antihistamine Syrup,12,Khalishpur
+2024-02-28,PH013,Vitamin C 500mg,18,Khalishpur
+2024-02-28,PH013,Ranitidine 150mg,13,Khalishpur
+2024-02-28,PH013,Antacid Tablet,21,Khalishpur
+2024-02-28,PH013,Insulin (vial),5,Khalishpur
+2024-02-28,PH013,Atorvastatin 10mg,6,Khalishpur
+2024-02-28,PH013,Losartan 50mg,7,Khalishpur
+2024-02-29,PH013,Paracetamol 500mg,40,Khalishpur
+2024-02-29,PH013,ORS Sachet,15,Khalishpur
+2024-02-29,PH013,Metronidazole 400mg,9,Khalishpur
+2024-02-29,PH013,Cetirizine 10mg,12,Khalishpur
+2024-02-29,PH013,Amoxicillin 500mg,10,Khalishpur
+2024-02-29,PH013,Azithromycin 500mg,4,Khalishpur
+2024-02-29,PH013,Zinc 20mg (child),9,Khalishpur
+2024-02-29,PH013,Ciprofloxacin 500mg,8,Khalishpur
+2024-02-29,PH013,Antihistamine Syrup,8,Khalishpur
+2024-02-29,PH013,Vitamin C 500mg,18,Khalishpur
+2024-02-29,PH013,Ranitidine 150mg,14,Khalishpur
+2024-02-29,PH013,Antacid Tablet,24,Khalishpur
+2024-02-29,PH013,Insulin (vial),3,Khalishpur
+2024-02-29,PH013,Atorvastatin 10mg,6,Khalishpur
+2024-02-29,PH013,Losartan 50mg,6,Khalishpur
+2024-03-01,PH013,Paracetamol 500mg,35,Khalishpur
+2024-03-01,PH013,ORS Sachet,22,Khalishpur
+2024-03-01,PH013,Metronidazole 400mg,13,Khalishpur
+2024-03-01,PH013,Cetirizine 10mg,14,Khalishpur
+2024-03-01,PH013,Amoxicillin 500mg,12,Khalishpur
+2024-03-01,PH013,Azithromycin 500mg,5,Khalishpur
+2024-03-01,PH013,Zinc 20mg (child),11,Khalishpur
+2024-03-01,PH013,Ciprofloxacin 500mg,5,Khalishpur
+2024-03-01,PH013,Antihistamine Syrup,12,Khalishpur
+2024-03-01,PH013,Vitamin C 500mg,25,Khalishpur
+2024-03-01,PH013,Ranitidine 150mg,18,Khalishpur
+2024-03-01,PH013,Antacid Tablet,24,Khalishpur
+2024-03-01,PH013,Insulin (vial),4,Khalishpur
+2024-03-01,PH013,Atorvastatin 10mg,7,Khalishpur
+2024-03-01,PH013,Losartan 50mg,7,Khalishpur
+2024-03-02,PH013,Paracetamol 500mg,29,Khalishpur
+2024-03-02,PH013,ORS Sachet,20,Khalishpur
+2024-03-02,PH013,Metronidazole 400mg,9,Khalishpur
+2024-03-02,PH013,Cetirizine 10mg,14,Khalishpur
+2024-03-02,PH013,Amoxicillin 500mg,11,Khalishpur
+2024-03-02,PH013,Azithromycin 500mg,5,Khalishpur
+2024-03-02,PH013,Zinc 20mg (child),12,Khalishpur
+2024-03-02,PH013,Ciprofloxacin 500mg,7,Khalishpur
+2024-03-02,PH013,Antihistamine Syrup,11,Khalishpur
+2024-03-02,PH013,Vitamin C 500mg,18,Khalishpur
+2024-03-02,PH013,Ranitidine 150mg,15,Khalishpur
+2024-03-02,PH013,Antacid Tablet,19,Khalishpur
+2024-03-02,PH013,Insulin (vial),4,Khalishpur
+2024-03-02,PH013,Atorvastatin 10mg,7,Khalishpur
+2024-03-02,PH013,Losartan 50mg,7,Khalishpur
+2024-03-03,PH013,Paracetamol 500mg,28,Khalishpur
+2024-03-03,PH013,ORS Sachet,18,Khalishpur
+2024-03-03,PH013,Metronidazole 400mg,10,Khalishpur
+2024-03-03,PH013,Cetirizine 10mg,15,Khalishpur
+2024-03-03,PH013,Amoxicillin 500mg,12,Khalishpur
+2024-03-03,PH013,Azithromycin 500mg,5,Khalishpur
+2024-03-03,PH013,Zinc 20mg (child),9,Khalishpur
+2024-03-03,PH013,Ciprofloxacin 500mg,5,Khalishpur
+2024-03-03,PH013,Antihistamine Syrup,10,Khalishpur
+2024-03-03,PH013,Vitamin C 500mg,23,Khalishpur
+2024-03-03,PH013,Ranitidine 150mg,19,Khalishpur
+2024-03-03,PH013,Antacid Tablet,15,Khalishpur
+2024-03-03,PH013,Insulin (vial),3,Khalishpur
+2024-03-03,PH013,Atorvastatin 10mg,7,Khalishpur
+2024-03-03,PH013,Losartan 50mg,9,Khalishpur
+2024-03-04,PH013,Paracetamol 500mg,40,Khalishpur
+2024-03-04,PH013,ORS Sachet,18,Khalishpur
+2024-03-04,PH013,Metronidazole 400mg,13,Khalishpur
+2024-03-04,PH013,Cetirizine 10mg,14,Khalishpur
+2024-03-04,PH013,Amoxicillin 500mg,7,Khalishpur
+2024-03-04,PH013,Azithromycin 500mg,5,Khalishpur
+2024-03-04,PH013,Zinc 20mg (child),10,Khalishpur
+2024-03-04,PH013,Ciprofloxacin 500mg,6,Khalishpur
+2024-03-04,PH013,Antihistamine Syrup,9,Khalishpur
+2024-03-04,PH013,Vitamin C 500mg,22,Khalishpur
+2024-03-04,PH013,Ranitidine 150mg,16,Khalishpur
+2024-03-04,PH013,Antacid Tablet,21,Khalishpur
+2024-03-04,PH013,Insulin (vial),3,Khalishpur
+2024-03-04,PH013,Atorvastatin 10mg,7,Khalishpur
+2024-03-04,PH013,Losartan 50mg,8,Khalishpur
+2024-03-05,PH013,Paracetamol 500mg,38,Khalishpur
+2024-03-05,PH013,ORS Sachet,14,Khalishpur
+2024-03-05,PH013,Metronidazole 400mg,13,Khalishpur
+2024-03-05,PH013,Cetirizine 10mg,12,Khalishpur
+2024-03-05,PH013,Amoxicillin 500mg,7,Khalishpur
+2024-03-05,PH013,Azithromycin 500mg,6,Khalishpur
+2024-03-05,PH013,Zinc 20mg (child),7,Khalishpur
+2024-03-05,PH013,Ciprofloxacin 500mg,6,Khalishpur
+2024-03-05,PH013,Antihistamine Syrup,8,Khalishpur
+2024-03-05,PH013,Vitamin C 500mg,23,Khalishpur
+2024-03-05,PH013,Ranitidine 150mg,19,Khalishpur
+2024-03-05,PH013,Antacid Tablet,22,Khalishpur
+2024-03-05,PH013,Insulin (vial),4,Khalishpur
+2024-03-05,PH013,Atorvastatin 10mg,8,Khalishpur
+2024-03-05,PH013,Losartan 50mg,7,Khalishpur
+2024-03-06,PH013,Paracetamol 500mg,43,Khalishpur
+2024-03-06,PH013,ORS Sachet,15,Khalishpur
+2024-03-06,PH013,Metronidazole 400mg,14,Khalishpur
+2024-03-06,PH013,Cetirizine 10mg,12,Khalishpur
+2024-03-06,PH013,Amoxicillin 500mg,8,Khalishpur
+2024-03-06,PH013,Azithromycin 500mg,5,Khalishpur
+2024-03-06,PH013,Zinc 20mg (child),11,Khalishpur
+2024-03-06,PH013,Ciprofloxacin 500mg,8,Khalishpur
+2024-03-06,PH013,Antihistamine Syrup,12,Khalishpur
+2024-03-06,PH013,Vitamin C 500mg,22,Khalishpur
+2024-03-06,PH013,Ranitidine 150mg,17,Khalishpur
+2024-03-06,PH013,Antacid Tablet,18,Khalishpur
+2024-03-06,PH013,Insulin (vial),5,Khalishpur
+2024-03-06,PH013,Atorvastatin 10mg,8,Khalishpur
+2024-03-06,PH013,Losartan 50mg,9,Khalishpur
+2024-03-07,PH013,Paracetamol 500mg,26,Khalishpur
+2024-03-07,PH013,ORS Sachet,21,Khalishpur
+2024-03-07,PH013,Metronidazole 400mg,14,Khalishpur
+2024-03-07,PH013,Cetirizine 10mg,10,Khalishpur
+2024-03-07,PH013,Amoxicillin 500mg,11,Khalishpur
+2024-03-07,PH013,Azithromycin 500mg,5,Khalishpur
+2024-03-07,PH013,Zinc 20mg (child),7,Khalishpur
+2024-03-07,PH013,Ciprofloxacin 500mg,8,Khalishpur
+2024-03-07,PH013,Antihistamine Syrup,9,Khalishpur
+2024-03-07,PH013,Vitamin C 500mg,23,Khalishpur
+2024-03-07,PH013,Ranitidine 150mg,13,Khalishpur
+2024-03-07,PH013,Antacid Tablet,22,Khalishpur
+2024-03-07,PH013,Insulin (vial),5,Khalishpur
+2024-03-07,PH013,Atorvastatin 10mg,6,Khalishpur
+2024-03-07,PH013,Losartan 50mg,8,Khalishpur
+2024-03-08,PH013,Paracetamol 500mg,41,Khalishpur
+2024-03-08,PH013,ORS Sachet,21,Khalishpur
+2024-03-08,PH013,Metronidazole 400mg,13,Khalishpur
+2024-03-08,PH013,Cetirizine 10mg,14,Khalishpur
+2024-03-08,PH013,Amoxicillin 500mg,9,Khalishpur
+2024-03-08,PH013,Azithromycin 500mg,5,Khalishpur
+2024-03-08,PH013,Zinc 20mg (child),11,Khalishpur
+2024-03-08,PH013,Ciprofloxacin 500mg,8,Khalishpur
+2024-03-08,PH013,Antihistamine Syrup,13,Khalishpur
+2024-03-08,PH013,Vitamin C 500mg,26,Khalishpur
+2024-03-08,PH013,Ranitidine 150mg,13,Khalishpur
+2024-03-08,PH013,Antacid Tablet,18,Khalishpur
+2024-03-08,PH013,Insulin (vial),5,Khalishpur
+2024-03-08,PH013,Atorvastatin 10mg,5,Khalishpur
+2024-03-08,PH013,Losartan 50mg,9,Khalishpur
+2024-03-09,PH013,Paracetamol 500mg,35,Khalishpur
+2024-03-09,PH013,ORS Sachet,15,Khalishpur
+2024-03-09,PH013,Metronidazole 400mg,9,Khalishpur
+2024-03-09,PH013,Cetirizine 10mg,17,Khalishpur
+2024-03-09,PH013,Amoxicillin 500mg,7,Khalishpur
+2024-03-09,PH013,Azithromycin 500mg,7,Khalishpur
+2024-03-09,PH013,Zinc 20mg (child),10,Khalishpur
+2024-03-09,PH013,Ciprofloxacin 500mg,8,Khalishpur
+2024-03-09,PH013,Antihistamine Syrup,12,Khalishpur
+2024-03-09,PH013,Vitamin C 500mg,18,Khalishpur
+2024-03-09,PH013,Ranitidine 150mg,15,Khalishpur
+2024-03-09,PH013,Antacid Tablet,20,Khalishpur
+2024-03-09,PH013,Insulin (vial),6,Khalishpur
+2024-03-09,PH013,Atorvastatin 10mg,7,Khalishpur
+2024-03-09,PH013,Losartan 50mg,6,Khalishpur
+2024-03-10,PH013,Paracetamol 500mg,38,Khalishpur
+2024-03-10,PH013,ORS Sachet,15,Khalishpur
+2024-03-10,PH013,Metronidazole 400mg,12,Khalishpur
+2024-03-10,PH013,Cetirizine 10mg,14,Khalishpur
+2024-03-10,PH013,Amoxicillin 500mg,11,Khalishpur
+2024-03-10,PH013,Azithromycin 500mg,6,Khalishpur
+2024-03-10,PH013,Zinc 20mg (child),8,Khalishpur
+2024-03-10,PH013,Ciprofloxacin 500mg,5,Khalishpur
+2024-03-10,PH013,Antihistamine Syrup,12,Khalishpur
+2024-03-10,PH013,Vitamin C 500mg,24,Khalishpur
+2024-03-10,PH013,Ranitidine 150mg,12,Khalishpur
+2024-03-10,PH013,Antacid Tablet,21,Khalishpur
+2024-03-10,PH013,Insulin (vial),3,Khalishpur
+2024-03-10,PH013,Atorvastatin 10mg,8,Khalishpur
+2024-03-10,PH013,Losartan 50mg,6,Khalishpur
+2024-03-11,PH013,Paracetamol 500mg,30,Khalishpur
+2024-03-11,PH013,ORS Sachet,20,Khalishpur
+2024-03-11,PH013,Metronidazole 400mg,14,Khalishpur
+2024-03-11,PH013,Cetirizine 10mg,14,Khalishpur
+2024-03-11,PH013,Amoxicillin 500mg,10,Khalishpur
+2024-03-11,PH013,Azithromycin 500mg,6,Khalishpur
+2024-03-11,PH013,Zinc 20mg (child),8,Khalishpur
+2024-03-11,PH013,Ciprofloxacin 500mg,8,Khalishpur
+2024-03-11,PH013,Antihistamine Syrup,10,Khalishpur
+2024-03-11,PH013,Vitamin C 500mg,21,Khalishpur
+2024-03-11,PH013,Ranitidine 150mg,19,Khalishpur
+2024-03-11,PH013,Antacid Tablet,17,Khalishpur
+2024-03-11,PH013,Insulin (vial),5,Khalishpur
+2024-03-11,PH013,Atorvastatin 10mg,5,Khalishpur
+2024-03-11,PH013,Losartan 50mg,9,Khalishpur
+2024-03-12,PH013,Paracetamol 500mg,40,Khalishpur
+2024-03-12,PH013,ORS Sachet,18,Khalishpur
+2024-03-12,PH013,Metronidazole 400mg,9,Khalishpur
+2024-03-12,PH013,Cetirizine 10mg,13,Khalishpur
+2024-03-12,PH013,Amoxicillin 500mg,12,Khalishpur
+2024-03-12,PH013,Azithromycin 500mg,5,Khalishpur
+2024-03-12,PH013,Zinc 20mg (child),9,Khalishpur
+2024-03-12,PH013,Ciprofloxacin 500mg,7,Khalishpur
+2024-03-12,PH013,Antihistamine Syrup,10,Khalishpur
+2024-03-12,PH013,Vitamin C 500mg,18,Khalishpur
+2024-03-12,PH013,Ranitidine 150mg,19,Khalishpur
+2024-03-12,PH013,Antacid Tablet,17,Khalishpur
+2024-03-12,PH013,Insulin (vial),5,Khalishpur
+2024-03-12,PH013,Atorvastatin 10mg,8,Khalishpur
+2024-03-12,PH013,Losartan 50mg,9,Khalishpur
+2024-03-13,PH013,Paracetamol 500mg,32,Khalishpur
+2024-03-13,PH013,ORS Sachet,18,Khalishpur
+2024-03-13,PH013,Metronidazole 400mg,9,Khalishpur
+2024-03-13,PH013,Cetirizine 10mg,13,Khalishpur
+2024-03-13,PH013,Amoxicillin 500mg,12,Khalishpur
+2024-03-13,PH013,Azithromycin 500mg,7,Khalishpur
+2024-03-13,PH013,Zinc 20mg (child),11,Khalishpur
+2024-03-13,PH013,Ciprofloxacin 500mg,6,Khalishpur
+2024-03-13,PH013,Antihistamine Syrup,12,Khalishpur
+2024-03-13,PH013,Vitamin C 500mg,19,Khalishpur
+2024-03-13,PH013,Ranitidine 150mg,15,Khalishpur
+2024-03-13,PH013,Antacid Tablet,15,Khalishpur
+2024-03-13,PH013,Insulin (vial),6,Khalishpur
+2024-03-13,PH013,Atorvastatin 10mg,5,Khalishpur
+2024-03-13,PH013,Losartan 50mg,9,Khalishpur
+2024-03-14,PH013,Paracetamol 500mg,29,Khalishpur
+2024-03-14,PH013,ORS Sachet,19,Khalishpur
+2024-03-14,PH013,Metronidazole 400mg,10,Khalishpur
+2024-03-14,PH013,Cetirizine 10mg,11,Khalishpur
+2024-03-14,PH013,Amoxicillin 500mg,11,Khalishpur
+2024-03-14,PH013,Azithromycin 500mg,7,Khalishpur
+2024-03-14,PH013,Zinc 20mg (child),7,Khalishpur
+2024-03-14,PH013,Ciprofloxacin 500mg,6,Khalishpur
+2024-03-14,PH013,Antihistamine Syrup,11,Khalishpur
+2024-03-14,PH013,Vitamin C 500mg,23,Khalishpur
+2024-03-14,PH013,Ranitidine 150mg,18,Khalishpur
+2024-03-14,PH013,Antacid Tablet,21,Khalishpur
+2024-03-14,PH013,Insulin (vial),6,Khalishpur
+2024-03-14,PH013,Atorvastatin 10mg,6,Khalishpur
+2024-03-14,PH013,Losartan 50mg,6,Khalishpur
+2024-03-15,PH013,Paracetamol 500mg,35,Khalishpur
+2024-03-15,PH013,ORS Sachet,19,Khalishpur
+2024-03-15,PH013,Metronidazole 400mg,13,Khalishpur
+2024-03-15,PH013,Cetirizine 10mg,13,Khalishpur
+2024-03-15,PH013,Amoxicillin 500mg,9,Khalishpur
+2024-03-15,PH013,Azithromycin 500mg,6,Khalishpur
+2024-03-15,PH013,Zinc 20mg (child),9,Khalishpur
+2024-03-15,PH013,Ciprofloxacin 500mg,5,Khalishpur
+2024-03-15,PH013,Antihistamine Syrup,9,Khalishpur
+2024-03-15,PH013,Vitamin C 500mg,18,Khalishpur
+2024-03-15,PH013,Ranitidine 150mg,19,Khalishpur
+2024-03-15,PH013,Antacid Tablet,15,Khalishpur
+2024-03-15,PH013,Insulin (vial),5,Khalishpur
+2024-03-15,PH013,Atorvastatin 10mg,7,Khalishpur
+2024-03-15,PH013,Losartan 50mg,7,Khalishpur
+2024-03-16,PH013,Paracetamol 500mg,27,Khalishpur
+2024-03-16,PH013,ORS Sachet,21,Khalishpur
+2024-03-16,PH013,Metronidazole 400mg,13,Khalishpur
+2024-03-16,PH013,Cetirizine 10mg,16,Khalishpur
+2024-03-16,PH013,Amoxicillin 500mg,10,Khalishpur
+2024-03-16,PH013,Azithromycin 500mg,6,Khalishpur
+2024-03-16,PH013,Zinc 20mg (child),10,Khalishpur
+2024-03-16,PH013,Ciprofloxacin 500mg,5,Khalishpur
+2024-03-16,PH013,Antihistamine Syrup,8,Khalishpur
+2024-03-16,PH013,Vitamin C 500mg,23,Khalishpur
+2024-03-16,PH013,Ranitidine 150mg,15,Khalishpur
+2024-03-16,PH013,Antacid Tablet,15,Khalishpur
+2024-03-16,PH013,Insulin (vial),4,Khalishpur
+2024-03-16,PH013,Atorvastatin 10mg,8,Khalishpur
+2024-03-16,PH013,Losartan 50mg,8,Khalishpur
+2024-03-17,PH013,Paracetamol 500mg,37,Khalishpur
+2024-03-17,PH013,ORS Sachet,20,Khalishpur
+2024-03-17,PH013,Metronidazole 400mg,10,Khalishpur
+2024-03-17,PH013,Cetirizine 10mg,14,Khalishpur
+2024-03-17,PH013,Amoxicillin 500mg,11,Khalishpur
+2024-03-17,PH013,Azithromycin 500mg,5,Khalishpur
+2024-03-17,PH013,Zinc 20mg (child),7,Khalishpur
+2024-03-17,PH013,Ciprofloxacin 500mg,6,Khalishpur
+2024-03-17,PH013,Antihistamine Syrup,12,Khalishpur
+2024-03-17,PH013,Vitamin C 500mg,23,Khalishpur
+2024-03-17,PH013,Ranitidine 150mg,13,Khalishpur
+2024-03-17,PH013,Antacid Tablet,18,Khalishpur
+2024-03-17,PH013,Insulin (vial),5,Khalishpur
+2024-03-17,PH013,Atorvastatin 10mg,6,Khalishpur
+2024-03-17,PH013,Losartan 50mg,8,Khalishpur
+2024-03-18,PH013,Paracetamol 500mg,26,Khalishpur
+2024-03-18,PH013,ORS Sachet,18,Khalishpur
+2024-03-18,PH013,Metronidazole 400mg,12,Khalishpur
+2024-03-18,PH013,Cetirizine 10mg,12,Khalishpur
+2024-03-18,PH013,Amoxicillin 500mg,12,Khalishpur
+2024-03-18,PH013,Azithromycin 500mg,5,Khalishpur
+2024-03-18,PH013,Zinc 20mg (child),11,Khalishpur
+2024-03-18,PH013,Ciprofloxacin 500mg,8,Khalishpur
+2024-03-18,PH013,Antihistamine Syrup,13,Khalishpur
+2024-03-18,PH013,Vitamin C 500mg,21,Khalishpur
+2024-03-18,PH013,Ranitidine 150mg,19,Khalishpur
+2024-03-18,PH013,Antacid Tablet,17,Khalishpur
+2024-03-18,PH013,Insulin (vial),4,Khalishpur
+2024-03-18,PH013,Atorvastatin 10mg,6,Khalishpur
+2024-03-18,PH013,Losartan 50mg,8,Khalishpur
+2024-03-19,PH013,Paracetamol 500mg,36,Khalishpur
+2024-03-19,PH013,ORS Sachet,17,Khalishpur
+2024-03-19,PH013,Metronidazole 400mg,14,Khalishpur
+2024-03-19,PH013,Cetirizine 10mg,15,Khalishpur
+2024-03-19,PH013,Amoxicillin 500mg,10,Khalishpur
+2024-03-19,PH013,Azithromycin 500mg,5,Khalishpur
+2024-03-19,PH013,Zinc 20mg (child),8,Khalishpur
+2024-03-19,PH013,Ciprofloxacin 500mg,6,Khalishpur
+2024-03-19,PH013,Antihistamine Syrup,12,Khalishpur
+2024-03-19,PH013,Vitamin C 500mg,24,Khalishpur
+2024-03-19,PH013,Ranitidine 150mg,16,Khalishpur
+2024-03-19,PH013,Antacid Tablet,17,Khalishpur
+2024-03-19,PH013,Insulin (vial),5,Khalishpur
+2024-03-19,PH013,Atorvastatin 10mg,8,Khalishpur
+2024-03-19,PH013,Losartan 50mg,6,Khalishpur
+2024-03-20,PH013,Paracetamol 500mg,31,Khalishpur
+2024-03-20,PH013,ORS Sachet,21,Khalishpur
+2024-03-20,PH013,Metronidazole 400mg,12,Khalishpur
+2024-03-20,PH013,Cetirizine 10mg,11,Khalishpur
+2024-03-20,PH013,Amoxicillin 500mg,11,Khalishpur
+2024-03-20,PH013,Azithromycin 500mg,7,Khalishpur
+2024-03-20,PH013,Zinc 20mg (child),8,Khalishpur
+2024-03-20,PH013,Ciprofloxacin 500mg,5,Khalishpur
+2024-03-20,PH013,Antihistamine Syrup,11,Khalishpur
+2024-03-20,PH013,Vitamin C 500mg,23,Khalishpur
+2024-03-20,PH013,Ranitidine 150mg,14,Khalishpur
+2024-03-20,PH013,Antacid Tablet,24,Khalishpur
+2024-03-20,PH013,Insulin (vial),5,Khalishpur
+2024-03-20,PH013,Atorvastatin 10mg,5,Khalishpur
+2024-03-20,PH013,Losartan 50mg,7,Khalishpur
+2024-03-21,PH013,Paracetamol 500mg,39,Khalishpur
+2024-03-21,PH013,ORS Sachet,15,Khalishpur
+2024-03-21,PH013,Metronidazole 400mg,11,Khalishpur
+2024-03-21,PH013,Cetirizine 10mg,12,Khalishpur
+2024-03-21,PH013,Amoxicillin 500mg,7,Khalishpur
+2024-03-21,PH013,Azithromycin 500mg,5,Khalishpur
+2024-03-21,PH013,Zinc 20mg (child),9,Khalishpur
+2024-03-21,PH013,Ciprofloxacin 500mg,8,Khalishpur
+2024-03-21,PH013,Antihistamine Syrup,8,Khalishpur
+2024-03-21,PH013,Vitamin C 500mg,24,Khalishpur
+2024-03-21,PH013,Ranitidine 150mg,12,Khalishpur
+2024-03-21,PH013,Antacid Tablet,16,Khalishpur
+2024-03-21,PH013,Insulin (vial),6,Khalishpur
+2024-03-21,PH013,Atorvastatin 10mg,7,Khalishpur
+2024-03-21,PH013,Losartan 50mg,6,Khalishpur
+2024-03-22,PH013,Paracetamol 500mg,33,Khalishpur
+2024-03-22,PH013,ORS Sachet,15,Khalishpur
+2024-03-22,PH013,Metronidazole 400mg,13,Khalishpur
+2024-03-22,PH013,Cetirizine 10mg,14,Khalishpur
+2024-03-22,PH013,Amoxicillin 500mg,11,Khalishpur
+2024-03-22,PH013,Azithromycin 500mg,5,Khalishpur
+2024-03-22,PH013,Zinc 20mg (child),7,Khalishpur
+2024-03-22,PH013,Ciprofloxacin 500mg,8,Khalishpur
+2024-03-22,PH013,Antihistamine Syrup,8,Khalishpur
+2024-03-22,PH013,Vitamin C 500mg,19,Khalishpur
+2024-03-22,PH013,Ranitidine 150mg,17,Khalishpur
+2024-03-22,PH013,Antacid Tablet,23,Khalishpur
+2024-03-22,PH013,Insulin (vial),5,Khalishpur
+2024-03-22,PH013,Atorvastatin 10mg,6,Khalishpur
+2024-03-22,PH013,Losartan 50mg,7,Khalishpur
+2024-03-23,PH013,Paracetamol 500mg,39,Khalishpur
+2024-03-23,PH013,ORS Sachet,13,Khalishpur
+2024-03-23,PH013,Metronidazole 400mg,11,Khalishpur
+2024-03-23,PH013,Cetirizine 10mg,15,Khalishpur
+2024-03-23,PH013,Amoxicillin 500mg,10,Khalishpur
+2024-03-23,PH013,Azithromycin 500mg,6,Khalishpur
+2024-03-23,PH013,Zinc 20mg (child),8,Khalishpur
+2024-03-23,PH013,Ciprofloxacin 500mg,6,Khalishpur
+2024-03-23,PH013,Antihistamine Syrup,9,Khalishpur
+2024-03-23,PH013,Vitamin C 500mg,18,Khalishpur
+2024-03-23,PH013,Ranitidine 150mg,16,Khalishpur
+2024-03-23,PH013,Antacid Tablet,16,Khalishpur
+2024-03-23,PH013,Insulin (vial),5,Khalishpur
+2024-03-23,PH013,Atorvastatin 10mg,8,Khalishpur
+2024-03-23,PH013,Losartan 50mg,7,Khalishpur
+2024-03-24,PH013,Paracetamol 500mg,33,Khalishpur
+2024-03-24,PH013,ORS Sachet,13,Khalishpur
+2024-03-24,PH013,Metronidazole 400mg,12,Khalishpur
+2024-03-24,PH013,Cetirizine 10mg,16,Khalishpur
+2024-03-24,PH013,Amoxicillin 500mg,9,Khalishpur
+2024-03-24,PH013,Azithromycin 500mg,5,Khalishpur
+2024-03-24,PH013,Zinc 20mg (child),9,Khalishpur
+2024-03-24,PH013,Ciprofloxacin 500mg,8,Khalishpur
+2024-03-24,PH013,Antihistamine Syrup,12,Khalishpur
+2024-03-24,PH013,Vitamin C 500mg,21,Khalishpur
+2024-03-24,PH013,Ranitidine 150mg,18,Khalishpur
+2024-03-24,PH013,Antacid Tablet,15,Khalishpur
+2024-03-24,PH013,Insulin (vial),4,Khalishpur
+2024-03-24,PH013,Atorvastatin 10mg,6,Khalishpur
+2024-03-24,PH013,Losartan 50mg,6,Khalishpur
+2024-03-25,PH013,Paracetamol 500mg,40,Khalishpur
+2024-03-25,PH013,ORS Sachet,16,Khalishpur
+2024-03-25,PH013,Metronidazole 400mg,10,Khalishpur
+2024-03-25,PH013,Cetirizine 10mg,13,Khalishpur
+2024-03-25,PH013,Amoxicillin 500mg,11,Khalishpur
+2024-03-25,PH013,Azithromycin 500mg,6,Khalishpur
+2024-03-25,PH013,Zinc 20mg (child),12,Khalishpur
+2024-03-25,PH013,Ciprofloxacin 500mg,6,Khalishpur
+2024-03-25,PH013,Antihistamine Syrup,10,Khalishpur
+2024-03-25,PH013,Vitamin C 500mg,21,Khalishpur
+2024-03-25,PH013,Ranitidine 150mg,14,Khalishpur
+2024-03-25,PH013,Antacid Tablet,21,Khalishpur
+2024-03-25,PH013,Insulin (vial),5,Khalishpur
+2024-03-25,PH013,Atorvastatin 10mg,6,Khalishpur
+2024-03-25,PH013,Losartan 50mg,6,Khalishpur
+2024-03-26,PH013,Paracetamol 500mg,36,Khalishpur
+2024-03-26,PH013,ORS Sachet,21,Khalishpur
+2024-03-26,PH013,Metronidazole 400mg,11,Khalishpur
+2024-03-26,PH013,Cetirizine 10mg,11,Khalishpur
+2024-03-26,PH013,Amoxicillin 500mg,11,Khalishpur
+2024-03-26,PH013,Azithromycin 500mg,6,Khalishpur
+2024-03-26,PH013,Zinc 20mg (child),9,Khalishpur
+2024-03-26,PH013,Ciprofloxacin 500mg,8,Khalishpur
+2024-03-26,PH013,Antihistamine Syrup,10,Khalishpur
+2024-03-26,PH013,Vitamin C 500mg,22,Khalishpur
+2024-03-26,PH013,Ranitidine 150mg,12,Khalishpur
+2024-03-26,PH013,Antacid Tablet,15,Khalishpur
+2024-03-26,PH013,Insulin (vial),5,Khalishpur
+2024-03-26,PH013,Atorvastatin 10mg,5,Khalishpur
+2024-03-26,PH013,Losartan 50mg,6,Khalishpur
+2024-03-27,PH013,Paracetamol 500mg,41,Khalishpur
+2024-03-27,PH013,ORS Sachet,17,Khalishpur
+2024-03-27,PH013,Metronidazole 400mg,10,Khalishpur
+2024-03-27,PH013,Cetirizine 10mg,15,Khalishpur
+2024-03-27,PH013,Amoxicillin 500mg,9,Khalishpur
+2024-03-27,PH013,Azithromycin 500mg,4,Khalishpur
+2024-03-27,PH013,Zinc 20mg (child),10,Khalishpur
+2024-03-27,PH013,Ciprofloxacin 500mg,5,Khalishpur
+2024-03-27,PH013,Antihistamine Syrup,12,Khalishpur
+2024-03-27,PH013,Vitamin C 500mg,24,Khalishpur
+2024-03-27,PH013,Ranitidine 150mg,13,Khalishpur
+2024-03-27,PH013,Antacid Tablet,24,Khalishpur
+2024-03-27,PH013,Insulin (vial),5,Khalishpur
+2024-03-27,PH013,Atorvastatin 10mg,7,Khalishpur
+2024-03-27,PH013,Losartan 50mg,9,Khalishpur
+2024-03-28,PH013,Paracetamol 500mg,37,Khalishpur
+2024-03-28,PH013,ORS Sachet,17,Khalishpur
+2024-03-28,PH013,Metronidazole 400mg,12,Khalishpur
+2024-03-28,PH013,Cetirizine 10mg,11,Khalishpur
+2024-03-28,PH013,Amoxicillin 500mg,10,Khalishpur
+2024-03-28,PH013,Azithromycin 500mg,5,Khalishpur
+2024-03-28,PH013,Zinc 20mg (child),10,Khalishpur
+2024-03-28,PH013,Ciprofloxacin 500mg,8,Khalishpur
+2024-03-28,PH013,Antihistamine Syrup,10,Khalishpur
+2024-03-28,PH013,Vitamin C 500mg,18,Khalishpur
+2024-03-28,PH013,Ranitidine 150mg,12,Khalishpur
+2024-03-28,PH013,Antacid Tablet,19,Khalishpur
+2024-03-28,PH013,Insulin (vial),5,Khalishpur
+2024-03-28,PH013,Atorvastatin 10mg,7,Khalishpur
+2024-03-28,PH013,Losartan 50mg,6,Khalishpur
+2024-03-29,PH013,Paracetamol 500mg,27,Khalishpur
+2024-03-29,PH013,ORS Sachet,16,Khalishpur
+2024-03-29,PH013,Metronidazole 400mg,14,Khalishpur
+2024-03-29,PH013,Cetirizine 10mg,12,Khalishpur
+2024-03-29,PH013,Amoxicillin 500mg,10,Khalishpur
+2024-03-29,PH013,Azithromycin 500mg,5,Khalishpur
+2024-03-29,PH013,Zinc 20mg (child),10,Khalishpur
+2024-03-29,PH013,Ciprofloxacin 500mg,7,Khalishpur
+2024-03-29,PH013,Antihistamine Syrup,11,Khalishpur
+2024-03-29,PH013,Vitamin C 500mg,23,Khalishpur
+2024-03-29,PH013,Ranitidine 150mg,18,Khalishpur
+2024-03-29,PH013,Antacid Tablet,18,Khalishpur
+2024-03-29,PH013,Insulin (vial),5,Khalishpur
+2024-03-29,PH013,Atorvastatin 10mg,6,Khalishpur
+2024-03-29,PH013,Losartan 50mg,8,Khalishpur
+2024-03-30,PH013,Paracetamol 500mg,33,Khalishpur
+2024-03-30,PH013,ORS Sachet,16,Khalishpur
+2024-03-30,PH013,Metronidazole 400mg,14,Khalishpur
+2024-03-30,PH013,Cetirizine 10mg,17,Khalishpur
+2024-03-30,PH013,Amoxicillin 500mg,10,Khalishpur
+2024-03-30,PH013,Azithromycin 500mg,5,Khalishpur
+2024-03-30,PH013,Zinc 20mg (child),10,Khalishpur
+2024-03-30,PH013,Ciprofloxacin 500mg,5,Khalishpur
+2024-03-30,PH013,Antihistamine Syrup,11,Khalishpur
+2024-03-30,PH013,Vitamin C 500mg,16,Khalishpur
+2024-03-30,PH013,Ranitidine 150mg,12,Khalishpur
+2024-03-30,PH013,Antacid Tablet,21,Khalishpur
+2024-03-30,PH013,Insulin (vial),5,Khalishpur
+2024-03-30,PH013,Atorvastatin 10mg,7,Khalishpur
+2024-03-30,PH013,Losartan 50mg,9,Khalishpur

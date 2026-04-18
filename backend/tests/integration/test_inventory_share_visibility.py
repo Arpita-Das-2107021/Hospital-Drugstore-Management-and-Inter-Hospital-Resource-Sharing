@@ -14,24 +14,17 @@ class TestInventoryShareVisibilityList:
         response = api_client.get(SHARE_VISIBILITY_URL)
         assert response.status_code == status.HTTP_401_UNAUTHORIZED
 
-    def test_hospital_admin_sees_own_inventory(self, auth_client, catalog_item, resource_inventory):
-        """Hospital admin sees their own inventory with no shares (default shared_quantity=0)."""
+    def test_hospital_admin_sees_only_share_related_inventory(self, auth_client, catalog_item, resource_inventory):
+        """Hospital admin sees only inventory rows tied to active shares or committed requests."""
         response = auth_client.get(SHARE_VISIBILITY_URL)
         assert response.status_code == status.HTTP_200_OK
 
         data = response.json()["data"]
-        assert len(data) > 0
-
-        # Find the inventory we created
         visibility_item = next(
             (item for item in data if str(item["inventory_id"]) == str(resource_inventory.id)),
-            None
+            None,
         )
-        assert visibility_item is not None
-        assert visibility_item["product_name"] == catalog_item.name
-        assert visibility_item["total_quantity"] == resource_inventory.quantity_available
-        assert visibility_item["shared_quantity"] == 0
-        assert visibility_item["share_id"] is None
+        assert visibility_item is None
 
     def test_hospital_admin_sees_inventory_with_existing_share(
         self, auth_client, catalog_item, resource_inventory, resource_share
@@ -47,6 +40,9 @@ class TestInventoryShareVisibilityList:
         )
         assert visibility_item is not None
         assert visibility_item["shared_quantity"] == resource_share.quantity_offered
+        assert visibility_item["available_share_quantity"] == resource_share.quantity_offered
+        assert visibility_item["reserved_quantity"] == 0
+        assert visibility_item["transferred_quantity"] == 0
         assert str(visibility_item["share_id"]) == str(resource_share.id)
 
     def test_super_admin_cannot_access(self, super_admin_client):
@@ -74,7 +70,17 @@ class TestInventoryShareVisibilityList:
         data = response.json()["data"]
         if len(data) > 0:
             item = data[0]
-            required_fields = {"inventory_id", "product_name", "unit", "total_quantity", "shared_quantity", "share_id"}
+            required_fields = {
+                "inventory_id",
+                "product_name",
+                "unit",
+                "total_quantity",
+                "shared_quantity",
+                "reserved_quantity",
+                "transferred_quantity",
+                "available_share_quantity",
+                "share_id",
+            }
             assert required_fields.issubset(item.keys())
 
 

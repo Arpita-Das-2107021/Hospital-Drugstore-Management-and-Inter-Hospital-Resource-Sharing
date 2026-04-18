@@ -2,103 +2,232 @@ import AppLayout from '@/components/layout/AppLayout';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Label } from '@/components/ui/label';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from '@/components/ui/command';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { inventoryApi } from '@/services/api';
-import { useState, useEffect } from 'react';
-import { Search, Eye, EyeOff, AlertTriangle, CheckCircle, Loader2, Save } from 'lucide-react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
+import { Search, Eye, EyeOff, AlertTriangle, CheckCircle, Loader2, Save, Check, ChevronsUpDown } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/contexts/AuthContext';
 import { Navigate } from 'react-router-dom';
+import { hasAnyPermission } from '@/lib/rbac';
+import { RESOURCE_SHARES_UPDATED_EVENT } from '@/constants/events';
+import { cn } from '@/lib/utils';
+
+type VisibilityResourceType = 'drugs' | 'blood' | 'organs' | 'equipment';
 
 type VisibilityItem = {
   id: string;
   inventoryId: string;
   catalogItemId: string;
   name: string;
-  type: 'drugs' | 'blood' | 'organs' | 'equipment';
+  type: VisibilityResourceType;
   totalQuantity: number;
   sharedQuantity: number;
   shareRecordId?: string;
 };
 
-const normalizeType = (value: string): VisibilityItem['type'] => {
-  const v = (value || '').toLowerCase();
+type InventoryTypeLookup = {
+  byInventoryId: Map<string, VisibilityResourceType>;
+  byCatalogItemId: Map<string, VisibilityResourceType>;
+};
+
+type UnknownRecord = Record<string, unknown>;
+
+const isRecord = (value: unknown): value is UnknownRecord => typeof value === 'object' && value !== null;
+
+const getErrorMessage = (error: unknown): string =>
+  error instanceof Error && error.message ? error.message : 'Please try again.';
+
+const normalizeType = (value: string): VisibilityResourceType | null => {
+  const v = (value || '').toLowerCase().trim();
+  if (!v) return null;
+
   if (['drug', 'drugs', 'medication', 'medicine'].includes(v)) return 'drugs';
   if (['blood', 'blood_product', 'blood-products'].includes(v)) return 'blood';
   if (['organ', 'organs'].includes(v)) return 'organs';
+  if (['equipment', 'device', 'devices', 'tool', 'tools'].includes(v)) return 'equipment';
+
+  return null;
+};
+
+const buildInventoryTypeLookup = (items: unknown[]): InventoryTypeLookup => {
+  const byInventoryId = new Map<string, VisibilityResourceType>();
+  const byCatalogItemId = new Map<string, VisibilityResourceType>();
+
+  items.forEach((item) => {
+    const row = isRecord(item) ? item : {};
+    const inventoryId = String(row.id || row.inventory_id || '').trim();
+    const catalogItemId = String(row.catalog_item || row.catalog_item_id || '').trim();
+    const rawType = String(
+      row.resource_type_name ||
+        row.resource_type ||
+        row.catalog_item_resource_type_name ||
+        row.catalog_item_type ||
+        row.type ||
+        ''
+    );
+
+    const normalizedType = normalizeType(rawType);
+    if (!normalizedType) {
+      return;
+    }
+
+    if (inventoryId && !byInventoryId.has(inventoryId)) {
+      byInventoryId.set(inventoryId, normalizedType);
+    }
+
+    if (catalogItemId && !byCatalogItemId.has(catalogItemId)) {
+      byCatalogItemId.set(catalogItemId, normalizedType);
+    }
+  });
+
+  return { byInventoryId, byCatalogItemId };
+};
+
+const resolveVisibilityType = (
+  source: UnknownRecord,
+  inventoryTypeLookup?: InventoryTypeLookup
+): VisibilityResourceType => {
+  const details = isRecord(source.catalog_item_details) ? source.catalog_item_details : {};
+  const catalogItemObj = isRecord(source.catalog_item_obj) ? source.catalog_item_obj : {};
+
+  const payloadType =
+    normalizeType(String(source.resource_type_name || '')) ||
+    normalizeType(String(source.resource_type || '')) ||
+    normalizeType(String(source.catalog_item_resource_type_name || '')) ||
+    normalizeType(String(source.catalog_item_type || '')) ||
+    normalizeType(String(source.type || '')) ||
+    normalizeType(String(details.resource_type_name || '')) ||
+    normalizeType(String(details.resource_type || '')) ||
+    normalizeType(String(details.category || '')) ||
+    normalizeType(String(catalogItemObj.resource_type_name || '')) ||
+    normalizeType(String(catalogItemObj.resource_type || '')) ||
+    normalizeType(String(catalogItemObj.type || ''));
+
+  if (payloadType) {
+    return payloadType;
+  }
+
+  const inventoryId = String(source.inventory_id || source.id || '').trim();
+  const catalogItemId = String(source.catalog_item || source.catalog_item_id || source.catalog_item_uuid || '').trim();
+
+  const inventoryMatchedType = inventoryId ? inventoryTypeLookup?.byInventoryId.get(inventoryId) : null;
+  if (inventoryMatchedType) {
+    return inventoryMatchedType;
+  }
+
+  const catalogMatchedType = catalogItemId ? inventoryTypeLookup?.byCatalogItemId.get(catalogItemId) : null;
+  if (catalogMatchedType) {
+    return catalogMatchedType;
+  }
+
   return 'equipment';
+};
+
+const getTypeLabel = (type: VisibilityResourceType): string => {
+  if (type === 'drugs') return 'Medicine';
+  if (type === 'blood') return 'Blood';
+  if (type === 'organs') return 'Organs';
+  return 'Equipment';
 };
 
 const extractList = (res: unknown): unknown[] => {
   if (Array.isArray(res)) return res;
-  if (Array.isArray(res?.data?.results)) return res.data.results;
-  if (Array.isArray(res?.data)) return res.data;
-  if (Array.isArray(res?.results)) return res.results;
+  if (!isRecord(res)) return [];
+
+  const data = res.data;
+  if (Array.isArray(data)) return data;
+  if (isRecord(data) && Array.isArray(data.results)) return data.results;
+  if (Array.isArray(res.results)) return res.results;
   return [];
 };
 
-const mapVisibilityItem = (item: unknown): VisibilityItem => {
+const mapVisibilityItem = (item: unknown, inventoryTypeLookup?: InventoryTypeLookup): VisibilityItem => {
+  const source: UnknownRecord = isRecord(item) ? item : {};
+  const details = isRecord(source.catalog_item_details) ? source.catalog_item_details : null;
+  const catalogItemObj = isRecord(source.catalog_item_obj) ? source.catalog_item_obj : null;
+
   const totalQty = Number(
-    item.total_quantity ??
-      item.quantity_available ??
-      item.total_inventory ??
-      item.quantity ??
+    source.total_quantity ??
+      source.quantity_available ??
+      source.total_inventory ??
+      source.quantity ??
       0
   );
 
   const sharedQty = Number(
-    item.shared_quantity ??
-      item.quantity_shared ??
-      item.quantity_offered ??
+    source.shared_quantity ??
+      source.quantity_shared ??
+      source.quantity_offered ??
       0
   );
 
-  const inventoryId = String(item.inventory_id || item.id || '');
-  const catalogItemId = String(item.catalog_item || item.catalog_item_id || item.catalog_item_uuid || '');
+  const inventoryId = String(source.inventory_id || source.id || '');
+  const catalogItemId = String(source.catalog_item || source.catalog_item_id || source.catalog_item_uuid || '');
   const resolvedName =
-    item.product_name ||
-    item.catalog_item_name ||
-    item.resource_name ||
-    item.name ||
-    item.catalog_item_details?.name ||
-    item.catalog_item_obj?.name ||
+    source.product_name ||
+    source.catalog_item_name ||
+    source.resource_name ||
+    source.name ||
+    details?.name ||
+    catalogItemObj?.name ||
     'Unknown item';
 
+  const shareRecordId = source.share_record_id || source.resource_share_id || source.share_id;
+
   return {
-    id: String(item.id || inventoryId || catalogItemId || crypto.randomUUID()),
+    id: String(source.id || inventoryId || catalogItemId || crypto.randomUUID()),
     inventoryId,
     catalogItemId,
     name: String(resolvedName),
-    type: normalizeType(item.resource_type || item.catalog_item_type || item.type || ''),
+    type: resolveVisibilityType(source, inventoryTypeLookup),
     totalQuantity: Number.isFinite(totalQty) ? totalQty : 0,
     sharedQuantity: Number.isFinite(sharedQty) ? sharedQty : 0,
-    shareRecordId: item.share_record_id || item.resource_share_id || item.share_id,
+    shareRecordId: shareRecordId != null ? String(shareRecordId) : undefined,
   };
 };
+
+const formatOptionLabel = (item: VisibilityItem): string =>
+  `${item.name} (${getTypeLabel(item.type)}) - Shared ${item.sharedQuantity}/${item.totalQuantity}`;
 
 const ResourceVisibility = () => {
   const { user } = useAuth();
   const { toast } = useToast();
-  const role = (user?.role || '').toUpperCase();
-  const canAccess = role === 'HOSPITAL_ADMIN';
+  const canAccess = hasAnyPermission(user, ['hospital:resource_share.visibility.view', 'hospital:resource_share.manage']);
   const [items, setItems] = useState<VisibilityItem[]>([]);
   const [draftSharedQty, setDraftSharedQty] = useState<Record<string, string>>({});
   const [savingIds, setSavingIds] = useState<Record<string, boolean>>({});
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [type, setType] = useState('all');
+  const [visibilityFilter, setVisibilityFilter] = useState<'all' | 'shared' | 'non-shared'>('all');
+  const [selectedItemId, setSelectedItemId] = useState('');
+  const [selectorOpen, setSelectorOpen] = useState(false);
+  const [selectorQuery, setSelectorQuery] = useState('');
 
-  // API only allows HOSPITAL_ADMIN for inventory share visibility.
-  if (!canAccess) {
-    return <Navigate to="/dashboard" replace />;
-  }
-
-  const loadVisibility = async () => {
+  const loadVisibility = useCallback(async () => {
     try {
       setLoading(true);
-      const res = await inventoryApi.getShareVisibility();
-      const raw = extractList(res);
-      const mapped = raw.map(mapVisibilityItem);
+      const [visibilityRes, inventoryRes] = await Promise.all([
+        inventoryApi.getShareVisibility(),
+        inventoryApi.getAll().catch(() => null),
+      ]);
+
+      const rawVisibility = extractList(visibilityRes);
+      const rawInventory = extractList(inventoryRes);
+      const inventoryTypeLookup = buildInventoryTypeLookup(rawInventory);
+      const mapped = rawVisibility.map((item) => mapVisibilityItem(item, inventoryTypeLookup));
       setItems(mapped);
 
       const drafts: Record<string, string> = {};
@@ -109,7 +238,7 @@ const ResourceVisibility = () => {
     } catch (err: unknown) {
       toast({
         title: 'Failed to load visibility data',
-        description: err?.message || 'Please try again.',
+        description: getErrorMessage(err),
         variant: 'destructive',
       });
       setItems([]);
@@ -117,23 +246,85 @@ const ResourceVisibility = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [toast]);
 
   useEffect(() => {
-    loadVisibility();
-  }, []);
+    if (!canAccess) {
+      return;
+    }
 
-  const filtered = items.filter((item) => {
-    const matchesSearch = item.name.toLowerCase().includes(search.toLowerCase());
-    const matchesType = type === 'all' || item.type === type;
-    return matchesSearch && matchesType;
-  });
+    void loadVisibility();
+  }, [canAccess, loadVisibility]);
+
+  useEffect(() => {
+    if (!canAccess) {
+      return;
+    }
+
+    const handleResourceSharesUpdated = () => {
+      void loadVisibility();
+    };
+
+    window.addEventListener(RESOURCE_SHARES_UPDATED_EVENT, handleResourceSharesUpdated);
+    window.addEventListener('focus', handleResourceSharesUpdated);
+
+    return () => {
+      window.removeEventListener(RESOURCE_SHARES_UPDATED_EVENT, handleResourceSharesUpdated);
+      window.removeEventListener('focus', handleResourceSharesUpdated);
+    };
+  }, [canAccess, loadVisibility]);
+
+  const filtered = useMemo(
+    () =>
+      items.filter((item) => {
+        const matchesSearch = item.name.toLowerCase().includes(search.toLowerCase());
+        const matchesType = type === 'all' || item.type === type;
+        const matchesVisibility =
+          visibilityFilter === 'all' ||
+          (visibilityFilter === 'shared' ? item.sharedQuantity > 0 : item.sharedQuantity <= 0);
+
+        return matchesSearch && matchesType && matchesVisibility;
+      }),
+    [items, search, type, visibilityFilter]
+  );
+
+  const selectorOptions = useMemo(() => {
+    const query = selectorQuery.trim().toLowerCase();
+    if (!query) {
+      return filtered;
+    }
+
+    return filtered.filter((item) => {
+      const nameMatch = item.name.toLowerCase().includes(query);
+      const typeMatch = item.type.toLowerCase().includes(query);
+      const quantityMatch = String(item.totalQuantity).includes(query) || String(item.sharedQuantity).includes(query);
+      return nameMatch || typeMatch || quantityMatch;
+    });
+  }, [filtered, selectorQuery]);
+
+  const selectedItem = useMemo(
+    () => filtered.find((item) => item.id === selectedItemId) || null,
+    [filtered, selectedItemId]
+  );
+
+  useEffect(() => {
+    if (filtered.length === 0) {
+      if (selectedItemId) {
+        setSelectedItemId('');
+      }
+      return;
+    }
+
+    if (!filtered.some((item) => item.id === selectedItemId)) {
+      setSelectedItemId(filtered[0].id);
+    }
+  }, [filtered, selectedItemId]);
 
   const visibleCount = items.filter((i) => i.sharedQuantity > 0).length;
   const hiddenCount = items.filter((i) => i.sharedQuantity <= 0).length;
 
-  const saveSharedQuantity = async (item: VisibilityItem) => {
-    const rawValue = draftSharedQty[item.id] ?? String(item.sharedQuantity);
+  const saveSharedQuantity = async (item: VisibilityItem, overrideQuantity?: number) => {
+    const rawValue = overrideQuantity ?? Number(draftSharedQty[item.id] ?? item.sharedQuantity);
     const sharedQuantity = Math.max(0, Number(rawValue));
 
     if (!Number.isFinite(sharedQuantity)) {
@@ -159,14 +350,24 @@ const ResourceVisibility = () => {
         share_record_id: item.shareRecordId,
       });
 
-      const updatedPayload = response?.data || response;
+      const responseRecord = isRecord(response) ? response : null;
+      const updatedPayload = responseRecord?.data ?? response;
+      const updatedRecord: UnknownRecord = isRecord(updatedPayload) ? updatedPayload : {};
       const mappedUpdated = mapVisibilityItem({
         ...item,
-        ...updatedPayload,
-        shared_quantity: updatedPayload?.shared_quantity ?? sharedQuantity,
+        ...updatedRecord,
+        shared_quantity: updatedRecord.shared_quantity ?? sharedQuantity,
       });
 
-      setItems((prev) => prev.map((entry) => (entry.id === item.id ? { ...entry, ...mappedUpdated } : entry)));
+      const nextItem: VisibilityItem = {
+        ...mappedUpdated,
+        id: item.id,
+        inventoryId: mappedUpdated.inventoryId || item.inventoryId,
+        catalogItemId: mappedUpdated.catalogItemId || item.catalogItemId,
+        shareRecordId: mappedUpdated.shareRecordId ?? item.shareRecordId,
+      };
+
+      setItems((prev) => prev.map((entry) => (entry.id === item.id ? { ...entry, ...nextItem } : entry)));
       setDraftSharedQty((prev) => ({ ...prev, [item.id]: String(sharedQuantity) }));
 
       toast({
@@ -176,7 +377,7 @@ const ResourceVisibility = () => {
     } catch (err: unknown) {
       toast({
         title: 'Failed to update share quantity',
-        description: err?.message || 'Please try again.',
+        description: getErrorMessage(err),
         variant: 'destructive',
       });
     } finally {
@@ -184,37 +385,52 @@ const ResourceVisibility = () => {
     }
   };
 
-  const handleBulkSet = async (value: number) => {
-    const targets = filtered.map((item) => ({
-      ...item,
-      targetValue: Math.max(0, Math.min(value, item.totalQuantity)),
-    }));
+  const selectedDraftValue = selectedItem ? draftSharedQty[selectedItem.id] ?? String(selectedItem.sharedQuantity) : '';
 
-    const results = await Promise.allSettled(
-      targets.map((entry) =>
-        inventoryApi.updateShareVisibility({
-          inventory_id: entry.inventoryId,
-          catalog_item: entry.catalogItemId,
-          shared_quantity: entry.targetValue,
-          share_record_id: entry.shareRecordId,
-        })
-      )
-    );
-
-    const failed = results.filter((r) => r.status === 'rejected').length;
-    if (failed > 0) {
-      toast({
-        title: 'Partial update',
-        description: `${failed} items failed to update.`,
-        variant: 'destructive',
-      });
+  const updateSelectedDraft = (value: string) => {
+    if (!selectedItem) {
+      return;
     }
 
-    await loadVisibility();
+    setDraftSharedQty((prev) => ({ ...prev, [selectedItem.id]: value }));
   };
 
+  const handleSaveSelected = async () => {
+    if (!selectedItem) {
+      return;
+    }
+
+    await saveSharedQuantity(selectedItem);
+  };
+
+  const handleSetHidden = async () => {
+    if (!selectedItem) {
+      return;
+    }
+
+    await saveSharedQuantity(selectedItem, 0);
+  };
+
+  const handleUseMax = async () => {
+    if (!selectedItem) {
+      return;
+    }
+
+    await saveSharedQuantity(selectedItem, selectedItem.totalQuantity);
+  };
+
+  const isSelectedItemSaving = selectedItem ? Boolean(savingIds[selectedItem.id]) : false;
+
+  // API only allows hospital admin scope for inventory share visibility.
+  if (!canAccess) {
+    return <Navigate to="/dashboard" replace />;
+  }
+
   return (
-    <AppLayout title="Resource Visibility" subtitle="Control which resources are shared with other hospitals">
+    <AppLayout
+      title="Resource Visibility"
+      // subtitle="Control which resources are shared with other hospitals"
+    >
       {loading ? (
         <div className="flex items-center justify-center h-64">
           <Loader2 className="h-8 w-8 animate-spin" /><span className="ml-2">Loading resources...</span>
@@ -265,23 +481,23 @@ const ResourceVisibility = () => {
         </div>
 
         {/* Info Banner */}
-        <Card className="border-info/20 bg-info/5">
+        {/* <Card className="border-info/20 bg-info/5">
           <CardContent className="p-4">
             <div className="flex items-start gap-3">
               <AlertTriangle className="h-5 w-5 text-info mt-0.5" />
               <div>
-                <h4 className="font-medium">Visibility Control</h4>
+                <h4 className="font-medium">Visibility And Share Management</h4>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Resources marked as <strong>visible</strong> can be requested by other hospitals. 
-                  Hidden resources are only available for internal use at your hospital.
+                  Set shared quantity above <strong>0</strong> to add a resource to shared offers and update it later here.
+                  Set it to <strong>0</strong> to remove it from partner visibility.
                 </p>
               </div>
             </div>
           </CardContent>
-        </Card>
+        </Card> */}
 
         {/* Filters */}
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
           <div className="flex gap-2 flex-wrap">
             <div className="relative w-64">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
@@ -295,84 +511,239 @@ const ResourceVisibility = () => {
             <Tabs value={type} onValueChange={setType}>
               <TabsList>
                 <TabsTrigger value="all">All</TabsTrigger>
-                <TabsTrigger value="drugs">Drugs</TabsTrigger>
+                <TabsTrigger value="drugs">Medicine</TabsTrigger>
                 <TabsTrigger value="blood">Blood</TabsTrigger>
                 <TabsTrigger value="organs">Organs</TabsTrigger>
                 <TabsTrigger value="equipment">Equipment</TabsTrigger>
               </TabsList>
             </Tabs>
-          </div>
-          <div className="flex gap-2">
-            <Button variant="outline" size="sm" onClick={() => handleBulkSet(1)}>
-              <Eye className="mr-2 h-4 w-4" />
-              Show All
-            </Button>
-            <Button variant="outline" size="sm" onClick={() => handleBulkSet(0)}>
-              <EyeOff className="mr-2 h-4 w-4" />
-              Hide All
-            </Button>
+            <Tabs value={visibilityFilter} onValueChange={(value) => setVisibilityFilter(value as typeof visibilityFilter)}>
+              <TabsList>
+                <TabsTrigger value="all">All Resources</TabsTrigger>
+                <TabsTrigger value="shared">Shared</TabsTrigger>
+                <TabsTrigger value="non-shared">Non Shared</TabsTrigger>
+              </TabsList>
+            </Tabs>
           </div>
         </div>
 
-        {/* Visibility Editor Table */}
-        <Card>
-          <CardContent className="p-0">
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[640px] text-sm">
-                <thead className="border-b border-border bg-muted/30">
-                  <tr>
-                    <th className="px-4 py-3 text-left font-medium">Product</th>
-                    <th className="px-4 py-3 text-left font-medium">Total Inventory</th>
-                    <th className="px-4 py-3 text-left font-medium">Shared Quantity</th>
-                    <th className="px-4 py-3 text-left font-medium">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filtered.map((item) => (
-                    <tr key={item.id} className="border-b border-border/50 last:border-b-0">
-                      <td className="px-4 py-3">{item.name}</td>
-                      <td className="px-4 py-3">{item.totalQuantity}</td>
-                      <td className="px-4 py-3">
-                        <Input
-                          type="number"
-                          min={0}
-                          max={item.totalQuantity}
-                          value={draftSharedQty[item.id] ?? String(item.sharedQuantity)}
-                          onChange={(e) => {
-                            setDraftSharedQty((prev) => ({ ...prev, [item.id]: e.target.value }));
-                          }}
-                          className="w-36"
+        {/* Visibility Form */}
+        <Card className="border-border/70 shadow-sm">
+          <CardContent className="p-5 sm:p-6">
+            <div className="grid gap-6 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)]">
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="visibility-resource-selector">Resource or medicine</Label>
+                  <Popover open={selectorOpen} onOpenChange={setSelectorOpen}>
+                    <PopoverTrigger asChild>
+                      <Button
+                        id="visibility-resource-selector"
+                        type="button"
+                        variant="outline"
+                        role="combobox"
+                        aria-expanded={selectorOpen}
+                        className={cn('w-full justify-between font-normal', !selectedItem && 'text-muted-foreground')}
+                      >
+                        {selectedItem
+                          ? selectedItem.name
+                          : filtered.length > 0
+                            ? 'Select a resource'
+                            : 'No resources for current filters'}
+                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0" align="start">
+                      <Command shouldFilter={false}>
+                        <CommandInput
+                          placeholder="Search in filtered resources..."
+                          value={selectorQuery}
+                          onValueChange={setSelectorQuery}
                         />
-                      </td>
-                      <td className="px-4 py-3">
-                        <Button
-                          size="sm"
-                          onClick={() => saveSharedQuantity(item)}
-                          disabled={!!savingIds[item.id]}
-                        >
-                          {savingIds[item.id] ? (
-                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                          ) : (
-                            <Save className="mr-2 h-4 w-4" />
-                          )}
-                          Save
-                        </Button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                        <CommandList>
+                          <CommandEmpty>No matching resource found.</CommandEmpty>
+                          <CommandGroup>
+                            {selectorOptions.map((item) => (
+                              <CommandItem
+                                key={item.id}
+                                value={`${item.name} ${item.type} ${item.totalQuantity} ${item.sharedQuantity}`}
+                                onSelect={() => {
+                                  setSelectedItemId(item.id);
+                                  setSelectorQuery('');
+                                  setSelectorOpen(false);
+                                }}
+                              >
+                                <Check
+                                  className={cn(
+                                    'mr-2 h-4 w-4 shrink-0',
+                                    selectedItemId === item.id ? 'opacity-100' : 'opacity-0'
+                                  )}
+                                />
+                                <span className="truncate">{formatOptionLabel(item)}</span>
+                              </CommandItem>
+                            ))}
+                          </CommandGroup>
+                        </CommandList>
+                      </Command>
+                    </PopoverContent>
+                  </Popover>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="shared-quantity-input">Shared quantity</Label>
+                  <Input
+                    id="shared-quantity-input"
+                    type="number"
+                    min={0}
+                    max={selectedItem?.totalQuantity ?? 0}
+                    value={selectedDraftValue}
+                    onChange={(e) => updateSelectedDraft(e.target.value)}
+                    disabled={!selectedItem}
+                  />
+                  <p className="text-xs text-muted-foreground">
+                    {selectedItem
+                      ? `Set 0 to hide this resource. Maximum allowed: ${selectedItem.totalQuantity}.`
+                      : 'Choose a resource first to manage visibility.'}
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  <Button
+                    onClick={handleSaveSelected}
+                    disabled={!selectedItem || isSelectedItemSaving}
+                  >
+                    {isSelectedItemSaving ? (
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    ) : (
+                      <Save className="mr-2 h-4 w-4" />
+                    )}
+                    Save Share Settings
+                  </Button>
+                  <Button
+                    variant="outline"
+                    type="button"
+                    onClick={handleSetHidden}
+                    disabled={!selectedItem || isSelectedItemSaving}
+                  >
+                    Set Hidden
+                  </Button>
+                  <Button
+                    variant="outline"
+                    type="button"
+                    onClick={handleUseMax}
+                    disabled={!selectedItem || isSelectedItemSaving}
+                  >
+                    Use Max
+                  </Button>
+                </div>
+              </div>
+
+              <div className="rounded-xl border border-border/70 bg-muted/20 p-4">
+                <p className="text-sm font-medium">Selection Snapshot</p>
+                {selectedItem ? (
+                  <div className="mt-4 space-y-3 text-sm">
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-muted-foreground">Resource</span>
+                      <span className="text-right font-medium">{selectedItem.name}</span>
+                    </div>
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-muted-foreground">Type</span>
+                      <Badge variant="secondary" className="capitalize">
+                        {getTypeLabel(selectedItem.type)}
+                      </Badge>
+                    </div>
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-muted-foreground">Total inventory</span>
+                      <span className="font-medium">{selectedItem.totalQuantity}</span>
+                    </div>
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-muted-foreground">Shared now</span>
+                      <span className="font-medium">{selectedItem.sharedQuantity}</span>
+                    </div>
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-muted-foreground">Visibility</span>
+                      <Badge variant={selectedItem.sharedQuantity > 0 ? 'outline' : 'secondary'}>
+                        {selectedItem.sharedQuantity > 0 ? 'Visible' : 'Hidden'}
+                      </Badge>
+                    </div>
+                  </div>
+                ) : (
+                  <p className="mt-4 text-sm text-muted-foreground">No item matches the current filters.</p>
+                )}
+              </div>
             </div>
           </CardContent>
         </Card>
 
-        {filtered.length === 0 && (
-          <div className="text-center py-12">
-            <EyeOff className="h-12 w-12 mx-auto text-muted-foreground/50" />
-            <h3 className="mt-4 text-lg font-medium">No resources found</h3>
-            <p className="text-muted-foreground">Try adjusting your search or filters</p>
-          </div>
-        )}
+        <Card>
+          <CardContent className="p-4 sm:p-5">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <h3 className="font-medium">Filtered Resources</h3>
+                <p className="text-sm text-muted-foreground">Pick an item to load it into the form above.</p>
+              </div>
+              <Badge variant="outline">{filtered.length} matches</Badge>
+            </div>
+
+            {filtered.length === 0 ? (
+              <div className="py-10 text-center">
+                <EyeOff className="mx-auto h-10 w-10 text-muted-foreground/50" />
+                <h4 className="mt-3 text-base font-medium">No resources found</h4>
+                <p className="text-sm text-muted-foreground">Try adjusting your search or filters.</p>
+              </div>
+            ) : (
+              <div className="mt-4 overflow-x-auto rounded-lg border border-border/60">
+                <table className="w-full min-w-[680px] text-sm">
+                  <thead className="bg-muted/40 text-muted-foreground">
+                    <tr>
+                      <th className="px-4 py-3 text-left font-medium">Resource</th>
+                      <th className="px-4 py-3 text-left font-medium">Type</th>
+                      <th className="px-4 py-3 text-left font-medium">Total</th>
+                      <th className="px-4 py-3 text-left font-medium">Shared</th>
+                      <th className="px-4 py-3 text-left font-medium">Visibility</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filtered.map((item) => {
+                      const selected = selectedItemId === item.id;
+                      return (
+                        <tr
+                          key={item.id}
+                          tabIndex={0}
+                          onClick={() => setSelectedItemId(item.id)}
+                          onKeyDown={(event) => {
+                            if (event.key === 'Enter' || event.key === ' ') {
+                              event.preventDefault();
+                              setSelectedItemId(item.id);
+                            }
+                          }}
+                          className={cn(
+                            'cursor-pointer border-t border-border/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50',
+                            selected ? 'bg-primary/5' : 'hover:bg-muted/30'
+                          )}
+                        >
+                          <td className="px-4 py-3 font-medium">
+                            <div className="flex items-center gap-2">
+                              <span>{item.name}</span>
+                              {selected ? <Badge variant="outline">Selected</Badge> : null}
+                            </div>
+                          </td>
+                          <td className="px-4 py-3 tracking-wide text-xs text-muted-foreground">{getTypeLabel(item.type)}</td>
+                          <td className="px-4 py-3">{item.totalQuantity}</td>
+                          <td className="px-4 py-3">{item.sharedQuantity}</td>
+                          <td className="px-4 py-3">
+                            <Badge variant={item.sharedQuantity > 0 ? 'outline' : 'secondary'}>
+                              {item.sharedQuantity > 0 ? 'Visible' : 'Hidden'}
+                            </Badge>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </CardContent>
+        </Card>
       </div>
       )}
     </AppLayout>

@@ -5,28 +5,26 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
 import { AlertTriangle, CheckCircle2, Loader2 } from 'lucide-react';
 import { requestsApi } from '@/services/api';
 import { useToast } from '@/hooks/use-toast';
+import { mapDeliveryConfirmationError } from '@/utils/deliveryConfirmation';
 
 const DeliveryConfirmationView = () => {
   const { toast } = useToast();
-  const [dispatchToken, setDispatchToken] = useState('');
-  const [receiveToken, setReceiveToken] = useState('');
-  const [shipmentId, setShipmentId] = useState('');
+  const [qrPayload, setQrPayload] = useState('');
   const [quantityReceived, setQuantityReceived] = useState('1');
   const [notes, setNotes] = useState('');
+  const [requestId, setRequestId] = useState('');
   const [resultMessage, setResultMessage] = useState('');
 
   const confirmMutation = useMutation({
     mutationFn: async () => {
-      return requestsApi.confirmDelivery({
-        dispatch_token: dispatchToken,
-        receive_token: receiveToken,
-        shipment_id: shipmentId || undefined,
-        quantity_received: Number(quantityReceived),
-        notes,
+      const quantity = Math.max(1, Number.parseInt(quantityReceived, 10) || 1);
+      return requestsApi.transferConfirm(requestId, {
+        qrPayload,
+        quantity_received: quantity,
+        ...(notes.trim() ? { notes: notes.trim() } : {}),
       });
     },
     onSuccess: () => {
@@ -34,10 +32,11 @@ const DeliveryConfirmationView = () => {
       toast({ title: 'Delivery confirmed' });
     },
     onError: (error: unknown) => {
-      const message = error?.message || 'Failed to confirm delivery.';
+      const mapped = mapDeliveryConfirmationError(error);
+      const message = mapped.description || 'Failed to confirm delivery.';
       setResultMessage(message);
       toast({
-        title: 'Delivery confirmation failed',
+        title: mapped.title,
         description: message,
         variant: 'destructive',
       });
@@ -45,68 +44,59 @@ const DeliveryConfirmationView = () => {
   });
 
   return (
-    <AppLayout title="Delivery Confirmation View" subtitle="Verify rider and receive tokens to complete delivery">
+    <AppLayout title="Delivery Confirmation View"
+      // subtitle="Scan dispatch token and submit transfer confirmation"
+    >
       <Card className="max-w-2xl">
         <CardHeader>
           <CardTitle>Delivery Verification</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="dispatch-token">Dispatch token (from rider QR)</Label>
+            <Label htmlFor="request-id">Request ID</Label>
+            <Input
+              id="request-id"
+              value={requestId}
+              onChange={(event) => setRequestId(event.target.value)}
+              placeholder="Request UUID"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="dispatch-token">QR payload (from receiver scan)</Label>
             <Input
               id="dispatch-token"
-              value={dispatchToken}
-              onChange={(event) => setDispatchToken(event.target.value)}
-              placeholder="Scan or paste dispatch token"
+              value={qrPayload}
+              onChange={(event) => setQrPayload(event.target.value)}
+              placeholder="Scan or paste opaque qrPayload"
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="receive-token">Receive token</Label>
+            <Label htmlFor="quantity-received">Quantity received</Label>
             <Input
-              id="receive-token"
-              value={receiveToken}
-              onChange={(event) => setReceiveToken(event.target.value)}
-              placeholder="Enter receive token"
+              id="quantity-received"
+              type="number"
+              min={1}
+              value={quantityReceived}
+              onChange={(event) => setQuantityReceived(event.target.value)}
+              placeholder="1"
             />
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2">
-            <div className="space-y-2">
-              <Label htmlFor="shipment-id">Shipment ID (optional if backend resolves by token)</Label>
-              <Input
-                id="shipment-id"
-                value={shipmentId}
-                onChange={(event) => setShipmentId(event.target.value)}
-                placeholder="Shipment UUID"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="received-qty">Quantity received</Label>
-              <Input
-                id="received-qty"
-                type="number"
-                min={1}
-                value={quantityReceived}
-                onChange={(event) => setQuantityReceived(event.target.value)}
-              />
-            </div>
-          </div>
-
           <div className="space-y-2">
-            <Label htmlFor="delivery-notes">Notes</Label>
-            <Textarea
-              id="delivery-notes"
-              rows={3}
+            <Label htmlFor="confirmation-notes">Notes (optional)</Label>
+            <Input
+              id="confirmation-notes"
               value={notes}
               onChange={(event) => setNotes(event.target.value)}
-              placeholder="Any delivery verification note"
+              placeholder="Optional receiver notes"
             />
           </div>
 
           <Button
             onClick={() => confirmMutation.mutate()}
-            disabled={confirmMutation.isPending || !dispatchToken || !receiveToken}
+            disabled={confirmMutation.isPending || !requestId || !qrPayload.trim()}
           >
             {confirmMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <CheckCircle2 className="h-4 w-4 mr-2" />}
             Confirm delivery
@@ -120,7 +110,7 @@ const DeliveryConfirmationView = () => {
           ) : null}
 
           <p className="text-xs text-muted-foreground">
-            Common errors are surfaced directly from backend, including invalid token, expired token, and shipment already delivered.
+            Backend validates the scanned qrPayload and returns final workflow status or error.
           </p>
         </CardContent>
       </Card>

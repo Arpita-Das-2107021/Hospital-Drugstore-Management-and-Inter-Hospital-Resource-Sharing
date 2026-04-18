@@ -1,32 +1,39 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import AppLayout from '@/components/layout/AppLayout';
 import { hospitalsApi } from '@/services/api';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { MapContainer, Marker, TileLayer } from 'react-leaflet';
-import L from 'leaflet';
+import L, { type Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { 
-  ArrowLeft, 
-  MapPin, 
-  Building2, 
-  Bed, 
-  Phone, 
-  Mail, 
-  Package,
-  Users,
+import {
+  Activity,
+  AlertTriangle,
+  ArrowLeft,
+  Bed,
+  Building2,
+  Globe,
+  IdCard,
   Loader2,
-  AlertTriangle
+  Mail,
+  MapPin,
+  Package,
+  Phone,
+  ShieldCheck,
+  Users,
+  type LucideIcon,
 } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { cn } from '@/lib/utils';
 import HospitalLogo from '@/components/HospitalLogo';
 import { resolveMediaUrl } from '@/utils/media';
+import { hasAnyPermission } from '@/lib/rbac';
 
-const markerIcon = new L.Icon({
+const markerIcon: Icon = new L.Icon({
   iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
   iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
@@ -36,30 +43,34 @@ const markerIcon = new L.Icon({
   shadowSize: [41, 41],
 });
 
+type UnknownRecord = Record<string, unknown>;
+
 interface HospitalDetailsData {
   id: string;
-  name: string;
-  city: string;
-  state: string;
-  country: string;
-  region: string;
-  address: string;
-  phone: string;
-  email: string;
-  status: string;
-  total_staff: number;
-  total_inventory: number;
-  total_departments: number;
-  license_number: string;
-  verified_at?: string;
-  hospital_type: string;
+  name?: string;
+  address?: string;
+  city?: string;
+  state?: string;
+  country?: string;
+  region?: string;
+  phone?: string;
+  email?: string;
   website?: string;
-  image: string;
+  status?: string;
+  verifiedAt?: string;
+  hospitalType?: string;
+  registrationNumber?: string;
+  totalStaff?: number;
+  totalInventory?: number;
+  totalDepartments?: number;
+  totalBeds?: number;
+  coordinatesLat?: string;
+  coordinatesLng?: string;
+  apiBaseUrl?: string;
+  apiAuthType?: string;
+  apiUsername?: string;
+  imageUrl?: string;
   logo?: string | null;
-  specialties: string[];
-  total_beds: number;
-  coordinates_lat?: string | null;
-  coordinates_lng?: string | null;
 }
 
 interface HospitalFormData {
@@ -82,154 +93,404 @@ interface HospitalFormData {
   api_password: string;
 }
 
+interface DetailFieldData {
+  label: string;
+  value: string;
+  mono?: boolean;
+}
+
+interface EditableFieldConfig {
+  key: keyof HospitalFormData;
+  label: string;
+  sourceKeys: string[];
+  type?: 'text' | 'email' | 'password';
+  fullWidth?: boolean;
+  placeholder?: string;
+  group: 'overview' | 'contact' | 'location' | 'admin';
+}
+
+const PLACEHOLDER_TOKENS = new Set([
+  'n/a',
+  'na',
+  'not available',
+  'null',
+  'undefined',
+  'none',
+  '-',
+  '--',
+]);
+
+const isRecord = (value: unknown): value is UnknownRecord => {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+};
+
+const pickRawValue = (record: UnknownRecord, keys: string[]): unknown => {
+  for (const key of keys) {
+    if (Object.prototype.hasOwnProperty.call(record, key)) {
+      return record[key];
+    }
+  }
+  return undefined;
+};
+
+const toMeaningfulString = (value: unknown, options?: { allowZero?: boolean }): string | undefined => {
+  if (typeof value === 'string') {
+    const trimmed = value.trim();
+    if (!trimmed) return undefined;
+    const normalized = trimmed.toLowerCase();
+    if (PLACEHOLDER_TOKENS.has(normalized)) return undefined;
+    if (!options?.allowZero && normalized === '0') return undefined;
+    return trimmed;
+  }
+
+  if (typeof value === 'number' && Number.isFinite(value)) {
+    if (!options?.allowZero && value === 0) return undefined;
+    return String(value);
+  }
+
+  return undefined;
+};
+
+const toMeaningfulNumber = (value: unknown, options?: { allowZero?: boolean }): number | undefined => {
+  if (typeof value === 'number' && Number.isFinite(value)) {
+    if (!options?.allowZero && value === 0) return undefined;
+    return value;
+  }
+
+  if (typeof value === 'string' && value.trim().length > 0) {
+    const parsed = Number(value);
+    if (!Number.isFinite(parsed)) return undefined;
+    if (!options?.allowZero && parsed === 0) return undefined;
+    return parsed;
+  }
+
+  return undefined;
+};
+
+const toFormString = (value: unknown): string => {
+  if (value === null || value === undefined) return '';
+  return String(value);
+};
+
+const hasMeaningfulBackendValue = (value: unknown, options?: { allowZero?: boolean }): boolean => {
+  return (
+    toMeaningfulString(value, options) !== undefined ||
+    toMeaningfulNumber(value, options) !== undefined
+  );
+};
+
+const toField = (
+  label: string,
+  value: string | number | undefined,
+  options?: { allowZero?: boolean; mono?: boolean },
+): DetailFieldData | null => {
+  const normalized =
+    typeof value === 'number'
+      ? toMeaningfulNumber(value, { allowZero: options?.allowZero })
+      : toMeaningfulString(value, { allowZero: options?.allowZero });
+
+  if (normalized === undefined) return null;
+
+  return {
+    label,
+    value: String(normalized),
+    mono: options?.mono,
+  };
+};
+
+const formatDateValue = (value: string | undefined): string | undefined => {
+  if (!value) return undefined;
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return undefined;
+  return parsed.toLocaleDateString();
+};
+
+const mapHospitalData = (record: UnknownRecord, fallbackId?: string): HospitalDetailsData => {
+  const mediaSource = pickRawValue(record, ['logo', 'image']);
+
+  return {
+    id: toMeaningfulString(pickRawValue(record, ['id']), { allowZero: true }) || fallbackId || '',
+    name: toMeaningfulString(pickRawValue(record, ['name'])),
+    address: toMeaningfulString(pickRawValue(record, ['address'])),
+    city: toMeaningfulString(pickRawValue(record, ['city'])),
+    state: toMeaningfulString(pickRawValue(record, ['state'])),
+    country: toMeaningfulString(pickRawValue(record, ['country'])),
+    region: toMeaningfulString(pickRawValue(record, ['region'])),
+    phone: toMeaningfulString(pickRawValue(record, ['phone'])),
+    email: toMeaningfulString(pickRawValue(record, ['email'])),
+    website: toMeaningfulString(pickRawValue(record, ['website'])),
+    status: toMeaningfulString(pickRawValue(record, ['verified_status', 'status'])),
+    verifiedAt: toMeaningfulString(pickRawValue(record, ['verified_at'])),
+    hospitalType: toMeaningfulString(pickRawValue(record, ['hospital_type'])),
+    registrationNumber: toMeaningfulString(pickRawValue(record, ['registration_number', 'license_number'])),
+    totalStaff: toMeaningfulNumber(pickRawValue(record, ['total_staff', 'staff_count'])),
+    totalInventory: toMeaningfulNumber(pickRawValue(record, ['total_inventory'])),
+    totalDepartments: toMeaningfulNumber(pickRawValue(record, ['total_departments', 'department_count'])),
+    totalBeds: toMeaningfulNumber(pickRawValue(record, ['bed_count', 'total_beds'])),
+    coordinatesLat: toMeaningfulString(pickRawValue(record, ['latitude', 'coordinates_lat']), { allowZero: true }),
+    coordinatesLng: toMeaningfulString(pickRawValue(record, ['longitude', 'coordinates_lng']), { allowZero: true }),
+    apiBaseUrl: toMeaningfulString(pickRawValue(record, ['api_base_url'])),
+    apiAuthType: toMeaningfulString(pickRawValue(record, ['api_auth_type'])),
+    apiUsername: toMeaningfulString(pickRawValue(record, ['api_username'])),
+    imageUrl: resolveMediaUrl(toMeaningfulString(mediaSource, { allowZero: true }) || null),
+    logo: toMeaningfulString(pickRawValue(record, ['logo']), { allowZero: true }) || null,
+  };
+};
+
+const buildHospitalFormData = (record: UnknownRecord): HospitalFormData => {
+  return {
+    name: toFormString(pickRawValue(record, ['name'])),
+    address: toFormString(pickRawValue(record, ['address'])),
+    city: toFormString(pickRawValue(record, ['city'])),
+    state: toFormString(pickRawValue(record, ['state'])),
+    country: toFormString(pickRawValue(record, ['country'])),
+    phone: toFormString(pickRawValue(record, ['phone'])),
+    email: toFormString(pickRawValue(record, ['email'])),
+    website: toFormString(pickRawValue(record, ['website'])),
+    hospital_type: toFormString(pickRawValue(record, ['hospital_type'])),
+    registration_number: toFormString(pickRawValue(record, ['registration_number', 'license_number'])),
+    latitude: toFormString(pickRawValue(record, ['latitude', 'coordinates_lat'])),
+    longitude: toFormString(pickRawValue(record, ['longitude', 'coordinates_lng'])),
+    api_base_url: toFormString(pickRawValue(record, ['api_base_url'])),
+    api_auth_type: toFormString(pickRawValue(record, ['api_auth_type'])),
+    api_username: toFormString(pickRawValue(record, ['api_username'])),
+    api_key: '',
+    api_password: '',
+  };
+};
+
+const DetailField = ({ label, value, mono = false }: DetailFieldData) => {
+  return (
+    <div className="grid gap-2 border-b border-border/60 py-3 last:border-b-0 md:grid-cols-[minmax(170px,220px)_minmax(0,1fr)] md:items-start">
+      <dt className="break-words text-[11px] font-semibold uppercase tracking-[0.08em] leading-5 text-muted-foreground">{label}</dt>
+      <dd className={cn('min-w-0 break-words text-sm font-medium leading-relaxed text-foreground', mono && 'font-mono text-xs')}>
+        {value}
+      </dd>
+    </div>
+  );
+};
+
+const DetailCard = ({
+  title,
+  description,
+  icon: Icon,
+  fields,
+}: {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  fields: DetailFieldData[];
+}) => {
+  if (fields.length === 0) return null;
+
+  return (
+    <Card className="overflow-hidden rounded-2xl border-border/70 shadow-sm">
+      <CardHeader className="space-y-2 border-b border-border/60 pb-4">
+        <CardTitle className="flex items-center gap-2 text-lg">
+          <Icon className="h-4 w-4 text-primary" />
+          {title}
+        </CardTitle>
+        <CardDescription className="leading-relaxed">{description}</CardDescription>
+      </CardHeader>
+      <CardContent className="pt-4">
+        <dl>
+          {fields.map((field) => (
+            <DetailField key={field.label} {...field} />
+          ))}
+        </dl>
+      </CardContent>
+    </Card>
+  );
+};
+
+const EDITABLE_FIELDS: EditableFieldConfig[] = [
+  { key: 'name', label: 'Hospital Name', sourceKeys: ['name'], group: 'overview' },
+  { key: 'hospital_type', label: 'Hospital Type', sourceKeys: ['hospital_type'], group: 'overview' },
+  { key: 'registration_number', label: 'Registration Number', sourceKeys: ['registration_number', 'license_number'], group: 'overview' },
+  { key: 'phone', label: 'Phone', sourceKeys: ['phone'], group: 'contact' },
+  { key: 'email', label: 'Email', sourceKeys: ['email'], type: 'email', group: 'contact' },
+  { key: 'website', label: 'Website', sourceKeys: ['website'], fullWidth: true, group: 'contact' },
+  { key: 'address', label: 'Address', sourceKeys: ['address'], fullWidth: true, group: 'location' },
+  { key: 'city', label: 'City', sourceKeys: ['city'], group: 'location' },
+  { key: 'state', label: 'State', sourceKeys: ['state'], group: 'location' },
+  { key: 'country', label: 'Country', sourceKeys: ['country'], group: 'location' },
+  { key: 'latitude', label: 'Latitude', sourceKeys: ['latitude', 'coordinates_lat'], group: 'location' },
+  { key: 'longitude', label: 'Longitude', sourceKeys: ['longitude', 'coordinates_lng'], group: 'location' },
+  { key: 'api_base_url', label: 'API Base URL', sourceKeys: ['api_base_url'], fullWidth: true, group: 'admin' },
+  { key: 'api_auth_type', label: 'API Auth Type', sourceKeys: ['api_auth_type'], group: 'admin' },
+  { key: 'api_username', label: 'API Username', sourceKeys: ['api_username'], group: 'admin' },
+  {
+    key: 'api_key',
+    label: 'API Key',
+    sourceKeys: ['api_key'],
+    type: 'password',
+    placeholder: 'Leave blank to keep unchanged',
+    group: 'admin',
+  },
+  {
+    key: 'api_password',
+    label: 'API Password',
+    sourceKeys: ['api_password'],
+    type: 'password',
+    placeholder: 'Leave blank to keep unchanged',
+    group: 'admin',
+  },
+];
+
 const HospitalDetails = () => {
   const { hospitalId } = useParams<{ hospitalId: string }>();
   const navigate = useNavigate();
   const { user } = useAuth();
   const { toast } = useToast();
+
   const [hospital, setHospital] = useState<HospitalDetailsData | null>(null);
+  const [rawHospital, setRawHospital] = useState<UnknownRecord | null>(null);
   const [formData, setFormData] = useState<HospitalFormData | null>(null);
   const [loading, setLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [imageLoadFailed, setImageLoadFailed] = useState(false);
 
-  const isSuperAdmin = (user?.role || '').toUpperCase() === 'SUPER_ADMIN';
-  const isHospitalAdmin = (user?.role || '').toUpperCase() === 'HOSPITAL_ADMIN';
-  const canEditMyHospital = isHospitalAdmin && String(user?.hospital_id || '') === String(hospitalId || '');
-  const canEditHospital = isSuperAdmin || canEditMyHospital;
+  const canManageAnyHospital = hasAnyPermission(user, ['platform:hospital.manage', 'platform:hospital.review']);
+  const canUpdateHospital = hasAnyPermission(user, ['hospital:hospital.update']);
+  const canEditMyHospital = canUpdateHospital && String(user?.hospital_id || '') === String(hospitalId || '');
+  const canEditHospital = canManageAnyHospital || canEditMyHospital;
 
-  useEffect(() => {
-    if (hospitalId) {
-      fetchHospitalDetails();
-    }
-  }, [hospitalId, canEditMyHospital]);
-
-  const fetchHospitalDetails = async () => {
+  const fetchHospitalDetails = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
-      const res = canEditMyHospital
+
+      const response = canEditMyHospital
         ? await hospitalsApi.getMyHospital()
-        : await hospitalsApi.getById(hospitalId!);
-      // API returns { success: true, data: { ... } }
-      const d = res?.data ?? res;
-      
-      // Map backend fields to frontend expected format
-      const mappedHospital: HospitalDetailsData = {
-        id: d.id,
-        name: d.name,
-        city: d.city,
-        state: d.state || '',
-        country: d.country || '',
-        region: d.state || d.country || 'Unknown Region',
-        address: d.address,
-        phone: d.phone,
-        email: d.email,
-        status: d.verified_status ?? d.status,
-        total_staff: d.total_staff || 0,
-        total_inventory: d.total_inventory || 0,
-        total_departments: d.total_departments || 0,
-        license_number: d.registration_number || d.license_number,
-        verified_at: d.verified_at,
-        hospital_type: d.hospital_type,
-        website: d.website,
-        image: resolveMediaUrl(d.logo || d.image || null),
-        logo: d.logo ?? null,
-        specialties: ['General Medicine', 'Emergency Care'],
-        total_beds: d.bed_count || 150,
-        coordinates_lat: d.latitude ?? d.coordinates_lat,
-        coordinates_lng: d.longitude ?? d.coordinates_lng,
-      };
-      
-      setHospital(mappedHospital);
+        : await hospitalsApi.getById(hospitalId || '');
+
+      const payload = (response as { data?: unknown })?.data ?? response;
+      if (!isRecord(payload)) {
+        throw new Error('Hospital payload is invalid.');
+      }
+
+      const mapped = mapHospitalData(payload, hospitalId);
+
+      setRawHospital(payload);
+      setHospital(mapped);
+      setFormData(buildHospitalFormData(payload));
       setImageLoadFailed(false);
-      setFormData({
-        name: d.name ?? '',
-        address: d.address ?? '',
-        city: d.city ?? '',
-        state: d.state ?? '',
-        country: d.country ?? '',
-        phone: d.phone ?? '',
-        email: d.email ?? '',
-        website: d.website ?? '',
-        hospital_type: d.hospital_type ?? '',
-        registration_number: d.registration_number ?? d.license_number ?? '',
-        latitude: d.latitude ?? d.coordinates_lat ?? '',
-        longitude: d.longitude ?? d.coordinates_lng ?? '',
-        api_base_url: d.api_base_url ?? '',
-        api_auth_type: d.api_auth_type ?? '',
-        api_username: d.api_username ?? '',
-        api_key: '',
-        api_password: '',
-      });
-    } catch (err) {
-      console.error('Failed to fetch hospital details:', err);
+    } catch (fetchError) {
+      console.error('Failed to fetch hospital details:', fetchError);
       setError('Failed to load hospital details. Please try again.');
     } finally {
       setLoading(false);
     }
-  };
+  }, [canEditMyHospital, hospitalId]);
+
+  useEffect(() => {
+    if (!hospitalId) return;
+    void fetchHospitalDetails();
+  }, [hospitalId, fetchHospitalDetails]);
 
   const handleInputChange = (field: keyof HospitalFormData, value: string) => {
-    setFormData((prev) => (prev ? { ...prev, [field]: value } : prev));
+    setFormData((previous) => (previous ? { ...previous, [field]: value } : previous));
   };
 
+  const visibleEditableFields = useMemo(() => {
+    if (!rawHospital) return [];
+
+    return EDITABLE_FIELDS.filter((field) => {
+      if (field.key === 'api_key' || field.key === 'api_password') {
+        return canManageAnyHospital;
+      }
+
+      return field.sourceKeys.some((key) => {
+        const rawValue = rawHospital[key];
+        return hasMeaningfulBackendValue(rawValue, {
+          allowZero: key === 'latitude' || key === 'longitude' || key === 'coordinates_lat' || key === 'coordinates_lng',
+        });
+      });
+    });
+  }, [rawHospital, canManageAnyHospital]);
+
+  const visibleEditableFieldKeys = useMemo(() => {
+    return new Set<keyof HospitalFormData>(visibleEditableFields.map((field) => field.key));
+  }, [visibleEditableFields]);
+
   const handleSave = async () => {
-    if (!hospitalId || !formData) return;
+    if (!formData) return;
+
+    const payload: Record<string, unknown> = {};
+    const appendField = (fieldKey: keyof HospitalFormData, payloadKey?: string) => {
+      if (!visibleEditableFieldKeys.has(fieldKey)) return;
+      const rawValue = formData[fieldKey].trim();
+      payload[payloadKey || fieldKey] = rawValue.length > 0 ? rawValue : null;
+    };
+
+    appendField('name');
+    appendField('address');
+    appendField('city');
+    appendField('state');
+    appendField('country');
+    appendField('phone');
+    appendField('email');
+    appendField('website');
+    appendField('hospital_type');
+    appendField('registration_number');
+    appendField('latitude');
+    appendField('longitude');
+    appendField('api_base_url');
+    appendField('api_auth_type');
+    appendField('api_username');
+    appendField('api_key');
+    appendField('api_password');
+
+    if (Object.keys(payload).length === 0) {
+      toast({
+        title: 'No editable fields',
+        description: 'There are no backend-provided fields available to update in this profile.',
+      });
+      return;
+    }
 
     try {
       setIsSaving(true);
-      const payload = {
-        name: formData.name,
-        address: formData.address,
-        city: formData.city,
-        state: formData.state,
-        country: formData.country,
-        phone: formData.phone,
-        email: formData.email,
-        website: formData.website,
-        hospital_type: formData.hospital_type,
-        registration_number: formData.registration_number,
-        latitude: formData.latitude || null,
-        longitude: formData.longitude || null,
-        api_base_url: formData.api_base_url || null,
-        api_auth_type: formData.api_auth_type || null,
-        api_username: formData.api_username || null,
-        api_key: formData.api_key || null,
-        api_password: formData.api_password || null,
-      };
 
       const response = canEditMyHospital
         ? await hospitalsApi.updateMyHospital(payload)
-        : await hospitalsApi.update(hospitalId, payload);
+        : await hospitalsApi.update(hospitalId || '', payload);
 
-      const pendingRequest = (response as unknown)?.data?.pending_update_request;
+      const pendingRequest = (response as { data?: { pending_update_request?: unknown } })?.data?.pending_update_request;
       if (pendingRequest) {
         toast({
           title: 'Update submitted for review',
           description: 'Non-sensitive fields were applied. Sensitive field changes are pending SUPER_ADMIN approval.',
         });
       } else {
-        toast({ title: 'Hospital updated', description: 'Hospital details have been saved successfully.' });
+        toast({
+          title: 'Hospital updated',
+          description: 'Hospital details have been saved successfully.',
+        });
       }
+
       await fetchHospitalDetails();
-    } catch (err) {
-      console.error('Failed to update hospital:', err);
-      toast({ title: 'Update failed', description: 'Failed to update hospital details.', variant: 'destructive' });
+    } catch (saveError) {
+      console.error('Failed to update hospital:', saveError);
+      toast({
+        title: 'Update failed',
+        description: 'Failed to update hospital details.',
+        variant: 'destructive',
+      });
     } finally {
       setIsSaving(false);
     }
   };
 
-  const lat = Number(hospital?.coordinates_lat);
-  const lng = Number(hospital?.coordinates_lng);
+  const lat = hospital?.coordinatesLat ? Number(hospital.coordinatesLat) : Number.NaN;
+  const lng = hospital?.coordinatesLng ? Number(hospital.coordinatesLng) : Number.NaN;
   const hasCoordinates = Number.isFinite(lat) && Number.isFinite(lng);
 
   if (loading) {
     return (
-      <AppLayout title="Loading Hospital Details..." subtitle="">
-        <div className="flex items-center justify-center h-64">
+      <AppLayout title="Loading Healthcare Details...">
+        <div className="flex h-64 items-center justify-center">
           <Loader2 className="h-8 w-8 animate-spin text-primary" />
           <span className="ml-2 text-muted-foreground">Loading hospital details...</span>
         </div>
@@ -239,14 +500,16 @@ const HospitalDetails = () => {
 
   if (error || !hospital) {
     return (
-      <AppLayout title="Hospital Details" subtitle="">
-        <Card>
+      <AppLayout title="Healthcare Details">
+        <Card className="rounded-xl border-border/70 shadow-sm">
           <CardContent className="pt-6">
-            <div className="text-center text-red-600">
-              <AlertTriangle className="h-12 w-12 mx-auto mb-4" />
+            <div className="text-center text-destructive">
+              <AlertTriangle className="mx-auto mb-4 h-12 w-12" />
               <p>{error || 'Hospital not found'}</p>
-              <div className="mt-4 space-x-2">
-                <Button onClick={() => navigate(isSuperAdmin ? '/admin/hospitals' : '/hospitals')}>Back to Hospitals</Button>
+              <div className="mt-4 flex justify-center gap-2">
+                <Button onClick={() => navigate(canManageAnyHospital ? '/admin/hospitals' : '/hospitals')}>
+                  Back to Healthcares
+                </Button>
                 <Button onClick={fetchHospitalDetails} variant="outline">Retry</Button>
               </div>
             </div>
@@ -256,249 +519,365 @@ const HospitalDetails = () => {
     );
   }
 
-  if (!formData) {
-    return null;
-  }
+  if (!formData) return null;
+
+  const addressLine = [hospital.address, hospital.city, hospital.state, hospital.country]
+    .filter((value): value is string => Boolean(value))
+    .join(', ');
+
+  const quickMetrics: Array<{ label: string; value: number; icon: LucideIcon }> = [
+    { label: 'Staff Members', value: hospital.totalStaff || 0, icon: Users },
+    { label: 'Inventory Items', value: hospital.totalInventory || 0, icon: Package },
+    { label: 'Departments', value: hospital.totalDepartments || 0, icon: Building2 },
+    { label: 'Total Beds', value: hospital.totalBeds || 0, icon: Bed },
+  ].filter((metric) => metric.value > 0);
+
+  const hospitalOverviewFields = [
+    toField('Name', hospital.name),
+    toField('Hospital Type', hospital.hospitalType),
+    toField('Status', hospital.status),
+    toField('Verified On', formatDateValue(hospital.verifiedAt)),
+  ].filter((field): field is DetailFieldData => field !== null);
+
+  const contactFields = [
+    toField('Phone', hospital.phone),
+    toField('Email', hospital.email),
+    toField('Website', hospital.website),
+  ].filter((field): field is DetailFieldData => field !== null);
+
+  const operationalFields = [
+    toField('Registration Number', hospital.registrationNumber),
+    toField('Departments', hospital.totalDepartments),
+    toField('Staff Members', hospital.totalStaff),
+  ].filter((field): field is DetailFieldData => field !== null);
+
+  const capacityFields = [
+    toField('Total Beds', hospital.totalBeds),
+    toField('Inventory Items', hospital.totalInventory),
+  ].filter((field): field is DetailFieldData => field !== null);
+
+  const administrativeFields = [
+    toField('API Base URL', hospital.apiBaseUrl),
+    toField('API Auth Type', hospital.apiAuthType),
+    toField('API Username', hospital.apiUsername),
+  ].filter((field): field is DetailFieldData => field !== null);
+
+  const locationFields = [
+    toField('Address', hospital.address),
+    toField('City', hospital.city),
+    toField('State', hospital.state),
+    toField('Country', hospital.country),
+    toField('Region', hospital.region),
+    hasCoordinates ? toField('Coordinates', `${lat.toFixed(6)}, ${lng.toFixed(6)}`, { allowZero: true, mono: true }) : null,
+  ].filter((field): field is DetailFieldData => field !== null);
+
+  const statusVariant = hospital.status?.toLowerCase() === 'active' || hospital.status?.toLowerCase() === 'verified'
+    ? 'default'
+    : 'secondary';
+
+  const groupedEditableFields = {
+    overview: visibleEditableFields.filter((field) => field.group === 'overview'),
+    contact: visibleEditableFields.filter((field) => field.group === 'contact'),
+    location: visibleEditableFields.filter((field) => field.group === 'location'),
+    admin: visibleEditableFields.filter((field) => field.group === 'admin'),
+  };
+
+  const websiteHref = hospital.website
+    ? /^https?:\/\//i.test(hospital.website)
+      ? hospital.website
+      : `https://${hospital.website}`
+    : null;
 
   return (
-    <AppLayout title={hospital.name} subtitle={hospital.city + ', ' + hospital.region}>
-      <div className="space-y-6">
+    <AppLayout title={hospital.name || 'Hospital Details'}>
+      <div className="mx-auto max-w-7xl space-y-8 pb-8">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <Button 
-            variant="ghost" 
-            onClick={() => navigate(isSuperAdmin ? '/admin/hospitals' : '/hospitals')}
+          <Button
+            variant="ghost"
+            onClick={() => navigate(canManageAnyHospital ? '/admin/hospitals' : '/hospitals')}
             className="mb-0"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Hospitals
           </Button>
-          {canEditHospital && (
+          {canEditHospital ? (
             <Button onClick={handleSave} disabled={isSaving}>
               {isSaving ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
               Save Changes
             </Button>
-          )}
+          ) : null}
         </div>
 
-        {/* Hospital Header */}
-        <div className="grid gap-6 lg:grid-cols-3">
-          {/* Hospital Image and Basic Info */}
-          <div className="lg:col-span-2">
-            <Card className="overflow-hidden">
-              <div className="relative h-64 sm:h-80">
-                {hospital.image && !imageLoadFailed ? (
+        <Card className="overflow-hidden rounded-2xl border-border/70 shadow-sm">
+          <CardContent className="p-0">
+            <div className="grid lg:grid-cols-[300px_1fr]">
+              <div className="relative flex min-h-[260px] items-center justify-center bg-gradient-to-br from-primary/15 via-primary/5 to-background">
+                {hospital.imageUrl && !imageLoadFailed ? (
                   <img
-                    src={hospital.image}
-                    alt={hospital.name}
+                    src={hospital.imageUrl}
+                    alt={hospital.name || 'Hospital'}
                     className="h-full w-full object-cover"
                     onError={() => setImageLoadFailed(true)}
                   />
                 ) : (
-                  <div className="h-full w-full flex items-center justify-center bg-gradient-to-br from-primary/20 to-primary/5">
-                    <HospitalLogo
-                      name={hospital.name}
-                      logo={hospital.logo}
-                      className="h-28 w-28"
-                      imageClassName="object-cover shadow-lg"
-                    />
-                  </div>
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h1 className="text-2xl sm:text-3xl font-bold">{formData.name || hospital.name}</h1>
-                  <div className="flex items-center gap-2 mt-2">
-                    <MapPin className="h-4 w-4" />
-                    <span>{formData.address || hospital.address}</span>
-                  </div>
-                </div>
-                <Badge className="absolute top-4 right-4 bg-primary/90">
-                  {hospital.region}
-                </Badge>
-              </div>
-            </Card>
-          </div>
-
-          {/* Quick Stats */}
-          <div className="space-y-4">
-            <Card>
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg">Hospital Info</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <Building2 className="h-4 w-4 text-muted-foreground" />
-                  <div>
-                    <p className="text-sm text-muted-foreground">Total Staff</p>
-                    <p className="font-medium">{hospital.total_staff}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Package className="h-4 w-4 text-muted-foreground" />
-                  <div>
-                    <p className="text-sm text-muted-foreground">Inventory Items</p>
-                    <p className="font-medium">{hospital.total_inventory}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Users className="h-4 w-4 text-muted-foreground" />
-                  <div>
-                    <p className="text-sm text-muted-foreground">Departments</p>
-                    <p className="font-medium">{hospital.total_departments}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Bed className="h-4 w-4 text-muted-foreground" />
-                  <div>
-                    <p className="text-sm text-muted-foreground">Total Beds</p>
-                    <p className="font-medium">{hospital.total_beds}</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg">Contact Information</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <Phone className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-sm">{hospital.phone}</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Mail className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-sm">{hospital.email}</span>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg">Specialties</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  {hospital.specialties.map((specialty: string, index: number) => (
-                    <Badge key={index} variant="secondary">
-                      {specialty}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Hospital Location</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {hasCoordinates ? (
-              <div className="overflow-hidden rounded-md border">
-                <MapContainer
-                  center={[lat, lng]}
-                  zoom={13}
-                  style={{ height: '320px', width: '100%' }}
-                  scrollWheelZoom={false}
-                >
-                  <TileLayer
-                    attribution='&copy; OpenStreetMap contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  <HospitalLogo
+                    name={hospital.name || ''}
+                    logo={hospital.logo}
+                    className="h-32 w-32"
+                    imageClassName="object-cover shadow-lg"
                   />
-                  <Marker position={[lat, lng]} icon={markerIcon} />
-                </MapContainer>
+                )}
+                <span className="absolute left-4 top-4 rounded-full border border-border/70 bg-background/90 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-foreground/80">
+                  Facility Snapshot
+                </span>
               </div>
-            ) : (
-              <div className="rounded-md border p-6 text-sm text-muted-foreground">
-                Location data unavailable
+
+              <div className="space-y-6 p-6 lg:p-8">
+                <div className="space-y-3">
+                  <div className="flex flex-wrap items-center gap-2">
+                    {hospital.name ? <h1 className="text-3xl font-semibold tracking-tight leading-tight">{hospital.name}</h1> : null}
+                    {hospital.status ? (
+                      <Badge variant={statusVariant} className="capitalize">
+                        {hospital.status}
+                      </Badge>
+                    ) : null}
+                    {hospital.hospitalType ? (
+                      <Badge variant="outline" className="capitalize">
+                        {hospital.hospitalType}
+                      </Badge>
+                    ) : null}
+                  </div>
+
+                  {addressLine ? (
+                    <div className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <MapPin className="mt-0.5 h-4 w-4" />
+                      <span>{addressLine}</span>
+                    </div>
+                  ) : null}
+
+                  <div className="flex flex-wrap gap-2 text-xs">
+                    {hospital.registrationNumber ? (
+                      <span className="rounded-full border border-border/70 bg-muted/40 px-3 py-1 text-muted-foreground">
+                        Reg: {hospital.registrationNumber}
+                      </span>
+                    ) : null}
+                    {hospital.verifiedAt ? (
+                      <span className="rounded-full border border-emerald-300 bg-emerald-50 px-3 py-1 text-emerald-800">
+                        Verified on {formatDateValue(hospital.verifiedAt)}
+                      </span>
+                    ) : null}
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  {hospital.phone ? (
+                    <Button variant="outline" onClick={() => window.open(`tel:${hospital.phone}`)}>
+                      <Phone className="mr-2 h-4 w-4" />
+                      Call
+                    </Button>
+                  ) : null}
+                  {hospital.email ? (
+                    <Button variant="outline" onClick={() => window.open(`mailto:${hospital.email}`)}>
+                      <Mail className="mr-2 h-4 w-4" />
+                      Email
+                    </Button>
+                  ) : null}
+                  {websiteHref ? (
+                    <Button onClick={() => window.open(websiteHref, '_blank', 'noopener,noreferrer')}>
+                      <Globe className="mr-2 h-4 w-4" />
+                      Visit Website
+                    </Button>
+                  ) : null}
+                </div>
+
+                {quickMetrics.length > 0 ? (
+                  <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                    {quickMetrics.map((metric) => (
+                      <div
+                        key={metric.label}
+                        className="rounded-xl border border-border/70 bg-card px-4 py-3 shadow-sm"
+                      >
+                        <div className="flex items-center gap-2 text-muted-foreground">
+                          <metric.icon className="h-4 w-4" />
+                          <p className="text-[11px] font-medium uppercase tracking-[0.08em]">{metric.label}</p>
+                        </div>
+                        <p className="mt-2 text-2xl font-semibold tracking-tight">{metric.value.toLocaleString()}</p>
+                      </div>
+                    ))}
+                  </div>
+                ) : null}
               </div>
-            )}
+            </div>
           </CardContent>
         </Card>
 
-        {canEditHospital && (
-          <Card>
-            <CardHeader>
-              <CardTitle>Edit Hospital Information</CardTitle>
+        <div className="grid items-start gap-6 xl:grid-cols-2">
+          <div className="space-y-6">
+            <DetailCard
+              title="Hospital Overview"
+              description="Primary identity and verification metadata from backend records."
+              icon={Building2}
+              fields={hospitalOverviewFields}
+            />
+            <DetailCard
+              title="Operational Details"
+              description="Operational profile and staffing signals available in this record."
+              icon={Activity}
+              fields={operationalFields}
+            />
+            <DetailCard
+              title="Capacity and Resources"
+              description="Capacity and inventory figures returned by the backend."
+              icon={Package}
+              fields={capacityFields}
+            />
+
+            {hasCoordinates ? (
+              <Card className="rounded-2xl border-border/70 shadow-sm">
+                <CardHeader className="space-y-1 border-b border-border/60 pb-4">
+                  <CardTitle className="flex items-center gap-2 text-lg">
+                    <MapPin className="h-4 w-4 text-primary" />
+                    Location Map
+                  </CardTitle>
+                  <CardDescription>Mapped coordinates returned by the backend for this hospital.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="overflow-hidden rounded-md border border-border/70">
+                    <MapContainer
+                      center={[lat, lng]}
+                      zoom={13}
+                      style={{ height: '320px', width: '100%' }}
+                      scrollWheelZoom={false}
+                    >
+                      <TileLayer
+                        attribution='&copy; OpenStreetMap contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                      />
+                      <Marker position={[lat, lng]} icon={markerIcon} />
+                    </MapContainer>
+                  </div>
+                </CardContent>
+              </Card>
+            ) : null}
+          </div>
+
+          <div className="space-y-6">
+            <DetailCard
+              title="Contact Information"
+              description="Direct communication channels currently available for this facility."
+              icon={Phone}
+              fields={contactFields}
+            />
+            <DetailCard
+              title="Location Details"
+              description="Address and geospatial metadata for this facility."
+              icon={MapPin}
+              fields={locationFields}
+            />
+            <DetailCard
+              title="Administrative Metadata"
+              description="Administrative integration and API identity details."
+              icon={ShieldCheck}
+              fields={administrativeFields}
+            />
+          </div>
+        </div>
+
+        {canEditHospital && visibleEditableFields.length > 0 ? (
+          <Card className="rounded-2xl border-border/80 shadow-sm">
+            <CardHeader className="space-y-1 border-b border-border/60 pb-4">
+              <CardTitle className="flex items-center gap-2 text-lg">
+                <IdCard className="h-4 w-4 text-primary" />
+                Edit Hospital Information
+              </CardTitle>
+              <CardDescription>
+                Edit backend-exposed fields for this profile and save changes when ready.
+              </CardDescription>
             </CardHeader>
-            <CardContent>
-              {!isSuperAdmin && (
-                <div className="mb-4 rounded-md border border-amber-300 bg-amber-50 p-3 text-sm text-amber-900">
-                  Sensitive fields (registration/API credentials/email) are submitted for SUPER_ADMIN approval.
+            <CardContent className="space-y-5">
+              {!canManageAnyHospital ? (
+                <div className="rounded-md border border-amber-300 bg-amber-50 p-3 text-sm text-amber-900">
+                  Sensitive field updates are submitted for SUPER_ADMIN approval.
                 </div>
-              )}
-              <div className="grid gap-4 md:grid-cols-2">
-                <div className="space-y-2">
-                  <p className="text-sm text-muted-foreground">Hospital Name</p>
-                  <Input value={formData.name} onChange={(e) => handleInputChange('name', e.target.value)} />
-                </div>
-                <div className="space-y-2">
-                  <p className="text-sm text-muted-foreground">Hospital Type</p>
-                  <Input value={formData.hospital_type} onChange={(e) => handleInputChange('hospital_type', e.target.value)} />
-                </div>
-                <div className="space-y-2 md:col-span-2">
-                  <p className="text-sm text-muted-foreground">Address</p>
-                  <Input value={formData.address} onChange={(e) => handleInputChange('address', e.target.value)} />
-                </div>
-                <div className="space-y-2">
-                  <p className="text-sm text-muted-foreground">City</p>
-                  <Input value={formData.city} onChange={(e) => handleInputChange('city', e.target.value)} />
-                </div>
-                <div className="space-y-2">
-                  <p className="text-sm text-muted-foreground">State</p>
-                  <Input value={formData.state} onChange={(e) => handleInputChange('state', e.target.value)} />
-                </div>
-                <div className="space-y-2">
-                  <p className="text-sm text-muted-foreground">Country</p>
-                  <Input value={formData.country} onChange={(e) => handleInputChange('country', e.target.value)} />
-                </div>
-                <div className="space-y-2">
-                  <p className="text-sm text-muted-foreground">Registration Number</p>
-                  <Input value={formData.registration_number} onChange={(e) => handleInputChange('registration_number', e.target.value)} />
-                </div>
-                <div className="space-y-2">
-                  <p className="text-sm text-muted-foreground">Phone</p>
-                  <Input value={formData.phone} onChange={(e) => handleInputChange('phone', e.target.value)} />
-                </div>
-                <div className="space-y-2">
-                  <p className="text-sm text-muted-foreground">Email</p>
-                  <Input type="email" value={formData.email} onChange={(e) => handleInputChange('email', e.target.value)} />
-                </div>
-                <div className="space-y-2 md:col-span-2">
-                  <p className="text-sm text-muted-foreground">Website</p>
-                  <Input value={formData.website} onChange={(e) => handleInputChange('website', e.target.value)} />
-                </div>
-                <div className="space-y-2">
-                  <p className="text-sm text-muted-foreground">Latitude</p>
-                  <Input value={formData.latitude} onChange={(e) => handleInputChange('latitude', e.target.value)} />
-                </div>
-                <div className="space-y-2">
-                  <p className="text-sm text-muted-foreground">Longitude</p>
-                  <Input value={formData.longitude} onChange={(e) => handleInputChange('longitude', e.target.value)} />
-                </div>
-                <div className="space-y-2 md:col-span-2">
-                  <p className="text-sm text-muted-foreground">API Base URL</p>
-                  <Input value={formData.api_base_url} onChange={(e) => handleInputChange('api_base_url', e.target.value)} />
-                </div>
-                <div className="space-y-2">
-                  <p className="text-sm text-muted-foreground">API Auth Type</p>
-                  <Input value={formData.api_auth_type} onChange={(e) => handleInputChange('api_auth_type', e.target.value)} />
-                </div>
-                <div className="space-y-2">
-                  <p className="text-sm text-muted-foreground">API Username</p>
-                  <Input value={formData.api_username} onChange={(e) => handleInputChange('api_username', e.target.value)} />
-                </div>
-                <div className="space-y-2">
-                  <p className="text-sm text-muted-foreground">API Key</p>
-                  <Input type="password" value={formData.api_key} onChange={(e) => handleInputChange('api_key', e.target.value)} placeholder="Leave blank to keep unchanged" />
-                </div>
-                <div className="space-y-2">
-                  <p className="text-sm text-muted-foreground">API Password</p>
-                  <Input type="password" value={formData.api_password} onChange={(e) => handleInputChange('api_password', e.target.value)} placeholder="Leave blank to keep unchanged" />
-                </div>
-              </div>
-              <div className="mt-6 flex justify-end">
+              ) : null}
+
+              {groupedEditableFields.overview.length > 0 ? (
+                <section className="space-y-4 rounded-xl border border-border/70 bg-card/50 p-4">
+                  <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Hospital Overview</h3>
+                  <div className="grid gap-4 md:grid-cols-2">
+                    {groupedEditableFields.overview.map((field) => (
+                      <div key={field.key} className={cn('space-y-2', field.fullWidth && 'md:col-span-2')}>
+                        <p className="text-sm text-muted-foreground">{field.label}</p>
+                        <Input
+                          type={field.type || 'text'}
+                          value={formData[field.key]}
+                          onChange={(event) => handleInputChange(field.key, event.target.value)}
+                          placeholder={field.placeholder}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              ) : null}
+
+              {groupedEditableFields.contact.length > 0 ? (
+                <section className="space-y-4 rounded-xl border border-border/70 bg-card/50 p-4">
+                  <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Contact Information</h3>
+                  <div className="grid gap-4 md:grid-cols-2">
+                    {groupedEditableFields.contact.map((field) => (
+                      <div key={field.key} className={cn('space-y-2', field.fullWidth && 'md:col-span-2')}>
+                        <p className="text-sm text-muted-foreground">{field.label}</p>
+                        <Input
+                          type={field.type || 'text'}
+                          value={formData[field.key]}
+                          onChange={(event) => handleInputChange(field.key, event.target.value)}
+                          placeholder={field.placeholder}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              ) : null}
+
+              {groupedEditableFields.location.length > 0 ? (
+                <section className="space-y-4 rounded-xl border border-border/70 bg-card/50 p-4">
+                  <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Location Details</h3>
+                  <div className="grid gap-4 md:grid-cols-2">
+                    {groupedEditableFields.location.map((field) => (
+                      <div key={field.key} className={cn('space-y-2', field.fullWidth && 'md:col-span-2')}>
+                        <p className="text-sm text-muted-foreground">{field.label}</p>
+                        <Input
+                          type={field.type || 'text'}
+                          value={formData[field.key]}
+                          onChange={(event) => handleInputChange(field.key, event.target.value)}
+                          placeholder={field.placeholder}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              ) : null}
+
+              {groupedEditableFields.admin.length > 0 ? (
+                <section className="space-y-4 rounded-xl border border-border/70 bg-card/50 p-4">
+                  <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Administrative Information</h3>
+                  <div className="grid gap-4 md:grid-cols-2">
+                    {groupedEditableFields.admin.map((field) => (
+                      <div key={field.key} className={cn('space-y-2', field.fullWidth && 'md:col-span-2')}>
+                        <p className="text-sm text-muted-foreground">{field.label}</p>
+                        <Input
+                          type={field.type || 'text'}
+                          value={formData[field.key]}
+                          onChange={(event) => handleInputChange(field.key, event.target.value)}
+                          placeholder={field.placeholder}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              ) : null}
+
+              <div className="flex justify-end">
                 <Button onClick={handleSave} disabled={isSaving}>
                   {isSaving ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
                   Save Changes
@@ -506,65 +885,21 @@ const HospitalDetails = () => {
               </div>
             </CardContent>
           </Card>
-        )}
+        ) : null}
 
-        {!canEditMyHospital && !isSuperAdmin && (
-          <Card>
-            <CardHeader>
-              <CardTitle>Hospital Profile</CardTitle>
+        {!canEditHospital ? (
+          <Card className="overflow-hidden rounded-2xl border-border/70 shadow-sm">
+            <CardHeader className="space-y-2 border-b border-border/60 pb-4">
+              <CardTitle className="flex items-center gap-2 text-lg">
+                <Globe className="h-4 w-4 text-primary" />
+                Access Notice
+              </CardTitle>
+              <CardDescription className="leading-relaxed">
+                This profile is currently available in read-only mode for your account.
+              </CardDescription>
             </CardHeader>
-            <CardContent>
-              <div className="grid gap-4 md:grid-cols-2">
-                <div>
-                  <p className="text-sm text-muted-foreground">Address</p>
-                  <p className="font-medium">{hospital.address || '—'}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">Phone</p>
-                  <p className="font-medium">{hospital.phone || '—'}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">Email</p>
-                  <p className="font-medium">{hospital.email || '—'}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">Website</p>
-                  <p className="font-medium">{hospital.website || '—'}</p>
-                </div>
-              </div>
-            </CardContent>
           </Card>
-        )}
-
-        {/* Status and Details */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Hospital Details</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid gap-4 md:grid-cols-2">
-              <div>
-                <p className="text-sm text-muted-foreground">License Number</p>
-                <p className="font-medium">{hospital.license_number}</p>
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground">Status</p>
-                <Badge variant={hospital.status === 'ACTIVE' ? 'default' : 'secondary'}>
-                  {hospital.status}
-                </Badge>
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground">Verified</p>
-                <p className="font-medium">
-                  {hospital.verified_at 
-                    ? new Date(hospital.verified_at).toLocaleDateString()
-                    : 'Not verified'
-                  }
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        ) : null}
       </div>
     </AppLayout>
   );

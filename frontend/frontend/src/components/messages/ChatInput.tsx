@@ -5,18 +5,15 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { 
   Send, 
   Image as ImageIcon, 
-  Video,
   FileText, 
-  Mic,
-  Square,
-  Loader2,
   X, 
   Plus
 } from 'lucide-react';
 import { Employee, MessageAttachment, Conversation } from '@/types/healthcare';
-import { useState, useRef, useCallback, useEffect } from 'react';
+import { useState, useRef, useCallback, useEffect, memo } from 'react';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
+import { useChatStore } from '@/store/chatStore';
 
 interface ChatInputProps {
   conversation: Conversation | null;
@@ -31,8 +28,8 @@ interface ChatInputProps {
 
 const ChatInput: React.FC<ChatInputProps> = ({
   conversation,
-  currentUser,
-  participants,
+  currentUser: _currentUser,
+  participants: _participants,
   onSendMessage,
   onTyping,
   placeholder = "Type a message...",
@@ -40,7 +37,11 @@ const ChatInput: React.FC<ChatInputProps> = ({
   className
 }) => {
   const { toast } = useToast();
-  const [message, setMessage] = useState('');
+  const conversationId = conversation?.id || '';
+  const message = useChatStore((state) => (
+    conversationId ? (state.drafts[conversationId] || '') : ''
+  ));
+  const setDraft = useChatStore((state) => state.setDraft);
   const [attachments, setAttachments] = useState<MessageAttachment[]>([]);
   const [attachmentFiles, setAttachmentFiles] = useState<Record<string, File>>({});
   const [mentions, setMentions] = useState<string[]>([]);
@@ -49,20 +50,13 @@ const ChatInput: React.FC<ChatInputProps> = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const imageInputRef = useRef<HTMLInputElement>(null);
-  const videoInputRef = useRef<HTMLInputElement>(null);
   const typingTimeoutRef = useRef<NodeJS.Timeout>();
-  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
-  const audioChunksRef = useRef<Blob[]>([]);
   const isComposerDisabled = disabled || !conversation;
-  const [isRecording, setIsRecording] = useState(false);
-  const [isProcessingAudio, setIsProcessingAudio] = useState(false);
 
   const MAX_FILE_SIZE_BYTES = 15 * 1024 * 1024;
   const allowedExtensions = new Set([
     'jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp', 'svg',
     'pdf', 'csv', 'txt', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'zip',
-    'mp3', 'wav', 'ogg', 'm4a', 'aac',
-    'mp4', 'mov', 'avi', 'webm', 'mkv',
   ]);
 
   // Handle typing indicator
@@ -95,24 +89,12 @@ const ChatInput: React.FC<ChatInputProps> = ({
   }, [message, isTyping, onTyping, isComposerDisabled]);
 
   useEffect(() => {
-    if (!conversation) {
-      setMessage('');
-      setAttachments([]);
-      setAttachmentFiles({});
-      setMentions([]);
-      setIsTyping(false);
-      setIsRecording(false);
-      setIsProcessingAudio(false);
-    }
-  }, [conversation]);
-
-  useEffect(() => {
-    return () => {
-      if (mediaRecorderRef.current && mediaRecorderRef.current.state !== 'inactive') {
-        mediaRecorderRef.current.stop();
-      }
-    };
-  }, []);
+    setAttachments([]);
+    setAttachmentFiles({});
+    setMentions([]);
+    setIsTyping(false);
+    onTyping(false);
+  }, [conversationId, onTyping]);
 
   const handleSend = useCallback(() => {
     if (!message.trim() && attachments.length === 0) return;
@@ -125,7 +107,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
     onSendMessage(message, files, mentions);
     
     // Reset form
-    setMessage('');
+    setDraft(conversationId, '');
     setAttachments([]);
     setAttachmentFiles({});
     setMentions([]);
@@ -133,7 +115,17 @@ const ChatInput: React.FC<ChatInputProps> = ({
     onTyping(false);
     
     inputRef.current?.focus();
-  }, [message, attachments, mentions, conversation, disabled, onSendMessage, onTyping]);
+  }, [
+    attachments,
+    conversation,
+    conversationId,
+    disabled,
+    message,
+    mentions,
+    onSendMessage,
+    onTyping,
+    setDraft,
+  ]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -143,16 +135,12 @@ const ChatInput: React.FC<ChatInputProps> = ({
     }
   };
 
-  const handleFileAttachment = (type: 'file' | 'image' | 'video') => {
-    const input = type === 'image'
-      ? imageInputRef.current
-      : type === 'video'
-        ? videoInputRef.current
-        : fileInputRef.current;
+  const handleFileAttachment = (type: 'file' | 'image') => {
+    const input = type === 'image' ? imageInputRef.current : fileInputRef.current;
     input?.click();
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, type: 'file' | 'image' | 'video') => {
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, type: 'file' | 'image') => {
     const files = Array.from(e.target.files || []);
     const nextAttachments: MessageAttachment[] = [];
     const nextFiles: Record<string, File> = {};
@@ -181,11 +169,11 @@ const ChatInput: React.FC<ChatInputProps> = ({
       const attachment: MessageAttachment = {
         id: attachmentId,
         name: file.name,
-        type: type === 'video' ? 'video' : type,
+        type,
         url: URL.createObjectURL(file), // In real app, upload to server first
         size: file.size,
         mimeType: file.type,
-        mediaKind: type === 'image' ? 'image' : type === 'video' ? 'video' : 'file',
+        mediaKind: type === 'image' ? 'image' : 'file',
       };
 
       nextAttachments.push(attachment);
@@ -217,69 +205,8 @@ const ChatInput: React.FC<ChatInputProps> = ({
   };
 
   const handleMessageChange = (value: string) => {
-    setMessage(value);
-  };
-
-  const startAudioRecording = async () => {
-    if (isComposerDisabled || isRecording || isProcessingAudio) return;
-
-    if (!navigator.mediaDevices?.getUserMedia || typeof MediaRecorder === 'undefined') {
-      toast({
-        title: 'Audio recording unavailable',
-        description: 'Your browser does not support audio recording.',
-        variant: 'destructive',
-      });
-      return;
-    }
-
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const recorder = new MediaRecorder(stream);
-      audioChunksRef.current = [];
-
-      recorder.ondataavailable = (event) => {
-        if (event.data.size > 0) {
-          audioChunksRef.current.push(event.data);
-        }
-      };
-
-      recorder.onstop = async () => {
-        stream.getTracks().forEach((track) => track.stop());
-        setIsRecording(false);
-
-        const blob = new Blob(audioChunksRef.current, { type: recorder.mimeType || 'audio/webm' });
-        audioChunksRef.current = [];
-        if (blob.size === 0 || !conversation || disabled) return;
-
-        setIsProcessingAudio(true);
-        const extension = recorder.mimeType.includes('ogg') ? 'ogg' : recorder.mimeType.includes('mp4') ? 'm4a' : 'webm';
-        const fileName = `voice-${new Date().toISOString().replace(/[:.]/g, '-')}.${extension}`;
-        const voiceFile = new File([blob], fileName, {
-          type: recorder.mimeType || 'audio/webm',
-        });
-
-        try {
-          onSendMessage('', [voiceFile], mentions);
-        } finally {
-          setIsProcessingAudio(false);
-        }
-      };
-
-      recorder.start();
-      mediaRecorderRef.current = recorder;
-      setIsRecording(true);
-    } catch {
-      toast({
-        title: 'Microphone access denied',
-        description: 'Please allow microphone access to record voice messages.',
-        variant: 'destructive',
-      });
-    }
-  };
-
-  const stopAudioRecording = () => {
-    if (!mediaRecorderRef.current || mediaRecorderRef.current.state === 'inactive') return;
-    mediaRecorderRef.current.stop();
+    if (!conversationId) return;
+    setDraft(conversationId, value);
   };
 
   const formatFileSize = (bytes: number) => {
@@ -291,10 +218,10 @@ const ChatInput: React.FC<ChatInputProps> = ({
   };
 
   return (
-    <div className={cn("border-t bg-background/95", className)}>
+    <div className={cn('border-t bg-background', className)}>
       {/* Attachments Preview */}
       {attachments.length > 0 && (
-        <div className="p-4 border-b">
+        <div className="border-b p-3 sm:p-4">
           <div className="flex flex-wrap gap-2">
             {attachments.map(attachment => (
               <div key={attachment.id} className="relative group">
@@ -323,15 +250,15 @@ const ChatInput: React.FC<ChatInputProps> = ({
       )}
       
       {/* Input Area */}
-      <div className="p-4">
-        <div className="flex items-end gap-2">
+      <div className="p-3 sm:p-4">
+        <div className="flex items-end gap-1.5 sm:gap-2">
           {/* Attachment Menu */}
           <Popover>
             <PopoverTrigger asChild>
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-9 w-9 p-0 flex-shrink-0"
+                className="h-8 w-8 flex-shrink-0 p-0 sm:h-9 sm:w-9"
                 disabled={isComposerDisabled}
                 type="button"
               >
@@ -360,40 +287,12 @@ const ChatInput: React.FC<ChatInputProps> = ({
                   <FileText className="h-4 w-4 mr-2" />
                   File
                 </Button>
-                <Button
-                  variant="ghost"
-                  className="justify-start"
-                  onClick={() => handleFileAttachment('video')}
-                  disabled={isComposerDisabled}
-                  type="button"
-                >
-                  <Video className="h-4 w-4 mr-2" />
-                  Video
-                </Button>
               </div>
             </PopoverContent>
           </Popover>
 
-          <Button
-            variant={isRecording ? 'destructive' : 'ghost'}
-            size="sm"
-            className="h-9 w-9 p-0 flex-shrink-0"
-            disabled={isComposerDisabled || isProcessingAudio}
-            onClick={isRecording ? stopAudioRecording : startAudioRecording}
-            type="button"
-            title={isRecording ? 'Stop recording' : 'Record audio'}
-          >
-            {isProcessingAudio ? (
-              <Loader2 className="h-4 w-4 animate-spin" />
-            ) : isRecording ? (
-              <Square className="h-4 w-4" />
-            ) : (
-              <Mic className="h-4 w-4" />
-            )}
-          </Button>
-
           {/* Message Input */}
-          <div className="flex-1 relative">
+          <div className="relative min-w-0 flex-1">
             <Input
               ref={inputRef}
               value={message}
@@ -401,7 +300,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
               onKeyDown={handleKeyDown}
               placeholder={conversation ? placeholder : 'Select a conversation to start messaging'}
               disabled={isComposerDisabled}
-              className="min-h-[2.5rem] focus-visible:ring-1"
+              className="h-9 focus-visible:ring-1 sm:h-10"
             />
           </div>
 
@@ -410,7 +309,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
             onClick={handleSend}
             disabled={disabled || (!message.trim() && attachments.length === 0) || !conversation}
             size="sm"
-            className="h-9 w-9 p-0 flex-shrink-0"
+            className="h-8 w-8 flex-shrink-0 p-0 sm:h-9 sm:w-9"
             type="button"
           >
             <Send className="h-4 w-4" />
@@ -436,7 +335,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
         type="file"
         multiple
         className="hidden"
-        accept=".pdf,.csv,.txt,.doc,.docx,.xlsx,.xls,.ppt,.pptx,.zip,.mp3,.wav,.ogg,.m4a,.aac"
+        accept=".pdf,.csv,.txt,.doc,.docx,.xlsx,.xls,.ppt,.pptx,.zip"
         onChange={(e) => handleFileChange(e, 'file')}
         disabled={isComposerDisabled}
       />
@@ -450,18 +349,8 @@ const ChatInput: React.FC<ChatInputProps> = ({
         onChange={(e) => handleFileChange(e, 'image')}
         disabled={isComposerDisabled}
       />
-
-      <input
-        ref={videoInputRef}
-        type="file"
-        multiple
-        className="hidden"
-        accept="video/*,.mp4,.mov,.avi,.webm,.mkv"
-        onChange={(e) => handleFileChange(e, 'video')}
-        disabled={isComposerDisabled}
-      />
     </div>
   );
 };
 
-export default ChatInput;
+export default memo(ChatInput);

@@ -50,6 +50,13 @@ class ConversationParticipant(models.Model):
         related_name="conversation_memberships",
     )
     joined_at = models.DateTimeField(auto_now_add=True)
+    last_read_message = models.ForeignKey(
+        "communications.Message",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="read_by_participants",
+    )
     last_read_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:

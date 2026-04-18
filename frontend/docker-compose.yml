@@ -6,10 +6,14 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - VITE_API_URL=http://localhost:8000
+      - VITE_API_URL=http://localhost:8080
+      - VITE_PROXY_TARGET=http://backend:8080
       - CHOKIDAR_USEPOLLING=1
-      - VITE_HMR_HOST=host.docker.internal
+      - VITE_HMR_HOST=localhost
       - VITE_HMR_CLIENT_PORT=8080
+    networks:
+      - default
+      - backend_default
     volumes:
       - ./frontend:/app
       - /app/node_modules
@@ -18,3 +22,7 @@ services:
 volumes:
   # keep node_modules isolated from host
   frontend_node_modules:
+
+networks:
+  backend_default:
+    external: true

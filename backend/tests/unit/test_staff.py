@@ -3,8 +3,15 @@ import pytest
 from django.utils import timezone
 from rest_framework.exceptions import ValidationError
 
-from apps.staff.models import Invitation, Role, Staff
-from apps.staff.services import accept_invitation, send_invitation, suspend_staff
+from apps.staff.models import Invitation, Permission, Role, Staff
+from apps.staff.services import (
+    accept_invitation,
+    assign_permissions_to_role,
+    get_effective_permissions_for_user,
+    revoke_permissions_from_role,
+    send_invitation,
+    suspend_staff,
+)
 
 
 @pytest.mark.django_db
@@ -140,6 +147,42 @@ class TestAcceptInvitation:
         inv.refresh_from_db()
         assert inv.status == Invitation.Status.ACCEPTED
 
+    def test_accept_invitation_assigns_default_staff_hospital_role(self, hospital, hospital_admin_user, mocker):
+        from apps.staff.models import Permission, UserHospitalRole
+
+        Permission.objects.get_or_create(
+            code="hospital:inventory.view",
+            defaults={"name": "View Hospital Inventory"},
+        )
+        Permission.objects.get_or_create(
+            code="hospital:resource_share.view",
+            defaults={"name": "View Resource Shares"},
+        )
+        Permission.objects.get_or_create(
+            code="communication:chat.view",
+            defaults={"name": "View Chat Conversations"},
+        )
+        Permission.objects.get_or_create(
+            code="communication:conversation.view",
+            defaults={"name": "View Conversation Module"},
+        )
+
+        mocker.patch("apps.staff.services.send_email", return_value=True)
+        invitation = send_invitation(hospital, "default.staff@inv.com", actor=hospital_admin_user)
+        user = accept_invitation(invitation.token, "SecurePass123!", first_name="Default", last_name="Staff")
+
+        assignment = UserHospitalRole.objects.select_related("hospital_role", "hospital").get(user=user)
+        assert assignment.hospital_id == hospital.id
+        assert assignment.hospital_role.name == "STAFF"
+
+        assigned_codes = set(assignment.hospital_role.role_permissions.values_list("permission__code", flat=True))
+        assert assigned_codes == {
+            "hospital:inventory.view",
+            "hospital:resource_share.view",
+            "communication:chat.view",
+            "communication:conversation.view",
+        }
+
     def test_already_used_invitation_raises(self, db, hospital, hospital_admin_user, mocker):
         from apps.staff.services import accept_invitation, send_invitation
         mocker.patch("apps.staff.services.send_email", return_value=True)
@@ -167,3 +210,82 @@ class TestAcceptInvitation:
         assert inv.status == Invitation.Status.ACCEPTED
         with pytest.raises(ValidationError, match="pending"):
             revoke_invitation(inv, hospital_admin_user)
+
+
+@pytest.mark.django_db
+class TestRolePermissionServices:
+    def test_assign_permissions_to_role_is_idempotent(self, hospital_admin_role, hospital_admin_user):
+        Permission.objects.create(code="ROLE_VIEW", name="Role View")
+        Permission.objects.create(code="ROLE_ASSIGN", name="Role Assign")
+
+        first = assign_permissions_to_role(
+            role=hospital_admin_role,
+            permission_codes=["role_view", "ROLE_ASSIGN"],
+            actor=hospital_admin_user,
+        )
+        second = assign_permissions_to_role(
+            role=hospital_admin_role,
+            permission_codes=["ROLE_VIEW"],
+            actor=hospital_admin_user,
+        )
+
+        assert first["assigned"] == ["ROLE_ASSIGN", "ROLE_VIEW"]
+        assert second["assigned"] == []
+        assert second["already_assigned"] == ["ROLE_VIEW"]
+        assert hospital_admin_role.permissions.filter(code__in=["ROLE_VIEW", "ROLE_ASSIGN"]).count() == 2
+
+    def test_assign_permissions_to_role_missing_permission_raises(self, hospital_admin_role, hospital_admin_user):
+        with pytest.raises(ValidationError, match="Permission not found"):
+            assign_permissions_to_role(
+                role=hospital_admin_role,
+                permission_codes=["UNKNOWN_PERMISSION"],
+                actor=hospital_admin_user,
+            )
+
+    def test_revoke_permissions_from_role(self, hospital_admin_role, hospital_admin_user):
+        permission = Permission.objects.create(code="ROLE_PERMISSION_MANAGE", name="Role Permission Manage")
+        assign_permissions_to_role(
+            role=hospital_admin_role,
+            permission_codes=[permission.code],
+            actor=hospital_admin_user,
+        )
+
+        result = revoke_permissions_from_role(
+            role=hospital_admin_role,
+            permission_codes=[permission.code],
+        )
+
+        assert result["removed"] == ["ROLE_PERMISSION_MANAGE"]
+        assert not hospital_admin_role.permissions.filter(code=permission.code).exists()
+
+    def test_get_effective_permissions_for_user(self, hospital_admin_user, hospital_admin_role):
+        from apps.staff.models import HospitalRole, HospitalRolePermission, UserHospitalRole
+
+        permission, _ = Permission.objects.get_or_create(
+            code="auth:permission.effective.view",
+            defaults={"name": "View Effective Permissions"},
+        )
+        hospital_role, _ = HospitalRole.objects.get_or_create(
+            hospital=hospital_admin_user.staff.hospital,
+            name="HEALTHCARE_ADMIN",
+            defaults={"description": "Healthcare admin"},
+        )
+        HospitalRolePermission.objects.get_or_create(
+            hospital_role=hospital_role,
+            permission=permission,
+        )
+        UserHospitalRole.objects.update_or_create(
+            user=hospital_admin_user,
+            defaults={
+                "hospital": hospital_admin_user.staff.hospital,
+                "hospital_role": hospital_role,
+                "assigned_by": None,
+            },
+        )
+
+        payload = get_effective_permissions_for_user(hospital_admin_user)
+        role_name = hospital_admin_role.name
+
+        assert payload["roles"] == [role_name]
+        assert "auth:permission.effective.view" in payload["effective_permissions"]
+        assert "auth:permission.effective.view" in payload["permissions_by_role"][role_name]

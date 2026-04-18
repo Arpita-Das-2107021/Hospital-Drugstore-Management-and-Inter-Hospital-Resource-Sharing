@@ -1,0 +1,46 @@
+{
+  "validated_at": "2026-03-30T14:18:18Z",
+  "checks": {
+    "healthcare_overlap": true,
+    "all_healthcares_covered": true,
+    "csv_no_leakage": true,
+    "api_profile_schema_consistent": true,
+    "sales_row_partition_consistent": true
+  },
+  "details": {
+    "api_hospital_ids": [
+      "PH000",
+      "PH005",
+      "PH011",
+      "PH014"
+    ],
+    "csv_hospital_ids": [
+      "PH001",
+      "PH002",
+      "PH003",
+      "PH004",
+      "PH006",
+      "PH007",
+      "PH008",
+      "PH009",
+      "PH010",
+      "PH012",
+      "PH013",
+      "PH015",
+      "PH016",
+      "PH017",
+      "PH018",
+      "PH019"
+    ],
+    "overlap": [],
+    "uncovered": [],
+    "leakage_issues": [],
+    "api_profile_issues": [],
+    "sales_rows": {
+      "total": 27000,
+      "api_hospitals": 5400,
+      "csv_hospitals": 21600
+    }
+  },
+  "valid": true
+}

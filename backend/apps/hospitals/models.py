@@ -25,10 +25,38 @@ class HospitalRegistrationRequest(models.Model):
         REHABILITATION = "rehabilitation", "Rehabilitation"
         PSYCHIATRIC = "psychiatric", "Psychiatric"
 
+    class FacilityClassification(models.TextChoices):
+        GOVT = "GOVT", "Government"
+        PRIVATE = "PRIVATE", "Private"
+        PHARMACY = "PHARMACY", "Pharmacy"
+        CLINIC = "CLINIC", "Clinic"
+
+    class FacilityType(models.TextChoices):
+        HOSPITAL = "hospital", "Hospital"
+        PHARMACY = "pharmacy", "Pharmacy"
+        CLINIC = "clinic", "Clinic"
+        WAREHOUSE = "warehouse", "Warehouse"
+
+    class DataSubmissionType(models.TextChoices):
+        API = "api", "API"
+        CSV_UPLOAD = "csv_upload", "CSV Upload"
+        MANUAL = "manual", "Manual"
+
+    class InventorySourceType(models.TextChoices):
+        API = "API", "API"
+        DASHBOARD = "DASHBOARD", "Dashboard"
+        CSV = "CSV", "CSV"
+        HYBRID = "HYBRID", "Hybrid"
+
     class SyncStatus(models.TextChoices):
         PENDING = "pending", "Pending"
         SYNCING = "syncing", "Syncing"
         SUCCESS = "success", "Success"
+        FAILED = "failed", "Failed"
+
+    class SchemaContractStatus(models.TextChoices):
+        UNCHECKED = "unchecked", "Unchecked"
+        PASSED = "passed", "Passed"
         FAILED = "failed", "Failed"
 
     class ApiAuthType(models.TextChoices):
@@ -56,6 +84,32 @@ class HospitalRegistrationRequest(models.Model):
         choices=HospitalType.choices,
         default=HospitalType.GENERAL,
     )
+    facility_classification = models.CharField(
+        max_length=20,
+        choices=FacilityClassification.choices,
+        default=FacilityClassification.GOVT,
+    )
+    facility_type = models.CharField(
+        max_length=20,
+        choices=FacilityType.choices,
+        default=FacilityType.HOSPITAL,
+    )
+    data_submission_type = models.CharField(
+        max_length=20,
+        choices=DataSubmissionType.choices,
+        default=DataSubmissionType.API,
+    )
+    needs_inventory_dashboard = models.BooleanField(default=False)
+    inventory_source_type = models.CharField(
+        max_length=20,
+        choices=InventorySourceType.choices,
+        default=InventorySourceType.API,
+        db_index=True,
+    )
+    inventory_last_sync_source = models.CharField(max_length=50, blank=True)
+    region_level_1 = models.CharField(max_length=100, blank=True)
+    region_level_2 = models.CharField(max_length=100, blank=True)
+    region_level_3 = models.CharField(max_length=100, blank=True)
     logo = models.ImageField(upload_to="hospitals/registration-logos/", null=True, blank=True)
     latitude = models.DecimalField(
         max_digits=9,
@@ -100,6 +154,16 @@ class HospitalRegistrationRequest(models.Model):
         choices=SyncStatus.choices,
         default=SyncStatus.PENDING,
     )
+    api_check_results = models.JSONField(default=dict, blank=True)
+    api_check_last_checked_at = models.DateTimeField(null=True, blank=True)
+    schema_contract_status = models.CharField(
+        max_length=20,
+        choices=SchemaContractStatus.choices,
+        default=SchemaContractStatus.UNCHECKED,
+        db_index=True,
+    )
+    schema_contract_failed_apis = models.JSONField(default=list, blank=True)
+    schema_contract_checked_at = models.DateTimeField(null=True, blank=True)
 
     # Review audit
     reviewed_by = models.ForeignKey(
@@ -144,6 +208,34 @@ class Hospital(models.Model):
         REHABILITATION = "rehabilitation", "Rehabilitation"
         PSYCHIATRIC = "psychiatric", "Psychiatric"
 
+    class FacilityClassification(models.TextChoices):
+        GOVT = "GOVT", "Government"
+        PRIVATE = "PRIVATE", "Private"
+        PHARMACY = "PHARMACY", "Pharmacy"
+        CLINIC = "CLINIC", "Clinic"
+
+    class FacilityType(models.TextChoices):
+        HOSPITAL = "hospital", "Hospital"
+        PHARMACY = "pharmacy", "Pharmacy"
+        CLINIC = "clinic", "Clinic"
+        WAREHOUSE = "warehouse", "Warehouse"
+
+    class DataSubmissionType(models.TextChoices):
+        API = "api", "API"
+        CSV_UPLOAD = "csv_upload", "CSV Upload"
+        MANUAL = "manual", "Manual"
+
+    class InventorySourceType(models.TextChoices):
+        API = "API", "API"
+        DASHBOARD = "DASHBOARD", "Dashboard"
+        CSV = "CSV", "CSV"
+        HYBRID = "HYBRID", "Hybrid"
+
+    class SchemaContractStatus(models.TextChoices):
+        UNCHECKED = "unchecked", "Unchecked"
+        PASSED = "passed", "Passed"
+        FAILED = "failed", "Failed"
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255)
     registration_number = models.CharField(max_length=100, unique=True)
@@ -153,6 +245,34 @@ class Hospital(models.Model):
         default=HospitalType.GENERAL,
         db_index=True,
     )
+    facility_classification = models.CharField(
+        max_length=20,
+        choices=FacilityClassification.choices,
+        default=FacilityClassification.GOVT,
+    )
+    facility_type = models.CharField(
+        max_length=20,
+        choices=FacilityType.choices,
+        default=FacilityType.HOSPITAL,
+        db_index=True,
+    )
+    data_submission_type = models.CharField(
+        max_length=20,
+        choices=DataSubmissionType.choices,
+        default=DataSubmissionType.API,
+        db_index=True,
+    )
+    needs_inventory_dashboard = models.BooleanField(default=False)
+    inventory_source_type = models.CharField(
+        max_length=20,
+        choices=InventorySourceType.choices,
+        default=InventorySourceType.API,
+        db_index=True,
+    )
+    inventory_last_sync_source = models.CharField(max_length=50, blank=True)
+    region_level_1 = models.CharField(max_length=100, blank=True)
+    region_level_2 = models.CharField(max_length=100, blank=True)
+    region_level_3 = models.CharField(max_length=100, blank=True)
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=30, blank=True)
     website = models.URLField(max_length=200, blank=True)
@@ -181,6 +301,15 @@ class Hospital(models.Model):
         default=VerifiedStatus.PENDING,
         db_index=True,
     )
+    advanced_integration_eligible = models.BooleanField(default=False, db_index=True)
+    schema_contract_status = models.CharField(
+        max_length=20,
+        choices=SchemaContractStatus.choices,
+        default=SchemaContractStatus.UNCHECKED,
+        db_index=True,
+    )
+    schema_contract_failed_apis = models.JSONField(default=list, blank=True)
+    schema_contract_checked_at = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -277,9 +406,11 @@ class HospitalUpdateRequest(models.Model):
         default=Status.PENDING,
         db_index=True,
     )
+    reason = models.TextField(blank=True)
     requested_changes = models.JSONField(default=dict, blank=True)
     sensitive_changes = models.JSONField(default=dict, blank=True)
     rejection_reason = models.TextField(blank=True)
+    review_comment = models.TextField(blank=True)
     reviewed_by = models.ForeignKey(
         "staff.Staff",
         on_delete=models.SET_NULL,
@@ -302,6 +433,10 @@ class HospitalUpdateRequest(models.Model):
 
     def __str__(self):
         return f"HospitalUpdateRequest({self.hospital.name} / {self.status})"
+
+    @property
+    def change_payload_json(self) -> dict:
+        return self.requested_changes or {}
 
 
 class HospitalAPIConfig(models.Model):

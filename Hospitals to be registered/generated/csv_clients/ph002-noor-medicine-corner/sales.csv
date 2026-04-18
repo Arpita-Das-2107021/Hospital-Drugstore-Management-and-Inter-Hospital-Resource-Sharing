@@ -1,0 +1,1351 @@
+date,healthcare_id,medicine_name,quantity_sold,upazila
+2024-01-01,PH002,Paracetamol 500mg,36,Khulna Sadar
+2024-01-01,PH002,ORS Sachet,17,Khulna Sadar
+2024-01-01,PH002,Metronidazole 400mg,9,Khulna Sadar
+2024-01-01,PH002,Cetirizine 10mg,11,Khulna Sadar
+2024-01-01,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-01-01,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-01-01,PH002,Zinc 20mg (child),8,Khulna Sadar
+2024-01-01,PH002,Ciprofloxacin 500mg,5,Khulna Sadar
+2024-01-01,PH002,Antihistamine Syrup,11,Khulna Sadar
+2024-01-01,PH002,Vitamin C 500mg,24,Khulna Sadar
+2024-01-01,PH002,Ranitidine 150mg,18,Khulna Sadar
+2024-01-01,PH002,Antacid Tablet,23,Khulna Sadar
+2024-01-01,PH002,Insulin (vial),4,Khulna Sadar
+2024-01-01,PH002,Atorvastatin 10mg,8,Khulna Sadar
+2024-01-01,PH002,Losartan 50mg,6,Khulna Sadar
+2024-01-02,PH002,Paracetamol 500mg,27,Khulna Sadar
+2024-01-02,PH002,ORS Sachet,15,Khulna Sadar
+2024-01-02,PH002,Metronidazole 400mg,9,Khulna Sadar
+2024-01-02,PH002,Cetirizine 10mg,12,Khulna Sadar
+2024-01-02,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-01-02,PH002,Azithromycin 500mg,7,Khulna Sadar
+2024-01-02,PH002,Zinc 20mg (child),8,Khulna Sadar
+2024-01-02,PH002,Ciprofloxacin 500mg,7,Khulna Sadar
+2024-01-02,PH002,Antihistamine Syrup,9,Khulna Sadar
+2024-01-02,PH002,Vitamin C 500mg,24,Khulna Sadar
+2024-01-02,PH002,Ranitidine 150mg,12,Khulna Sadar
+2024-01-02,PH002,Antacid Tablet,18,Khulna Sadar
+2024-01-02,PH002,Insulin (vial),4,Khulna Sadar
+2024-01-02,PH002,Atorvastatin 10mg,6,Khulna Sadar
+2024-01-02,PH002,Losartan 50mg,7,Khulna Sadar
+2024-01-03,PH002,Paracetamol 500mg,35,Khulna Sadar
+2024-01-03,PH002,ORS Sachet,15,Khulna Sadar
+2024-01-03,PH002,Metronidazole 400mg,11,Khulna Sadar
+2024-01-03,PH002,Cetirizine 10mg,15,Khulna Sadar
+2024-01-03,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-01-03,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-01-03,PH002,Zinc 20mg (child),11,Khulna Sadar
+2024-01-03,PH002,Ciprofloxacin 500mg,6,Khulna Sadar
+2024-01-03,PH002,Antihistamine Syrup,10,Khulna Sadar
+2024-01-03,PH002,Vitamin C 500mg,27,Khulna Sadar
+2024-01-03,PH002,Ranitidine 150mg,19,Khulna Sadar
+2024-01-03,PH002,Antacid Tablet,18,Khulna Sadar
+2024-01-03,PH002,Insulin (vial),3,Khulna Sadar
+2024-01-03,PH002,Atorvastatin 10mg,5,Khulna Sadar
+2024-01-03,PH002,Losartan 50mg,9,Khulna Sadar
+2024-01-04,PH002,Paracetamol 500mg,39,Khulna Sadar
+2024-01-04,PH002,ORS Sachet,22,Khulna Sadar
+2024-01-04,PH002,Metronidazole 400mg,12,Khulna Sadar
+2024-01-04,PH002,Cetirizine 10mg,17,Khulna Sadar
+2024-01-04,PH002,Amoxicillin 500mg,11,Khulna Sadar
+2024-01-04,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-01-04,PH002,Zinc 20mg (child),11,Khulna Sadar
+2024-01-04,PH002,Ciprofloxacin 500mg,7,Khulna Sadar
+2024-01-04,PH002,Antihistamine Syrup,8,Khulna Sadar
+2024-01-04,PH002,Vitamin C 500mg,17,Khulna Sadar
+2024-01-04,PH002,Ranitidine 150mg,18,Khulna Sadar
+2024-01-04,PH002,Antacid Tablet,21,Khulna Sadar
+2024-01-04,PH002,Insulin (vial),4,Khulna Sadar
+2024-01-04,PH002,Atorvastatin 10mg,6,Khulna Sadar
+2024-01-04,PH002,Losartan 50mg,9,Khulna Sadar
+2024-01-05,PH002,Paracetamol 500mg,31,Khulna Sadar
+2024-01-05,PH002,ORS Sachet,20,Khulna Sadar
+2024-01-05,PH002,Metronidazole 400mg,14,Khulna Sadar
+2024-01-05,PH002,Cetirizine 10mg,10,Khulna Sadar
+2024-01-05,PH002,Amoxicillin 500mg,10,Khulna Sadar
+2024-01-05,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-01-05,PH002,Zinc 20mg (child),8,Khulna Sadar
+2024-01-05,PH002,Ciprofloxacin 500mg,6,Khulna Sadar
+2024-01-05,PH002,Antihistamine Syrup,9,Khulna Sadar
+2024-01-05,PH002,Vitamin C 500mg,17,Khulna Sadar
+2024-01-05,PH002,Ranitidine 150mg,13,Khulna Sadar
+2024-01-05,PH002,Antacid Tablet,15,Khulna Sadar
+2024-01-05,PH002,Insulin (vial),4,Khulna Sadar
+2024-01-05,PH002,Atorvastatin 10mg,8,Khulna Sadar
+2024-01-05,PH002,Losartan 50mg,7,Khulna Sadar
+2024-01-06,PH002,Paracetamol 500mg,26,Khulna Sadar
+2024-01-06,PH002,ORS Sachet,20,Khulna Sadar
+2024-01-06,PH002,Metronidazole 400mg,14,Khulna Sadar
+2024-01-06,PH002,Cetirizine 10mg,12,Khulna Sadar
+2024-01-06,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-01-06,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-01-06,PH002,Zinc 20mg (child),9,Khulna Sadar
+2024-01-06,PH002,Ciprofloxacin 500mg,5,Khulna Sadar
+2024-01-06,PH002,Antihistamine Syrup,10,Khulna Sadar
+2024-01-06,PH002,Vitamin C 500mg,17,Khulna Sadar
+2024-01-06,PH002,Ranitidine 150mg,17,Khulna Sadar
+2024-01-06,PH002,Antacid Tablet,20,Khulna Sadar
+2024-01-06,PH002,Insulin (vial),4,Khulna Sadar
+2024-01-06,PH002,Atorvastatin 10mg,8,Khulna Sadar
+2024-01-06,PH002,Losartan 50mg,9,Khulna Sadar
+2024-01-07,PH002,Paracetamol 500mg,42,Khulna Sadar
+2024-01-07,PH002,ORS Sachet,17,Khulna Sadar
+2024-01-07,PH002,Metronidazole 400mg,9,Khulna Sadar
+2024-01-07,PH002,Cetirizine 10mg,14,Khulna Sadar
+2024-01-07,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-01-07,PH002,Azithromycin 500mg,7,Khulna Sadar
+2024-01-07,PH002,Zinc 20mg (child),8,Khulna Sadar
+2024-01-07,PH002,Ciprofloxacin 500mg,8,Khulna Sadar
+2024-01-07,PH002,Antihistamine Syrup,11,Khulna Sadar
+2024-01-07,PH002,Vitamin C 500mg,25,Khulna Sadar
+2024-01-07,PH002,Ranitidine 150mg,19,Khulna Sadar
+2024-01-07,PH002,Antacid Tablet,19,Khulna Sadar
+2024-01-07,PH002,Insulin (vial),6,Khulna Sadar
+2024-01-07,PH002,Atorvastatin 10mg,5,Khulna Sadar
+2024-01-07,PH002,Losartan 50mg,6,Khulna Sadar
+2024-01-08,PH002,Paracetamol 500mg,35,Khulna Sadar
+2024-01-08,PH002,ORS Sachet,22,Khulna Sadar
+2024-01-08,PH002,Metronidazole 400mg,12,Khulna Sadar
+2024-01-08,PH002,Cetirizine 10mg,11,Khulna Sadar
+2024-01-08,PH002,Amoxicillin 500mg,12,Khulna Sadar
+2024-01-08,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-01-08,PH002,Zinc 20mg (child),11,Khulna Sadar
+2024-01-08,PH002,Ciprofloxacin 500mg,8,Khulna Sadar
+2024-01-08,PH002,Antihistamine Syrup,11,Khulna Sadar
+2024-01-08,PH002,Vitamin C 500mg,25,Khulna Sadar
+2024-01-08,PH002,Ranitidine 150mg,17,Khulna Sadar
+2024-01-08,PH002,Antacid Tablet,15,Khulna Sadar
+2024-01-08,PH002,Insulin (vial),3,Khulna Sadar
+2024-01-08,PH002,Atorvastatin 10mg,6,Khulna Sadar
+2024-01-08,PH002,Losartan 50mg,9,Khulna Sadar
+2024-01-09,PH002,Paracetamol 500mg,36,Khulna Sadar
+2024-01-09,PH002,ORS Sachet,13,Khulna Sadar
+2024-01-09,PH002,Metronidazole 400mg,11,Khulna Sadar
+2024-01-09,PH002,Cetirizine 10mg,14,Khulna Sadar
+2024-01-09,PH002,Amoxicillin 500mg,10,Khulna Sadar
+2024-01-09,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-01-09,PH002,Zinc 20mg (child),7,Khulna Sadar
+2024-01-09,PH002,Ciprofloxacin 500mg,5,Khulna Sadar
+2024-01-09,PH002,Antihistamine Syrup,12,Khulna Sadar
+2024-01-09,PH002,Vitamin C 500mg,25,Khulna Sadar
+2024-01-09,PH002,Ranitidine 150mg,18,Khulna Sadar
+2024-01-09,PH002,Antacid Tablet,19,Khulna Sadar
+2024-01-09,PH002,Insulin (vial),4,Khulna Sadar
+2024-01-09,PH002,Atorvastatin 10mg,8,Khulna Sadar
+2024-01-09,PH002,Losartan 50mg,7,Khulna Sadar
+2024-01-10,PH002,Paracetamol 500mg,28,Khulna Sadar
+2024-01-10,PH002,ORS Sachet,18,Khulna Sadar
+2024-01-10,PH002,Metronidazole 400mg,10,Khulna Sadar
+2024-01-10,PH002,Cetirizine 10mg,16,Khulna Sadar
+2024-01-10,PH002,Amoxicillin 500mg,10,Khulna Sadar
+2024-01-10,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-01-10,PH002,Zinc 20mg (child),10,Khulna Sadar
+2024-01-10,PH002,Ciprofloxacin 500mg,8,Khulna Sadar
+2024-01-10,PH002,Antihistamine Syrup,9,Khulna Sadar
+2024-01-10,PH002,Vitamin C 500mg,26,Khulna Sadar
+2024-01-10,PH002,Ranitidine 150mg,18,Khulna Sadar
+2024-01-10,PH002,Antacid Tablet,16,Khulna Sadar
+2024-01-10,PH002,Insulin (vial),5,Khulna Sadar
+2024-01-10,PH002,Atorvastatin 10mg,5,Khulna Sadar
+2024-01-10,PH002,Losartan 50mg,8,Khulna Sadar
+2024-01-11,PH002,Paracetamol 500mg,42,Khulna Sadar
+2024-01-11,PH002,ORS Sachet,15,Khulna Sadar
+2024-01-11,PH002,Metronidazole 400mg,10,Khulna Sadar
+2024-01-11,PH002,Cetirizine 10mg,13,Khulna Sadar
+2024-01-11,PH002,Amoxicillin 500mg,10,Khulna Sadar
+2024-01-11,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-01-11,PH002,Zinc 20mg (child),9,Khulna Sadar
+2024-01-11,PH002,Ciprofloxacin 500mg,6,Khulna Sadar
+2024-01-11,PH002,Antihistamine Syrup,13,Khulna Sadar
+2024-01-11,PH002,Vitamin C 500mg,27,Khulna Sadar
+2024-01-11,PH002,Ranitidine 150mg,12,Khulna Sadar
+2024-01-11,PH002,Antacid Tablet,20,Khulna Sadar
+2024-01-11,PH002,Insulin (vial),4,Khulna Sadar
+2024-01-11,PH002,Atorvastatin 10mg,5,Khulna Sadar
+2024-01-11,PH002,Losartan 50mg,8,Khulna Sadar
+2024-01-12,PH002,Paracetamol 500mg,34,Khulna Sadar
+2024-01-12,PH002,ORS Sachet,17,Khulna Sadar
+2024-01-12,PH002,Metronidazole 400mg,13,Khulna Sadar
+2024-01-12,PH002,Cetirizine 10mg,12,Khulna Sadar
+2024-01-12,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-01-12,PH002,Azithromycin 500mg,4,Khulna Sadar
+2024-01-12,PH002,Zinc 20mg (child),9,Khulna Sadar
+2024-01-12,PH002,Ciprofloxacin 500mg,6,Khulna Sadar
+2024-01-12,PH002,Antihistamine Syrup,12,Khulna Sadar
+2024-01-12,PH002,Vitamin C 500mg,23,Khulna Sadar
+2024-01-12,PH002,Ranitidine 150mg,18,Khulna Sadar
+2024-01-12,PH002,Antacid Tablet,20,Khulna Sadar
+2024-01-12,PH002,Insulin (vial),4,Khulna Sadar
+2024-01-12,PH002,Atorvastatin 10mg,6,Khulna Sadar
+2024-01-12,PH002,Losartan 50mg,8,Khulna Sadar
+2024-01-13,PH002,Paracetamol 500mg,48,Khulna Sadar
+2024-01-13,PH002,ORS Sachet,17,Khulna Sadar
+2024-01-13,PH002,Metronidazole 400mg,13,Khulna Sadar
+2024-01-13,PH002,Cetirizine 10mg,18,Khulna Sadar
+2024-01-13,PH002,Amoxicillin 500mg,11,Khulna Sadar
+2024-01-13,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-01-13,PH002,Zinc 20mg (child),11,Khulna Sadar
+2024-01-13,PH002,Ciprofloxacin 500mg,5,Khulna Sadar
+2024-01-13,PH002,Antihistamine Syrup,12,Khulna Sadar
+2024-01-13,PH002,Vitamin C 500mg,21,Khulna Sadar
+2024-01-13,PH002,Ranitidine 150mg,13,Khulna Sadar
+2024-01-13,PH002,Antacid Tablet,24,Khulna Sadar
+2024-01-13,PH002,Insulin (vial),4,Khulna Sadar
+2024-01-13,PH002,Atorvastatin 10mg,8,Khulna Sadar
+2024-01-13,PH002,Losartan 50mg,8,Khulna Sadar
+2024-01-14,PH002,Paracetamol 500mg,61,Khulna Sadar
+2024-01-14,PH002,ORS Sachet,18,Khulna Sadar
+2024-01-14,PH002,Metronidazole 400mg,9,Khulna Sadar
+2024-01-14,PH002,Cetirizine 10mg,19,Khulna Sadar
+2024-01-14,PH002,Amoxicillin 500mg,9,Khulna Sadar
+2024-01-14,PH002,Azithromycin 500mg,7,Khulna Sadar
+2024-01-14,PH002,Zinc 20mg (child),10,Khulna Sadar
+2024-01-14,PH002,Ciprofloxacin 500mg,6,Khulna Sadar
+2024-01-14,PH002,Antihistamine Syrup,9,Khulna Sadar
+2024-01-14,PH002,Vitamin C 500mg,22,Khulna Sadar
+2024-01-14,PH002,Ranitidine 150mg,16,Khulna Sadar
+2024-01-14,PH002,Antacid Tablet,16,Khulna Sadar
+2024-01-14,PH002,Insulin (vial),4,Khulna Sadar
+2024-01-14,PH002,Atorvastatin 10mg,8,Khulna Sadar
+2024-01-14,PH002,Losartan 50mg,7,Khulna Sadar
+2024-01-15,PH002,Paracetamol 500mg,56,Khulna Sadar
+2024-01-15,PH002,ORS Sachet,20,Khulna Sadar
+2024-01-15,PH002,Metronidazole 400mg,13,Khulna Sadar
+2024-01-15,PH002,Cetirizine 10mg,24,Khulna Sadar
+2024-01-15,PH002,Amoxicillin 500mg,9,Khulna Sadar
+2024-01-15,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-01-15,PH002,Zinc 20mg (child),8,Khulna Sadar
+2024-01-15,PH002,Ciprofloxacin 500mg,6,Khulna Sadar
+2024-01-15,PH002,Antihistamine Syrup,10,Khulna Sadar
+2024-01-15,PH002,Vitamin C 500mg,30,Khulna Sadar
+2024-01-15,PH002,Ranitidine 150mg,14,Khulna Sadar
+2024-01-15,PH002,Antacid Tablet,24,Khulna Sadar
+2024-01-15,PH002,Insulin (vial),3,Khulna Sadar
+2024-01-15,PH002,Atorvastatin 10mg,6,Khulna Sadar
+2024-01-15,PH002,Losartan 50mg,8,Khulna Sadar
+2024-01-16,PH002,Paracetamol 500mg,75,Khulna Sadar
+2024-01-16,PH002,ORS Sachet,20,Khulna Sadar
+2024-01-16,PH002,Metronidazole 400mg,12,Khulna Sadar
+2024-01-16,PH002,Cetirizine 10mg,20,Khulna Sadar
+2024-01-16,PH002,Amoxicillin 500mg,11,Khulna Sadar
+2024-01-16,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-01-16,PH002,Zinc 20mg (child),8,Khulna Sadar
+2024-01-16,PH002,Ciprofloxacin 500mg,6,Khulna Sadar
+2024-01-16,PH002,Antihistamine Syrup,13,Khulna Sadar
+2024-01-16,PH002,Vitamin C 500mg,26,Khulna Sadar
+2024-01-16,PH002,Ranitidine 150mg,18,Khulna Sadar
+2024-01-16,PH002,Antacid Tablet,16,Khulna Sadar
+2024-01-16,PH002,Insulin (vial),6,Khulna Sadar
+2024-01-16,PH002,Atorvastatin 10mg,7,Khulna Sadar
+2024-01-16,PH002,Losartan 50mg,8,Khulna Sadar
+2024-01-17,PH002,Paracetamol 500mg,69,Khulna Sadar
+2024-01-17,PH002,ORS Sachet,18,Khulna Sadar
+2024-01-17,PH002,Metronidazole 400mg,9,Khulna Sadar
+2024-01-17,PH002,Cetirizine 10mg,25,Khulna Sadar
+2024-01-17,PH002,Amoxicillin 500mg,12,Khulna Sadar
+2024-01-17,PH002,Azithromycin 500mg,7,Khulna Sadar
+2024-01-17,PH002,Zinc 20mg (child),12,Khulna Sadar
+2024-01-17,PH002,Ciprofloxacin 500mg,5,Khulna Sadar
+2024-01-17,PH002,Antihistamine Syrup,13,Khulna Sadar
+2024-01-17,PH002,Vitamin C 500mg,23,Khulna Sadar
+2024-01-17,PH002,Ranitidine 150mg,18,Khulna Sadar
+2024-01-17,PH002,Antacid Tablet,15,Khulna Sadar
+2024-01-17,PH002,Insulin (vial),5,Khulna Sadar
+2024-01-17,PH002,Atorvastatin 10mg,7,Khulna Sadar
+2024-01-17,PH002,Losartan 50mg,6,Khulna Sadar
+2024-01-18,PH002,Paracetamol 500mg,88,Khulna Sadar
+2024-01-18,PH002,ORS Sachet,21,Khulna Sadar
+2024-01-18,PH002,Metronidazole 400mg,9,Khulna Sadar
+2024-01-18,PH002,Cetirizine 10mg,20,Khulna Sadar
+2024-01-18,PH002,Amoxicillin 500mg,7,Khulna Sadar
+2024-01-18,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-01-18,PH002,Zinc 20mg (child),11,Khulna Sadar
+2024-01-18,PH002,Ciprofloxacin 500mg,6,Khulna Sadar
+2024-01-18,PH002,Antihistamine Syrup,13,Khulna Sadar
+2024-01-18,PH002,Vitamin C 500mg,24,Khulna Sadar
+2024-01-18,PH002,Ranitidine 150mg,14,Khulna Sadar
+2024-01-18,PH002,Antacid Tablet,24,Khulna Sadar
+2024-01-18,PH002,Insulin (vial),3,Khulna Sadar
+2024-01-18,PH002,Atorvastatin 10mg,8,Khulna Sadar
+2024-01-18,PH002,Losartan 50mg,6,Khulna Sadar
+2024-01-19,PH002,Paracetamol 500mg,102,Khulna Sadar
+2024-01-19,PH002,ORS Sachet,21,Khulna Sadar
+2024-01-19,PH002,Metronidazole 400mg,14,Khulna Sadar
+2024-01-19,PH002,Cetirizine 10mg,23,Khulna Sadar
+2024-01-19,PH002,Amoxicillin 500mg,10,Khulna Sadar
+2024-01-19,PH002,Azithromycin 500mg,7,Khulna Sadar
+2024-01-19,PH002,Zinc 20mg (child),9,Khulna Sadar
+2024-01-19,PH002,Ciprofloxacin 500mg,7,Khulna Sadar
+2024-01-19,PH002,Antihistamine Syrup,10,Khulna Sadar
+2024-01-19,PH002,Vitamin C 500mg,30,Khulna Sadar
+2024-01-19,PH002,Ranitidine 150mg,12,Khulna Sadar
+2024-01-19,PH002,Antacid Tablet,20,Khulna Sadar
+2024-01-19,PH002,Insulin (vial),4,Khulna Sadar
+2024-01-19,PH002,Atorvastatin 10mg,7,Khulna Sadar
+2024-01-19,PH002,Losartan 50mg,7,Khulna Sadar
+2024-01-20,PH002,Paracetamol 500mg,78,Khulna Sadar
+2024-01-20,PH002,ORS Sachet,13,Khulna Sadar
+2024-01-20,PH002,Metronidazole 400mg,13,Khulna Sadar
+2024-01-20,PH002,Cetirizine 10mg,28,Khulna Sadar
+2024-01-20,PH002,Amoxicillin 500mg,12,Khulna Sadar
+2024-01-20,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-01-20,PH002,Zinc 20mg (child),10,Khulna Sadar
+2024-01-20,PH002,Ciprofloxacin 500mg,6,Khulna Sadar
+2024-01-20,PH002,Antihistamine Syrup,13,Khulna Sadar
+2024-01-20,PH002,Vitamin C 500mg,33,Khulna Sadar
+2024-01-20,PH002,Ranitidine 150mg,19,Khulna Sadar
+2024-01-20,PH002,Antacid Tablet,23,Khulna Sadar
+2024-01-20,PH002,Insulin (vial),4,Khulna Sadar
+2024-01-20,PH002,Atorvastatin 10mg,7,Khulna Sadar
+2024-01-20,PH002,Losartan 50mg,6,Khulna Sadar
+2024-01-21,PH002,Paracetamol 500mg,106,Khulna Sadar
+2024-01-21,PH002,ORS Sachet,18,Khulna Sadar
+2024-01-21,PH002,Metronidazole 400mg,14,Khulna Sadar
+2024-01-21,PH002,Cetirizine 10mg,27,Khulna Sadar
+2024-01-21,PH002,Amoxicillin 500mg,11,Khulna Sadar
+2024-01-21,PH002,Azithromycin 500mg,7,Khulna Sadar
+2024-01-21,PH002,Zinc 20mg (child),9,Khulna Sadar
+2024-01-21,PH002,Ciprofloxacin 500mg,5,Khulna Sadar
+2024-01-21,PH002,Antihistamine Syrup,8,Khulna Sadar
+2024-01-21,PH002,Vitamin C 500mg,28,Khulna Sadar
+2024-01-21,PH002,Ranitidine 150mg,15,Khulna Sadar
+2024-01-21,PH002,Antacid Tablet,24,Khulna Sadar
+2024-01-21,PH002,Insulin (vial),4,Khulna Sadar
+2024-01-21,PH002,Atorvastatin 10mg,5,Khulna Sadar
+2024-01-21,PH002,Losartan 50mg,7,Khulna Sadar
+2024-01-22,PH002,Paracetamol 500mg,122,Khulna Sadar
+2024-01-22,PH002,ORS Sachet,22,Khulna Sadar
+2024-01-22,PH002,Metronidazole 400mg,14,Khulna Sadar
+2024-01-22,PH002,Cetirizine 10mg,34,Khulna Sadar
+2024-01-22,PH002,Amoxicillin 500mg,12,Khulna Sadar
+2024-01-22,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-01-22,PH002,Zinc 20mg (child),9,Khulna Sadar
+2024-01-22,PH002,Ciprofloxacin 500mg,8,Khulna Sadar
+2024-01-22,PH002,Antihistamine Syrup,12,Khulna Sadar
+2024-01-22,PH002,Vitamin C 500mg,34,Khulna Sadar
+2024-01-22,PH002,Ranitidine 150mg,19,Khulna Sadar
+2024-01-22,PH002,Antacid Tablet,18,Khulna Sadar
+2024-01-22,PH002,Insulin (vial),4,Khulna Sadar
+2024-01-22,PH002,Atorvastatin 10mg,8,Khulna Sadar
+2024-01-22,PH002,Losartan 50mg,9,Khulna Sadar
+2024-01-23,PH002,Paracetamol 500mg,132,Khulna Sadar
+2024-01-23,PH002,ORS Sachet,15,Khulna Sadar
+2024-01-23,PH002,Metronidazole 400mg,10,Khulna Sadar
+2024-01-23,PH002,Cetirizine 10mg,35,Khulna Sadar
+2024-01-23,PH002,Amoxicillin 500mg,11,Khulna Sadar
+2024-01-23,PH002,Azithromycin 500mg,4,Khulna Sadar
+2024-01-23,PH002,Zinc 20mg (child),9,Khulna Sadar
+2024-01-23,PH002,Ciprofloxacin 500mg,6,Khulna Sadar
+2024-01-23,PH002,Antihistamine Syrup,11,Khulna Sadar
+2024-01-23,PH002,Vitamin C 500mg,41,Khulna Sadar
+2024-01-23,PH002,Ranitidine 150mg,15,Khulna Sadar
+2024-01-23,PH002,Antacid Tablet,15,Khulna Sadar
+2024-01-23,PH002,Insulin (vial),4,Khulna Sadar
+2024-01-23,PH002,Atorvastatin 10mg,6,Khulna Sadar
+2024-01-23,PH002,Losartan 50mg,6,Khulna Sadar
+2024-01-24,PH002,Paracetamol 500mg,97,Khulna Sadar
+2024-01-24,PH002,ORS Sachet,18,Khulna Sadar
+2024-01-24,PH002,Metronidazole 400mg,10,Khulna Sadar
+2024-01-24,PH002,Cetirizine 10mg,34,Khulna Sadar
+2024-01-24,PH002,Amoxicillin 500mg,11,Khulna Sadar
+2024-01-24,PH002,Azithromycin 500mg,4,Khulna Sadar
+2024-01-24,PH002,Zinc 20mg (child),10,Khulna Sadar
+2024-01-24,PH002,Ciprofloxacin 500mg,8,Khulna Sadar
+2024-01-24,PH002,Antihistamine Syrup,13,Khulna Sadar
+2024-01-24,PH002,Vitamin C 500mg,33,Khulna Sadar
+2024-01-24,PH002,Ranitidine 150mg,12,Khulna Sadar
+2024-01-24,PH002,Antacid Tablet,22,Khulna Sadar
+2024-01-24,PH002,Insulin (vial),4,Khulna Sadar
+2024-01-24,PH002,Atorvastatin 10mg,6,Khulna Sadar
+2024-01-24,PH002,Losartan 50mg,6,Khulna Sadar
+2024-01-25,PH002,Paracetamol 500mg,115,Khulna Sadar
+2024-01-25,PH002,ORS Sachet,21,Khulna Sadar
+2024-01-25,PH002,Metronidazole 400mg,12,Khulna Sadar
+2024-01-25,PH002,Cetirizine 10mg,45,Khulna Sadar
+2024-01-25,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-01-25,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-01-25,PH002,Zinc 20mg (child),7,Khulna Sadar
+2024-01-25,PH002,Ciprofloxacin 500mg,5,Khulna Sadar
+2024-01-25,PH002,Antihistamine Syrup,8,Khulna Sadar
+2024-01-25,PH002,Vitamin C 500mg,48,Khulna Sadar
+2024-01-25,PH002,Ranitidine 150mg,15,Khulna Sadar
+2024-01-25,PH002,Antacid Tablet,18,Khulna Sadar
+2024-01-25,PH002,Insulin (vial),5,Khulna Sadar
+2024-01-25,PH002,Atorvastatin 10mg,8,Khulna Sadar
+2024-01-25,PH002,Losartan 50mg,8,Khulna Sadar
+2024-01-26,PH002,Paracetamol 500mg,106,Khulna Sadar
+2024-01-26,PH002,ORS Sachet,20,Khulna Sadar
+2024-01-26,PH002,Metronidazole 400mg,10,Khulna Sadar
+2024-01-26,PH002,Cetirizine 10mg,43,Khulna Sadar
+2024-01-26,PH002,Amoxicillin 500mg,11,Khulna Sadar
+2024-01-26,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-01-26,PH002,Zinc 20mg (child),10,Khulna Sadar
+2024-01-26,PH002,Ciprofloxacin 500mg,5,Khulna Sadar
+2024-01-26,PH002,Antihistamine Syrup,11,Khulna Sadar
+2024-01-26,PH002,Vitamin C 500mg,31,Khulna Sadar
+2024-01-26,PH002,Ranitidine 150mg,16,Khulna Sadar
+2024-01-26,PH002,Antacid Tablet,16,Khulna Sadar
+2024-01-26,PH002,Insulin (vial),5,Khulna Sadar
+2024-01-26,PH002,Atorvastatin 10mg,6,Khulna Sadar
+2024-01-26,PH002,Losartan 50mg,6,Khulna Sadar
+2024-01-27,PH002,Paracetamol 500mg,85,Khulna Sadar
+2024-01-27,PH002,ORS Sachet,22,Khulna Sadar
+2024-01-27,PH002,Metronidazole 400mg,10,Khulna Sadar
+2024-01-27,PH002,Cetirizine 10mg,25,Khulna Sadar
+2024-01-27,PH002,Amoxicillin 500mg,12,Khulna Sadar
+2024-01-27,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-01-27,PH002,Zinc 20mg (child),10,Khulna Sadar
+2024-01-27,PH002,Ciprofloxacin 500mg,6,Khulna Sadar
+2024-01-27,PH002,Antihistamine Syrup,11,Khulna Sadar
+2024-01-27,PH002,Vitamin C 500mg,48,Khulna Sadar
+2024-01-27,PH002,Ranitidine 150mg,17,Khulna Sadar
+2024-01-27,PH002,Antacid Tablet,22,Khulna Sadar
+2024-01-27,PH002,Insulin (vial),4,Khulna Sadar
+2024-01-27,PH002,Atorvastatin 10mg,5,Khulna Sadar
+2024-01-27,PH002,Losartan 50mg,6,Khulna Sadar
+2024-01-28,PH002,Paracetamol 500mg,107,Khulna Sadar
+2024-01-28,PH002,ORS Sachet,19,Khulna Sadar
+2024-01-28,PH002,Metronidazole 400mg,13,Khulna Sadar
+2024-01-28,PH002,Cetirizine 10mg,24,Khulna Sadar
+2024-01-28,PH002,Amoxicillin 500mg,10,Khulna Sadar
+2024-01-28,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-01-28,PH002,Zinc 20mg (child),8,Khulna Sadar
+2024-01-28,PH002,Ciprofloxacin 500mg,7,Khulna Sadar
+2024-01-28,PH002,Antihistamine Syrup,9,Khulna Sadar
+2024-01-28,PH002,Vitamin C 500mg,39,Khulna Sadar
+2024-01-28,PH002,Ranitidine 150mg,14,Khulna Sadar
+2024-01-28,PH002,Antacid Tablet,20,Khulna Sadar
+2024-01-28,PH002,Insulin (vial),4,Khulna Sadar
+2024-01-28,PH002,Atorvastatin 10mg,8,Khulna Sadar
+2024-01-28,PH002,Losartan 50mg,7,Khulna Sadar
+2024-01-29,PH002,Paracetamol 500mg,76,Khulna Sadar
+2024-01-29,PH002,ORS Sachet,21,Khulna Sadar
+2024-01-29,PH002,Metronidazole 400mg,14,Khulna Sadar
+2024-01-29,PH002,Cetirizine 10mg,29,Khulna Sadar
+2024-01-29,PH002,Amoxicillin 500mg,12,Khulna Sadar
+2024-01-29,PH002,Azithromycin 500mg,7,Khulna Sadar
+2024-01-29,PH002,Zinc 20mg (child),9,Khulna Sadar
+2024-01-29,PH002,Ciprofloxacin 500mg,6,Khulna Sadar
+2024-01-29,PH002,Antihistamine Syrup,11,Khulna Sadar
+2024-01-29,PH002,Vitamin C 500mg,40,Khulna Sadar
+2024-01-29,PH002,Ranitidine 150mg,14,Khulna Sadar
+2024-01-29,PH002,Antacid Tablet,18,Khulna Sadar
+2024-01-29,PH002,Insulin (vial),5,Khulna Sadar
+2024-01-29,PH002,Atorvastatin 10mg,6,Khulna Sadar
+2024-01-29,PH002,Losartan 50mg,6,Khulna Sadar
+2024-01-30,PH002,Paracetamol 500mg,93,Khulna Sadar
+2024-01-30,PH002,ORS Sachet,14,Khulna Sadar
+2024-01-30,PH002,Metronidazole 400mg,12,Khulna Sadar
+2024-01-30,PH002,Cetirizine 10mg,31,Khulna Sadar
+2024-01-30,PH002,Amoxicillin 500mg,11,Khulna Sadar
+2024-01-30,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-01-30,PH002,Zinc 20mg (child),7,Khulna Sadar
+2024-01-30,PH002,Ciprofloxacin 500mg,5,Khulna Sadar
+2024-01-30,PH002,Antihistamine Syrup,12,Khulna Sadar
+2024-01-30,PH002,Vitamin C 500mg,36,Khulna Sadar
+2024-01-30,PH002,Ranitidine 150mg,18,Khulna Sadar
+2024-01-30,PH002,Antacid Tablet,17,Khulna Sadar
+2024-01-30,PH002,Insulin (vial),5,Khulna Sadar
+2024-01-30,PH002,Atorvastatin 10mg,8,Khulna Sadar
+2024-01-30,PH002,Losartan 50mg,8,Khulna Sadar
+2024-01-31,PH002,Paracetamol 500mg,92,Khulna Sadar
+2024-01-31,PH002,ORS Sachet,18,Khulna Sadar
+2024-01-31,PH002,Metronidazole 400mg,9,Khulna Sadar
+2024-01-31,PH002,Cetirizine 10mg,28,Khulna Sadar
+2024-01-31,PH002,Amoxicillin 500mg,11,Khulna Sadar
+2024-01-31,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-01-31,PH002,Zinc 20mg (child),8,Khulna Sadar
+2024-01-31,PH002,Ciprofloxacin 500mg,6,Khulna Sadar
+2024-01-31,PH002,Antihistamine Syrup,13,Khulna Sadar
+2024-01-31,PH002,Vitamin C 500mg,27,Khulna Sadar
+2024-01-31,PH002,Ranitidine 150mg,17,Khulna Sadar
+2024-01-31,PH002,Antacid Tablet,15,Khulna Sadar
+2024-01-31,PH002,Insulin (vial),4,Khulna Sadar
+2024-01-31,PH002,Atorvastatin 10mg,5,Khulna Sadar
+2024-01-31,PH002,Losartan 50mg,6,Khulna Sadar
+2024-02-01,PH002,Paracetamol 500mg,84,Khulna Sadar
+2024-02-01,PH002,ORS Sachet,14,Khulna Sadar
+2024-02-01,PH002,Metronidazole 400mg,10,Khulna Sadar
+2024-02-01,PH002,Cetirizine 10mg,27,Khulna Sadar
+2024-02-01,PH002,Amoxicillin 500mg,10,Khulna Sadar
+2024-02-01,PH002,Azithromycin 500mg,4,Khulna Sadar
+2024-02-01,PH002,Zinc 20mg (child),10,Khulna Sadar
+2024-02-01,PH002,Ciprofloxacin 500mg,5,Khulna Sadar
+2024-02-01,PH002,Antihistamine Syrup,8,Khulna Sadar
+2024-02-01,PH002,Vitamin C 500mg,33,Khulna Sadar
+2024-02-01,PH002,Ranitidine 150mg,16,Khulna Sadar
+2024-02-01,PH002,Antacid Tablet,19,Khulna Sadar
+2024-02-01,PH002,Insulin (vial),5,Khulna Sadar
+2024-02-01,PH002,Atorvastatin 10mg,7,Khulna Sadar
+2024-02-01,PH002,Losartan 50mg,6,Khulna Sadar
+2024-02-02,PH002,Paracetamol 500mg,86,Khulna Sadar
+2024-02-02,PH002,ORS Sachet,17,Khulna Sadar
+2024-02-02,PH002,Metronidazole 400mg,11,Khulna Sadar
+2024-02-02,PH002,Cetirizine 10mg,27,Khulna Sadar
+2024-02-02,PH002,Amoxicillin 500mg,9,Khulna Sadar
+2024-02-02,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-02-02,PH002,Zinc 20mg (child),8,Khulna Sadar
+2024-02-02,PH002,Ciprofloxacin 500mg,7,Khulna Sadar
+2024-02-02,PH002,Antihistamine Syrup,11,Khulna Sadar
+2024-02-02,PH002,Vitamin C 500mg,33,Khulna Sadar
+2024-02-02,PH002,Ranitidine 150mg,17,Khulna Sadar
+2024-02-02,PH002,Antacid Tablet,22,Khulna Sadar
+2024-02-02,PH002,Insulin (vial),4,Khulna Sadar
+2024-02-02,PH002,Atorvastatin 10mg,8,Khulna Sadar
+2024-02-02,PH002,Losartan 50mg,7,Khulna Sadar
+2024-02-03,PH002,Paracetamol 500mg,80,Khulna Sadar
+2024-02-03,PH002,ORS Sachet,14,Khulna Sadar
+2024-02-03,PH002,Metronidazole 400mg,12,Khulna Sadar
+2024-02-03,PH002,Cetirizine 10mg,25,Khulna Sadar
+2024-02-03,PH002,Amoxicillin 500mg,11,Khulna Sadar
+2024-02-03,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-02-03,PH002,Zinc 20mg (child),11,Khulna Sadar
+2024-02-03,PH002,Ciprofloxacin 500mg,7,Khulna Sadar
+2024-02-03,PH002,Antihistamine Syrup,13,Khulna Sadar
+2024-02-03,PH002,Vitamin C 500mg,24,Khulna Sadar
+2024-02-03,PH002,Ranitidine 150mg,13,Khulna Sadar
+2024-02-03,PH002,Antacid Tablet,18,Khulna Sadar
+2024-02-03,PH002,Insulin (vial),6,Khulna Sadar
+2024-02-03,PH002,Atorvastatin 10mg,8,Khulna Sadar
+2024-02-03,PH002,Losartan 50mg,7,Khulna Sadar
+2024-02-04,PH002,Paracetamol 500mg,61,Khulna Sadar
+2024-02-04,PH002,ORS Sachet,17,Khulna Sadar
+2024-02-04,PH002,Metronidazole 400mg,12,Khulna Sadar
+2024-02-04,PH002,Cetirizine 10mg,19,Khulna Sadar
+2024-02-04,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-02-04,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-02-04,PH002,Zinc 20mg (child),12,Khulna Sadar
+2024-02-04,PH002,Ciprofloxacin 500mg,7,Khulna Sadar
+2024-02-04,PH002,Antihistamine Syrup,12,Khulna Sadar
+2024-02-04,PH002,Vitamin C 500mg,21,Khulna Sadar
+2024-02-04,PH002,Ranitidine 150mg,13,Khulna Sadar
+2024-02-04,PH002,Antacid Tablet,18,Khulna Sadar
+2024-02-04,PH002,Insulin (vial),4,Khulna Sadar
+2024-02-04,PH002,Atorvastatin 10mg,7,Khulna Sadar
+2024-02-04,PH002,Losartan 50mg,6,Khulna Sadar
+2024-02-05,PH002,Paracetamol 500mg,53,Khulna Sadar
+2024-02-05,PH002,ORS Sachet,19,Khulna Sadar
+2024-02-05,PH002,Metronidazole 400mg,10,Khulna Sadar
+2024-02-05,PH002,Cetirizine 10mg,16,Khulna Sadar
+2024-02-05,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-02-05,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-02-05,PH002,Zinc 20mg (child),11,Khulna Sadar
+2024-02-05,PH002,Ciprofloxacin 500mg,5,Khulna Sadar
+2024-02-05,PH002,Antihistamine Syrup,10,Khulna Sadar
+2024-02-05,PH002,Vitamin C 500mg,22,Khulna Sadar
+2024-02-05,PH002,Ranitidine 150mg,17,Khulna Sadar
+2024-02-05,PH002,Antacid Tablet,15,Khulna Sadar
+2024-02-05,PH002,Insulin (vial),4,Khulna Sadar
+2024-02-05,PH002,Atorvastatin 10mg,5,Khulna Sadar
+2024-02-05,PH002,Losartan 50mg,6,Khulna Sadar
+2024-02-06,PH002,Paracetamol 500mg,51,Khulna Sadar
+2024-02-06,PH002,ORS Sachet,20,Khulna Sadar
+2024-02-06,PH002,Metronidazole 400mg,12,Khulna Sadar
+2024-02-06,PH002,Cetirizine 10mg,16,Khulna Sadar
+2024-02-06,PH002,Amoxicillin 500mg,10,Khulna Sadar
+2024-02-06,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-02-06,PH002,Zinc 20mg (child),8,Khulna Sadar
+2024-02-06,PH002,Ciprofloxacin 500mg,5,Khulna Sadar
+2024-02-06,PH002,Antihistamine Syrup,13,Khulna Sadar
+2024-02-06,PH002,Vitamin C 500mg,23,Khulna Sadar
+2024-02-06,PH002,Ranitidine 150mg,19,Khulna Sadar
+2024-02-06,PH002,Antacid Tablet,20,Khulna Sadar
+2024-02-06,PH002,Insulin (vial),5,Khulna Sadar
+2024-02-06,PH002,Atorvastatin 10mg,7,Khulna Sadar
+2024-02-06,PH002,Losartan 50mg,7,Khulna Sadar
+2024-02-07,PH002,Paracetamol 500mg,47,Khulna Sadar
+2024-02-07,PH002,ORS Sachet,14,Khulna Sadar
+2024-02-07,PH002,Metronidazole 400mg,9,Khulna Sadar
+2024-02-07,PH002,Cetirizine 10mg,19,Khulna Sadar
+2024-02-07,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-02-07,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-02-07,PH002,Zinc 20mg (child),10,Khulna Sadar
+2024-02-07,PH002,Ciprofloxacin 500mg,7,Khulna Sadar
+2024-02-07,PH002,Antihistamine Syrup,13,Khulna Sadar
+2024-02-07,PH002,Vitamin C 500mg,21,Khulna Sadar
+2024-02-07,PH002,Ranitidine 150mg,17,Khulna Sadar
+2024-02-07,PH002,Antacid Tablet,22,Khulna Sadar
+2024-02-07,PH002,Insulin (vial),5,Khulna Sadar
+2024-02-07,PH002,Atorvastatin 10mg,6,Khulna Sadar
+2024-02-07,PH002,Losartan 50mg,6,Khulna Sadar
+2024-02-08,PH002,Paracetamol 500mg,26,Khulna Sadar
+2024-02-08,PH002,ORS Sachet,20,Khulna Sadar
+2024-02-08,PH002,Metronidazole 400mg,10,Khulna Sadar
+2024-02-08,PH002,Cetirizine 10mg,12,Khulna Sadar
+2024-02-08,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-02-08,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-02-08,PH002,Zinc 20mg (child),10,Khulna Sadar
+2024-02-08,PH002,Ciprofloxacin 500mg,7,Khulna Sadar
+2024-02-08,PH002,Antihistamine Syrup,10,Khulna Sadar
+2024-02-08,PH002,Vitamin C 500mg,17,Khulna Sadar
+2024-02-08,PH002,Ranitidine 150mg,14,Khulna Sadar
+2024-02-08,PH002,Antacid Tablet,17,Khulna Sadar
+2024-02-08,PH002,Insulin (vial),5,Khulna Sadar
+2024-02-08,PH002,Atorvastatin 10mg,5,Khulna Sadar
+2024-02-08,PH002,Losartan 50mg,6,Khulna Sadar
+2024-02-09,PH002,Paracetamol 500mg,35,Khulna Sadar
+2024-02-09,PH002,ORS Sachet,16,Khulna Sadar
+2024-02-09,PH002,Metronidazole 400mg,14,Khulna Sadar
+2024-02-09,PH002,Cetirizine 10mg,13,Khulna Sadar
+2024-02-09,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-02-09,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-02-09,PH002,Zinc 20mg (child),11,Khulna Sadar
+2024-02-09,PH002,Ciprofloxacin 500mg,8,Khulna Sadar
+2024-02-09,PH002,Antihistamine Syrup,13,Khulna Sadar
+2024-02-09,PH002,Vitamin C 500mg,23,Khulna Sadar
+2024-02-09,PH002,Ranitidine 150mg,19,Khulna Sadar
+2024-02-09,PH002,Antacid Tablet,23,Khulna Sadar
+2024-02-09,PH002,Insulin (vial),5,Khulna Sadar
+2024-02-09,PH002,Atorvastatin 10mg,7,Khulna Sadar
+2024-02-09,PH002,Losartan 50mg,6,Khulna Sadar
+2024-02-10,PH002,Paracetamol 500mg,35,Khulna Sadar
+2024-02-10,PH002,ORS Sachet,15,Khulna Sadar
+2024-02-10,PH002,Metronidazole 400mg,13,Khulna Sadar
+2024-02-10,PH002,Cetirizine 10mg,11,Khulna Sadar
+2024-02-10,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-02-10,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-02-10,PH002,Zinc 20mg (child),9,Khulna Sadar
+2024-02-10,PH002,Ciprofloxacin 500mg,7,Khulna Sadar
+2024-02-10,PH002,Antihistamine Syrup,8,Khulna Sadar
+2024-02-10,PH002,Vitamin C 500mg,21,Khulna Sadar
+2024-02-10,PH002,Ranitidine 150mg,18,Khulna Sadar
+2024-02-10,PH002,Antacid Tablet,23,Khulna Sadar
+2024-02-10,PH002,Insulin (vial),3,Khulna Sadar
+2024-02-10,PH002,Atorvastatin 10mg,6,Khulna Sadar
+2024-02-10,PH002,Losartan 50mg,7,Khulna Sadar
+2024-02-11,PH002,Paracetamol 500mg,36,Khulna Sadar
+2024-02-11,PH002,ORS Sachet,17,Khulna Sadar
+2024-02-11,PH002,Metronidazole 400mg,13,Khulna Sadar
+2024-02-11,PH002,Cetirizine 10mg,14,Khulna Sadar
+2024-02-11,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-02-11,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-02-11,PH002,Zinc 20mg (child),8,Khulna Sadar
+2024-02-11,PH002,Ciprofloxacin 500mg,8,Khulna Sadar
+2024-02-11,PH002,Antihistamine Syrup,12,Khulna Sadar
+2024-02-11,PH002,Vitamin C 500mg,18,Khulna Sadar
+2024-02-11,PH002,Ranitidine 150mg,12,Khulna Sadar
+2024-02-11,PH002,Antacid Tablet,24,Khulna Sadar
+2024-02-11,PH002,Insulin (vial),6,Khulna Sadar
+2024-02-11,PH002,Atorvastatin 10mg,7,Khulna Sadar
+2024-02-11,PH002,Losartan 50mg,8,Khulna Sadar
+2024-02-12,PH002,Paracetamol 500mg,42,Khulna Sadar
+2024-02-12,PH002,ORS Sachet,17,Khulna Sadar
+2024-02-12,PH002,Metronidazole 400mg,10,Khulna Sadar
+2024-02-12,PH002,Cetirizine 10mg,10,Khulna Sadar
+2024-02-12,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-02-12,PH002,Azithromycin 500mg,7,Khulna Sadar
+2024-02-12,PH002,Zinc 20mg (child),9,Khulna Sadar
+2024-02-12,PH002,Ciprofloxacin 500mg,7,Khulna Sadar
+2024-02-12,PH002,Antihistamine Syrup,9,Khulna Sadar
+2024-02-12,PH002,Vitamin C 500mg,19,Khulna Sadar
+2024-02-12,PH002,Ranitidine 150mg,16,Khulna Sadar
+2024-02-12,PH002,Antacid Tablet,22,Khulna Sadar
+2024-02-12,PH002,Insulin (vial),5,Khulna Sadar
+2024-02-12,PH002,Atorvastatin 10mg,6,Khulna Sadar
+2024-02-12,PH002,Losartan 50mg,6,Khulna Sadar
+2024-02-13,PH002,Paracetamol 500mg,29,Khulna Sadar
+2024-02-13,PH002,ORS Sachet,18,Khulna Sadar
+2024-02-13,PH002,Metronidazole 400mg,10,Khulna Sadar
+2024-02-13,PH002,Cetirizine 10mg,14,Khulna Sadar
+2024-02-13,PH002,Amoxicillin 500mg,12,Khulna Sadar
+2024-02-13,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-02-13,PH002,Zinc 20mg (child),10,Khulna Sadar
+2024-02-13,PH002,Ciprofloxacin 500mg,6,Khulna Sadar
+2024-02-13,PH002,Antihistamine Syrup,13,Khulna Sadar
+2024-02-13,PH002,Vitamin C 500mg,23,Khulna Sadar
+2024-02-13,PH002,Ranitidine 150mg,14,Khulna Sadar
+2024-02-13,PH002,Antacid Tablet,23,Khulna Sadar
+2024-02-13,PH002,Insulin (vial),5,Khulna Sadar
+2024-02-13,PH002,Atorvastatin 10mg,8,Khulna Sadar
+2024-02-13,PH002,Losartan 50mg,8,Khulna Sadar
+2024-02-14,PH002,Paracetamol 500mg,32,Khulna Sadar
+2024-02-14,PH002,ORS Sachet,16,Khulna Sadar
+2024-02-14,PH002,Metronidazole 400mg,11,Khulna Sadar
+2024-02-14,PH002,Cetirizine 10mg,11,Khulna Sadar
+2024-02-14,PH002,Amoxicillin 500mg,7,Khulna Sadar
+2024-02-14,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-02-14,PH002,Zinc 20mg (child),9,Khulna Sadar
+2024-02-14,PH002,Ciprofloxacin 500mg,5,Khulna Sadar
+2024-02-14,PH002,Antihistamine Syrup,11,Khulna Sadar
+2024-02-14,PH002,Vitamin C 500mg,27,Khulna Sadar
+2024-02-14,PH002,Ranitidine 150mg,12,Khulna Sadar
+2024-02-14,PH002,Antacid Tablet,24,Khulna Sadar
+2024-02-14,PH002,Insulin (vial),5,Khulna Sadar
+2024-02-14,PH002,Atorvastatin 10mg,8,Khulna Sadar
+2024-02-14,PH002,Losartan 50mg,9,Khulna Sadar
+2024-02-15,PH002,Paracetamol 500mg,36,Khulna Sadar
+2024-02-15,PH002,ORS Sachet,15,Khulna Sadar
+2024-02-15,PH002,Metronidazole 400mg,9,Khulna Sadar
+2024-02-15,PH002,Cetirizine 10mg,16,Khulna Sadar
+2024-02-15,PH002,Amoxicillin 500mg,12,Khulna Sadar
+2024-02-15,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-02-15,PH002,Zinc 20mg (child),9,Khulna Sadar
+2024-02-15,PH002,Ciprofloxacin 500mg,7,Khulna Sadar
+2024-02-15,PH002,Antihistamine Syrup,11,Khulna Sadar
+2024-02-15,PH002,Vitamin C 500mg,26,Khulna Sadar
+2024-02-15,PH002,Ranitidine 150mg,12,Khulna Sadar
+2024-02-15,PH002,Antacid Tablet,18,Khulna Sadar
+2024-02-15,PH002,Insulin (vial),4,Khulna Sadar
+2024-02-15,PH002,Atorvastatin 10mg,5,Khulna Sadar
+2024-02-15,PH002,Losartan 50mg,8,Khulna Sadar
+2024-02-16,PH002,Paracetamol 500mg,26,Khulna Sadar
+2024-02-16,PH002,ORS Sachet,13,Khulna Sadar
+2024-02-16,PH002,Metronidazole 400mg,10,Khulna Sadar
+2024-02-16,PH002,Cetirizine 10mg,10,Khulna Sadar
+2024-02-16,PH002,Amoxicillin 500mg,10,Khulna Sadar
+2024-02-16,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-02-16,PH002,Zinc 20mg (child),11,Khulna Sadar
+2024-02-16,PH002,Ciprofloxacin 500mg,5,Khulna Sadar
+2024-02-16,PH002,Antihistamine Syrup,10,Khulna Sadar
+2024-02-16,PH002,Vitamin C 500mg,19,Khulna Sadar
+2024-02-16,PH002,Ranitidine 150mg,18,Khulna Sadar
+2024-02-16,PH002,Antacid Tablet,17,Khulna Sadar
+2024-02-16,PH002,Insulin (vial),4,Khulna Sadar
+2024-02-16,PH002,Atorvastatin 10mg,8,Khulna Sadar
+2024-02-16,PH002,Losartan 50mg,7,Khulna Sadar
+2024-02-17,PH002,Paracetamol 500mg,27,Khulna Sadar
+2024-02-17,PH002,ORS Sachet,19,Khulna Sadar
+2024-02-17,PH002,Metronidazole 400mg,13,Khulna Sadar
+2024-02-17,PH002,Cetirizine 10mg,15,Khulna Sadar
+2024-02-17,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-02-17,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-02-17,PH002,Zinc 20mg (child),10,Khulna Sadar
+2024-02-17,PH002,Ciprofloxacin 500mg,8,Khulna Sadar
+2024-02-17,PH002,Antihistamine Syrup,11,Khulna Sadar
+2024-02-17,PH002,Vitamin C 500mg,23,Khulna Sadar
+2024-02-17,PH002,Ranitidine 150mg,16,Khulna Sadar
+2024-02-17,PH002,Antacid Tablet,23,Khulna Sadar
+2024-02-17,PH002,Insulin (vial),3,Khulna Sadar
+2024-02-17,PH002,Atorvastatin 10mg,6,Khulna Sadar
+2024-02-17,PH002,Losartan 50mg,7,Khulna Sadar
+2024-02-18,PH002,Paracetamol 500mg,31,Khulna Sadar
+2024-02-18,PH002,ORS Sachet,21,Khulna Sadar
+2024-02-18,PH002,Metronidazole 400mg,10,Khulna Sadar
+2024-02-18,PH002,Cetirizine 10mg,16,Khulna Sadar
+2024-02-18,PH002,Amoxicillin 500mg,7,Khulna Sadar
+2024-02-18,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-02-18,PH002,Zinc 20mg (child),7,Khulna Sadar
+2024-02-18,PH002,Ciprofloxacin 500mg,8,Khulna Sadar
+2024-02-18,PH002,Antihistamine Syrup,13,Khulna Sadar
+2024-02-18,PH002,Vitamin C 500mg,23,Khulna Sadar
+2024-02-18,PH002,Ranitidine 150mg,13,Khulna Sadar
+2024-02-18,PH002,Antacid Tablet,15,Khulna Sadar
+2024-02-18,PH002,Insulin (vial),4,Khulna Sadar
+2024-02-18,PH002,Atorvastatin 10mg,6,Khulna Sadar
+2024-02-18,PH002,Losartan 50mg,7,Khulna Sadar
+2024-02-19,PH002,Paracetamol 500mg,26,Khulna Sadar
+2024-02-19,PH002,ORS Sachet,19,Khulna Sadar
+2024-02-19,PH002,Metronidazole 400mg,11,Khulna Sadar
+2024-02-19,PH002,Cetirizine 10mg,10,Khulna Sadar
+2024-02-19,PH002,Amoxicillin 500mg,10,Khulna Sadar
+2024-02-19,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-02-19,PH002,Zinc 20mg (child),9,Khulna Sadar
+2024-02-19,PH002,Ciprofloxacin 500mg,7,Khulna Sadar
+2024-02-19,PH002,Antihistamine Syrup,10,Khulna Sadar
+2024-02-19,PH002,Vitamin C 500mg,20,Khulna Sadar
+2024-02-19,PH002,Ranitidine 150mg,14,Khulna Sadar
+2024-02-19,PH002,Antacid Tablet,22,Khulna Sadar
+2024-02-19,PH002,Insulin (vial),5,Khulna Sadar
+2024-02-19,PH002,Atorvastatin 10mg,7,Khulna Sadar
+2024-02-19,PH002,Losartan 50mg,6,Khulna Sadar
+2024-02-20,PH002,Paracetamol 500mg,31,Khulna Sadar
+2024-02-20,PH002,ORS Sachet,14,Khulna Sadar
+2024-02-20,PH002,Metronidazole 400mg,12,Khulna Sadar
+2024-02-20,PH002,Cetirizine 10mg,17,Khulna Sadar
+2024-02-20,PH002,Amoxicillin 500mg,11,Khulna Sadar
+2024-02-20,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-02-20,PH002,Zinc 20mg (child),9,Khulna Sadar
+2024-02-20,PH002,Ciprofloxacin 500mg,8,Khulna Sadar
+2024-02-20,PH002,Antihistamine Syrup,10,Khulna Sadar
+2024-02-20,PH002,Vitamin C 500mg,17,Khulna Sadar
+2024-02-20,PH002,Ranitidine 150mg,15,Khulna Sadar
+2024-02-20,PH002,Antacid Tablet,17,Khulna Sadar
+2024-02-20,PH002,Insulin (vial),5,Khulna Sadar
+2024-02-20,PH002,Atorvastatin 10mg,7,Khulna Sadar
+2024-02-20,PH002,Losartan 50mg,6,Khulna Sadar
+2024-02-21,PH002,Paracetamol 500mg,26,Khulna Sadar
+2024-02-21,PH002,ORS Sachet,18,Khulna Sadar
+2024-02-21,PH002,Metronidazole 400mg,14,Khulna Sadar
+2024-02-21,PH002,Cetirizine 10mg,11,Khulna Sadar
+2024-02-21,PH002,Amoxicillin 500mg,9,Khulna Sadar
+2024-02-21,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-02-21,PH002,Zinc 20mg (child),9,Khulna Sadar
+2024-02-21,PH002,Ciprofloxacin 500mg,7,Khulna Sadar
+2024-02-21,PH002,Antihistamine Syrup,8,Khulna Sadar
+2024-02-21,PH002,Vitamin C 500mg,25,Khulna Sadar
+2024-02-21,PH002,Ranitidine 150mg,17,Khulna Sadar
+2024-02-21,PH002,Antacid Tablet,18,Khulna Sadar
+2024-02-21,PH002,Insulin (vial),5,Khulna Sadar
+2024-02-21,PH002,Atorvastatin 10mg,6,Khulna Sadar
+2024-02-21,PH002,Losartan 50mg,9,Khulna Sadar
+2024-02-22,PH002,Paracetamol 500mg,41,Khulna Sadar
+2024-02-22,PH002,ORS Sachet,20,Khulna Sadar
+2024-02-22,PH002,Metronidazole 400mg,11,Khulna Sadar
+2024-02-22,PH002,Cetirizine 10mg,13,Khulna Sadar
+2024-02-22,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-02-22,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-02-22,PH002,Zinc 20mg (child),8,Khulna Sadar
+2024-02-22,PH002,Ciprofloxacin 500mg,7,Khulna Sadar
+2024-02-22,PH002,Antihistamine Syrup,8,Khulna Sadar
+2024-02-22,PH002,Vitamin C 500mg,22,Khulna Sadar
+2024-02-22,PH002,Ranitidine 150mg,17,Khulna Sadar
+2024-02-22,PH002,Antacid Tablet,21,Khulna Sadar
+2024-02-22,PH002,Insulin (vial),5,Khulna Sadar
+2024-02-22,PH002,Atorvastatin 10mg,6,Khulna Sadar
+2024-02-22,PH002,Losartan 50mg,7,Khulna Sadar
+2024-02-23,PH002,Paracetamol 500mg,32,Khulna Sadar
+2024-02-23,PH002,ORS Sachet,22,Khulna Sadar
+2024-02-23,PH002,Metronidazole 400mg,14,Khulna Sadar
+2024-02-23,PH002,Cetirizine 10mg,12,Khulna Sadar
+2024-02-23,PH002,Amoxicillin 500mg,7,Khulna Sadar
+2024-02-23,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-02-23,PH002,Zinc 20mg (child),8,Khulna Sadar
+2024-02-23,PH002,Ciprofloxacin 500mg,7,Khulna Sadar
+2024-02-23,PH002,Antihistamine Syrup,13,Khulna Sadar
+2024-02-23,PH002,Vitamin C 500mg,18,Khulna Sadar
+2024-02-23,PH002,Ranitidine 150mg,17,Khulna Sadar
+2024-02-23,PH002,Antacid Tablet,19,Khulna Sadar
+2024-02-23,PH002,Insulin (vial),4,Khulna Sadar
+2024-02-23,PH002,Atorvastatin 10mg,7,Khulna Sadar
+2024-02-23,PH002,Losartan 50mg,6,Khulna Sadar
+2024-02-24,PH002,Paracetamol 500mg,41,Khulna Sadar
+2024-02-24,PH002,ORS Sachet,19,Khulna Sadar
+2024-02-24,PH002,Metronidazole 400mg,11,Khulna Sadar
+2024-02-24,PH002,Cetirizine 10mg,15,Khulna Sadar
+2024-02-24,PH002,Amoxicillin 500mg,9,Khulna Sadar
+2024-02-24,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-02-24,PH002,Zinc 20mg (child),12,Khulna Sadar
+2024-02-24,PH002,Ciprofloxacin 500mg,7,Khulna Sadar
+2024-02-24,PH002,Antihistamine Syrup,10,Khulna Sadar
+2024-02-24,PH002,Vitamin C 500mg,27,Khulna Sadar
+2024-02-24,PH002,Ranitidine 150mg,19,Khulna Sadar
+2024-02-24,PH002,Antacid Tablet,18,Khulna Sadar
+2024-02-24,PH002,Insulin (vial),3,Khulna Sadar
+2024-02-24,PH002,Atorvastatin 10mg,5,Khulna Sadar
+2024-02-24,PH002,Losartan 50mg,8,Khulna Sadar
+2024-02-25,PH002,Paracetamol 500mg,33,Khulna Sadar
+2024-02-25,PH002,ORS Sachet,16,Khulna Sadar
+2024-02-25,PH002,Metronidazole 400mg,14,Khulna Sadar
+2024-02-25,PH002,Cetirizine 10mg,11,Khulna Sadar
+2024-02-25,PH002,Amoxicillin 500mg,7,Khulna Sadar
+2024-02-25,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-02-25,PH002,Zinc 20mg (child),8,Khulna Sadar
+2024-02-25,PH002,Ciprofloxacin 500mg,8,Khulna Sadar
+2024-02-25,PH002,Antihistamine Syrup,11,Khulna Sadar
+2024-02-25,PH002,Vitamin C 500mg,23,Khulna Sadar
+2024-02-25,PH002,Ranitidine 150mg,14,Khulna Sadar
+2024-02-25,PH002,Antacid Tablet,17,Khulna Sadar
+2024-02-25,PH002,Insulin (vial),6,Khulna Sadar
+2024-02-25,PH002,Atorvastatin 10mg,5,Khulna Sadar
+2024-02-25,PH002,Losartan 50mg,7,Khulna Sadar
+2024-02-26,PH002,Paracetamol 500mg,42,Khulna Sadar
+2024-02-26,PH002,ORS Sachet,18,Khulna Sadar
+2024-02-26,PH002,Metronidazole 400mg,12,Khulna Sadar
+2024-02-26,PH002,Cetirizine 10mg,11,Khulna Sadar
+2024-02-26,PH002,Amoxicillin 500mg,12,Khulna Sadar
+2024-02-26,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-02-26,PH002,Zinc 20mg (child),8,Khulna Sadar
+2024-02-26,PH002,Ciprofloxacin 500mg,6,Khulna Sadar
+2024-02-26,PH002,Antihistamine Syrup,12,Khulna Sadar
+2024-02-26,PH002,Vitamin C 500mg,25,Khulna Sadar
+2024-02-26,PH002,Ranitidine 150mg,14,Khulna Sadar
+2024-02-26,PH002,Antacid Tablet,22,Khulna Sadar
+2024-02-26,PH002,Insulin (vial),5,Khulna Sadar
+2024-02-26,PH002,Atorvastatin 10mg,7,Khulna Sadar
+2024-02-26,PH002,Losartan 50mg,9,Khulna Sadar
+2024-02-27,PH002,Paracetamol 500mg,38,Khulna Sadar
+2024-02-27,PH002,ORS Sachet,20,Khulna Sadar
+2024-02-27,PH002,Metronidazole 400mg,10,Khulna Sadar
+2024-02-27,PH002,Cetirizine 10mg,10,Khulna Sadar
+2024-02-27,PH002,Amoxicillin 500mg,10,Khulna Sadar
+2024-02-27,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-02-27,PH002,Zinc 20mg (child),11,Khulna Sadar
+2024-02-27,PH002,Ciprofloxacin 500mg,8,Khulna Sadar
+2024-02-27,PH002,Antihistamine Syrup,10,Khulna Sadar
+2024-02-27,PH002,Vitamin C 500mg,21,Khulna Sadar
+2024-02-27,PH002,Ranitidine 150mg,12,Khulna Sadar
+2024-02-27,PH002,Antacid Tablet,19,Khulna Sadar
+2024-02-27,PH002,Insulin (vial),3,Khulna Sadar
+2024-02-27,PH002,Atorvastatin 10mg,7,Khulna Sadar
+2024-02-27,PH002,Losartan 50mg,6,Khulna Sadar
+2024-02-28,PH002,Paracetamol 500mg,34,Khulna Sadar
+2024-02-28,PH002,ORS Sachet,17,Khulna Sadar
+2024-02-28,PH002,Metronidazole 400mg,12,Khulna Sadar
+2024-02-28,PH002,Cetirizine 10mg,14,Khulna Sadar
+2024-02-28,PH002,Amoxicillin 500mg,12,Khulna Sadar
+2024-02-28,PH002,Azithromycin 500mg,7,Khulna Sadar
+2024-02-28,PH002,Zinc 20mg (child),11,Khulna Sadar
+2024-02-28,PH002,Ciprofloxacin 500mg,6,Khulna Sadar
+2024-02-28,PH002,Antihistamine Syrup,11,Khulna Sadar
+2024-02-28,PH002,Vitamin C 500mg,19,Khulna Sadar
+2024-02-28,PH002,Ranitidine 150mg,19,Khulna Sadar
+2024-02-28,PH002,Antacid Tablet,23,Khulna Sadar
+2024-02-28,PH002,Insulin (vial),4,Khulna Sadar
+2024-02-28,PH002,Atorvastatin 10mg,6,Khulna Sadar
+2024-02-28,PH002,Losartan 50mg,7,Khulna Sadar
+2024-02-29,PH002,Paracetamol 500mg,27,Khulna Sadar
+2024-02-29,PH002,ORS Sachet,21,Khulna Sadar
+2024-02-29,PH002,Metronidazole 400mg,9,Khulna Sadar
+2024-02-29,PH002,Cetirizine 10mg,16,Khulna Sadar
+2024-02-29,PH002,Amoxicillin 500mg,9,Khulna Sadar
+2024-02-29,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-02-29,PH002,Zinc 20mg (child),12,Khulna Sadar
+2024-02-29,PH002,Ciprofloxacin 500mg,5,Khulna Sadar
+2024-02-29,PH002,Antihistamine Syrup,9,Khulna Sadar
+2024-02-29,PH002,Vitamin C 500mg,26,Khulna Sadar
+2024-02-29,PH002,Ranitidine 150mg,18,Khulna Sadar
+2024-02-29,PH002,Antacid Tablet,24,Khulna Sadar
+2024-02-29,PH002,Insulin (vial),4,Khulna Sadar
+2024-02-29,PH002,Atorvastatin 10mg,6,Khulna Sadar
+2024-02-29,PH002,Losartan 50mg,9,Khulna Sadar
+2024-03-01,PH002,Paracetamol 500mg,32,Khulna Sadar
+2024-03-01,PH002,ORS Sachet,17,Khulna Sadar
+2024-03-01,PH002,Metronidazole 400mg,9,Khulna Sadar
+2024-03-01,PH002,Cetirizine 10mg,14,Khulna Sadar
+2024-03-01,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-03-01,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-03-01,PH002,Zinc 20mg (child),8,Khulna Sadar
+2024-03-01,PH002,Ciprofloxacin 500mg,5,Khulna Sadar
+2024-03-01,PH002,Antihistamine Syrup,13,Khulna Sadar
+2024-03-01,PH002,Vitamin C 500mg,24,Khulna Sadar
+2024-03-01,PH002,Ranitidine 150mg,17,Khulna Sadar
+2024-03-01,PH002,Antacid Tablet,20,Khulna Sadar
+2024-03-01,PH002,Insulin (vial),5,Khulna Sadar
+2024-03-01,PH002,Atorvastatin 10mg,6,Khulna Sadar
+2024-03-01,PH002,Losartan 50mg,7,Khulna Sadar
+2024-03-02,PH002,Paracetamol 500mg,29,Khulna Sadar
+2024-03-02,PH002,ORS Sachet,16,Khulna Sadar
+2024-03-02,PH002,Metronidazole 400mg,11,Khulna Sadar
+2024-03-02,PH002,Cetirizine 10mg,14,Khulna Sadar
+2024-03-02,PH002,Amoxicillin 500mg,10,Khulna Sadar
+2024-03-02,PH002,Azithromycin 500mg,4,Khulna Sadar
+2024-03-02,PH002,Zinc 20mg (child),9,Khulna Sadar
+2024-03-02,PH002,Ciprofloxacin 500mg,6,Khulna Sadar
+2024-03-02,PH002,Antihistamine Syrup,10,Khulna Sadar
+2024-03-02,PH002,Vitamin C 500mg,22,Khulna Sadar
+2024-03-02,PH002,Ranitidine 150mg,16,Khulna Sadar
+2024-03-02,PH002,Antacid Tablet,20,Khulna Sadar
+2024-03-02,PH002,Insulin (vial),5,Khulna Sadar
+2024-03-02,PH002,Atorvastatin 10mg,8,Khulna Sadar
+2024-03-02,PH002,Losartan 50mg,9,Khulna Sadar
+2024-03-03,PH002,Paracetamol 500mg,37,Khulna Sadar
+2024-03-03,PH002,ORS Sachet,20,Khulna Sadar
+2024-03-03,PH002,Metronidazole 400mg,10,Khulna Sadar
+2024-03-03,PH002,Cetirizine 10mg,14,Khulna Sadar
+2024-03-03,PH002,Amoxicillin 500mg,9,Khulna Sadar
+2024-03-03,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-03-03,PH002,Zinc 20mg (child),8,Khulna Sadar
+2024-03-03,PH002,Ciprofloxacin 500mg,5,Khulna Sadar
+2024-03-03,PH002,Antihistamine Syrup,9,Khulna Sadar
+2024-03-03,PH002,Vitamin C 500mg,23,Khulna Sadar
+2024-03-03,PH002,Ranitidine 150mg,16,Khulna Sadar
+2024-03-03,PH002,Antacid Tablet,22,Khulna Sadar
+2024-03-03,PH002,Insulin (vial),6,Khulna Sadar
+2024-03-03,PH002,Atorvastatin 10mg,5,Khulna Sadar
+2024-03-03,PH002,Losartan 50mg,8,Khulna Sadar
+2024-03-04,PH002,Paracetamol 500mg,34,Khulna Sadar
+2024-03-04,PH002,ORS Sachet,18,Khulna Sadar
+2024-03-04,PH002,Metronidazole 400mg,12,Khulna Sadar
+2024-03-04,PH002,Cetirizine 10mg,10,Khulna Sadar
+2024-03-04,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-03-04,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-03-04,PH002,Zinc 20mg (child),11,Khulna Sadar
+2024-03-04,PH002,Ciprofloxacin 500mg,5,Khulna Sadar
+2024-03-04,PH002,Antihistamine Syrup,12,Khulna Sadar
+2024-03-04,PH002,Vitamin C 500mg,16,Khulna Sadar
+2024-03-04,PH002,Ranitidine 150mg,17,Khulna Sadar
+2024-03-04,PH002,Antacid Tablet,16,Khulna Sadar
+2024-03-04,PH002,Insulin (vial),6,Khulna Sadar
+2024-03-04,PH002,Atorvastatin 10mg,7,Khulna Sadar
+2024-03-04,PH002,Losartan 50mg,8,Khulna Sadar
+2024-03-05,PH002,Paracetamol 500mg,36,Khulna Sadar
+2024-03-05,PH002,ORS Sachet,17,Khulna Sadar
+2024-03-05,PH002,Metronidazole 400mg,9,Khulna Sadar
+2024-03-05,PH002,Cetirizine 10mg,14,Khulna Sadar
+2024-03-05,PH002,Amoxicillin 500mg,7,Khulna Sadar
+2024-03-05,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-03-05,PH002,Zinc 20mg (child),9,Khulna Sadar
+2024-03-05,PH002,Ciprofloxacin 500mg,7,Khulna Sadar
+2024-03-05,PH002,Antihistamine Syrup,11,Khulna Sadar
+2024-03-05,PH002,Vitamin C 500mg,23,Khulna Sadar
+2024-03-05,PH002,Ranitidine 150mg,16,Khulna Sadar
+2024-03-05,PH002,Antacid Tablet,20,Khulna Sadar
+2024-03-05,PH002,Insulin (vial),6,Khulna Sadar
+2024-03-05,PH002,Atorvastatin 10mg,7,Khulna Sadar
+2024-03-05,PH002,Losartan 50mg,8,Khulna Sadar
+2024-03-06,PH002,Paracetamol 500mg,41,Khulna Sadar
+2024-03-06,PH002,ORS Sachet,19,Khulna Sadar
+2024-03-06,PH002,Metronidazole 400mg,11,Khulna Sadar
+2024-03-06,PH002,Cetirizine 10mg,11,Khulna Sadar
+2024-03-06,PH002,Amoxicillin 500mg,9,Khulna Sadar
+2024-03-06,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-03-06,PH002,Zinc 20mg (child),8,Khulna Sadar
+2024-03-06,PH002,Ciprofloxacin 500mg,7,Khulna Sadar
+2024-03-06,PH002,Antihistamine Syrup,8,Khulna Sadar
+2024-03-06,PH002,Vitamin C 500mg,26,Khulna Sadar
+2024-03-06,PH002,Ranitidine 150mg,18,Khulna Sadar
+2024-03-06,PH002,Antacid Tablet,21,Khulna Sadar
+2024-03-06,PH002,Insulin (vial),3,Khulna Sadar
+2024-03-06,PH002,Atorvastatin 10mg,6,Khulna Sadar
+2024-03-06,PH002,Losartan 50mg,9,Khulna Sadar
+2024-03-07,PH002,Paracetamol 500mg,28,Khulna Sadar
+2024-03-07,PH002,ORS Sachet,19,Khulna Sadar
+2024-03-07,PH002,Metronidazole 400mg,9,Khulna Sadar
+2024-03-07,PH002,Cetirizine 10mg,10,Khulna Sadar
+2024-03-07,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-03-07,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-03-07,PH002,Zinc 20mg (child),9,Khulna Sadar
+2024-03-07,PH002,Ciprofloxacin 500mg,5,Khulna Sadar
+2024-03-07,PH002,Antihistamine Syrup,8,Khulna Sadar
+2024-03-07,PH002,Vitamin C 500mg,17,Khulna Sadar
+2024-03-07,PH002,Ranitidine 150mg,12,Khulna Sadar
+2024-03-07,PH002,Antacid Tablet,17,Khulna Sadar
+2024-03-07,PH002,Insulin (vial),4,Khulna Sadar
+2024-03-07,PH002,Atorvastatin 10mg,5,Khulna Sadar
+2024-03-07,PH002,Losartan 50mg,9,Khulna Sadar
+2024-03-08,PH002,Paracetamol 500mg,40,Khulna Sadar
+2024-03-08,PH002,ORS Sachet,16,Khulna Sadar
+2024-03-08,PH002,Metronidazole 400mg,11,Khulna Sadar
+2024-03-08,PH002,Cetirizine 10mg,12,Khulna Sadar
+2024-03-08,PH002,Amoxicillin 500mg,12,Khulna Sadar
+2024-03-08,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-03-08,PH002,Zinc 20mg (child),10,Khulna Sadar
+2024-03-08,PH002,Ciprofloxacin 500mg,6,Khulna Sadar
+2024-03-08,PH002,Antihistamine Syrup,12,Khulna Sadar
+2024-03-08,PH002,Vitamin C 500mg,25,Khulna Sadar
+2024-03-08,PH002,Ranitidine 150mg,18,Khulna Sadar
+2024-03-08,PH002,Antacid Tablet,24,Khulna Sadar
+2024-03-08,PH002,Insulin (vial),4,Khulna Sadar
+2024-03-08,PH002,Atorvastatin 10mg,8,Khulna Sadar
+2024-03-08,PH002,Losartan 50mg,7,Khulna Sadar
+2024-03-09,PH002,Paracetamol 500mg,36,Khulna Sadar
+2024-03-09,PH002,ORS Sachet,18,Khulna Sadar
+2024-03-09,PH002,Metronidazole 400mg,10,Khulna Sadar
+2024-03-09,PH002,Cetirizine 10mg,15,Khulna Sadar
+2024-03-09,PH002,Amoxicillin 500mg,11,Khulna Sadar
+2024-03-09,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-03-09,PH002,Zinc 20mg (child),7,Khulna Sadar
+2024-03-09,PH002,Ciprofloxacin 500mg,6,Khulna Sadar
+2024-03-09,PH002,Antihistamine Syrup,10,Khulna Sadar
+2024-03-09,PH002,Vitamin C 500mg,21,Khulna Sadar
+2024-03-09,PH002,Ranitidine 150mg,15,Khulna Sadar
+2024-03-09,PH002,Antacid Tablet,20,Khulna Sadar
+2024-03-09,PH002,Insulin (vial),4,Khulna Sadar
+2024-03-09,PH002,Atorvastatin 10mg,5,Khulna Sadar
+2024-03-09,PH002,Losartan 50mg,8,Khulna Sadar
+2024-03-10,PH002,Paracetamol 500mg,37,Khulna Sadar
+2024-03-10,PH002,ORS Sachet,13,Khulna Sadar
+2024-03-10,PH002,Metronidazole 400mg,12,Khulna Sadar
+2024-03-10,PH002,Cetirizine 10mg,17,Khulna Sadar
+2024-03-10,PH002,Amoxicillin 500mg,9,Khulna Sadar
+2024-03-10,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-03-10,PH002,Zinc 20mg (child),9,Khulna Sadar
+2024-03-10,PH002,Ciprofloxacin 500mg,5,Khulna Sadar
+2024-03-10,PH002,Antihistamine Syrup,11,Khulna Sadar
+2024-03-10,PH002,Vitamin C 500mg,25,Khulna Sadar
+2024-03-10,PH002,Ranitidine 150mg,14,Khulna Sadar
+2024-03-10,PH002,Antacid Tablet,16,Khulna Sadar
+2024-03-10,PH002,Insulin (vial),4,Khulna Sadar
+2024-03-10,PH002,Atorvastatin 10mg,5,Khulna Sadar
+2024-03-10,PH002,Losartan 50mg,7,Khulna Sadar
+2024-03-11,PH002,Paracetamol 500mg,39,Khulna Sadar
+2024-03-11,PH002,ORS Sachet,14,Khulna Sadar
+2024-03-11,PH002,Metronidazole 400mg,13,Khulna Sadar
+2024-03-11,PH002,Cetirizine 10mg,15,Khulna Sadar
+2024-03-11,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-03-11,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-03-11,PH002,Zinc 20mg (child),11,Khulna Sadar
+2024-03-11,PH002,Ciprofloxacin 500mg,7,Khulna Sadar
+2024-03-11,PH002,Antihistamine Syrup,8,Khulna Sadar
+2024-03-11,PH002,Vitamin C 500mg,26,Khulna Sadar
+2024-03-11,PH002,Ranitidine 150mg,19,Khulna Sadar
+2024-03-11,PH002,Antacid Tablet,16,Khulna Sadar
+2024-03-11,PH002,Insulin (vial),4,Khulna Sadar
+2024-03-11,PH002,Atorvastatin 10mg,7,Khulna Sadar
+2024-03-11,PH002,Losartan 50mg,9,Khulna Sadar
+2024-03-12,PH002,Paracetamol 500mg,36,Khulna Sadar
+2024-03-12,PH002,ORS Sachet,14,Khulna Sadar
+2024-03-12,PH002,Metronidazole 400mg,10,Khulna Sadar
+2024-03-12,PH002,Cetirizine 10mg,17,Khulna Sadar
+2024-03-12,PH002,Amoxicillin 500mg,11,Khulna Sadar
+2024-03-12,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-03-12,PH002,Zinc 20mg (child),9,Khulna Sadar
+2024-03-12,PH002,Ciprofloxacin 500mg,7,Khulna Sadar
+2024-03-12,PH002,Antihistamine Syrup,12,Khulna Sadar
+2024-03-12,PH002,Vitamin C 500mg,24,Khulna Sadar
+2024-03-12,PH002,Ranitidine 150mg,14,Khulna Sadar
+2024-03-12,PH002,Antacid Tablet,23,Khulna Sadar
+2024-03-12,PH002,Insulin (vial),5,Khulna Sadar
+2024-03-12,PH002,Atorvastatin 10mg,6,Khulna Sadar
+2024-03-12,PH002,Losartan 50mg,7,Khulna Sadar
+2024-03-13,PH002,Paracetamol 500mg,37,Khulna Sadar
+2024-03-13,PH002,ORS Sachet,18,Khulna Sadar
+2024-03-13,PH002,Metronidazole 400mg,10,Khulna Sadar
+2024-03-13,PH002,Cetirizine 10mg,13,Khulna Sadar
+2024-03-13,PH002,Amoxicillin 500mg,10,Khulna Sadar
+2024-03-13,PH002,Azithromycin 500mg,7,Khulna Sadar
+2024-03-13,PH002,Zinc 20mg (child),12,Khulna Sadar
+2024-03-13,PH002,Ciprofloxacin 500mg,6,Khulna Sadar
+2024-03-13,PH002,Antihistamine Syrup,10,Khulna Sadar
+2024-03-13,PH002,Vitamin C 500mg,21,Khulna Sadar
+2024-03-13,PH002,Ranitidine 150mg,14,Khulna Sadar
+2024-03-13,PH002,Antacid Tablet,18,Khulna Sadar
+2024-03-13,PH002,Insulin (vial),6,Khulna Sadar
+2024-03-13,PH002,Atorvastatin 10mg,5,Khulna Sadar
+2024-03-13,PH002,Losartan 50mg,9,Khulna Sadar
+2024-03-14,PH002,Paracetamol 500mg,37,Khulna Sadar
+2024-03-14,PH002,ORS Sachet,18,Khulna Sadar
+2024-03-14,PH002,Metronidazole 400mg,11,Khulna Sadar
+2024-03-14,PH002,Cetirizine 10mg,15,Khulna Sadar
+2024-03-14,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-03-14,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-03-14,PH002,Zinc 20mg (child),8,Khulna Sadar
+2024-03-14,PH002,Ciprofloxacin 500mg,6,Khulna Sadar
+2024-03-14,PH002,Antihistamine Syrup,9,Khulna Sadar
+2024-03-14,PH002,Vitamin C 500mg,17,Khulna Sadar
+2024-03-14,PH002,Ranitidine 150mg,19,Khulna Sadar
+2024-03-14,PH002,Antacid Tablet,23,Khulna Sadar
+2024-03-14,PH002,Insulin (vial),4,Khulna Sadar
+2024-03-14,PH002,Atorvastatin 10mg,8,Khulna Sadar
+2024-03-14,PH002,Losartan 50mg,6,Khulna Sadar
+2024-03-15,PH002,Paracetamol 500mg,39,Khulna Sadar
+2024-03-15,PH002,ORS Sachet,20,Khulna Sadar
+2024-03-15,PH002,Metronidazole 400mg,10,Khulna Sadar
+2024-03-15,PH002,Cetirizine 10mg,14,Khulna Sadar
+2024-03-15,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-03-15,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-03-15,PH002,Zinc 20mg (child),7,Khulna Sadar
+2024-03-15,PH002,Ciprofloxacin 500mg,5,Khulna Sadar
+2024-03-15,PH002,Antihistamine Syrup,13,Khulna Sadar
+2024-03-15,PH002,Vitamin C 500mg,23,Khulna Sadar
+2024-03-15,PH002,Ranitidine 150mg,18,Khulna Sadar
+2024-03-15,PH002,Antacid Tablet,16,Khulna Sadar
+2024-03-15,PH002,Insulin (vial),5,Khulna Sadar
+2024-03-15,PH002,Atorvastatin 10mg,6,Khulna Sadar
+2024-03-15,PH002,Losartan 50mg,8,Khulna Sadar
+2024-03-16,PH002,Paracetamol 500mg,29,Khulna Sadar
+2024-03-16,PH002,ORS Sachet,14,Khulna Sadar
+2024-03-16,PH002,Metronidazole 400mg,12,Khulna Sadar
+2024-03-16,PH002,Cetirizine 10mg,12,Khulna Sadar
+2024-03-16,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-03-16,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-03-16,PH002,Zinc 20mg (child),7,Khulna Sadar
+2024-03-16,PH002,Ciprofloxacin 500mg,7,Khulna Sadar
+2024-03-16,PH002,Antihistamine Syrup,11,Khulna Sadar
+2024-03-16,PH002,Vitamin C 500mg,22,Khulna Sadar
+2024-03-16,PH002,Ranitidine 150mg,13,Khulna Sadar
+2024-03-16,PH002,Antacid Tablet,22,Khulna Sadar
+2024-03-16,PH002,Insulin (vial),5,Khulna Sadar
+2024-03-16,PH002,Atorvastatin 10mg,6,Khulna Sadar
+2024-03-16,PH002,Losartan 50mg,6,Khulna Sadar
+2024-03-17,PH002,Paracetamol 500mg,42,Khulna Sadar
+2024-03-17,PH002,ORS Sachet,19,Khulna Sadar
+2024-03-17,PH002,Metronidazole 400mg,10,Khulna Sadar
+2024-03-17,PH002,Cetirizine 10mg,12,Khulna Sadar
+2024-03-17,PH002,Amoxicillin 500mg,7,Khulna Sadar
+2024-03-17,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-03-17,PH002,Zinc 20mg (child),9,Khulna Sadar
+2024-03-17,PH002,Ciprofloxacin 500mg,8,Khulna Sadar
+2024-03-17,PH002,Antihistamine Syrup,9,Khulna Sadar
+2024-03-17,PH002,Vitamin C 500mg,20,Khulna Sadar
+2024-03-17,PH002,Ranitidine 150mg,17,Khulna Sadar
+2024-03-17,PH002,Antacid Tablet,22,Khulna Sadar
+2024-03-17,PH002,Insulin (vial),4,Khulna Sadar
+2024-03-17,PH002,Atorvastatin 10mg,5,Khulna Sadar
+2024-03-17,PH002,Losartan 50mg,9,Khulna Sadar
+2024-03-18,PH002,Paracetamol 500mg,36,Khulna Sadar
+2024-03-18,PH002,ORS Sachet,14,Khulna Sadar
+2024-03-18,PH002,Metronidazole 400mg,12,Khulna Sadar
+2024-03-18,PH002,Cetirizine 10mg,10,Khulna Sadar
+2024-03-18,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-03-18,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-03-18,PH002,Zinc 20mg (child),11,Khulna Sadar
+2024-03-18,PH002,Ciprofloxacin 500mg,6,Khulna Sadar
+2024-03-18,PH002,Antihistamine Syrup,8,Khulna Sadar
+2024-03-18,PH002,Vitamin C 500mg,22,Khulna Sadar
+2024-03-18,PH002,Ranitidine 150mg,14,Khulna Sadar
+2024-03-18,PH002,Antacid Tablet,15,Khulna Sadar
+2024-03-18,PH002,Insulin (vial),6,Khulna Sadar
+2024-03-18,PH002,Atorvastatin 10mg,8,Khulna Sadar
+2024-03-18,PH002,Losartan 50mg,6,Khulna Sadar
+2024-03-19,PH002,Paracetamol 500mg,34,Khulna Sadar
+2024-03-19,PH002,ORS Sachet,14,Khulna Sadar
+2024-03-19,PH002,Metronidazole 400mg,12,Khulna Sadar
+2024-03-19,PH002,Cetirizine 10mg,13,Khulna Sadar
+2024-03-19,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-03-19,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-03-19,PH002,Zinc 20mg (child),8,Khulna Sadar
+2024-03-19,PH002,Ciprofloxacin 500mg,6,Khulna Sadar
+2024-03-19,PH002,Antihistamine Syrup,8,Khulna Sadar
+2024-03-19,PH002,Vitamin C 500mg,18,Khulna Sadar
+2024-03-19,PH002,Ranitidine 150mg,16,Khulna Sadar
+2024-03-19,PH002,Antacid Tablet,17,Khulna Sadar
+2024-03-19,PH002,Insulin (vial),5,Khulna Sadar
+2024-03-19,PH002,Atorvastatin 10mg,5,Khulna Sadar
+2024-03-19,PH002,Losartan 50mg,7,Khulna Sadar
+2024-03-20,PH002,Paracetamol 500mg,42,Khulna Sadar
+2024-03-20,PH002,ORS Sachet,21,Khulna Sadar
+2024-03-20,PH002,Metronidazole 400mg,11,Khulna Sadar
+2024-03-20,PH002,Cetirizine 10mg,15,Khulna Sadar
+2024-03-20,PH002,Amoxicillin 500mg,7,Khulna Sadar
+2024-03-20,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-03-20,PH002,Zinc 20mg (child),10,Khulna Sadar
+2024-03-20,PH002,Ciprofloxacin 500mg,5,Khulna Sadar
+2024-03-20,PH002,Antihistamine Syrup,11,Khulna Sadar
+2024-03-20,PH002,Vitamin C 500mg,21,Khulna Sadar
+2024-03-20,PH002,Ranitidine 150mg,15,Khulna Sadar
+2024-03-20,PH002,Antacid Tablet,22,Khulna Sadar
+2024-03-20,PH002,Insulin (vial),3,Khulna Sadar
+2024-03-20,PH002,Atorvastatin 10mg,6,Khulna Sadar
+2024-03-20,PH002,Losartan 50mg,7,Khulna Sadar
+2024-03-21,PH002,Paracetamol 500mg,32,Khulna Sadar
+2024-03-21,PH002,ORS Sachet,14,Khulna Sadar
+2024-03-21,PH002,Metronidazole 400mg,10,Khulna Sadar
+2024-03-21,PH002,Cetirizine 10mg,15,Khulna Sadar
+2024-03-21,PH002,Amoxicillin 500mg,12,Khulna Sadar
+2024-03-21,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-03-21,PH002,Zinc 20mg (child),12,Khulna Sadar
+2024-03-21,PH002,Ciprofloxacin 500mg,7,Khulna Sadar
+2024-03-21,PH002,Antihistamine Syrup,9,Khulna Sadar
+2024-03-21,PH002,Vitamin C 500mg,18,Khulna Sadar
+2024-03-21,PH002,Ranitidine 150mg,15,Khulna Sadar
+2024-03-21,PH002,Antacid Tablet,23,Khulna Sadar
+2024-03-21,PH002,Insulin (vial),5,Khulna Sadar
+2024-03-21,PH002,Atorvastatin 10mg,6,Khulna Sadar
+2024-03-21,PH002,Losartan 50mg,7,Khulna Sadar
+2024-03-22,PH002,Paracetamol 500mg,41,Khulna Sadar
+2024-03-22,PH002,ORS Sachet,17,Khulna Sadar
+2024-03-22,PH002,Metronidazole 400mg,10,Khulna Sadar
+2024-03-22,PH002,Cetirizine 10mg,15,Khulna Sadar
+2024-03-22,PH002,Amoxicillin 500mg,7,Khulna Sadar
+2024-03-22,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-03-22,PH002,Zinc 20mg (child),10,Khulna Sadar
+2024-03-22,PH002,Ciprofloxacin 500mg,8,Khulna Sadar
+2024-03-22,PH002,Antihistamine Syrup,13,Khulna Sadar
+2024-03-22,PH002,Vitamin C 500mg,17,Khulna Sadar
+2024-03-22,PH002,Ranitidine 150mg,13,Khulna Sadar
+2024-03-22,PH002,Antacid Tablet,22,Khulna Sadar
+2024-03-22,PH002,Insulin (vial),6,Khulna Sadar
+2024-03-22,PH002,Atorvastatin 10mg,7,Khulna Sadar
+2024-03-22,PH002,Losartan 50mg,6,Khulna Sadar
+2024-03-23,PH002,Paracetamol 500mg,35,Khulna Sadar
+2024-03-23,PH002,ORS Sachet,16,Khulna Sadar
+2024-03-23,PH002,Metronidazole 400mg,14,Khulna Sadar
+2024-03-23,PH002,Cetirizine 10mg,13,Khulna Sadar
+2024-03-23,PH002,Amoxicillin 500mg,7,Khulna Sadar
+2024-03-23,PH002,Azithromycin 500mg,4,Khulna Sadar
+2024-03-23,PH002,Zinc 20mg (child),8,Khulna Sadar
+2024-03-23,PH002,Ciprofloxacin 500mg,8,Khulna Sadar
+2024-03-23,PH002,Antihistamine Syrup,10,Khulna Sadar
+2024-03-23,PH002,Vitamin C 500mg,18,Khulna Sadar
+2024-03-23,PH002,Ranitidine 150mg,14,Khulna Sadar
+2024-03-23,PH002,Antacid Tablet,19,Khulna Sadar
+2024-03-23,PH002,Insulin (vial),6,Khulna Sadar
+2024-03-23,PH002,Atorvastatin 10mg,6,Khulna Sadar
+2024-03-23,PH002,Losartan 50mg,9,Khulna Sadar
+2024-03-24,PH002,Paracetamol 500mg,43,Khulna Sadar
+2024-03-24,PH002,ORS Sachet,19,Khulna Sadar
+2024-03-24,PH002,Metronidazole 400mg,13,Khulna Sadar
+2024-03-24,PH002,Cetirizine 10mg,12,Khulna Sadar
+2024-03-24,PH002,Amoxicillin 500mg,8,Khulna Sadar
+2024-03-24,PH002,Azithromycin 500mg,7,Khulna Sadar
+2024-03-24,PH002,Zinc 20mg (child),10,Khulna Sadar
+2024-03-24,PH002,Ciprofloxacin 500mg,6,Khulna Sadar
+2024-03-24,PH002,Antihistamine Syrup,8,Khulna Sadar
+2024-03-24,PH002,Vitamin C 500mg,21,Khulna Sadar
+2024-03-24,PH002,Ranitidine 150mg,17,Khulna Sadar
+2024-03-24,PH002,Antacid Tablet,20,Khulna Sadar
+2024-03-24,PH002,Insulin (vial),5,Khulna Sadar
+2024-03-24,PH002,Atorvastatin 10mg,8,Khulna Sadar
+2024-03-24,PH002,Losartan 50mg,7,Khulna Sadar
+2024-03-25,PH002,Paracetamol 500mg,26,Khulna Sadar
+2024-03-25,PH002,ORS Sachet,13,Khulna Sadar
+2024-03-25,PH002,Metronidazole 400mg,12,Khulna Sadar
+2024-03-25,PH002,Cetirizine 10mg,17,Khulna Sadar
+2024-03-25,PH002,Amoxicillin 500mg,9,Khulna Sadar
+2024-03-25,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-03-25,PH002,Zinc 20mg (child),9,Khulna Sadar
+2024-03-25,PH002,Ciprofloxacin 500mg,8,Khulna Sadar
+2024-03-25,PH002,Antihistamine Syrup,13,Khulna Sadar
+2024-03-25,PH002,Vitamin C 500mg,24,Khulna Sadar
+2024-03-25,PH002,Ranitidine 150mg,17,Khulna Sadar
+2024-03-25,PH002,Antacid Tablet,15,Khulna Sadar
+2024-03-25,PH002,Insulin (vial),5,Khulna Sadar
+2024-03-25,PH002,Atorvastatin 10mg,5,Khulna Sadar
+2024-03-25,PH002,Losartan 50mg,6,Khulna Sadar
+2024-03-26,PH002,Paracetamol 500mg,40,Khulna Sadar
+2024-03-26,PH002,ORS Sachet,21,Khulna Sadar
+2024-03-26,PH002,Metronidazole 400mg,12,Khulna Sadar
+2024-03-26,PH002,Cetirizine 10mg,11,Khulna Sadar
+2024-03-26,PH002,Amoxicillin 500mg,9,Khulna Sadar
+2024-03-26,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-03-26,PH002,Zinc 20mg (child),11,Khulna Sadar
+2024-03-26,PH002,Ciprofloxacin 500mg,5,Khulna Sadar
+2024-03-26,PH002,Antihistamine Syrup,10,Khulna Sadar
+2024-03-26,PH002,Vitamin C 500mg,17,Khulna Sadar
+2024-03-26,PH002,Ranitidine 150mg,14,Khulna Sadar
+2024-03-26,PH002,Antacid Tablet,19,Khulna Sadar
+2024-03-26,PH002,Insulin (vial),5,Khulna Sadar
+2024-03-26,PH002,Atorvastatin 10mg,8,Khulna Sadar
+2024-03-26,PH002,Losartan 50mg,7,Khulna Sadar
+2024-03-27,PH002,Paracetamol 500mg,29,Khulna Sadar
+2024-03-27,PH002,ORS Sachet,15,Khulna Sadar
+2024-03-27,PH002,Metronidazole 400mg,9,Khulna Sadar
+2024-03-27,PH002,Cetirizine 10mg,16,Khulna Sadar
+2024-03-27,PH002,Amoxicillin 500mg,9,Khulna Sadar
+2024-03-27,PH002,Azithromycin 500mg,4,Khulna Sadar
+2024-03-27,PH002,Zinc 20mg (child),11,Khulna Sadar
+2024-03-27,PH002,Ciprofloxacin 500mg,8,Khulna Sadar
+2024-03-27,PH002,Antihistamine Syrup,8,Khulna Sadar
+2024-03-27,PH002,Vitamin C 500mg,18,Khulna Sadar
+2024-03-27,PH002,Ranitidine 150mg,18,Khulna Sadar
+2024-03-27,PH002,Antacid Tablet,22,Khulna Sadar
+2024-03-27,PH002,Insulin (vial),5,Khulna Sadar
+2024-03-27,PH002,Atorvastatin 10mg,7,Khulna Sadar
+2024-03-27,PH002,Losartan 50mg,8,Khulna Sadar
+2024-03-28,PH002,Paracetamol 500mg,34,Khulna Sadar
+2024-03-28,PH002,ORS Sachet,17,Khulna Sadar
+2024-03-28,PH002,Metronidazole 400mg,11,Khulna Sadar
+2024-03-28,PH002,Cetirizine 10mg,11,Khulna Sadar
+2024-03-28,PH002,Amoxicillin 500mg,11,Khulna Sadar
+2024-03-28,PH002,Azithromycin 500mg,5,Khulna Sadar
+2024-03-28,PH002,Zinc 20mg (child),9,Khulna Sadar
+2024-03-28,PH002,Ciprofloxacin 500mg,7,Khulna Sadar
+2024-03-28,PH002,Antihistamine Syrup,8,Khulna Sadar
+2024-03-28,PH002,Vitamin C 500mg,19,Khulna Sadar
+2024-03-28,PH002,Ranitidine 150mg,16,Khulna Sadar
+2024-03-28,PH002,Antacid Tablet,18,Khulna Sadar
+2024-03-28,PH002,Insulin (vial),5,Khulna Sadar
+2024-03-28,PH002,Atorvastatin 10mg,7,Khulna Sadar
+2024-03-28,PH002,Losartan 50mg,7,Khulna Sadar
+2024-03-29,PH002,Paracetamol 500mg,34,Khulna Sadar
+2024-03-29,PH002,ORS Sachet,18,Khulna Sadar
+2024-03-29,PH002,Metronidazole 400mg,9,Khulna Sadar
+2024-03-29,PH002,Cetirizine 10mg,17,Khulna Sadar
+2024-03-29,PH002,Amoxicillin 500mg,9,Khulna Sadar
+2024-03-29,PH002,Azithromycin 500mg,6,Khulna Sadar
+2024-03-29,PH002,Zinc 20mg (child),7,Khulna Sadar
+2024-03-29,PH002,Ciprofloxacin 500mg,5,Khulna Sadar
+2024-03-29,PH002,Antihistamine Syrup,12,Khulna Sadar
+2024-03-29,PH002,Vitamin C 500mg,24,Khulna Sadar
+2024-03-29,PH002,Ranitidine 150mg,18,Khulna Sadar
+2024-03-29,PH002,Antacid Tablet,18,Khulna Sadar
+2024-03-29,PH002,Insulin (vial),4,Khulna Sadar
+2024-03-29,PH002,Atorvastatin 10mg,7,Khulna Sadar
+2024-03-29,PH002,Losartan 50mg,6,Khulna Sadar
+2024-03-30,PH002,Paracetamol 500mg,29,Khulna Sadar
+2024-03-30,PH002,ORS Sachet,22,Khulna Sadar
+2024-03-30,PH002,Metronidazole 400mg,13,Khulna Sadar
+2024-03-30,PH002,Cetirizine 10mg,13,Khulna Sadar
+2024-03-30,PH002,Amoxicillin 500mg,11,Khulna Sadar
+2024-03-30,PH002,Azithromycin 500mg,4,Khulna Sadar
+2024-03-30,PH002,Zinc 20mg (child),10,Khulna Sadar
+2024-03-30,PH002,Ciprofloxacin 500mg,8,Khulna Sadar
+2024-03-30,PH002,Antihistamine Syrup,8,Khulna Sadar
+2024-03-30,PH002,Vitamin C 500mg,24,Khulna Sadar
+2024-03-30,PH002,Ranitidine 150mg,17,Khulna Sadar
+2024-03-30,PH002,Antacid Tablet,16,Khulna Sadar
+2024-03-30,PH002,Insulin (vial),4,Khulna Sadar
+2024-03-30,PH002,Atorvastatin 10mg,5,Khulna Sadar
+2024-03-30,PH002,Losartan 50mg,6,Khulna Sadar
